@@ -1,0 +1,79 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id                  String    @id @default(cuid())
+  email               String    @unique
+  googleId            String?   @unique
+  password            String?
+  fullName            String
+  avatar              String?
+  location            String?
+  verified            Boolean   @default(false)
+  role                Role      @default(COWORKER)
+  isDeleted           Boolean   @default(false)
+  lastLogin           DateTime?
+  verificationCode    String?
+  verificationExpires DateTime?
+  isVerified          Boolean   @default(false)
+  isSuspended         Boolean   @default(false)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  livestock    Livestock[]
+  inventory Inventory[]
+}
+
+model Livestock {
+  id          String   @id @default(cuid())
+  tagId       String   @unique
+  type        String  
+  breed       String?
+  birthDate   DateTime?
+  healthStatus String 
+  addedBy     User     @relation(fields: [addedById], references: [id])
+  addedById   String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  inventoryRecords Inventory[]
+}
+
+model Inventory {
+  id           String   @id @default(cuid())
+  livestock    Livestock @relation(fields: [livestockId], references: [id])
+  livestockId  String
+  action       InventoryAction
+  notes        String?
+  recordedBy   User     @relation(fields: [recordedById], references: [id])
+  recordedById String
+  createdAt    DateTime @default(now())
+}
+
+ enum Role {
+  ADMIN
+  FARM_KEEPER
+  COWORKER
+  VET
+}
+
+enum InventoryAction {
+  ADDED
+  SOLD
+  VACCINATED
+  SICK
+  TREATED
+}
