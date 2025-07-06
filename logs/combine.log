@@ -1,0 +1,607 @@
+2025-07-02 10:52:45 [32minfo[39m [32mGET /api/v1/auth 404 5.724 ms - 116[39m
+[32m[39m
+2025-07-02 10:53:24 [32minfo[39m [32mPOST /api/v1/auth/register 201 373.180 ms - 96[39m
+[32m[39m
+2025-07-02 10:53:24 [32minfo[39m [32mError sending message to test@example.com[39m
+2025-07-02 10:53:24 [31merror[39m [31mError sending email:[39m
+2025-07-02 10:58:25 [31merror[39m [31mUser already registered! Please proceed to login. User already registered! Please proceed to login.[39m
+2025-07-02 10:58:25 [32minfo[39m [32mPOST /api/v1/auth/register 403 112.662 ms - 77[39m
+[32m[39m
+2025-07-02 11:09:59 [32minfo[39m [32mGET /api/v1/auth/login 404 0.591 ms - 122[39m
+[32m[39m
+2025-07-02 11:12:40 [32minfo[39m [32mGET /api/v1/auth/login 404 0.466 ms - 122[39m
+[32m[39m
+2025-07-02 11:12:48 [31merror[39m [31mAccount not verified! Account not verified![39m
+2025-07-02 11:12:48 [32minfo[39m [32mPOST /api/v1/auth/login 401 200.293 ms - 49[39m
+[32m[39m
+2025-07-02 11:40:39 [32minfo[39m [32mPOST /api/v1/auth/verify 404 3.565 ms - 123[39m
+[32m[39m
+2025-07-02 11:40:41 [32minfo[39m [32mPOST /api/v1/auth/verify 404 0.735 ms - 123[39m
+[32m[39m
+2025-07-02 11:40:42 [32minfo[39m [32mPOST /api/v1/auth/verify 404 0.339 ms - 123[39m
+[32m[39m
+2025-07-02 11:40:47 [32minfo[39m [32mPOST /api/v1/auth/verify 404 0.332 ms - 123[39m
+[32m[39m
+2025-07-02 11:41:34 [32minfo[39m [32mPOST /api/v1/auth/verify 404 0.327 ms - 123[39m
+[32m[39m
+2025-07-02 11:50:17 [32minfo[39m [32mPOST /api/v1/auth/verify 404 0.353 ms - 123[39m
+[32m[39m
+2025-07-02 12:16:18 [31merror[39m [31mInvalid or expired verification code Invalid or expired verification code[39m
+2025-07-02 12:16:18 [32minfo[39m [32mPUT /api/v1/auth/verify 401 170.050 ms - 64[39m
+[32m[39m
+2025-07-02 12:18:00 [31merror[39m [31mAccount not verified! Account not verified![39m
+2025-07-02 12:18:00 [32minfo[39m [32mPOST /api/v1/auth/login 401 137.493 ms - 49[39m
+[32m[39m
+2025-07-02 12:18:03 [31merror[39m [31mAccount not verified! Account not verified![39m
+2025-07-02 12:18:03 [32minfo[39m [32mPOST /api/v1/auth/login 401 113.629 ms - 49[39m
+[32m[39m
+2025-07-02 12:18:04 [31merror[39m [31mAccount not verified! Account not verified![39m
+2025-07-02 12:18:04 [32minfo[39m [32mPOST /api/v1/auth/login 401 115.379 ms - 49[39m
+[32m[39m
+2025-07-02 12:18:05 [31merror[39m [31mAccount not verified! Account not verified![39m
+2025-07-02 12:18:05 [32minfo[39m [32mPOST /api/v1/auth/login 401 114.675 ms - 49[39m
+[32m[39m
+2025-07-02 12:18:06 [31merror[39m [31mAccount not verified! Account not verified![39m
+2025-07-02 12:18:06 [32minfo[39m [32mPOST /api/v1/auth/login 401 336.137 ms - 49[39m
+[32m[39m
+2025-07-02 12:31:04 [32minfo[39m [32mPOST /api/v1/auth/register 201 624.624 ms - 96[39m
+[32m[39m
+2025-07-02 12:31:09 [32minfo[39m [32mError sending message to samzdevop@gmail.com[39m
+2025-07-02 12:31:09 [31merror[39m [31mError sending email: 580D0000:error:0A00010B:SSL routines:ssl3_get_record:wrong version number:c:\ws\deps\openssl\openssl\ssl\record\ssl3_record.c:355:[39m
+[31m[39m
+2025-07-02 12:36:14 [31merror[39m [31mInvalid or expired verification code Invalid or expired verification code[39m
+2025-07-02 12:36:14 [32minfo[39m [32mPUT /api/v1/auth/verify 401 103.895 ms - 64[39m
+[32m[39m
+2025-07-02 12:36:46 [32minfo[39m [32mPUT /api/v1/auth/verify 200 38.305 ms - 70[39m
+[32m[39m
+2025-07-02 12:36:49 [32minfo[39m [32mMail successfully sent to samzdevop@gmail.com[39m
+2025-07-02 12:36:49 [32minfo[39m [32mMessage sent: %s[39m
+2025-07-02 12:40:39 [32minfo[39m [32mGET /api/v1/auth/login 404 0.967 ms - 122[39m
+[32m[39m
+2025-07-02 12:40:46 [32minfo[39m [32mPOST /api/v1/auth/login 422 2.246 ms - 278[39m
+[32m[39m
+2025-07-02 12:41:05 [32minfo[39m [32mPOST /api/v1/auth/login 200 118.726 ms - 787[39m
+[32m[39m
+2025-07-02 12:57:01 [32minfo[39m [32mPOST /api/v1/auth/cmclvlm6c0000t1kczwko3gpo 404 0.383 ms - 142[39m
+[32m[39m
+2025-07-02 12:57:15 [32minfo[39m [32mDELETE /api/v1/auth/cmclvlm6c0000t1kczwko3gpo 404 0.296 ms - 142[39m
+[32m[39m
+2025-07-02 12:57:17 [32minfo[39m [32mDELETE /api/v1/auth/cmclvlm6c0000t1kczwko3gpo 404 0.281 ms - 142[39m
+[32m[39m
+2025-07-02 13:00:09 [32minfo[39m [32mDELETE /api/v1/auth/cmclvlm6c0000t1kczwko3gpo 404 0.466 ms - 142[39m
+[32m[39m
+2025-07-02 13:00:11 [32minfo[39m [32mDELETE /api/v1/auth/cmclvlm6c0000t1kczwko3gpo 404 0.545 ms - 142[39m
+[32m[39m
+2025-07-02 13:00:12 [32minfo[39m [32mDELETE /api/v1/auth/cmclvlm6c0000t1kczwko3gpo 404 0.308 ms - 142[39m
+[32m[39m
+2025-07-02 13:10:15 [31merror[39m [31mUser already registered! Please proceed to login. User already registered! Please proceed to login.[39m
+2025-07-02 13:10:15 [32minfo[39m [32mPOST /api/v1/auth/register 403 116.342 ms - 77[39m
+[32m[39m
+2025-07-02 13:10:29 [32minfo[39m [32mPOST /api/v1/auth/register 201 122.848 ms - 96[39m
+[32m[39m
+2025-07-02 13:10:34 [32minfo[39m [32mMail successfully sent to samuellchuks@gmail.com[39m
+2025-07-02 13:10:34 [32minfo[39m [32mMessage sent: %s[39m
+2025-07-02 13:44:36 [32minfo[39m [32mPOST /api/v1/auth/register 201 260.357 ms - 96[39m
+[32m[39m
+2025-07-02 13:44:36 [32minfo[39m [32mError sending message to samuellchuks@gmail.com[39m
+2025-07-02 13:44:36 [31merror[39m [31mError sending email: connect ENETUNREACH 95.216.108.161:587[39m
+2025-07-02 13:48:57 [32minfo[39m [32mPUT /api/v1/auth/verify 200 12.355 ms - 70[39m
+[32m[39m
+2025-07-02 13:48:57 [32minfo[39m [32mError sending message to samuellchuks@gmail.com[39m
+2025-07-02 13:48:57 [31merror[39m [31mError sending email: connect ENETUNREACH 95.216.108.161:587[39m
+2025-07-02 13:55:46 [32minfo[39m [32mPOST /api/v1/auth/register 201 293.518 ms - 96[39m
+[32m[39m
+2025-07-02 13:55:49 [32minfo[39m [32mMail successfully sent to samuellchuks@gmail.com[39m
+2025-07-02 13:55:49 [32minfo[39m [32mMessage sent: %s[39m
+2025-07-02 13:57:53 [32minfo[39m [32mPUT /api/v1/auth/verify 200 17.064 ms - 70[39m
+[32m[39m
+2025-07-02 13:57:55 [32minfo[39m [32mMail successfully sent to samuellchuks@gmail.com[39m
+2025-07-02 13:57:55 [32minfo[39m [32mMessage sent: %s[39m
+2025-07-02 22:42:40 [32minfo[39m [32mGET /api/v1/auth/admin-reg 404 4.820 ms - 126[39m
+[32m[39m
+2025-07-02 22:42:41 [32minfo[39m [32mGET /favicon.ico 404 1.636 ms - 116[39m
+[32m[39m
+2025-07-03 08:59:12 [32minfo[39m [32mPOST /api/v1/auth/admin-reg 201 604.351 ms - 96[39m
+[32m[39m
+2025-07-03 08:59:14 [32minfo[39m [32mMail successfully sent to test@example.com[39m
+2025-07-03 08:59:14 [32minfo[39m [32mMessage sent: %s[39m
+2025-07-03 09:00:22 [32minfo[39m [32mPUT /api/v1/auth/verify 200 22.280 ms - 70[39m
+[32m[39m
+2025-07-03 09:00:24 [32minfo[39m [32mMail successfully sent to test@example.com[39m
+2025-07-03 09:00:24 [32minfo[39m [32mMessage sent: %s[39m
+2025-07-03 09:04:15 [32minfo[39m [32mPOST /api/v1/auth/admin-reg 201 290.693 ms - 96[39m
+[32m[39m
+2025-07-03 09:04:17 [32minfo[39m [32mMail successfully sent to Admin@example.com[39m
+2025-07-03 09:04:17 [32minfo[39m [32mMessage sent: %s[39m
+2025-07-03 09:04:51 [31merror[39m [31mUser not found User not found[39m
+2025-07-03 09:04:51 [32minfo[39m [32mPUT /api/v1/auth/verify 404 29.964 ms - 42[39m
+[32m[39m
+2025-07-03 09:05:01 [32minfo[39m [32mPUT /api/v1/auth/verify 200 22.963 ms - 70[39m
+[32m[39m
+2025-07-03 09:05:03 [32minfo[39m [32mMail successfully sent to Admin@example.com[39m
+2025-07-03 09:05:03 [32minfo[39m [32mMessage sent: %s[39m
+2025-07-03 09:36:31 [32minfo[39m [32mPOST /api/v1/auth/register 401 2.521 ms - 66[39m
+[32m[39m
+2025-07-03 09:37:32 [32minfo[39m [32mPOST /api/v1/auth/login 200 234.184 ms - 780[39m
+[32m[39m
+2025-07-03 09:40:00 [31merror[39m [31mExpected ',' or '}' after property value in JSON at position 102 (line 5 column 3) Expected ',' or '}' after property value in JSON at position 102 (line 5 column 3)[39m
+2025-07-03 09:40:13 [32minfo[39m [32mPOST /api/v1/auth/register 422 15.844 ms - 471[39m
+[32m[39m
+2025-07-03 09:40:34 [32minfo[39m [32mPOST /api/v1/auth/register 201 141.847 ms - 72[39m
+[32m[39m
+2025-07-03 16:18:57 [32minfo[39m [32mPOST /api/v1/auth/admin-reg 201 301.858 ms - 96[39m
+[32m[39m
+2025-07-03 16:18:59 [32minfo[39m [32mMail successfully sent to Admin@example.com[39m
+2025-07-03 16:18:59 [32minfo[39m [32mMessage sent: %s[39m
+2025-07-03 16:20:56 [31merror[39m [31mUser already registered! Please proceed to login. User already registered! Please proceed to login.[39m
+2025-07-03 16:20:56 [32minfo[39m [32mPOST /api/v1/auth/admin-reg 403 30.612 ms - 77[39m
+[32m[39m
+2025-07-03 16:29:33 [32minfo[39m [32mPUT /api/v1/auth/verify 200 112.884 ms - 70[39m
+[32m[39m
+2025-07-03 16:29:36 [32minfo[39m [32mMail successfully sent to Admin@example.com[39m
+2025-07-03 16:29:36 [32minfo[39m [32mMessage sent: %s[39m
+2025-07-03 16:31:27 [32minfo[39m [32mPOST /api/v1/auth/register 401 1.843 ms - 66[39m
+[32m[39m
+2025-07-03 16:31:42 [32minfo[39m [32mPOST /api/v1/auth/login 200 130.793 ms - 763[39m
+[32m[39m
+2025-07-03 16:32:17 [32minfo[39m [32mPOST /api/v1/auth/register 422 8.624 ms - 781[39m
+[32m[39m
+2025-07-03 16:32:31 [32minfo[39m [32mPOST /api/v1/auth/register 422 4.020 ms - 781[39m
+[32m[39m
+2025-07-03 16:32:45 [32minfo[39m [32mPOST /api/v1/auth/register 422 8.512 ms - 781[39m
+[32m[39m
+2025-07-03 16:33:22 [32minfo[39m [32mPOST /api/v1/auth/register 422 5.100 ms - 781[39m
+[32m[39m
+2025-07-03 16:38:02 [31merror[39m [31mUser already registered! Please proceed to login. User already registered! Please proceed to login.[39m
+2025-07-03 16:38:02 [32minfo[39m [32mPOST /api/v1/auth/admin-reg 403 123.642 ms - 77[39m
+[32m[39m
+2025-07-03 16:38:27 [32minfo[39m [32mPOST /api/v1/auth/register 422 11.703 ms - 781[39m
+[32m[39m
+2025-07-03 16:38:56 [32minfo[39m [32mPOST /api/v1/auth/login 200 106.828 ms - 763[39m
+[32m[39m
+2025-07-03 16:40:01 [32minfo[39m [32mPOST /api/v1/auth/register 201 134.026 ms - 72[39m
+[32m[39m
+2025-07-03 16:41:51 [32minfo[39m [32mPOST /api/v1/auth/login 200 606.747 ms - 784[39m
+[32m[39m
+2025-07-03 16:42:19 [32minfo[39m [32mPOST /api/v1/auth/login 200 130.474 ms - 784[39m
+[32m[39m
+2025-07-03 16:42:26 [31merror[39m [31mUser not found User not found[39m
+2025-07-03 16:42:26 [32minfo[39m [32mPOST /api/v1/auth/login 404 20.810 ms - 42[39m
+[32m[39m
+2025-07-03 16:42:40 [31merror[39m [31mUser not found User not found[39m
+2025-07-03 16:42:40 [32minfo[39m [32mPOST /api/v1/auth/login 404 5.273 ms - 42[39m
+[32m[39m
+2025-07-03 16:42:47 [32minfo[39m [32mPOST /api/v1/auth/login 200 117.451 ms - 784[39m
+[32m[39m
+2025-07-03 16:42:53 [32minfo[39m [32mPOST /api/v1/auth/login 200 121.646 ms - 784[39m
+[32m[39m
+2025-07-03 16:44:33 [32minfo[39m [32mPOST /api/v1/auth/register 201 138.146 ms - 67[39m
+[32m[39m
+2025-07-03 16:45:10 [32minfo[39m [32mPOST /api/v1/auth/register 403 4.084 ms - 86[39m
+[32m[39m
+2025-07-03 16:45:55 [32minfo[39m [32mPOST /api/v1/auth/register 403 4.035 ms - 86[39m
+[32m[39m
+2025-07-03 16:45:58 [32minfo[39m [32mPOST /api/v1/auth/register 403 4.852 ms - 86[39m
+[32m[39m
+2025-07-03 16:48:23 [32minfo[39m [32mPOST /api/v1/auth/register 403 144.196 ms - 96[39m
+[32m[39m
+2025-07-03 16:54:11 [32minfo[39m [32mPOST /api/v1/auth/register 201 565.670 ms - 67[39m
+[32m[39m
+2025-07-04 11:11:59 [32minfo[39m [32mPOST /api/v1/auth/login 200 260.442 ms - 784[39m
+[32m[39m
+2025-07-04 11:14:23 [32minfo[39m [32mPOST /api/v1/livestock 422 17.055 ms - 1033[39m
+[32m[39m
+2025-07-04 11:46:12 [32minfo[39m [32mPOST /api/v1/livestock 422 370.212 ms - 240[39m
+[32m[39m
+2025-07-04 11:46:28 [32minfo[39m [32mPOST /api/v1/livestock 422 131.517 ms - 240[39m
+[32m[39m
+2025-07-04 11:55:31 [32minfo[39m [32mPOST /api/v1/livestock 201 140.552 ms - 468[39m
+[32m[39m
+2025-07-04 12:13:42 [32minfo[39m [32mPOST /api/v1/livestock 401 7.807 ms - 64[39m
+[32m[39m
+2025-07-04 12:14:22 [32minfo[39m [32mPOST /api/v1/auth/login 200 285.994 ms - 784[39m
+[32m[39m
+2025-07-04 12:17:18 [31merror[39m [31mDatabase validation error: [39m
+[31mInvalid `prisma.livestock.create()` invocation in[39m
+[31mC:\Users\DoBUY\Agritech-Backend\src\contollers\livestock.controller.ts:26:46[39m
+
+[31m  23 [39m
+[31m  24 const addedById = (req.user as any).id;[39m
+[31m  25 [39m
+[31m→ 26 const livestock = await prisma.livestock.create({[39m
+[31m       data: {[39m
+[31m         tagId: "COW-002",[39m
+[31m         type: "Sheep",[39m
+[31m         breed: "Sheep",[39m
+[31m         birthDate: new Date("Invalid Date"),[39m
+[31m                    ~~~~~~~~~~~~~~~~~~~~~~~~[39m
+[31m         healthStatus: "SICK",[39m
+[31m         weight: 200,[39m
+[31m         gender: "Female",[39m
+[31m         livestockSource: "Local Farm",[39m
+[31m         livestockPurpose: "Meat",[39m
+[31m         addedById: "cmcnjxm6s0000t1p8rcay1eoq"[39m
+[31m       },[39m
+[31m       include: {[39m
+[31m         addedBy: {[39m
+[31m           select: {[39m
+[31m             id: true,[39m
+[31m             fullName: true,[39m
+[31m             email: true,[39m
+[31m             role: true[39m
+[31m           }[39m
+[31m         }[39m
+[31m       }[39m
+[31m     })[39m
+
+[31mInvalid value for argument `birthDate`: Provided Date object is invalid. Expected Date. [39m
+[31mInvalid `prisma.livestock.create()` invocation in[39m
+[31mC:\Users\DoBUY\Agritech-Backend\src\contollers\livestock.controller.ts:26:46[39m
+
+[31m  23 [39m
+[31m  24 const addedById = (req.user as any).id;[39m
+[31m  25 [39m
+[31m→ 26 const livestock = await prisma.livestock.create({[39m
+[31m       data: {[39m
+[31m         tagId: "COW-002",[39m
+[31m         type: "Sheep",[39m
+[31m         breed: "Sheep",[39m
+[31m         birthDate: new Date("Invalid Date"),[39m
+[31m                    ~~~~~~~~~~~~~~~~~~~~~~~~[39m
+[31m         healthStatus: "SICK",[39m
+[31m         weight: 200,[39m
+[31m         gender: "Female",[39m
+[31m         livestockSource: "Local Farm",[39m
+[31m         livestockPurpose: "Meat",[39m
+[31m         addedById: "cmcnjxm6s0000t1p8rcay1eoq"[39m
+[31m       },[39m
+[31m       include: {[39m
+[31m         addedBy: {[39m
+[31m           select: {[39m
+[31m             id: true,[39m
+[31m             fullName: true,[39m
+[31m             email: true,[39m
+[31m             role: true[39m
+[31m           }[39m
+[31m         }[39m
+[31m       }[39m
+[31m     })[39m
+
+[31mInvalid value for argument `birthDate`: Provided Date object is invalid. Expected Date.[39m
+2025-07-04 12:17:18 [32minfo[39m [32mPOST /api/v1/livestock 422 232.491 ms - 1040[39m
+[32m[39m
+2025-07-04 12:17:58 [32minfo[39m [32mPOST /api/v1/livestock 201 42.771 ms - 589[39m
+[32m[39m
+2025-07-04 12:39:18 [32minfo[39m [32mPOST /api/v1/auth/login 200 246.081 ms - 784[39m
+[32m[39m
+2025-07-04 12:39:47 [32minfo[39m [32mGET /api/v1/livestock 200 22.005 ms - 1929[39m
+[32m[39m
+2025-07-04 12:40:12 [32minfo[39m [32mGET /api/v1/livestock 200 10.640 ms - 1929[39m
+[32m[39m
+2025-07-04 12:55:51 [32minfo[39m [32mPOST /api/v1/auth/login 200 251.688 ms - 449[39m
+[32m[39m
+2025-07-04 12:59:24 [32minfo[39m [32mPOST /api/v1/auth/login 200 301.803 ms - 434[39m
+[32m[39m
+2025-07-04 13:20:41 [32minfo[39m [32mPOST /api/v1/auth/login 200 244.335 ms - 434[39m
+[32m[39m
+2025-07-04 13:21:12 [32minfo[39m [32mGET /api/v1/livestock/cmcoq0grp0001t1tsd0hdha0r 200 23.553 ms - 736[39m
+[32m[39m
+2025-07-04 13:21:36 [32minfo[39m [32mGET /api/v1/livestock/cmcoq0grp0001t1tsd0hdha0r 200 8.644 ms - 736[39m
+[32m[39m
+2025-07-04 13:35:30 [32minfo[39m [32mPATCH /api/v1/livestock/cmcoq0grp0001t1tsd0hdha0r 200 106.639 ms - 718[39m
+[32m[39m
+2025-07-04 13:35:58 [31merror[39m [31mLivestock not found Livestock not found[39m
+2025-07-04 13:35:58 [32minfo[39m [32mGET /api/v1/livestock/:livestockId 404 22.723 ms - 47[39m
+[32m[39m
+2025-07-04 13:36:02 [31merror[39m [31mLivestock not found Livestock not found[39m
+2025-07-04 13:36:02 [32minfo[39m [32mGET /api/v1/livestock/:livestockId 404 26.029 ms - 47[39m
+[32m[39m
+2025-07-04 13:36:24 [32minfo[39m [32mGET /api/v1/livestock/cmcoq0grp0001t1tsd0hdha0r 200 8.337 ms - 972[39m
+[32m[39m
+2025-07-04 13:38:29 [32minfo[39m [32mPATCH /api/v1/livestock/cmcoq0grp0001t1tsd0hdha0r 422 5.430 ms - 332[39m
+[32m[39m
+2025-07-04 13:38:46 [32minfo[39m [32mPATCH /api/v1/livestock/cmcoq0grp0001t1tsd0hdha0r 200 17.327 ms - 717[39m
+[32m[39m
+2025-07-04 13:39:44 [31merror[39m [31mExpected ',' or '}' after property value in JSON at position 33 (line 3 column 5) Expected ',' or '}' after property value in JSON at position 33 (line 3 column 5)[39m
+2025-07-04 13:39:56 [32minfo[39m [32mPATCH /api/v1/livestock/cmcoq0grp0001t1tsd0hdha0r 200 19.366 ms - 719[39m
+[32m[39m
+2025-07-04 15:03:10 [32minfo[39m [32mDELETE /api/v1/livestock/cmcoq0grp0001t1tsd0hdha0r 401 12.531 ms - 64[39m
+[32m[39m
+2025-07-04 15:03:32 [32minfo[39m [32mPOST /api/v1/auth/login 200 216.605 ms - 434[39m
+[32m[39m
+2025-07-04 15:03:47 [32minfo[39m [32mDELETE /api/v1/livestock/cmcoq0grp0001t1tsd0hdha0r 401 2.648 ms - 64[39m
+[32m[39m
+2025-07-04 15:04:48 [32minfo[39m [32mPOST /api/v1/auth/login 200 133.112 ms - 427[39m
+[32m[39m
+2025-07-04 15:05:05 [32minfo[39m [32mDELETE /api/v1/livestock/cmcoq0grp0001t1tsd0hdha0r 200 18.146 ms - 509[39m
+[32m[39m
+2025-07-04 15:13:29 [32minfo[39m [32mDELETE /api/v1/livestock/cmcoq0grp0001t1tsd0hdha0r 200 126.513 ms - 509[39m
+[32m[39m
+2025-07-04 15:15:53 [31merror[39m [31mPrisma error: [39m
+[31mInvalid `prisma.livestock.findUnique()` invocation in[39m
+[31mC:\Users\DoBUY\Agritech-Backend\src\contollers\livestock.controller.ts:188:46[39m
+
+[31m  185   next: NextFunction[39m
+[31m  186 ): Promise<void> => {[39m
+[31m  187   try {[39m
+[31m→ 188     const livestock = await prisma.livestock.findUnique([39m
+[31mThe column `Livestock.isDeleted` does not exist in the current database. [39m
+[31mInvalid `prisma.livestock.findUnique()` invocation in[39m
+[31mC:\Users\DoBUY\Agritech-Backend\src\contollers\livestock.controller.ts:188:46[39m
+
+[31m  185   next: NextFunction[39m
+[31m  186 ): Promise<void> => {[39m
+[31m  187   try {[39m
+[31m→ 188     const livestock = await prisma.livestock.findUnique([39m
+[31mThe column `Livestock.isDeleted` does not exist in the current database.[39m
+2025-07-04 15:15:53 [32minfo[39m [32mDELETE /api/v1/livestock/cmcoq0grp0001t1tsd0hdha0r 400 52.886 ms - 396[39m
+[32m[39m
+2025-07-04 15:16:41 [32minfo[39m [32mDELETE /api/v1/livestock/cmcoq0grp0001t1tsd0hdha0r 401 3.419 ms - 64[39m
+[32m[39m
+2025-07-04 15:17:09 [32minfo[39m [32mPOST /api/v1/auth/login 200 136.022 ms - 427[39m
+[32m[39m
+2025-07-04 15:17:31 [31merror[39m [31mPrisma error: [39m
+[31mInvalid `prisma.livestock.findUnique()` invocation in[39m
+[31mC:\Users\DoBUY\Agritech-Backend\src\contollers\livestock.controller.ts:188:46[39m
+
+[31m  185   next: NextFunction[39m
+[31m  186 ): Promise<void> => {[39m
+[31m  187   try {[39m
+[31m→ 188     const livestock = await prisma.livestock.findUnique([39m
+[31mThe column `Livestock.isDeleted` does not exist in the current database. [39m
+[31mInvalid `prisma.livestock.findUnique()` invocation in[39m
+[31mC:\Users\DoBUY\Agritech-Backend\src\contollers\livestock.controller.ts:188:46[39m
+
+[31m  185   next: NextFunction[39m
+[31m  186 ): Promise<void> => {[39m
+[31m  187   try {[39m
+[31m→ 188     const livestock = await prisma.livestock.findUnique([39m
+[31mThe column `Livestock.isDeleted` does not exist in the current database.[39m
+2025-07-04 15:17:31 [32minfo[39m [32mDELETE /api/v1/livestock/cmcoq0grp0001t1tsd0hdha0r 400 8.601 ms - 396[39m
+[32m[39m
+2025-07-06 04:53:00 [32minfo[39m [32mPOST /api/v1/auth/login 200 297.186 ms - 434[39m
+[32m[39m
+2025-07-06 04:53:31 [31merror[39m [31mLivestock not found Livestock not found[39m
+2025-07-06 04:53:31 [32minfo[39m [32mPOST /api/v1/livestock/cmcoq0grp0001t1tsd0hdha0r/vaccinations 404 38.751 ms - 47[39m
+[32m[39m
+2025-07-06 04:54:57 [32minfo[39m [32mPOST /api/v1/livestock/cmcop7ll30001t1ncj7c9hsa7/vaccinations 201 28.852 ms - 1033[39m
+[32m[39m
+2025-07-06 04:59:15 [32minfo[39m [32mGET /api/v1/livestock/cmcop7ll30001t1ncj7c9hsa7/vaccinations 401 1.078 ms - 66[39m
+[32m[39m
+2025-07-06 04:59:28 [32minfo[39m [32mGET /api/v1/livestock/cmcop7ll30001t1ncj7c9hsa7/vaccinations 200 209.185 ms - 1103[39m
+[32m[39m
+2025-07-06 05:00:56 [32minfo[39m [32mGET /api/v1/vaccinations 401 0.641 ms - 66[39m
+[32m[39m
+2025-07-06 05:01:25 [32minfo[39m [32mGET /api/v1/vaccinations 200 17.591 ms - 1100[39m
+[32m[39m
+2025-07-06 05:02:15 [32minfo[39m [32mPOST /api/v1/livestock/cmcop7ll30001t1ncj7c9hsa7/vaccinations 201 19.197 ms - 1030[39m
+[32m[39m
+2025-07-06 05:02:31 [32minfo[39m [32mGET /api/v1/vaccinations 200 16.009 ms - 2045[39m
+[32m[39m
+2025-07-06 05:05:17 [32minfo[39m [32mPATCH /api/v1/vaccinations/cmcr5buck0003t1zgkb18qryv 422 83.008 ms - 1067[39m
+[32m[39m
+2025-07-06 05:11:21 [32minfo[39m [32mPATCH /api/v1/vaccinations/cmcr5buck0003t1zgkb18qryv 200 176.479 ms - 1007[39m
+[32m[39m
+2025-07-06 05:11:33 [32minfo[39m [32mGET /api/v1/vaccinations 200 20.662 ms - 2023[39m
+[32m[39m
+2025-07-06 05:12:17 [32minfo[39m [32mPATCH /api/v1/vaccinations/cmcr5buck0003t1zgkb18qryv 200 22.613 ms - 1007[39m
+[32m[39m
+2025-07-06 05:13:02 [32minfo[39m [32mPATCH /api/v1/vaccinations/cmcr5buck0003t1zgkb18qryv 200 19.742 ms - 1007[39m
+[32m[39m
+2025-07-06 05:14:06 [32minfo[39m [32mPATCH /api/v1/vaccinations/cmcr5buck0003t1zgkb18qryv 422 127.665 ms - 1067[39m
+[32m[39m
+2025-07-06 05:15:36 [32minfo[39m [32mPATCH /api/v1/vaccinations/cmcr5buck0003t1zgkb18qryv 422 5.912 ms - 1067[39m
+[32m[39m
+2025-07-06 05:15:39 [32minfo[39m [32mPATCH /api/v1/vaccinations/cmcr5buck0003t1zgkb18qryv 422 6.084 ms - 1067[39m
+[32m[39m
+2025-07-06 05:18:10 [32minfo[39m [32mPATCH /api/v1/vaccinations/cmcr5buck0003t1zgkb18qryv 200 349.506 ms - 1007[39m
+[32m[39m
+2025-07-06 05:19:04 [32minfo[39m [32mPATCH /api/v1/vaccinations/cmcr5buck0003t1zgkb18qryv 200 125.920 ms - 1007[39m
+[32m[39m
+2025-07-06 05:34:51 [32minfo[39m [32mPATCH /api/v1/vaccinations/cmcr5buck0003t1zgkb18qryv 200 131.113 ms - 1017[39m
+[32m[39m
+2025-07-06 05:35:11 [32minfo[39m [32mPATCH /api/v1/vaccinations/cmcr5buck0003t1zgkb18qryv 200 20.554 ms - 1017[39m
+[32m[39m
+2025-07-06 05:35:48 [32minfo[39m [32mPATCH /api/v1/vaccinations/cmcr5buck0003t1zgkb18qryv 200 21.071 ms - 1009[39m
+[32m[39m
+2025-07-06 05:36:03 [32minfo[39m [32mPATCH /api/v1/vaccinations/cmcr5buck0003t1zgkb18qryv 200 31.709 ms - 1007[39m
+[32m[39m
+2025-07-06 05:48:15 [32minfo[39m [32mGET /api/v1/vaccinations 200 94.281 ms - 2023[39m
+[32m[39m
+2025-07-06 05:53:38 [32minfo[39m [32mDELETE /api/v1/vaccinations/cmcr5buck0003t1zgkb18qryv 401 2.084 ms - 64[39m
+[32m[39m
+2025-07-06 05:53:57 [32minfo[39m [32mPOST /api/v1/auth/login 200 193.438 ms - 434[39m
+[32m[39m
+2025-07-06 05:54:32 [32minfo[39m [32mDELETE /api/v1/vaccinations/cmcr5buck0003t1zgkb18qryv 200 20.328 ms - 78[39m
+[32m[39m
+2025-07-06 05:55:27 [32minfo[39m [32mGET /api/v1/livestock/cmcop7ll30001t1ncj7c9hsa7/vaccinations 401 2.414 ms - 64[39m
+[32m[39m
+2025-07-06 05:58:05 [31merror[39m [31mVaccination record not found Vaccination record not found[39m
+2025-07-06 05:58:05 [32minfo[39m [32mGET /api/v1/vaccinations/cmcr5buck0003t1zgkb18qryv 404 19.957 ms - 56[39m
+[32m[39m
+2025-07-06 05:58:19 [32minfo[39m [32mGET /api/v1/livestock/:livestockId/vaccinations 401 1.684 ms - 64[39m
+[32m[39m
+2025-07-06 05:59:33 [32minfo[39m [32mGET /api/v1/livestock/:livestockId/vaccinations 200 83.887 ms - 156[39m
+[32m[39m
+2025-07-06 05:59:48 [32minfo[39m [32mGET /api/v1/vaccinations 401 2.417 ms - 64[39m
+[32m[39m
+2025-07-06 05:59:56 [32minfo[39m [32mGET /api/v1/vaccinations 200 10.300 ms - 1100[39m
+[32m[39m
+2025-07-06 06:00:20 [32minfo[39m [32mGET /api/v1/vaccinations/cmcr52gjy0001t1zg25iuk1z5 200 6.225 ms - 1034[39m
+[32m[39m
+2025-07-06 06:26:30 [31merror[39m [31mDatabase validation error: [39m
+[31mInvalid `prisma.livestock.findMany()` invocation in[39m
+[31mC:\Users\DoBUY\Agritech-Backend\src\contollers\livestock.controller.ts:91:46[39m
+
+[31m  88   ...(type && { type: String(type) }) [39m
+[31m  89 };[39m
+[31m  90 [39m
+[31m→ 91 const livestock = await prisma.livestock.findMany({[39m
+[31m       where: {[39m
+[31m         isDeleted: false,[39m
+[31m         ~~~~~~~~~[39m
+[31m     ?   AND?: LivestockWhereInput | LivestockWhereInput[],[39m
+[31m     ?   OR?: LivestockWhereInput[],[39m
+[31m     ?   NOT?: LivestockWhereInput | LivestockWhereInput[],[39m
+[31m     ?   id?: StringFilter | String,[39m
+[31m     ?   tagId?: StringFilter | String,[39m
+[31m     ?   type?: StringFilter | String,[39m
+[31m     ?   breed?: StringNullableFilter | String | Null,[39m
+[31m     ?   birthDate?: DateTimeNullableFilter | DateTime | Null,[39m
+[31m     ?   healthStatus?: EnumHealthStatusFilter | HealthStatus,[39m
+[31m     ?   weight?: FloatNullableFilter | Float | Null,[39m
+[31m     ?   gender?: StringFilter | String,[39m
+[31m     ?   livestockSource?: StringNullableFilter | String | Null,[39m
+[31m     ?   livestockPurpose?: StringNullableFilter | String | Null,[39m
+[31m     ?   addedById?: StringFilter | String,[39m
+[31m     ?   updatedById?: StringNullableFilter | String | Null,[39m
+[31m     ?   createdAt?: DateTimeFilter | DateTime,[39m
+[31m     ?   updatedAt?: DateTimeFilter | DateTime,[39m
+[31m     ?   addedBy?: UserScalarRelationFilter | UserWhereInput,[39m
+[31m     ?   updatedBy?: UserNullableScalarRelationFilter | UserWhereInput | Null,[39m
+[31m     ?   vaccinationRecords?: VaccinationListRelationFilter[39m
+[31m       },[39m
+[31m       skip: 0,[39m
+[31m       take: 10,[39m
+[31m       include: {[39m
+[31m         addedBy: true[39m
+[31m       },[39m
+[31m       orderBy: {[39m
+[31m         createdAt: "desc"[39m
+[31m       }[39m
+[31m     })[39m
+
+[31mUnknown argument `isDeleted`. Available options are marked with ?. [39m
+[31mInvalid `prisma.livestock.findMany()` invocation in[39m
+[31mC:\Users\DoBUY\Agritech-Backend\src\contollers\livestock.controller.ts:91:46[39m
+
+[31m  88   ...(type && { type: String(type) }) [39m
+[31m  89 };[39m
+[31m  90 [39m
+[31m→ 91 const livestock = await prisma.livestock.findMany({[39m
+[31m       where: {[39m
+[31m         isDeleted: false,[39m
+[31m         ~~~~~~~~~[39m
+[31m     ?   AND?: LivestockWhereInput | LivestockWhereInput[],[39m
+[31m     ?   OR?: LivestockWhereInput[],[39m
+[31m     ?   NOT?: LivestockWhereInput | LivestockWhereInput[],[39m
+[31m     ?   id?: StringFilter | String,[39m
+[31m     ?   tagId?: StringFilter | String,[39m
+[31m     ?   type?: StringFilter | String,[39m
+[31m     ?   breed?: StringNullableFilter | String | Null,[39m
+[31m     ?   birthDate?: DateTimeNullableFilter | DateTime | Null,[39m
+[31m     ?   healthStatus?: EnumHealthStatusFilter | HealthStatus,[39m
+[31m     ?   weight?: FloatNullableFilter | Float | Null,[39m
+[31m     ?   gender?: StringFilter | String,[39m
+[31m     ?   livestockSource?: StringNullableFilter | String | Null,[39m
+[31m     ?   livestockPurpose?: StringNullableFilter | String | Null,[39m
+[31m     ?   addedById?: StringFilter | String,[39m
+[31m     ?   updatedById?: StringNullableFilter | String | Null,[39m
+[31m     ?   createdAt?: DateTimeFilter | DateTime,[39m
+[31m     ?   updatedAt?: DateTimeFilter | DateTime,[39m
+[31m     ?   addedBy?: UserScalarRelationFilter | UserWhereInput,[39m
+[31m     ?   updatedBy?: UserNullableScalarRelationFilter | UserWhereInput | Null,[39m
+[31m     ?   vaccinationRecords?: VaccinationListRelationFilter[39m
+[31m       },[39m
+[31m       skip: 0,[39m
+[31m       take: 10,[39m
+[31m       include: {[39m
+[31m         addedBy: true[39m
+[31m       },[39m
+[31m       orderBy: {[39m
+[31m         createdAt: "desc"[39m
+[31m       }[39m
+[31m     })[39m
+
+[31mUnknown argument `isDeleted`. Available options are marked with ?.[39m
+2025-07-06 06:26:30 [32minfo[39m [32mGET /api/v1/livestock 422 124.967 ms - 1720[39m
+[32m[39m
+2025-07-06 06:28:19 [31merror[39m [31mDatabase validation error: [39m
+[31mInvalid `prisma.livestock.findMany()` invocation in[39m
+[31mC:\Users\DoBUY\Agritech-Backend\src\contollers\livestock.controller.ts:91:46[39m
+
+[31m  88   ...(type && { type: String(type) }) [39m
+[31m  89 };[39m
+[31m  90 [39m
+[31m→ 91 const livestock = await prisma.livestock.findMany({[39m
+[31m       where: {[39m
+[31m         isDeleted: false,[39m
+[31m         ~~~~~~~~~[39m
+[31m     ?   AND?: LivestockWhereInput | LivestockWhereInput[],[39m
+[31m     ?   OR?: LivestockWhereInput[],[39m
+[31m     ?   NOT?: LivestockWhereInput | LivestockWhereInput[],[39m
+[31m     ?   id?: StringFilter | String,[39m
+[31m     ?   tagId?: StringFilter | String,[39m
+[31m     ?   type?: StringFilter | String,[39m
+[31m     ?   breed?: StringNullableFilter | String | Null,[39m
+[31m     ?   birthDate?: DateTimeNullableFilter | DateTime | Null,[39m
+[31m     ?   healthStatus?: EnumHealthStatusFilter | HealthStatus,[39m
+[31m     ?   weight?: FloatNullableFilter | Float | Null,[39m
+[31m     ?   gender?: StringFilter | String,[39m
+[31m     ?   livestockSource?: StringNullableFilter | String | Null,[39m
+[31m     ?   livestockPurpose?: StringNullableFilter | String | Null,[39m
+[31m     ?   addedById?: StringFilter | String,[39m
+[31m     ?   updatedById?: StringNullableFilter | String | Null,[39m
+[31m     ?   createdAt?: DateTimeFilter | DateTime,[39m
+[31m     ?   updatedAt?: DateTimeFilter | DateTime,[39m
+[31m     ?   addedBy?: UserScalarRelationFilter | UserWhereInput,[39m
+[31m     ?   updatedBy?: UserNullableScalarRelationFilter | UserWhereInput | Null,[39m
+[31m     ?   vaccinationRecords?: VaccinationListRelationFilter[39m
+[31m       },[39m
+[31m       skip: 0,[39m
+[31m       take: 10,[39m
+[31m       include: {[39m
+[31m         addedBy: true[39m
+[31m       },[39m
+[31m       orderBy: {[39m
+[31m         createdAt: "desc"[39m
+[31m       }[39m
+[31m     })[39m
+
+[31mUnknown argument `isDeleted`. Available options are marked with ?. [39m
+[31mInvalid `prisma.livestock.findMany()` invocation in[39m
+[31mC:\Users\DoBUY\Agritech-Backend\src\contollers\livestock.controller.ts:91:46[39m
+
+[31m  88   ...(type && { type: String(type) }) [39m
+[31m  89 };[39m
+[31m  90 [39m
+[31m→ 91 const livestock = await prisma.livestock.findMany({[39m
+[31m       where: {[39m
+[31m         isDeleted: false,[39m
+[31m         ~~~~~~~~~[39m
+[31m     ?   AND?: LivestockWhereInput | LivestockWhereInput[],[39m
+[31m     ?   OR?: LivestockWhereInput[],[39m
+[31m     ?   NOT?: LivestockWhereInput | LivestockWhereInput[],[39m
+[31m     ?   id?: StringFilter | String,[39m
+[31m     ?   tagId?: StringFilter | String,[39m
+[31m     ?   type?: StringFilter | String,[39m
+[31m     ?   breed?: StringNullableFilter | String | Null,[39m
+[31m     ?   birthDate?: DateTimeNullableFilter | DateTime | Null,[39m
+[31m     ?   healthStatus?: EnumHealthStatusFilter | HealthStatus,[39m
+[31m     ?   weight?: FloatNullableFilter | Float | Null,[39m
+[31m     ?   gender?: StringFilter | String,[39m
+[31m     ?   livestockSource?: StringNullableFilter | String | Null,[39m
+[31m     ?   livestockPurpose?: StringNullableFilter | String | Null,[39m
+[31m     ?   addedById?: StringFilter | String,[39m
+[31m     ?   updatedById?: StringNullableFilter | String | Null,[39m
+[31m     ?   createdAt?: DateTimeFilter | DateTime,[39m
+[31m     ?   updatedAt?: DateTimeFilter | DateTime,[39m
+[31m     ?   addedBy?: UserScalarRelationFilter | UserWhereInput,[39m
+[31m     ?   updatedBy?: UserNullableScalarRelationFilter | UserWhereInput | Null,[39m
+[31m     ?   vaccinationRecords?: VaccinationListRelationFilter[39m
+[31m       },[39m
+[31m       skip: 0,[39m
+[31m       take: 10,[39m
+[31m       include: {[39m
+[31m         addedBy: true[39m
+[31m       },[39m
+[31m       orderBy: {[39m
+[31m         createdAt: "desc"[39m
+[31m       }[39m
+[31m     })[39m
+
+[31mUnknown argument `isDeleted`. Available options are marked with ?.[39m
+2025-07-06 06:28:19 [32minfo[39m [32mGET /api/v1/livestock 422 11.918 ms - 1720[39m
+[32m[39m
+2025-07-06 06:29:54 [32minfo[39m [32mGET /api/v1/livestock 200 132.370 ms - 1017[39m
+[32m[39m

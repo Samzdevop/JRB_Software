@@ -9,6 +9,8 @@ import { errorHandler } from './middlewares/errorHandler';
 import { usersRouter } from './routes/users.routes';
 import passport from 'passport';
 import './config/passport';
+import { livestockRouter } from './routes/livestock.routes';
+import { vaccinationRouter } from './routes/vaccination.routes';
 
 export const app = express();
 
@@ -16,7 +18,11 @@ app.use(passport.initialize());
 
 // Configuration
 app.use(helmet());
-app.use(cors());
+app.use(cors({
+	origin: process.env.CORS_ORIGIN || '*', // Allow all origins by default
+	credentials: true, // Allow credentials if needed
+	allowedHeaders: ['Content-Type', 'Authorization'],
+}));
 app.use(express.json());
 
 morgan('tiny');
@@ -38,6 +44,8 @@ app.get('/', (_req: Request, res: Response) => {
 
 app.use('/api/v1/auth', authRouter);
 app.use('/api/v1/users', usersRouter);
+app.use('/api/v1/livestock', livestockRouter);
+app.use('/api/v1/', vaccinationRouter);
 
 app.use(notFoundHandler);
 app.use(errorHandler);

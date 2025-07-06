@@ -8,66 +8,78 @@ generator client {
   provider = "prisma-client-js"
 }
 
-
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
 model User {
-  id                  String    @id @default(cuid())
-  email               String    @unique
-  googleId            String?   @unique
+  id                  String        @id @default(cuid())
+  email               String        @unique
+  googleId            String?       @unique
   password            String?
   fullName            String
   avatar              String?
   location            String?
-  verified            Boolean   @default(false)
-  role                Role      @default(COWORKER)
-  isDeleted           Boolean   @default(false)
+  role                Role          @default(ADMIN)
+  isDeleted           Boolean       @default(false)
   lastLogin           DateTime?
   verificationCode    String?
   verificationExpires DateTime?
-  isVerified          Boolean   @default(false)
-  isSuspended         Boolean   @default(false)
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  livestock    Livestock[]
-  inventory Inventory[]
+  isVerified          Boolean       @default(false)
+  isSuspended         Boolean       @default(false)
+  createdAt           DateTime      @default(now())
+  updatedAt           DateTime      @updatedAt
+  livestockAdded      Livestock[]   @relation("LivestockAddedBy")
+  livestockUpdated    Livestock[]   @relation("LivestockUpdatedBy")
+  vaccination         Vaccination[]
 }
 
 model Livestock {
-  id          String   @id @default(cuid())
-  tagId       String   @unique
-  type        String  
-  breed       String?
-  birthDate   DateTime?
-  healthStatus String 
-  addedBy     User     @relation(fields: [addedById], references: [id])
-  addedById   String
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-
-  inventoryRecords Inventory[]
+  id                 String        @id @default(cuid())
+  tagId              String        @unique
+  type               String
+  breed              String?
+  birthDate          DateTime?
+  healthStatus       HealthStatus
+  weight             Float?
+  gender             String
+  livestockSource    String?
+  livestockPurpose   String?
+  addedBy            User          @relation("LivestockAddedBy", fields: [addedById], references: [id])
+  addedById          String
+  updatedBy          User?         @relation("LivestockUpdatedBy", fields: [updatedById], references: [id])
+  updatedById        String?
+  createdAt          DateTime      @default(now())
+  updatedAt          DateTime      @updatedAt
+  vaccinationRecords Vaccination[]
 }
 
-model Inventory {
-  id           String   @id @default(cuid())
-  livestock    Livestock @relation(fields: [livestockId], references: [id])
-  livestockId  String
-  action       InventoryAction
-  notes        String?
-  recordedBy   User     @relation(fields: [recordedById], references: [id])
-  recordedById String
-  createdAt    DateTime @default(now())
+model Vaccination {
+  id                String    @id @default(cuid())
+  livestock         Livestock @relation(fields: [livestockId], references: [id])
+  livestockId       String
+  dateofVaccination DateTime
+  vaccineType       String
+  dosage            Float
+  administeredBy    String
+  nextDueDate       DateTime?
+  recordedBy        User      @relation(fields: [recordedById], references: [id])
+  recordedById      String
+  createdAt         DateTime  @default(now())
 }
 
- enum Role {
-  ADMIN
-  FARM_KEEPER
-  COWORKER
-  VET
+modal SickRecord {
+  id                String    @id @default(cuid())
+  livestockId       String
+}
+
+enum HealthStatus {
+  HEALTHY
+  SICK
+  IN_TREATMENT
+  RECOVERING
+  CRITICAL
 }
 
 enum InventoryAction {
@@ -76,4 +88,14 @@ enum InventoryAction {
   VACCINATED
   SICK
   TREATED
+  MOVED
+  DIED
+  PURCHASED
+}
+
+enum Role {
+  ADMIN
+  FARM_KEEPER
+  COWORKER
+  VET
 }

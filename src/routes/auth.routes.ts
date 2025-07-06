@@ -1,25 +1,37 @@
 import { Router } from 'express';
 import {
 	login,
-	register,
+	adminRegister,
 	requestVerificationCode,
 	resetPassword,
 	verifyAccount,
+	register,
 } from '../contollers/auth.controller';
 import { validateRequest } from '../middlewares/validateRequest';
 import {
 	loginSchema,
-	registerSchema,
+	adminRegisterSchema,
 	requestVerificationSchema,
 	resetPasswordSchema,
 	verifyAccountSchema,
+	registerSchema,
 } from '../schemas/auth.schemas';
 import passport from 'passport';
 import { sendSuccessResponse } from '../utils/sendSuccessResponse';
+import { authenticateJWT } from '../middlewares/errorHandler';
+import { requireRoles } from '../middlewares/roleCheck';
 
 export const authRouter = Router();
 
-authRouter.post('/register', validateRequest(registerSchema), register);
+authRouter.post('/admin-reg', validateRequest(adminRegisterSchema), adminRegister);
+
+authRouter.post(
+	'/register',
+	authenticateJWT,
+	requireRoles(['ADMIN', 'FARM_KEEPER']),
+	validateRequest(registerSchema),
+	register
+);
 
 authRouter.post('/login', validateRequest(loginSchema), login);
 

@@ -1,10 +1,19 @@
 import { z } from "zod";
 
+export const adminRegisterSchema = z.object({
+  body: z.object({
+    fullName: z.string().min(1, "First Name is required"),
+    email: z.string().email("Invalid email format"),
+    password: z.string().min(8, "Password must be at least 8 characters long"),
+  }),
+});
+
 export const registerSchema = z.object({
   body: z.object({
     fullName: z.string().min(1, "First Name is required"),
     email: z.string().email("Invalid email format"),
     password: z.string().min(8, "Password must be at least 8 characters long"),
+    role: z.enum(['FARM_KEEPER', 'COWORKER']).default('COWORKER'), // Default to COWORKER
   }),
 });
 

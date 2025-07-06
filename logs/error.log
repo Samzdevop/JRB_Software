@@ -1,0 +1,297 @@
+2025-07-02 10:53:24 [31merror[39m [31mError sending email:[39m
+2025-07-02 10:58:25 [31merror[39m [31mUser already registered! Please proceed to login. User already registered! Please proceed to login.[39m
+2025-07-02 11:12:48 [31merror[39m [31mAccount not verified! Account not verified![39m
+2025-07-02 12:16:18 [31merror[39m [31mInvalid or expired verification code Invalid or expired verification code[39m
+2025-07-02 12:18:00 [31merror[39m [31mAccount not verified! Account not verified![39m
+2025-07-02 12:18:03 [31merror[39m [31mAccount not verified! Account not verified![39m
+2025-07-02 12:18:04 [31merror[39m [31mAccount not verified! Account not verified![39m
+2025-07-02 12:18:05 [31merror[39m [31mAccount not verified! Account not verified![39m
+2025-07-02 12:18:06 [31merror[39m [31mAccount not verified! Account not verified![39m
+2025-07-02 12:31:09 [31merror[39m [31mError sending email: 580D0000:error:0A00010B:SSL routines:ssl3_get_record:wrong version number:c:\ws\deps\openssl\openssl\ssl\record\ssl3_record.c:355:[39m
+[31m[39m
+2025-07-02 12:36:14 [31merror[39m [31mInvalid or expired verification code Invalid or expired verification code[39m
+2025-07-02 13:10:15 [31merror[39m [31mUser already registered! Please proceed to login. User already registered! Please proceed to login.[39m
+2025-07-02 13:44:36 [31merror[39m [31mError sending email: connect ENETUNREACH 95.216.108.161:587[39m
+2025-07-02 13:48:57 [31merror[39m [31mError sending email: connect ENETUNREACH 95.216.108.161:587[39m
+2025-07-03 09:04:51 [31merror[39m [31mUser not found User not found[39m
+2025-07-03 09:40:00 [31merror[39m [31mExpected ',' or '}' after property value in JSON at position 102 (line 5 column 3) Expected ',' or '}' after property value in JSON at position 102 (line 5 column 3)[39m
+2025-07-03 16:20:56 [31merror[39m [31mUser already registered! Please proceed to login. User already registered! Please proceed to login.[39m
+2025-07-03 16:38:02 [31merror[39m [31mUser already registered! Please proceed to login. User already registered! Please proceed to login.[39m
+2025-07-03 16:42:26 [31merror[39m [31mUser not found User not found[39m
+2025-07-03 16:42:40 [31merror[39m [31mUser not found User not found[39m
+2025-07-04 12:17:18 [31merror[39m [31mDatabase validation error: [39m
+[31mInvalid `prisma.livestock.create()` invocation in[39m
+[31mC:\Users\DoBUY\Agritech-Backend\src\contollers\livestock.controller.ts:26:46[39m
+
+[31m  23 [39m
+[31m  24 const addedById = (req.user as any).id;[39m
+[31m  25 [39m
+[31m→ 26 const livestock = await prisma.livestock.create({[39m
+[31m       data: {[39m
+[31m         tagId: "COW-002",[39m
+[31m         type: "Sheep",[39m
+[31m         breed: "Sheep",[39m
+[31m         birthDate: new Date("Invalid Date"),[39m
+[31m                    ~~~~~~~~~~~~~~~~~~~~~~~~[39m
+[31m         healthStatus: "SICK",[39m
+[31m         weight: 200,[39m
+[31m         gender: "Female",[39m
+[31m         livestockSource: "Local Farm",[39m
+[31m         livestockPurpose: "Meat",[39m
+[31m         addedById: "cmcnjxm6s0000t1p8rcay1eoq"[39m
+[31m       },[39m
+[31m       include: {[39m
+[31m         addedBy: {[39m
+[31m           select: {[39m
+[31m             id: true,[39m
+[31m             fullName: true,[39m
+[31m             email: true,[39m
+[31m             role: true[39m
+[31m           }[39m
+[31m         }[39m
+[31m       }[39m
+[31m     })[39m
+
+[31mInvalid value for argument `birthDate`: Provided Date object is invalid. Expected Date. [39m
+[31mInvalid `prisma.livestock.create()` invocation in[39m
+[31mC:\Users\DoBUY\Agritech-Backend\src\contollers\livestock.controller.ts:26:46[39m
+
+[31m  23 [39m
+[31m  24 const addedById = (req.user as any).id;[39m
+[31m  25 [39m
+[31m→ 26 const livestock = await prisma.livestock.create({[39m
+[31m       data: {[39m
+[31m         tagId: "COW-002",[39m
+[31m         type: "Sheep",[39m
+[31m         breed: "Sheep",[39m
+[31m         birthDate: new Date("Invalid Date"),[39m
+[31m                    ~~~~~~~~~~~~~~~~~~~~~~~~[39m
+[31m         healthStatus: "SICK",[39m
+[31m         weight: 200,[39m
+[31m         gender: "Female",[39m
+[31m         livestockSource: "Local Farm",[39m
+[31m         livestockPurpose: "Meat",[39m
+[31m         addedById: "cmcnjxm6s0000t1p8rcay1eoq"[39m
+[31m       },[39m
+[31m       include: {[39m
+[31m         addedBy: {[39m
+[31m           select: {[39m
+[31m             id: true,[39m
+[31m             fullName: true,[39m
+[31m             email: true,[39m
+[31m             role: true[39m
+[31m           }[39m
+[31m         }[39m
+[31m       }[39m
+[31m     })[39m
+
+[31mInvalid value for argument `birthDate`: Provided Date object is invalid. Expected Date.[39m
+2025-07-04 13:35:58 [31merror[39m [31mLivestock not found Livestock not found[39m
+2025-07-04 13:36:02 [31merror[39m [31mLivestock not found Livestock not found[39m
+2025-07-04 13:39:44 [31merror[39m [31mExpected ',' or '}' after property value in JSON at position 33 (line 3 column 5) Expected ',' or '}' after property value in JSON at position 33 (line 3 column 5)[39m
+2025-07-04 15:15:53 [31merror[39m [31mPrisma error: [39m
+[31mInvalid `prisma.livestock.findUnique()` invocation in[39m
+[31mC:\Users\DoBUY\Agritech-Backend\src\contollers\livestock.controller.ts:188:46[39m
+
+[31m  185   next: NextFunction[39m
+[31m  186 ): Promise<void> => {[39m
+[31m  187   try {[39m
+[31m→ 188     const livestock = await prisma.livestock.findUnique([39m
+[31mThe column `Livestock.isDeleted` does not exist in the current database. [39m
+[31mInvalid `prisma.livestock.findUnique()` invocation in[39m
+[31mC:\Users\DoBUY\Agritech-Backend\src\contollers\livestock.controller.ts:188:46[39m
+
+[31m  185   next: NextFunction[39m
+[31m  186 ): Promise<void> => {[39m
+[31m  187   try {[39m
+[31m→ 188     const livestock = await prisma.livestock.findUnique([39m
+[31mThe column `Livestock.isDeleted` does not exist in the current database.[39m
+2025-07-04 15:17:31 [31merror[39m [31mPrisma error: [39m
+[31mInvalid `prisma.livestock.findUnique()` invocation in[39m
+[31mC:\Users\DoBUY\Agritech-Backend\src\contollers\livestock.controller.ts:188:46[39m
+
+[31m  185   next: NextFunction[39m
+[31m  186 ): Promise<void> => {[39m
+[31m  187   try {[39m
+[31m→ 188     const livestock = await prisma.livestock.findUnique([39m
+[31mThe column `Livestock.isDeleted` does not exist in the current database. [39m
+[31mInvalid `prisma.livestock.findUnique()` invocation in[39m
+[31mC:\Users\DoBUY\Agritech-Backend\src\contollers\livestock.controller.ts:188:46[39m
+
+[31m  185   next: NextFunction[39m
+[31m  186 ): Promise<void> => {[39m
+[31m  187   try {[39m
+[31m→ 188     const livestock = await prisma.livestock.findUnique([39m
+[31mThe column `Livestock.isDeleted` does not exist in the current database.[39m
+2025-07-06 04:53:31 [31merror[39m [31mLivestock not found Livestock not found[39m
+2025-07-06 05:58:05 [31merror[39m [31mVaccination record not found Vaccination record not found[39m
+2025-07-06 06:26:30 [31merror[39m [31mDatabase validation error: [39m
+[31mInvalid `prisma.livestock.findMany()` invocation in[39m
+[31mC:\Users\DoBUY\Agritech-Backend\src\contollers\livestock.controller.ts:91:46[39m
+
+[31m  88   ...(type && { type: String(type) }) [39m
+[31m  89 };[39m
+[31m  90 [39m
+[31m→ 91 const livestock = await prisma.livestock.findMany({[39m
+[31m       where: {[39m
+[31m         isDeleted: false,[39m
+[31m         ~~~~~~~~~[39m
+[31m     ?   AND?: LivestockWhereInput | LivestockWhereInput[],[39m
+[31m     ?   OR?: LivestockWhereInput[],[39m
+[31m     ?   NOT?: LivestockWhereInput | LivestockWhereInput[],[39m
+[31m     ?   id?: StringFilter | String,[39m
+[31m     ?   tagId?: StringFilter | String,[39m
+[31m     ?   type?: StringFilter | String,[39m
+[31m     ?   breed?: StringNullableFilter | String | Null,[39m
+[31m     ?   birthDate?: DateTimeNullableFilter | DateTime | Null,[39m
+[31m     ?   healthStatus?: EnumHealthStatusFilter | HealthStatus,[39m
+[31m     ?   weight?: FloatNullableFilter | Float | Null,[39m
+[31m     ?   gender?: StringFilter | String,[39m
+[31m     ?   livestockSource?: StringNullableFilter | String | Null,[39m
+[31m     ?   livestockPurpose?: StringNullableFilter | String | Null,[39m
+[31m     ?   addedById?: StringFilter | String,[39m
+[31m     ?   updatedById?: StringNullableFilter | String | Null,[39m
+[31m     ?   createdAt?: DateTimeFilter | DateTime,[39m
+[31m     ?   updatedAt?: DateTimeFilter | DateTime,[39m
+[31m     ?   addedBy?: UserScalarRelationFilter | UserWhereInput,[39m
+[31m     ?   updatedBy?: UserNullableScalarRelationFilter | UserWhereInput | Null,[39m
+[31m     ?   vaccinationRecords?: VaccinationListRelationFilter[39m
+[31m       },[39m
+[31m       skip: 0,[39m
+[31m       take: 10,[39m
+[31m       include: {[39m
+[31m         addedBy: true[39m
+[31m       },[39m
+[31m       orderBy: {[39m
+[31m         createdAt: "desc"[39m
+[31m       }[39m
+[31m     })[39m
+
+[31mUnknown argument `isDeleted`. Available options are marked with ?. [39m
+[31mInvalid `prisma.livestock.findMany()` invocation in[39m
+[31mC:\Users\DoBUY\Agritech-Backend\src\contollers\livestock.controller.ts:91:46[39m
+
+[31m  88   ...(type && { type: String(type) }) [39m
+[31m  89 };[39m
+[31m  90 [39m
+[31m→ 91 const livestock = await prisma.livestock.findMany({[39m
+[31m       where: {[39m
+[31m         isDeleted: false,[39m
+[31m         ~~~~~~~~~[39m
+[31m     ?   AND?: LivestockWhereInput | LivestockWhereInput[],[39m
+[31m     ?   OR?: LivestockWhereInput[],[39m
+[31m     ?   NOT?: LivestockWhereInput | LivestockWhereInput[],[39m
+[31m     ?   id?: StringFilter | String,[39m
+[31m     ?   tagId?: StringFilter | String,[39m
+[31m     ?   type?: StringFilter | String,[39m
+[31m     ?   breed?: StringNullableFilter | String | Null,[39m
+[31m     ?   birthDate?: DateTimeNullableFilter | DateTime | Null,[39m
+[31m     ?   healthStatus?: EnumHealthStatusFilter | HealthStatus,[39m
+[31m     ?   weight?: FloatNullableFilter | Float | Null,[39m
+[31m     ?   gender?: StringFilter | String,[39m
+[31m     ?   livestockSource?: StringNullableFilter | String | Null,[39m
+[31m     ?   livestockPurpose?: StringNullableFilter | String | Null,[39m
+[31m     ?   addedById?: StringFilter | String,[39m
+[31m     ?   updatedById?: StringNullableFilter | String | Null,[39m
+[31m     ?   createdAt?: DateTimeFilter | DateTime,[39m
+[31m     ?   updatedAt?: DateTimeFilter | DateTime,[39m
+[31m     ?   addedBy?: UserScalarRelationFilter | UserWhereInput,[39m
+[31m     ?   updatedBy?: UserNullableScalarRelationFilter | UserWhereInput | Null,[39m
+[31m     ?   vaccinationRecords?: VaccinationListRelationFilter[39m
+[31m       },[39m
+[31m       skip: 0,[39m
+[31m       take: 10,[39m
+[31m       include: {[39m
+[31m         addedBy: true[39m
+[31m       },[39m
+[31m       orderBy: {[39m
+[31m         createdAt: "desc"[39m
+[31m       }[39m
+[31m     })[39m
+
+[31mUnknown argument `isDeleted`. Available options are marked with ?.[39m
+2025-07-06 06:28:19 [31merror[39m [31mDatabase validation error: [39m
+[31mInvalid `prisma.livestock.findMany()` invocation in[39m
+[31mC:\Users\DoBUY\Agritech-Backend\src\contollers\livestock.controller.ts:91:46[39m
+
+[31m  88   ...(type && { type: String(type) }) [39m
+[31m  89 };[39m
+[31m  90 [39m
+[31m→ 91 const livestock = await prisma.livestock.findMany({[39m
+[31m       where: {[39m
+[31m         isDeleted: false,[39m
+[31m         ~~~~~~~~~[39m
+[31m     ?   AND?: LivestockWhereInput | LivestockWhereInput[],[39m
+[31m     ?   OR?: LivestockWhereInput[],[39m
+[31m     ?   NOT?: LivestockWhereInput | LivestockWhereInput[],[39m
+[31m     ?   id?: StringFilter | String,[39m
+[31m     ?   tagId?: StringFilter | String,[39m
+[31m     ?   type?: StringFilter | String,[39m
+[31m     ?   breed?: StringNullableFilter | String | Null,[39m
+[31m     ?   birthDate?: DateTimeNullableFilter | DateTime | Null,[39m
+[31m     ?   healthStatus?: EnumHealthStatusFilter | HealthStatus,[39m
+[31m     ?   weight?: FloatNullableFilter | Float | Null,[39m
+[31m     ?   gender?: StringFilter | String,[39m
+[31m     ?   livestockSource?: StringNullableFilter | String | Null,[39m
+[31m     ?   livestockPurpose?: StringNullableFilter | String | Null,[39m
+[31m     ?   addedById?: StringFilter | String,[39m
+[31m     ?   updatedById?: StringNullableFilter | String | Null,[39m
+[31m     ?   createdAt?: DateTimeFilter | DateTime,[39m
+[31m     ?   updatedAt?: DateTimeFilter | DateTime,[39m
+[31m     ?   addedBy?: UserScalarRelationFilter | UserWhereInput,[39m
+[31m     ?   updatedBy?: UserNullableScalarRelationFilter | UserWhereInput | Null,[39m
+[31m     ?   vaccinationRecords?: VaccinationListRelationFilter[39m
+[31m       },[39m
+[31m       skip: 0,[39m
+[31m       take: 10,[39m
+[31m       include: {[39m
+[31m         addedBy: true[39m
+[31m       },[39m
+[31m       orderBy: {[39m
+[31m         createdAt: "desc"[39m
+[31m       }[39m
+[31m     })[39m
+
+[31mUnknown argument `isDeleted`. Available options are marked with ?. [39m
+[31mInvalid `prisma.livestock.findMany()` invocation in[39m
+[31mC:\Users\DoBUY\Agritech-Backend\src\contollers\livestock.controller.ts:91:46[39m
+
+[31m  88   ...(type && { type: String(type) }) [39m
+[31m  89 };[39m
+[31m  90 [39m
+[31m→ 91 const livestock = await prisma.livestock.findMany({[39m
+[31m       where: {[39m
+[31m         isDeleted: false,[39m
+[31m         ~~~~~~~~~[39m
+[31m     ?   AND?: LivestockWhereInput | LivestockWhereInput[],[39m
+[31m     ?   OR?: LivestockWhereInput[],[39m
+[31m     ?   NOT?: LivestockWhereInput | LivestockWhereInput[],[39m
+[31m     ?   id?: StringFilter | String,[39m
+[31m     ?   tagId?: StringFilter | String,[39m
+[31m     ?   type?: StringFilter | String,[39m
+[31m     ?   breed?: StringNullableFilter | String | Null,[39m
+[31m     ?   birthDate?: DateTimeNullableFilter | DateTime | Null,[39m
+[31m     ?   healthStatus?: EnumHealthStatusFilter | HealthStatus,[39m
+[31m     ?   weight?: FloatNullableFilter | Float | Null,[39m
+[31m     ?   gender?: StringFilter | String,[39m
+[31m     ?   livestockSource?: StringNullableFilter | String | Null,[39m
+[31m     ?   livestockPurpose?: StringNullableFilter | String | Null,[39m
+[31m     ?   addedById?: StringFilter | String,[39m
+[31m     ?   updatedById?: StringNullableFilter | String | Null,[39m
+[31m     ?   createdAt?: DateTimeFilter | DateTime,[39m
+[31m     ?   updatedAt?: DateTimeFilter | DateTime,[39m
+[31m     ?   addedBy?: UserScalarRelationFilter | UserWhereInput,[39m
+[31m     ?   updatedBy?: UserNullableScalarRelationFilter | UserWhereInput | Null,[39m
+[31m     ?   vaccinationRecords?: VaccinationListRelationFilter[39m
+[31m       },[39m
+[31m       skip: 0,[39m
+[31m       take: 10,[39m
+[31m       include: {[39m
+[31m         addedBy: true[39m
+[31m       },[39m
+[31m       orderBy: {[39m
+[31m         createdAt: "desc"[39m
+[31m       }[39m
+[31m     })[39m
+
+[31mUnknown argument `isDeleted`. Available options are marked with ?.[39m

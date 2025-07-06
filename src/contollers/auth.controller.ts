@@ -13,8 +13,10 @@ import { sendCustomMail } from "../services/mail.services";
 import { ForbiddenError } from "../errors/ForbiddenError";
 import { render } from "../utils/mailTemplate";
 import { compareDates } from "../utils/dateExpiration";
+import { userSelect } from "../prisma/selects";
+// import { isValid } from "zod";
 
-export const register = async (
+export const adminRegister = async (
   req: Request,
   res: Response,
   next: NextFunction
@@ -67,6 +69,43 @@ export const register = async (
   }
 };
 
+export const register = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+): Promise<void> => {
+  try {
+    const { email, fullName, password, role } = req.body;
+
+    const existingUser = await prisma.user.findUnique({ where: { email } });
+    if (existingUser) {
+      throw new ForbiddenError(
+        "User already exists"
+      );
+    }
+
+    const hashedPassword = await hash(password);
+    const verificationCode = generateVerificationCode().toString();
+    await prisma.user.create({
+     data: {
+      email,
+      password: hashedPassword,
+      fullName,
+      verificationCode,
+      verificationExpires: new Date(new Date().getTime() + 30 * 60 * 1000),
+      role: role || "COWORKER",
+      isVerified: true
+    }
+  });
+  sendSuccessResponse(res, "account created successfully", 
+{}, 201);
+  } catch (error) {
+    next(error);
+  }
+};
+
+
+
 export const login = async (
   req: Request,
   res: Response,
@@ -87,11 +126,14 @@ export const login = async (
     if (!user.isVerified) throw new UnauthorizedError("Account not verified!");
     if (user.isSuspended)
       throw new UnauthorizedError(
-        "Account suspended! Kindly reachout to support@lenzr.com"
+        "Account suspended! Kindly reachout to support@penetralia.com"
       );
 
     const token = generateToken({ email, id: user.id });
-    sendSuccessResponse(res, "Login successful", { token, user });
+    sendSuccessResponse(res, "Login successful", { 
+      token, 
+      user: { select: userSelect}
+     });
   } catch (error) {
     next(error);
   }
@@ -123,8 +165,8 @@ export const requestVerificationCode = async (
     });
     const mailOptions: MailInterface = {
       to: email,
-      from: `"Lenzr" olamide14044@yahoo.com`,
-      subject: "Reset your Lenzr Password",
+      from: `"Penetralia" samzdevop@yahoo.com`,
+      subject: "Reset your Agritech Password",
       text: "",
       html,
     };
@@ -167,8 +209,8 @@ export const verifyAccount = async (
     });
     const mailOptions: MailInterface = {
       to: email,
-      from: `"Lenzr" olamide14044@yahoo.com`,
-      subject: "Welcome to Lenzr",
+      from: `"Penetralia" samzdevop@yahoo.com`,
+      subject: "Welcome to Agritech Africa",
       text: "",
       html,
     };
@@ -213,8 +255,8 @@ export const resetPassword = async (
     });
     const mailOptions: MailInterface = {
       to: email,
-      from: `"Lenzr" olamide14044@yahoo.com`,
-      subject: "Lenzr Password Reset Successful",
+      from: `"Penetralia" samzdevop@yahoo.com`,
+      subject: "Agritech Password Reset Successful",
       text: "",
       html,
     };

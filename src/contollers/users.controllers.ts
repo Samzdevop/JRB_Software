@@ -2,6 +2,7 @@ import { NextFunction, Request, Response } from 'express';
 import prisma from '../prisma';
 import { sendSuccessResponse } from '../utils/sendSuccessResponse';
 import { NotFoundError } from '../errors/NotFoundError';
+import { userSelect } from '../prisma/selects';
 // import { Prisma } from '@prisma/client';
 
 export const getProfile = async (
@@ -12,6 +13,7 @@ export const getProfile = async (
 	try {
 		const user = await prisma.user.findUnique({
 			where: { id: (req.user as any).id },
+			// select: userSelect // since user password is set to an empty string in the controller, we can skip selecting it here
 		});
 
 		if (!user) throw new NotFoundError('User not found');
