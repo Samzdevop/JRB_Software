@@ -14,6 +14,7 @@ import { ForbiddenError } from "../errors/ForbiddenError";
 import { render } from "../utils/mailTemplate";
 import { compareDates } from "../utils/dateExpiration";
 import { userSelect } from "../prisma/selects";
+import { ConflictError } from "../errors/ConflictError";
 // import { isValid } from "zod";
 
 export const adminRegister = async (
@@ -75,12 +76,24 @@ export const register = async (
   next: NextFunction
 ): Promise<void> => {
   try {
-    const { email, fullName, password, role } = req.body;
+    const { email, phone, fullName, password, role } = req.body;
 
-    const existingUser = await prisma.user.findUnique({ where: { email } });
+    const existingUser = await prisma.user.findFirst({
+      where: {
+        OR: [
+          {email: email || undefined },
+          { phone: phone || undefined }
+        ]
+      }
+    });
+
+
     if (existingUser) {
-      throw new ForbiddenError(
-        "User already exists"
+      const conflicts = [];
+      if(existingUser.email === email) conflicts.push("email");
+      if(existingUser.phone === phone) conflicts.push("phone");
+      throw new ConflictError(
+        `User already exists with this ${conflicts.join(" and ")}`
       );
     }
 
@@ -89,6 +102,7 @@ export const register = async (
     await prisma.user.create({
      data: {
       email,
+      phone,
       password: hashedPassword,
       fullName,
       verificationCode,
@@ -97,7 +111,7 @@ export const register = async (
       isVerified: true
     }
   });
-  sendSuccessResponse(res, "account created successfully", 
+  sendSuccessResponse(res, "Registeration successfully", 
 {}, 201);
   } catch (error) {
     next(error);
@@ -111,10 +125,19 @@ export const login = async (
   res: Response,
   next: NextFunction
 ): Promise<void> => {
-  const { email, password } = req.body;
+  const { email, phone, password } = req.body;
 
   try {
-    const user = await prisma.user.findUnique({ where: { email } });
+    const user = await prisma.user.findFirst({
+      where: {
+        OR: [
+          // Check for email or phone
+        { email: email ?? undefined },
+        {phone: phone ?? undefined }
+      ]
+      },
+      });
+
     if (!user) throw new NotFoundError("User not found");
 
     const isPasswordValid = await verify(
@@ -129,10 +152,23 @@ export const login = async (
         "Account suspended! Kindly reachout to support@penetralia.com"
       );
 
-    const token = generateToken({ email, id: user.id });
+    await prisma.user.update({
+      where: {id: user.id},
+      data: {lastLogin: new Date()}
+    })
+
+    const userData = await prisma.user.findUnique({
+      where: { id: user.id},
+      select: userSelect
+    }) 
+    const token = generateToken({
+      id: user.id,
+      // ...(user.email && {email: user.email}),
+      // ...(user.phone && {phone: user.phone})
+    });
     sendSuccessResponse(res, "Login successful", { 
       token, 
-      user: { select: userSelect}
+      user: userData
      });
   } catch (error) {
     next(error);

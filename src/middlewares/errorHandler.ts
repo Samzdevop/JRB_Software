@@ -73,15 +73,21 @@ export const errorHandler = (
 	// Handle Zod validation errors
 	else if (err instanceof ZodError) {
 		statusCode = 422; // Unprocessable Entity
-		errorMessage = err.message || 'Validation failed';
+		errorMessage =  'Validation failed';
 		const issues = err.errors.map((issue) => ({
-			path: issue.path.join('.'),
-			message: issue.message,
+			field: issue.path.join('.').replace(/^body\./, ''),
+			message: issue.message.replace(/^\w/, (c) => c.toUpperCase()),
 		}));
+
+		const errorMessages = issues.map(
+			(err) => `${err.field}: ${err.message}`
+		);
 		res.status(statusCode).json({
 			success: false,
 			error: errorMessage,
-			details: issues,
+			message: 'Please correct the following errors:',
+			issues,
+			errors: errorMessages,
 		});
 		return;
 	}

@@ -605,3 +605,371 @@
 [32m[39m
 2025-07-06 06:29:54 [32minfo[39m [32mGET /api/v1/livestock 200 132.370 ms - 1017[39m
 [32m[39m
+2025-07-06 09:46:21 [32minfo[39m [32mPOST /api/v1/auth/login 200 254.440 ms - 434[39m
+[32m[39m
+2025-07-06 09:47:14 [32minfo[39m [32mPOST /api/v1/livestock/cmcop7ll30001t1ncj7c9hsa7/sickness 422 19.646 ms - 311[39m
+[32m[39m
+2025-07-06 09:48:27 [31merror[39m [31mDatabase validation error: [39m
+[31mInvalid `prisma.sickness.create()` invocation in[39m
+[31mC:\Users\DoBUY\Agritech-Backend\src\contollers\sickness.controllers.ts:25:23[39m
+
+[31m  22 [39m
+[31m  23 // Create sickness record and update livestock status in a transaction[39m
+[31m  24 const [sickness] = await prisma.$transaction([[39m
+[31m→ 25   prisma.sickness.create({[39m
+[31m         data: {[39m
+[31m           livestockId: "cmcop7ll30001t1ncj7c9hsa7",[39m
+[31m           dateOfObservation: new Date("Invalid Date"),[39m
+[31m                              ~~~~~~~~~~~~~~~~~~~~~~~~[39m
+[31m           observedSymptoms: "Lethargy, loss of appetite",[39m
+[31m           suspectedCause: "Possible infection",[39m
+[31m           notes: "Isolated from herd",[39m
+[31m           recordedById: "cmcnjxm6s0000t1p8rcay1eoq"[39m
+[31m         },[39m
+[31m         include: {[39m
+[31m           livestock: true,[39m
+[31m           recordedBy: {[39m
+[31m             select: {[39m
+[31m               id: true,[39m
+[31m               fullName: true,[39m
+[31m               email: true,[39m
+[31m               role: true,[39m
+[31m               isVerified: true,[39m
+[31m               avatar: true,[39m
+[31m               location: true,[39m
+[31m               createdAt: true,[39m
+[31m               updatedAt: true[39m
+[31m             }[39m
+[31m           }[39m
+[31m         }[39m
+[31m       })[39m
+
+[31mInvalid value for argument `dateOfObservation`: Provided Date object is invalid. Expected Date. [39m
+[31mInvalid `prisma.sickness.create()` invocation in[39m
+[31mC:\Users\DoBUY\Agritech-Backend\src\contollers\sickness.controllers.ts:25:23[39m
+
+[31m  22 [39m
+[31m  23 // Create sickness record and update livestock status in a transaction[39m
+[31m  24 const [sickness] = await prisma.$transaction([[39m
+[31m→ 25   prisma.sickness.create({[39m
+[31m         data: {[39m
+[31m           livestockId: "cmcop7ll30001t1ncj7c9hsa7",[39m
+[31m           dateOfObservation: new Date("Invalid Date"),[39m
+[31m                              ~~~~~~~~~~~~~~~~~~~~~~~~[39m
+[31m           observedSymptoms: "Lethargy, loss of appetite",[39m
+[31m           suspectedCause: "Possible infection",[39m
+[31m           notes: "Isolated from herd",[39m
+[31m           recordedById: "cmcnjxm6s0000t1p8rcay1eoq"[39m
+[31m         },[39m
+[31m         include: {[39m
+[31m           livestock: true,[39m
+[31m           recordedBy: {[39m
+[31m             select: {[39m
+[31m               id: true,[39m
+[31m               fullName: true,[39m
+[31m               email: true,[39m
+[31m               role: true,[39m
+[31m               isVerified: true,[39m
+[31m               avatar: true,[39m
+[31m               location: true,[39m
+[31m               createdAt: true,[39m
+[31m               updatedAt: true[39m
+[31m             }[39m
+[31m           }[39m
+[31m         }[39m
+[31m       })[39m
+
+[31mInvalid value for argument `dateOfObservation`: Provided Date object is invalid. Expected Date.[39m
+2025-07-06 09:48:27 [32minfo[39m [32mPOST /api/v1/livestock/cmcop7ll30001t1ncj7c9hsa7/sickness 422 39.215 ms - 1306[39m
+[32m[39m
+2025-07-06 09:53:00 [32minfo[39m [32mPOST /api/v1/livestock/cmcop7ll30001t1ncj7c9hsa7/sickness 201 265.304 ms - 1071[39m
+[32m[39m
+2025-07-06 10:03:14 [32minfo[39m [32mPOST /api/v1/livestock/cmcop7ll30001t1ncj7c9hsa7/sickness 422 312.631 ms - 383[39m
+[32m[39m
+2025-07-06 10:05:22 [32minfo[39m [32mPOST /api/v1/livestock/cmcop7ll30001t1ncj7c9hsa7/sickness 422 118.589 ms - 112[39m
+[32m[39m
+2025-07-06 10:05:24 [32minfo[39m [32mPOST /api/v1/livestock/cmcop7ll30001t1ncj7c9hsa7/sickness 422 5.253 ms - 112[39m
+[32m[39m
+2025-07-06 10:05:26 [32minfo[39m [32mPOST /api/v1/livestock/cmcop7ll30001t1ncj7c9hsa7/sickness 422 4.944 ms - 112[39m
+[32m[39m
+2025-07-06 10:05:30 [32minfo[39m [32mPOST /api/v1/livestock/cmcop7ll30001t1ncj7c9hsa7/sickness 422 4.126 ms - 112[39m
+[32m[39m
+2025-07-06 10:05:49 [32minfo[39m [32mPOST /api/v1/livestock/cmcop7ll30001t1ncj7c9hsa7/sickness 422 219.687 ms - 112[39m
+[32m[39m
+2025-07-06 10:09:28 [32minfo[39m [32mPOST /api/v1/livestock/cmcop7ll30001t1ncj7c9hsa7/sickness 422 131.288 ms - 147[39m
+[32m[39m
+2025-07-06 10:09:49 [32minfo[39m [32mPOST /api/v1/livestock/cmcop7ll30001t1ncj7c9hsa7/sickness 422 14.924 ms - 147[39m
+[32m[39m
+2025-07-06 10:11:58 [32minfo[39m [32mPOST /api/v1/livestock/cmcop7ll30001t1ncj7c9hsa7/sickness 422 113.288 ms - 197[39m
+[32m[39m
+2025-07-06 10:20:40 [32minfo[39m [32mPOST /api/v1/livestock/cmcop7ll30001t1ncj7c9hsa7/sickness 422 272.965 ms - 197[39m
+[32m[39m
+2025-07-06 10:20:53 [32minfo[39m [32mPOST /api/v1/livestock/cmcop7ll30001t1ncj7c9hsa7/sickness 422 6.288 ms - 197[39m
+[32m[39m
+2025-07-06 10:21:39 [32minfo[39m [32mPOST /api/v1/livestock/cmcop7ll30001t1ncj7c9hsa7/sickness 201 162.067 ms - 1053[39m
+[32m[39m
+2025-07-06 10:21:48 [32minfo[39m [32mPOST /api/v1/livestock/cmcop7ll30001t1ncj7c9hsa7/sickness 401 2.885 ms - 70[39m
+[32m[39m
+2025-07-06 10:21:54 [32minfo[39m [32mPOST /api/v1/livestock/cmcop7ll30001t1ncj7c9hsa7/sickness 201 21.798 ms - 1053[39m
+[32m[39m
+2025-07-06 10:46:54 [32minfo[39m [32mPOST /api/v1/livestock/cmcop7ll30001t1ncj7c9hsa7/treatment 401 3.539 ms - 64[39m
+[32m[39m
+2025-07-06 10:47:11 [32minfo[39m [32mPOST /api/v1/livestock/cmcop7ll30001t1ncj7c9hsa7/treatment 401 1.936 ms - 64[39m
+[32m[39m
+2025-07-06 10:47:14 [32minfo[39m [32mPOST /api/v1/auth/login 200 234.541 ms - 434[39m
+[32m[39m
+2025-07-06 10:47:28 [32minfo[39m [32mPOST /api/v1/livestock/cmcop7ll30001t1ncj7c9hsa7/treatment 422 6.342 ms - 457[39m
+[32m[39m
+2025-07-06 10:47:30 [32minfo[39m [32mPOST /api/v1/livestock/cmcop7ll30001t1ncj7c9hsa7/treatment 422 4.462 ms - 457[39m
+[32m[39m
+2025-07-06 10:49:45 [32minfo[39m [32mPOST /api/v1/livestock/cmcop7ll30001t1ncj7c9hsa7/treatment 422 117.060 ms - 457[39m
+[32m[39m
+2025-07-06 10:50:19 [32minfo[39m [32mPOST /api/v1/livestock/cmcop7ll30001t1ncj7c9hsa7/treatment 422 5.454 ms - 457[39m
+[32m[39m
+2025-07-06 10:50:56 [32minfo[39m [32mPOST /api/v1/livestock/cmcop7ll30001t1ncj7c9hsa7/treatment 422 128.482 ms - 457[39m
+[32m[39m
+2025-07-06 10:56:51 [32minfo[39m [32mPOST /api/v1/livestock/cmcop7ll30001t1ncj7c9hsa7/treatment 422 120.814 ms - 457[39m
+[32m[39m
+2025-07-06 10:58:26 [32minfo[39m [32mPOST /api/v1/livestock/cmcop7ll30001t1ncj7c9hsa7/treatment 422 6.445 ms - 457[39m
+[32m[39m
+2025-07-06 10:59:47 [31merror[39m [31mExpected ',' or '}' after property value in JSON at position 191 (line 7 column 31) Expected ',' or '}' after property value in JSON at position 191 (line 7 column 31)[39m
+2025-07-06 11:00:26 [32minfo[39m [32mPOST /api/v1/livestock/cmcop7ll30001t1ncj7c9hsa7/treatment 422 4.866 ms - 457[39m
+[32m[39m
+2025-07-06 11:00:34 [32minfo[39m [32mPOST /api/v1/livestock/cmcop7ll30001t1ncj7c9hsa7/treatment 201 31.660 ms - 1130[39m
+[32m[39m
+2025-07-06 11:02:19 [32minfo[39m [32mGET /api/v1/livestock 401 2.183 ms - 64[39m
+[32m[39m
+2025-07-06 11:02:52 [32minfo[39m [32mGET /api/v1/livestock 200 100.739 ms - 1050[39m
+[32m[39m
+2025-07-06 11:04:13 [32minfo[39m [32mGET /api/v1/livestock 200 214.343 ms - 793[39m
+[32m[39m
+2025-07-06 11:11:57 [32minfo[39m [32mGET /api/v1/sickness 401 10.124 ms - 64[39m
+[32m[39m
+2025-07-06 11:12:23 [31merror[39m [31mSickness record not found Sickness record not found[39m
+2025-07-06 11:12:23 [32minfo[39m [32mGET /api/v1/sickness 404 117.669 ms - 53[39m
+[32m[39m
+2025-07-06 11:12:48 [31merror[39m [31mSickness record not found Sickness record not found[39m
+2025-07-06 11:12:48 [32minfo[39m [32mGET /api/v1/sickness 404 8.041 ms - 53[39m
+[32m[39m
+2025-07-06 11:12:49 [31merror[39m [31mSickness record not found Sickness record not found[39m
+2025-07-06 11:12:49 [32minfo[39m [32mGET /api/v1/sickness 404 7.669 ms - 53[39m
+[32m[39m
+2025-07-06 11:12:50 [31merror[39m [31mSickness record not found Sickness record not found[39m
+2025-07-06 11:12:50 [32minfo[39m [32mGET /api/v1/sickness 404 40.141 ms - 53[39m
+[32m[39m
+2025-07-06 11:12:51 [31merror[39m [31mSickness record not found Sickness record not found[39m
+2025-07-06 11:12:51 [32minfo[39m [32mGET /api/v1/sickness 404 7.410 ms - 53[39m
+[32m[39m
+2025-07-06 11:13:03 [31merror[39m [31mSickness record not found Sickness record not found[39m
+2025-07-06 11:13:03 [32minfo[39m [32mGET /api/v1/sickness 404 10.758 ms - 53[39m
+[32m[39m
+2025-07-06 11:14:25 [31merror[39m [31mSickness record not found Sickness record not found[39m
+2025-07-06 11:14:25 [32minfo[39m [32mGET /api/v1/sickness 404 6.104 ms - 53[39m
+[32m[39m
+2025-07-06 11:16:37 [31merror[39m [31mSickness record not found Sickness record not found[39m
+2025-07-06 11:16:37 [32minfo[39m [32mGET /api/v1/sickness?livestockId=cmcop7ll30001t1ncj7c9hsa7 404 7.877 ms - 53[39m
+[32m[39m
+2025-07-06 11:17:24 [31merror[39m [31mSickness record not found Sickness record not found[39m
+2025-07-06 11:17:24 [32minfo[39m [32mGET /api/v1/sickness 404 81.084 ms - 53[39m
+[32m[39m
+2025-07-06 11:25:55 [32minfo[39m [32mGET /api/v1/sickness 200 119.346 ms - 3123[39m
+[32m[39m
+2025-07-06 11:40:47 [32minfo[39m [32mPOST /api/v1/livestock/cmcop7ll30001t1ncj7c9hsa7/sickness 404 0.984 ms - 156[39m
+[32m[39m
+2025-07-06 11:41:01 [32minfo[39m [32mPOST /api/v1/sickness/livestock/cmcop7ll30001t1ncj7c9hsa7/sickness 401 2.957 ms - 64[39m
+[32m[39m
+2025-07-06 11:41:02 [32minfo[39m [32mPOST /api/v1/sickness/livestock/cmcop7ll30001t1ncj7c9hsa7/sickness 401 1.991 ms - 64[39m
+[32m[39m
+2025-07-06 11:41:14 [32minfo[39m [32mPOST /api/v1/sickness/livestock/cmcop7ll30001t1ncj7c9hsa7/sickness 201 107.883 ms - 1052[39m
+[32m[39m
+2025-07-06 11:49:27 [32minfo[39m [32mGET /api/v1/sickness?livestockId=cmcop7ll30001t1ncj7c9hsa7 401 1.954 ms - 64[39m
+[32m[39m
+2025-07-06 11:49:38 [32minfo[39m [32mPOST /api/v1/auth/login 200 232.898 ms - 434[39m
+[32m[39m
+2025-07-06 11:49:56 [32minfo[39m [32mGET /api/v1/sickness?livestockId=cmcop7ll30001t1ncj7c9hsa7 200 23.576 ms - 4112[39m
+[32m[39m
+2025-07-06 12:00:30 [32minfo[39m [32mGET /api/v1/livestock/cmcop7ll30001t1ncj7c9hsa7/treatment 404 0.634 ms - 157[39m
+[32m[39m
+2025-07-06 12:00:54 [32minfo[39m [32mGET /api/v1/treatment/livestock/cmcop7ll30001t1ncj7c9hsa7/treatment 404 0.432 ms - 167[39m
+[32m[39m
+2025-07-06 12:01:18 [32minfo[39m [32mGET /api/v1/treatments 404 0.275 ms - 122[39m
+[32m[39m
+2025-07-06 12:01:53 [32minfo[39m [32mGET /api/v1/treatment 200 87.767 ms - 1176[39m
+[32m[39m
+2025-07-06 12:10:07 [32minfo[39m [32mGET /api/v1/treatment?livestockId=cmcop7ll30001t1ncj7c9hsa7 200 88.950 ms - 1176[39m
+[32m[39m
+2025-07-06 12:20:51 [31merror[39m [31mSickness record not found Sickness record not found[39m
+2025-07-06 12:20:51 [32minfo[39m [32mGET /api/v1/sickness/cmcop7ll30001t1ncj7c9hsa7 404 137.646 ms - 53[39m
+[32m[39m
+2025-07-06 12:22:07 [32minfo[39m [32mGET /api/v1/sickness/sickness/cmcop7ll30001t1ncj7c9hsa7 404 0.321 ms - 155[39m
+[32m[39m
+2025-07-06 12:22:09 [32minfo[39m [32mGET /api/v1/sickness/sickness/cmcop7ll30001t1ncj7c9hsa7 404 0.296 ms - 155[39m
+[32m[39m
+2025-07-06 12:22:50 [32minfo[39m [32mGET /api/v1/sickness/cmcrgql4m0001t1lsf57061g1 200 11.337 ms - 1063[39m
+[32m[39m
+2025-07-06 12:25:45 [31merror[39m [31mTreatment record not found Treatment record not found[39m
+2025-07-06 12:25:45 [32minfo[39m [32mGET /api/v1/treatment/cmcrgql4m0001t1lsf57061g1 404 9.473 ms - 54[39m
+[32m[39m
+2025-07-06 12:26:16 [32minfo[39m [32mGET /api/v1/treatment/cmcri4n9b0001t1pwbicfgn6z 200 187.282 ms - 1117[39m
+[32m[39m
+2025-07-06 12:34:24 [32minfo[39m [32mPOST /api/v1/treatment/cmcri4n9b0001t1pwbicfgn6z 404 6.770 ms - 147[39m
+[32m[39m
+2025-07-06 12:34:54 [32minfo[39m [32mPOST /api/v1/treatment/cmcop7ll30001t1ncj7c9hsa7 404 0.884 ms - 147[39m
+[32m[39m
+2025-07-06 12:34:56 [32minfo[39m [32mPOST /api/v1/treatment/cmcop7ll30001t1ncj7c9hsa7 404 0.455 ms - 147[39m
+[32m[39m
+2025-07-06 12:35:15 [32minfo[39m [32mPOST /api/v1/treatment/cmcop7ll30001t1ncj7c9hsa7 404 0.363 ms - 147[39m
+[32m[39m
+2025-07-06 12:36:32 [32minfo[39m [32mPOST /api/v1/treatment/cmcop7ll30001t1ncj7c9hsa7 404 6.120 ms - 147[39m
+[32m[39m
+2025-07-06 12:37:00 [31merror[39m [31mTreatment record not found Treatment record not found[39m
+2025-07-06 12:37:00 [32minfo[39m [32mGET /api/v1/treatment/cmcop7ll30001t1ncj7c9hsa7 404 108.721 ms - 54[39m
+[32m[39m
+2025-07-06 12:37:29 [32minfo[39m [32mPOST /api/v1/treatment/cmcop7ll30001t1ncj7c9hsa7 404 0.467 ms - 147[39m
+[32m[39m
+2025-07-06 12:37:48 [32minfo[39m [32mPOST /api/v1/treatment/cmcop7ll30001t1ncj7c9hsa7 404 0.446 ms - 147[39m
+[32m[39m
+2025-07-06 12:39:16 [32minfo[39m [32mPOST /api/v1/treatment/livestock/cmcop7ll30001t1ncj7c9hsa7 422 10.547 ms - 457[39m
+[32m[39m
+2025-07-06 12:41:06 [32minfo[39m [32mPOST /api/v1/treatment/livestock/cmcop7ll30001t1ncj7c9hsa7 201 29.572 ms - 1129[39m
+[32m[39m
+2025-07-06 12:41:20 [32minfo[39m [32mGET /api/v1/treatment 200 11.934 ms - 2224[39m
+[32m[39m
+2025-07-06 12:43:18 [32minfo[39m [32mPOST /api/v1/treatment/livestock/cmcop7ll30001t1ncj7c9hsa7 201 97.358 ms - 1121[39m
+[32m[39m
+2025-07-06 12:43:30 [32minfo[39m [32mGET /api/v1/treatment 200 10.245 ms - 3264[39m
+[32m[39m
+2025-07-07 02:25:39 [32minfo[39m [32mPOST /api/v1/auth/login 200 261.971 ms - 434[39m
+[32m[39m
+2025-07-07 02:26:34 [32minfo[39m [32mGET /api/v1/livestock 200 43.991 ms - 793[39m
+[32m[39m
+2025-07-07 02:26:49 [31merror[39m [31mInternal Server Error Invalid offtake type[39m
+2025-07-07 02:26:49 [32minfo[39m [32mPOST /api/v1/offtake/livestock/cmcop7ll30001t1ncj7c9hsa7/ 500 19.511 ms - 49[39m
+[32m[39m
+2025-07-07 02:27:08 [31merror[39m [31mInternal Server Error Invalid offtake type[39m
+2025-07-07 02:27:08 [32minfo[39m [32mPOST /api/v1/offtake/livestock/cmcop7ll30001t1ncj7c9hsa7 500 5.654 ms - 49[39m
+[32m[39m
+2025-07-07 02:28:44 [31merror[39m [31mInternal Server Error Invalid offtake type[39m
+2025-07-07 02:28:44 [32minfo[39m [32mPOST /api/v1/offtake/livestock/cmcop7ll30001t1ncj7c9hsa7 500 118.581 ms - 49[39m
+[32m[39m
+2025-07-07 02:29:24 [31merror[39m [31mInternal Server Error Invalid offtake type[39m
+2025-07-07 02:29:24 [32minfo[39m [32mPOST /api/v1/offtake/livestock/cmcop7ll30001t1ncj7c9hsa7 500 6.574 ms - 49[39m
+[32m[39m
+2025-07-07 02:29:57 [32minfo[39m [32mGET /api/v1/livestock 200 14.883 ms - 793[39m
+[32m[39m
+2025-07-07 02:30:11 [32minfo[39m [32mPOST /api/v1/auth/login 200 126.315 ms - 434[39m
+[32m[39m
+2025-07-07 02:30:41 [32minfo[39m [32mPOST /api/v1/offtake/livestock/cmcop7ll30001t1ncj7c9hsa7 201 24.465 ms - 881[39m
+[32m[39m
+2025-07-07 02:39:54 [32minfo[39m [32mPOST /api/v1/offtake/livestock/cmcop7ll30001t1ncj7c9hsa7 422 118.635 ms - 287[39m
+[32m[39m
+2025-07-07 09:36:18 [32minfo[39m [32mPOST /api/v1/auth/login 200 231.229 ms - 434[39m
+[32m[39m
+2025-07-07 09:36:35 [32minfo[39m [32mGET /api/v1/offtake/livestock/cmcop7ll30001t1ncj7c9hsa7 200 100.797 ms - 836[39m
+[32m[39m
+2025-07-07 10:18:58 [32minfo[39m [32mGET /api/v1/offtake?type=SALE 200 290.011 ms - 830[39m
+[32m[39m
+2025-07-07 10:51:29 [32minfo[39m [32mGET /api/v1/offtake 401 8.409 ms - 64[39m
+[32m[39m
+2025-07-07 10:52:13 [32minfo[39m [32mPOST /api/v1/auth/login 200 317.541 ms - 434[39m
+[32m[39m
+2025-07-07 10:52:28 [32minfo[39m [32mGET /api/v1/offtake 200 107.323 ms - 830[39m
+[32m[39m
+2025-07-07 15:24:27 [32minfo[39m [32mGET /api/v1/users?role=FARM_KEEPER 401 6.328 ms - 66[39m
+[32m[39m
+2025-07-07 15:24:34 [32minfo[39m [32mPOST /api/v1/auth/login 200 277.091 ms - 447[39m
+[32m[39m
+2025-07-07 15:24:58 [32minfo[39m [32mGET /api/v1/users?role=FARM_KEEPER 403 15.426 ms - 73[39m
+[32m[39m
+2025-07-07 15:25:22 [32minfo[39m [32mGET /api/v1/users?role=COWORKER 403 4.565 ms - 73[39m
+[32m[39m
+2025-07-07 15:26:10 [32minfo[39m [32mGET /api/v1/users?role=COWORKER 403 7.240 ms - 73[39m
+[32m[39m
+2025-07-07 15:40:07 [32minfo[39m [32mGET /api/v1/users?role=COWORKER 200 416.234 ms - 644[39m
+[32m[39m
+2025-07-07 15:49:04 [32minfo[39m [32mGET /api/v1/users?role=FARM_KEEPER 200 158.876 ms - 644[39m
+[32m[39m
+2025-07-07 15:49:09 [32minfo[39m [32mGET /api/v1/users?role=FARM_KEEPER 200 9.943 ms - 644[39m
+[32m[39m
+2025-07-07 15:49:10 [32minfo[39m [32mGET /api/v1/users?role=FARM_KEEPER 200 10.645 ms - 644[39m
+[32m[39m
+2025-07-07 15:49:12 [32minfo[39m [32mGET /api/v1/users?role=FARM_KEEPER 200 5.894 ms - 644[39m
+[32m[39m
+2025-07-07 15:49:20 [32minfo[39m [32mGET /api/v1/users 200 18.592 ms - 644[39m
+[32m[39m
+2025-07-07 16:06:27 [32minfo[39m [32mGET /api/v1/users 401 4.961 ms - 66[39m
+[32m[39m
+2025-07-07 16:06:47 [32minfo[39m [32mPOST /api/v1/auth/login 200 612.144 ms - 447[39m
+[32m[39m
+2025-07-07 16:07:07 [32minfo[39m [32mGET /api/v1/users 200 90.115 ms - 644[39m
+[32m[39m
+2025-07-07 16:07:28 [32minfo[39m [32mGET /api/v1/users/profile 200 6.769 ms - 318[39m
+[32m[39m
+2025-07-07 16:08:11 [32minfo[39m [32mPOST /api/v1/auth/login 200 131.376 ms - 440[39m
+[32m[39m
+2025-07-07 16:08:32 [32minfo[39m [32mGET /api/v1/users/profile 200 5.454 ms - 307[39m
+[32m[39m
+2025-07-07 16:08:44 [32minfo[39m [32mPOST /api/v1/auth/login 200 124.108 ms - 447[39m
+[32m[39m
+2025-07-07 16:09:06 [32minfo[39m [32mGET /api/v1/users/profile 200 6.577 ms - 318[39m
+[32m[39m
+2025-07-07 16:12:53 [32minfo[39m [32mPATCH /api/v1/users/update 200 87.752 ms - 316[39m
+[32m[39m
+2025-07-07 16:13:55 [32minfo[39m [32mPATCH /api/v1/users/update 422 169.871 ms - 179[39m
+[32m[39m
+2025-07-07 16:26:10 [32minfo[39m [32mPATCH /api/v1/users/update 422 182.775 ms - 179[39m
+[32m[39m
+2025-07-07 16:26:52 [32minfo[39m [32mPATCH /api/v1/users/update 422 16.173 ms - 179[39m
+[32m[39m
+2025-07-07 16:27:02 [32minfo[39m [32mGET /api/v1/users/profile 200 12.926 ms - 318[39m
+[32m[39m
+2025-07-07 16:27:30 [32minfo[39m [32mPATCH /api/v1/users/update 422 4.609 ms - 179[39m
+[32m[39m
+2025-07-07 16:27:32 [32minfo[39m [32mPATCH /api/v1/users/update 422 4.523 ms - 179[39m
+[32m[39m
+2025-07-07 16:27:45 [32minfo[39m [32mPATCH /api/v1/users/update 200 454.029 ms - 316[39m
+[32m[39m
+2025-07-07 16:29:39 [32minfo[39m [32mPATCH /api/v1/users/update 200 20.076 ms - 316[39m
+[32m[39m
+2025-07-07 16:29:52 [32minfo[39m [32mGET /api/v1/users/profile 200 6.139 ms - 318[39m
+[32m[39m
+2025-07-07 16:33:02 [31merror[39m [31mExpected ':' after property name in JSON at position 48 (line 3 column 16) Expected ':' after property name in JSON at position 48 (line 3 column 16)[39m
+2025-07-07 16:33:19 [32minfo[39m [32mPATCH /api/v1/users/update 422 72.815 ms - 298[39m
+[32m[39m
+2025-07-07 16:33:38 [32minfo[39m [32mPATCH /api/v1/users/update 200 21.412 ms - 324[39m
+[32m[39m
+2025-07-07 16:34:09 [32minfo[39m [32mPOST /api/v1/auth/login 200 491.304 ms - 476[39m
+[32m[39m
+2025-07-07 16:35:36 [31merror[39m [31mUser not found User not found[39m
+2025-07-07 16:35:36 [32minfo[39m [32mPOST /api/v1/auth/login 404 22.901 ms - 42[39m
+[32m[39m
+2025-07-07 16:35:51 [32minfo[39m [32mPOST /api/v1/auth/login 422 2.873 ms - 179[39m
+[32m[39m
+2025-07-07 16:36:14 [32minfo[39m [32mPOST /api/v1/auth/login 422 0.674 ms - 179[39m
+[32m[39m
+2025-07-07 16:36:24 [32minfo[39m [32mPOST /api/v1/auth/login 200 146.375 ms - 476[39m
+[32m[39m
+2025-07-07 16:36:47 [32minfo[39m [32mPOST /api/v1/auth/login 200 431.827 ms - 476[39m
+[32m[39m
+2025-07-07 16:38:25 [32minfo[39m [32mGET /api/v1/users/profile 200 188.514 ms - 326[39m
+[32m[39m
+2025-07-07 16:38:32 [32minfo[39m [32mPOST /api/v1/auth/login 200 156.656 ms - 476[39m
+[32m[39m
+2025-07-07 16:39:58 [32minfo[39m [32mPOST /api/v1/auth/login 200 610.707 ms - 577[39m
+[32m[39m
+2025-07-07 16:43:03 [31merror[39m [31mInternal Server Error The first argument must be of type string or an instance of Buffer, ArrayBuffer, or Array or an Array-like Object. Received undefined[39m
+2025-07-07 16:43:03 [32minfo[39m [32mPOST /api/v1/auth/login 500 461.620 ms - 49[39m
+[32m[39m
+2025-07-07 16:43:22 [31merror[39m [31mInternal Server Error The first argument must be of type string or an instance of Buffer, ArrayBuffer, or Array or an Array-like Object. Received undefined[39m
+2025-07-07 16:43:22 [32minfo[39m [32mPOST /api/v1/auth/login 500 15.792 ms - 49[39m
+[32m[39m
+2025-07-07 16:43:24 [31merror[39m [31mInternal Server Error The first argument must be of type string or an instance of Buffer, ArrayBuffer, or Array or an Array-like Object. Received undefined[39m
+2025-07-07 16:43:24 [32minfo[39m [32mPOST /api/v1/auth/login 500 5.505 ms - 49[39m
+[32m[39m
+2025-07-07 16:43:26 [31merror[39m [31mInternal Server Error The first argument must be of type string or an instance of Buffer, ArrayBuffer, or Array or an Array-like Object. Received undefined[39m
+2025-07-07 16:43:26 [32minfo[39m [32mPOST /api/v1/auth/login 500 5.447 ms - 49[39m
+[32m[39m
+2025-07-07 16:44:34 [32minfo[39m [32mPOST /api/v1/auth/login 200 259.094 ms - 476[39m
+[32m[39m
+2025-07-07 16:49:59 [32minfo[39m [32mPOST /api/v1/auth/login 200 514.854 ms - 403[39m
+[32m[39m

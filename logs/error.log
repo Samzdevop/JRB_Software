@@ -295,3 +295,97 @@
 [31m     })[39m
 
 [31mUnknown argument `isDeleted`. Available options are marked with ?.[39m
+2025-07-06 09:48:27 [31merror[39m [31mDatabase validation error: [39m
+[31mInvalid `prisma.sickness.create()` invocation in[39m
+[31mC:\Users\DoBUY\Agritech-Backend\src\contollers\sickness.controllers.ts:25:23[39m
+
+[31m  22 [39m
+[31m  23 // Create sickness record and update livestock status in a transaction[39m
+[31m  24 const [sickness] = await prisma.$transaction([[39m
+[31m→ 25   prisma.sickness.create({[39m
+[31m         data: {[39m
+[31m           livestockId: "cmcop7ll30001t1ncj7c9hsa7",[39m
+[31m           dateOfObservation: new Date("Invalid Date"),[39m
+[31m                              ~~~~~~~~~~~~~~~~~~~~~~~~[39m
+[31m           observedSymptoms: "Lethargy, loss of appetite",[39m
+[31m           suspectedCause: "Possible infection",[39m
+[31m           notes: "Isolated from herd",[39m
+[31m           recordedById: "cmcnjxm6s0000t1p8rcay1eoq"[39m
+[31m         },[39m
+[31m         include: {[39m
+[31m           livestock: true,[39m
+[31m           recordedBy: {[39m
+[31m             select: {[39m
+[31m               id: true,[39m
+[31m               fullName: true,[39m
+[31m               email: true,[39m
+[31m               role: true,[39m
+[31m               isVerified: true,[39m
+[31m               avatar: true,[39m
+[31m               location: true,[39m
+[31m               createdAt: true,[39m
+[31m               updatedAt: true[39m
+[31m             }[39m
+[31m           }[39m
+[31m         }[39m
+[31m       })[39m
+
+[31mInvalid value for argument `dateOfObservation`: Provided Date object is invalid. Expected Date. [39m
+[31mInvalid `prisma.sickness.create()` invocation in[39m
+[31mC:\Users\DoBUY\Agritech-Backend\src\contollers\sickness.controllers.ts:25:23[39m
+
+[31m  22 [39m
+[31m  23 // Create sickness record and update livestock status in a transaction[39m
+[31m  24 const [sickness] = await prisma.$transaction([[39m
+[31m→ 25   prisma.sickness.create({[39m
+[31m         data: {[39m
+[31m           livestockId: "cmcop7ll30001t1ncj7c9hsa7",[39m
+[31m           dateOfObservation: new Date("Invalid Date"),[39m
+[31m                              ~~~~~~~~~~~~~~~~~~~~~~~~[39m
+[31m           observedSymptoms: "Lethargy, loss of appetite",[39m
+[31m           suspectedCause: "Possible infection",[39m
+[31m           notes: "Isolated from herd",[39m
+[31m           recordedById: "cmcnjxm6s0000t1p8rcay1eoq"[39m
+[31m         },[39m
+[31m         include: {[39m
+[31m           livestock: true,[39m
+[31m           recordedBy: {[39m
+[31m             select: {[39m
+[31m               id: true,[39m
+[31m               fullName: true,[39m
+[31m               email: true,[39m
+[31m               role: true,[39m
+[31m               isVerified: true,[39m
+[31m               avatar: true,[39m
+[31m               location: true,[39m
+[31m               createdAt: true,[39m
+[31m               updatedAt: true[39m
+[31m             }[39m
+[31m           }[39m
+[31m         }[39m
+[31m       })[39m
+
+[31mInvalid value for argument `dateOfObservation`: Provided Date object is invalid. Expected Date.[39m
+2025-07-06 10:59:47 [31merror[39m [31mExpected ',' or '}' after property value in JSON at position 191 (line 7 column 31) Expected ',' or '}' after property value in JSON at position 191 (line 7 column 31)[39m
+2025-07-06 11:12:23 [31merror[39m [31mSickness record not found Sickness record not found[39m
+2025-07-06 11:12:48 [31merror[39m [31mSickness record not found Sickness record not found[39m
+2025-07-06 11:12:49 [31merror[39m [31mSickness record not found Sickness record not found[39m
+2025-07-06 11:12:50 [31merror[39m [31mSickness record not found Sickness record not found[39m
+2025-07-06 11:12:51 [31merror[39m [31mSickness record not found Sickness record not found[39m
+2025-07-06 11:13:03 [31merror[39m [31mSickness record not found Sickness record not found[39m
+2025-07-06 11:14:25 [31merror[39m [31mSickness record not found Sickness record not found[39m
+2025-07-06 11:16:37 [31merror[39m [31mSickness record not found Sickness record not found[39m
+2025-07-06 11:17:24 [31merror[39m [31mSickness record not found Sickness record not found[39m
+2025-07-06 12:20:51 [31merror[39m [31mSickness record not found Sickness record not found[39m
+2025-07-06 12:25:45 [31merror[39m [31mTreatment record not found Treatment record not found[39m
+2025-07-06 12:37:00 [31merror[39m [31mTreatment record not found Treatment record not found[39m
+2025-07-07 02:26:49 [31merror[39m [31mInternal Server Error Invalid offtake type[39m
+2025-07-07 02:27:08 [31merror[39m [31mInternal Server Error Invalid offtake type[39m
+2025-07-07 02:28:44 [31merror[39m [31mInternal Server Error Invalid offtake type[39m
+2025-07-07 02:29:24 [31merror[39m [31mInternal Server Error Invalid offtake type[39m
+2025-07-07 16:33:02 [31merror[39m [31mExpected ':' after property name in JSON at position 48 (line 3 column 16) Expected ':' after property name in JSON at position 48 (line 3 column 16)[39m
+2025-07-07 16:35:36 [31merror[39m [31mUser not found User not found[39m
+2025-07-07 16:43:03 [31merror[39m [31mInternal Server Error The first argument must be of type string or an instance of Buffer, ArrayBuffer, or Array or an Array-like Object. Received undefined[39m
+2025-07-07 16:43:22 [31merror[39m [31mInternal Server Error The first argument must be of type string or an instance of Buffer, ArrayBuffer, or Array or an Array-like Object. Received undefined[39m
+2025-07-07 16:43:24 [31merror[39m [31mInternal Server Error The first argument must be of type string or an instance of Buffer, ArrayBuffer, or Array or an Array-like Object. Received undefined[39m
+2025-07-07 16:43:26 [31merror[39m [31mInternal Server Error The first argument must be of type string or an instance of Buffer, ArrayBuffer, or Array or an Array-like Object. Received undefined[39m

@@ -91,7 +91,7 @@ export const getAllLivestock = async (
       where,
       skip: (Number(page) - 1) * Number(limit),
       take: Number(limit),
-      include: { addedBy: true },
+      include: { addedBy: { select: userSelect } },
       orderBy: { createdAt: 'desc' },
     });
 

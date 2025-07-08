@@ -4,10 +4,12 @@ import {
 	getAllUsers,
 	getProfile,
 	updateProfile,
+	getUserById
 } from '../contollers/users.controllers';
 import { authenticateJWT } from '../middlewares/errorHandler';
 import { validateRequest } from '../middlewares/validateRequest';
 import { updateUserSchema } from '../schemas/users.schemas';
+import { requireRoles } from '../middlewares/roleCheck';
 
 export const usersRouter = Router();
 
@@ -20,6 +22,23 @@ usersRouter.patch(
 	updateProfile
 );
 
-usersRouter.get('/', getAllUsers);
+// Admin user management routes 
+usersRouter.get(
+	'/', 
+	authenticateJWT,
+	requireRoles(['ADMIN', 'FARM_KEEPER']),
+	getAllUsers
+);
 
-usersRouter.delete('/:userId', deleteUser);
+usersRouter.get(
+	'/:userId',
+	authenticateJWT,
+	requireRoles(['AMDIN', 'FARM_KEEPER']),
+	getUserById
+);
+
+usersRouter.delete(
+	'/:userId', 
+	authenticateJWT,
+	requireRoles(['AMDIN', 'FARM_KEEPER']),
+	deleteUser);

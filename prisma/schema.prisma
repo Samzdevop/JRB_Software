@@ -14,30 +14,33 @@ datasource db {
 }
 
 model User {
-  id                  String        @id @default(cuid())
-  email               String        @unique
-  googleId            String?       @unique
+  id                  String          @id @default(cuid())
+  email               String?         @unique
+  phone               String?         @unique
+  googleId            String?         @unique
   password            String?
   fullName            String
   avatar              String?
   location            String?
-  role                Role          @default(ADMIN)
-  isDeleted           Boolean       @default(false)
+  role                Role            @default(ADMIN)
   lastLogin           DateTime?
   verificationCode    String?
   verificationExpires DateTime?
-  isVerified          Boolean       @default(false)
-  isSuspended         Boolean       @default(false)
-  createdAt           DateTime      @default(now())
-  updatedAt           DateTime      @updatedAt
-  livestockAdded      Livestock[]   @relation("LivestockAddedBy")
-  livestockUpdated    Livestock[]   @relation("LivestockUpdatedBy")
+  isVerified          Boolean         @default(false)
+  isSuspended         Boolean         @default(false)
+  createdAt           DateTime        @default(now())
+  updatedAt           DateTime        @updatedAt
+  livestockAdded      Livestock[]     @relation("LivestockAddedBy")
+  livestockUpdated    Livestock[]     @relation("LivestockUpdatedBy")
   vaccination         Vaccination[]
+  Sickness            Sickness[]
+  Treatment           Treatment[]
+  OfftakeRecord       OfftakeRecord[]
 }
 
 model Livestock {
-  id                 String        @id @default(cuid())
-  tagId              String        @unique
+  id                 String          @id @default(cuid())
+  tagId              String          @unique
   type               String
   breed              String?
   birthDate          DateTime?
@@ -46,13 +49,18 @@ model Livestock {
   gender             String
   livestockSource    String?
   livestockPurpose   String?
-  addedBy            User          @relation("LivestockAddedBy", fields: [addedById], references: [id])
+  isSick             Boolean         @default(false)
+  isTreatment        Boolean         @default(false)
+  sickness           Sickness[]
+  treatments         Treatment[]
+  addedBy            User            @relation("LivestockAddedBy", fields: [addedById], references: [id])
   addedById          String
-  updatedBy          User?         @relation("LivestockUpdatedBy", fields: [updatedById], references: [id])
+  updatedBy          User?           @relation("LivestockUpdatedBy", fields: [updatedById], references: [id])
   updatedById        String?
-  createdAt          DateTime      @default(now())
-  updatedAt          DateTime      @updatedAt
+  createdAt          DateTime        @default(now())
+  updatedAt          DateTime        @updatedAt
   vaccinationRecords Vaccination[]
+  OfftakeRecord      OfftakeRecord[]
 }
 
 model Vaccination {
@@ -69,9 +77,53 @@ model Vaccination {
   createdAt         DateTime  @default(now())
 }
 
-modal SickRecord {
-  id                String    @id @default(cuid())
+model Sickness {
+  id                String      @id @default(cuid())
+  livestock         Livestock   @relation(fields: [livestockId], references: [id])
   livestockId       String
+  dateOfObservation DateTime
+  observedSymptoms  String
+  suspectedCause    String?
+  notes             String?
+  recordedBy        User        @relation(fields: [recordedById], references: [id])
+  recordedById      String
+  createdAt         DateTime    @default(now())
+  treatments        Treatment[]
+}
+
+model Treatment {
+  id              String    @id @default(cuid())
+  sickness        Sickness? @relation(fields: [sicknessId], references: [id])
+  sicknessId      String?
+  livestock       Livestock @relation(fields: [livestockId], references: [id])
+  livestockId     String
+  dateOfTreatment DateTime
+  treatmentType   String
+  dosage          Float
+  cause           String
+  administeredBy  String
+  nextDueDate     DateTime?
+  recordedBy      User      @relation(fields: [recordedById], references: [id])
+  recordedById    String
+  createdAt       DateTime  @default(now())
+}
+
+model OfftakeRecord {
+  id           String    @id @default(cuid())
+  livestock    Livestock @relation(fields: [livestockId], references: [id])
+  livestockId  String
+  type         Offtake
+  dateOfEvent  DateTime
+  destination  String?
+  price        Float?
+  causeOfDeath String?
+  notes        String?
+  recordedBy   User      @relation(fields: [recordedById], references: [id])
+  recordedById String
+  createdAt    DateTime  @default(now())
+
+  @@index([livestockId])
+  @@index([type])
 }
 
 enum HealthStatus {
@@ -82,15 +134,10 @@ enum HealthStatus {
   CRITICAL
 }
 
-enum InventoryAction {
-  ADDED
-  SOLD
-  VACCINATED
-  SICK
-  TREATED
-  MOVED
-  DIED
-  PURCHASED
+enum Offtake {
+  SALE
+  DEATH
+  MISSING
 }
 
 enum Role {
