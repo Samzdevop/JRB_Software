@@ -973,3 +973,11 @@
 [32m[39m
 2025-07-07 16:49:59 [32minfo[39m [32mPOST /api/v1/auth/login 200 514.854 ms - 403[39m
 [32m[39m
+2025-07-07 16:55:19 [32minfo[39m [32mPOST /api/v1/auth/login 200 1954.434 ms - 504[39m
+[32m[39m
+2025-07-07 16:55:42 [32minfo[39m [32mPOST /api/v1/auth/login 422 4.121 ms - 197[39m
+[32m[39m
+2025-07-07 16:55:52 [32minfo[39m [32mPOST /api/v1/auth/login 422 3.771 ms - 237[39m
+[32m[39m
+2025-07-07 16:56:07 [32minfo[39m [32mPOST /api/v1/auth/login 200 157.257 ms - 504[39m
+[32m[39m
