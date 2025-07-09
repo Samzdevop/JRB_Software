@@ -1,0 +1,14 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.livestockRouter = void 0;
+const express_1 = require("express");
+const livestock_controller_1 = require("../contollers/livestock.controller");
+const errorHandler_1 = require("../middlewares/errorHandler");
+const validateRequest_1 = require("../middlewares/validateRequest");
+const livestock_schemas_1 = require("../schemas/livestock.schemas");
+exports.livestockRouter = (0, express_1.Router)();
+exports.livestockRouter.post('/', errorHandler_1.authenticateJWT, (0, validateRequest_1.validateRequest)(livestock_schemas_1.addLivestockSchema), livestock_controller_1.addLivestock);
+exports.livestockRouter.get('/', errorHandler_1.authenticateJWT, livestock_controller_1.getAllLivestock);
+exports.livestockRouter.get('/:livestockId', errorHandler_1.authenticateJWT, livestock_controller_1.getLivestock);
+exports.livestockRouter.patch('/:livestockId', errorHandler_1.authenticateJWT, (0, validateRequest_1.validateRequest)(livestock_schemas_1.updateLivestockSchema), livestock_controller_1.updateLivestock);
+exports.livestockRouter.delete('/:livestockId', errorHandler_1.authenticateJWT, livestock_controller_1.deleteLivestock);

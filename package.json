@@ -43,7 +43,7 @@
     "db:push": "prisma db push --accept-data-loss",
     "test": "dotenv -e .env.test -- jest --verbose --detectOpenHandles --runInBand --forceExit",
     "dev": "ts-node-dev src/index.ts",
-    "start": "node build/src/index.js",
+    "start": "node build/index.js",
     "lint": "eslint --ext .ts .",
     "test:process": "yarn migration:test && yarn lint && yarn test",
     "build": "tsc"
