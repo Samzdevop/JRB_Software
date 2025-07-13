@@ -123,6 +123,9 @@ export const getLivestockCounts = async (
         where: {
           healthStatus: {
             in: ['SICK', 'IN_TREATMENT', 'CRITICAL'] // Adjust as needed
+          },
+          sickness: {
+            some: {}
           }
         }
       })
