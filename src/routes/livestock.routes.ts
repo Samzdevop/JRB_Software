@@ -5,6 +5,7 @@ import {
   updateLivestock,
   deleteLivestock,
   getAllLivestock,
+  getLivestockCounts,
 } from '../contollers/livestock.controller';
 import { authenticateJWT } from '../middlewares/errorHandler';
 import { validateRequest } from '../middlewares/validateRequest';
@@ -21,6 +22,12 @@ livestockRouter.post(
   validateRequest(addLivestockSchema),
   addLivestock
 );
+
+livestockRouter.get(
+  '/counts',
+  authenticateJWT,
+  getLivestockCounts
+)
 
 livestockRouter.get('/', authenticateJWT, getAllLivestock);
 livestockRouter.get('/:livestockId', authenticateJWT, getLivestock);

@@ -389,3 +389,5 @@
 2025-07-07 16:43:22 [31merror[39m [31mInternal Server Error The first argument must be of type string or an instance of Buffer, ArrayBuffer, or Array or an Array-like Object. Received undefined[39m
 2025-07-07 16:43:24 [31merror[39m [31mInternal Server Error The first argument must be of type string or an instance of Buffer, ArrayBuffer, or Array or an Array-like Object. Received undefined[39m
 2025-07-07 16:43:26 [31merror[39m [31mInternal Server Error The first argument must be of type string or an instance of Buffer, ArrayBuffer, or Array or an Array-like Object. Received undefined[39m
+2025-07-11 08:54:04 [31merror[39m [31mInvalid credentials Invalid credentials[39m
+2025-07-11 23:40:57 [31merror[39m [31mUser not found User not found[39m

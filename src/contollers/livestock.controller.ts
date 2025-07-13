@@ -111,6 +111,33 @@ export const getAllLivestock = async (
   }
 };
 
+export const getLivestockCounts = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+): Promise<void> => {
+   try {
+    const [totalLivestock, sickLivestock] = await Promise.all([
+      prisma.livestock.count(),
+      prisma.livestock.count({
+        where: {
+          healthStatus: {
+            in: ['SICK', 'IN_TREATMENT', 'CRITICAL'] // Adjust as needed
+          }
+        }
+      })
+    ]);
+
+    sendSuccessResponse(res, 'Livestock counts retrieved', {
+      totalLivestock,
+      sickLivestock
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+
 export const updateLivestock = async (
   req: Request,
   res: Response,

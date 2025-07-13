@@ -51,7 +51,10 @@ export const recordTreatment = async (
       }),
       prisma.livestock.update({
         where: { id: livestockId },
-        data: { isTreatment: true },
+        data: { 
+          isTreatment: true,
+          healthStatus: 'IN_TREATMENT'
+        },
       }),
     ]);
 

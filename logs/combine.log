@@ -981,3 +981,17 @@
 [32m[39m
 2025-07-07 16:56:07 [32minfo[39m [32mPOST /api/v1/auth/login 200 157.257 ms - 504[39m
 [32m[39m
+2025-07-10 19:57:14 [32minfo[39m [32mPOST /api/v1/auth/login 200 342.046 ms - 504[39m
+[32m[39m
+2025-07-11 08:54:04 [31merror[39m [31mInvalid credentials Invalid credentials[39m
+2025-07-11 08:54:04 [32minfo[39m [32mPOST /api/v1/auth/login 401 366.261 ms - 47[39m
+[32m[39m
+2025-07-11 08:54:23 [32minfo[39m [32mPOST /api/v1/auth/login 200 194.148 ms - 504[39m
+[32m[39m
+2025-07-11 13:57:06 [32minfo[39m [32mPOST /api/v1/auth/login 200 480.293 ms - 504[39m
+[32m[39m
+2025-07-11 23:40:57 [31merror[39m [31mUser not found User not found[39m
+2025-07-11 23:40:57 [32minfo[39m [32mPOST /api/v1/auth/login 404 2829.416 ms - 42[39m
+[32m[39m
+2025-07-11 23:41:52 [32minfo[39m [32mPOST /api/v1/auth/login 200 1941.956 ms - 504[39m
+[32m[39m

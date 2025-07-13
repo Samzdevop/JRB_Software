@@ -6,6 +6,7 @@ export const reportSicknessSchema = z.object({
         observedSymptoms: z.string().min(1, "Observed symptoms are required"),
         suspectedCause: z.string().optional(),
         notes: z.string().optional(),
+        healthStatus: z.enum(['SICK', 'CRITICAL']).optional(),
     }),
 });
 

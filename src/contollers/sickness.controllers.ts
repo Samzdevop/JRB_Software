@@ -3,6 +3,7 @@ import prisma from '../prisma';
 import { sendSuccessResponse } from '../utils/sendSuccessResponse';
 import { NotFoundError } from '../errors/NotFoundError';
 import { userSelect } from '../prisma/selects';
+import { BadRequestError } from '../errors/BadRequestError';
 
 export const reportSickness = async (
   req: Request,
@@ -10,10 +11,13 @@ export const reportSickness = async (
   next: NextFunction
 ): Promise<void> => {
   try {
-    const { dateOfObservation, observedSymptoms, suspectedCause, notes } = req.body;
+    const { dateOfObservation, observedSymptoms, suspectedCause, notes, healthStatus } = req.body;
     const livestockId = req.params.livestockId;
     const recordedById = (req.user as any).id;
 
+     if (healthStatus && !['SICK', 'CRITICAL'].includes(healthStatus)) {
+      throw new BadRequestError('Health status must be either SICK or CRITICAL when reporting sickness');
+    }
     // Verify livestock exists
     const livestock = await prisma.livestock.findUnique({
       where: { id: livestockId }
@@ -38,7 +42,10 @@ export const reportSickness = async (
       }),
       prisma.livestock.update({
         where: { id: livestockId },
-        data: { isSick: true },
+        data: { 
+          isSick: true,
+          healthStatus: healthStatus || 'SICK' 
+        },
       }),
     ]);
 
