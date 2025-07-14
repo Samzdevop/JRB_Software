@@ -391,3 +391,12 @@
 2025-07-07 16:43:26 [31merror[39m [31mInternal Server Error The first argument must be of type string or an instance of Buffer, ArrayBuffer, or Array or an Array-like Object. Received undefined[39m
 2025-07-11 08:54:04 [31merror[39m [31mInvalid credentials Invalid credentials[39m
 2025-07-11 23:40:57 [31merror[39m [31mUser not found User not found[39m
+2025-07-14 14:05:52 [31merror[39m [31mPrisma error: [39m
+[31mInvalid `prisma.task.findMany()` invocation:[39m
+
+
+[31mThe table `public.Task` does not exist in the current database. [39m
+[31mInvalid `prisma.task.findMany()` invocation:[39m
+
+
+[31mThe table `public.Task` does not exist in the current database.[39m

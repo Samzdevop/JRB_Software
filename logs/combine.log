@@ -1007,3 +1007,16 @@
 [32m[39m
 2025-07-14 11:41:53 [32minfo[39m [32mPOST /api/v1/auth/login 200 965.490 ms - 507[39m
 [32m[39m
+2025-07-14 14:04:55 [32minfo[39m [32mPOST /api/v1/auth/login 200 3729.291 ms - 507[39m
+[32m[39m
+2025-07-14 14:05:52 [31merror[39m [31mPrisma error: [39m
+[31mInvalid `prisma.task.findMany()` invocation:[39m
+
+
+[31mThe table `public.Task` does not exist in the current database. [39m
+[31mInvalid `prisma.task.findMany()` invocation:[39m
+
+
+[31mThe table `public.Task` does not exist in the current database.[39m
+2025-07-14 14:05:52 [32minfo[39m [32mGET /api/v1/tasks/my-tasks 400 1212.065 ms - 157[39m
+[32m[39m
