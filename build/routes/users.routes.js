@@ -12,5 +12,5 @@ exports.usersRouter.get('/profile', errorHandler_1.authenticateJWT, users_contro
 exports.usersRouter.patch('/update', errorHandler_1.authenticateJWT, (0, validateRequest_1.validateRequest)(users_schemas_1.updateUserSchema), users_controllers_1.updateProfile);
 // Admin user management routes 
 exports.usersRouter.get('/', errorHandler_1.authenticateJWT, (0, roleCheck_1.requireRoles)(['ADMIN', 'FARM_KEEPER']), users_controllers_1.getAllUsers);
-exports.usersRouter.get('/:userId', errorHandler_1.authenticateJWT, (0, roleCheck_1.requireRoles)(['AMDIN', 'FARM_KEEPER']), users_controllers_1.getUserById);
-exports.usersRouter.delete('/:userId', errorHandler_1.authenticateJWT, (0, roleCheck_1.requireRoles)(['AMDIN', 'FARM_KEEPER']), users_controllers_1.deleteUser);
+exports.usersRouter.get('/:userId', errorHandler_1.authenticateJWT, (0, roleCheck_1.requireRoles)(['ADMIN', 'FARM_KEEPER']), users_controllers_1.getUserById);
+exports.usersRouter.delete('/:userId', errorHandler_1.authenticateJWT, (0, roleCheck_1.requireRoles)(['ADMIN', 'FARM_KEEPER']), users_controllers_1.deleteUser);

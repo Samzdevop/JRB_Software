@@ -34,7 +34,7 @@ usersRouter.get(
 usersRouter.get(
 	'/:userId',
 	authenticateJWT,
-	requireRoles(['AMDIN', 'FARM_KEEPER']),
+	requireRoles(['ADMIN', 'FARM_KEEPER']),
 	getUserById
 );
 
