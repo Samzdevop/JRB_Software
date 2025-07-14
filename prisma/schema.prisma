@@ -26,6 +26,8 @@ model User {
   lastLogin           DateTime?
   verificationCode    String?
   verificationExpires DateTime?
+  assignedTasks       Task[]          @relation("TaskAssignedTo")
+  createdTasks        Task[]          @relation("CreatedTasks")
   isVerified          Boolean         @default(false)
   isSuspended         Boolean         @default(false)
   createdAt           DateTime        @default(now())
@@ -126,6 +128,22 @@ model OfftakeRecord {
   @@index([type])
 }
 
+model Task {
+  id           String     @id @default(cuid())
+  name         String
+  description  String
+  priority     Priority
+  dueDate      DateTime
+  status       TaskStatus @default(PENDING)
+  assignedTo   User       @relation("TaskAssignedTo", fields: [assignedToId], references: [id])
+  assignedToId String
+  assignedBy   User       @relation("CreatedTasks", fields: [assignedById], references: [id])
+  assignedById String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
 enum HealthStatus {
   HEALTHY
   SICK
@@ -138,6 +156,19 @@ enum Offtake {
   SALE
   DEATH
   MISSING
+}
+
+enum Priority {
+  LOW
+  MEDIUM
+  HIGH
+}
+
+enum TaskStatus {
+  PENDING
+  IN_PROGRESS
+  COMPLETED
+  OVERDUE
 }
 
 enum Role {

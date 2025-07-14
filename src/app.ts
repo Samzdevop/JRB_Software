@@ -14,6 +14,7 @@ import { vaccinationRouter } from './routes/vaccination.routes';
 import { sicknessRouter } from './routes/sickness.routes';
 import { treatmentRouter } from './routes/treatment.routes';
 import { offtakeRouter } from './routes/offtake.routes';
+import { taskRouter } from './routes/task.routes';
 
 export const app = express();
 
@@ -51,7 +52,8 @@ app.use('/api/v1/livestock', livestockRouter);
 app.use('/api/v1/', vaccinationRouter);
 app.use('/api/v1/sickness', sicknessRouter)
 app.use('/api/v1/treatment', treatmentRouter);
-app.use('/api/v1/offtake', offtakeRouter)
+app.use('/api/v1/offtake', offtakeRouter);
+app.use('/api/v1/tasks', taskRouter)
 
 app.use(notFoundHandler);
 app.use(errorHandler);
