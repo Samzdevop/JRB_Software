@@ -5,6 +5,7 @@ import { BadRequestError } from '../errors/BadRequestError';
 import { NotFoundError } from '../errors/NotFoundError';
 import { ForbiddenError } from '../errors/ForbiddenError';
 import { userSelect } from '../prisma/selects';
+import { TaskStatus } from '@prisma/client';
 
 export const createTask = async (
   req: Request,
@@ -68,7 +69,7 @@ export const getMyTasks = async (
 
     const where = {
       assignedToId: userId, // This ensures users only see their own tasks
-      ...(status && { status: String(status) })
+      ...(status && { status: status as TaskStatus }) // Cast to 'any' or use the correct enum type if available
     };
 
     const [tasks, total] = await Promise.all([
