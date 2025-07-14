@@ -50,7 +50,10 @@ const recordTreatment = async (req, res, next) => {
             }),
             prisma_1.default.livestock.update({
                 where: { id: livestockId },
-                data: { isTreatment: true },
+                data: {
+                    isTreatment: true,
+                    healthStatus: 'IN_TREATMENT'
+                },
             }),
         ]);
         (0, sendSuccessResponse_1.sendSuccessResponse)(res, 'Treatment successfully recorded', { treatment }, 201);

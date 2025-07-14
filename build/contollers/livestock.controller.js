@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.deleteLivestock = exports.updateLivestock = exports.getAllLivestock = exports.getLivestock = exports.addLivestock = void 0;
+exports.deleteLivestock = exports.updateLivestock = exports.getLivestockCounts = exports.getAllLivestock = exports.getLivestock = exports.addLivestock = void 0;
 const prisma_1 = __importDefault(require("../prisma"));
 const sendSuccessResponse_1 = require("../utils/sendSuccessResponse");
 const NotFoundError_1 = require("../errors/NotFoundError");
@@ -85,6 +85,31 @@ const getAllLivestock = async (req, res, next) => {
     }
 };
 exports.getAllLivestock = getAllLivestock;
+const getLivestockCounts = async (req, res, next) => {
+    try {
+        const [totalLivestock, sickLivestock] = await Promise.all([
+            prisma_1.default.livestock.count(),
+            prisma_1.default.livestock.count({
+                where: {
+                    healthStatus: {
+                        in: ['SICK', 'IN_TREATMENT', 'CRITICAL'] // Adjust as needed
+                    },
+                    sickness: {
+                        some: {}
+                    }
+                }
+            })
+        ]);
+        (0, sendSuccessResponse_1.sendSuccessResponse)(res, 'Livestock counts retrieved', {
+            totalLivestock,
+            sickLivestock
+        });
+    }
+    catch (error) {
+        next(error);
+    }
+};
+exports.getLivestockCounts = getLivestockCounts;
 const updateLivestock = async (req, res, next) => {
     try {
         const { tagId, type, breed, birthDate, healthStatus, weight, gender, livestockSource, livestockPurpose } = req.body;

@@ -8,5 +8,6 @@ exports.reportSicknessSchema = zod_1.z.object({
         observedSymptoms: zod_1.z.string().min(1, "Observed symptoms are required"),
         suspectedCause: zod_1.z.string().optional(),
         notes: zod_1.z.string().optional(),
+        healthStatus: zod_1.z.enum(['SICK', 'CRITICAL']).optional(),
     }),
 });

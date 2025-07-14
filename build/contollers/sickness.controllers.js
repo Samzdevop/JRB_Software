@@ -8,11 +8,15 @@ const prisma_1 = __importDefault(require("../prisma"));
 const sendSuccessResponse_1 = require("../utils/sendSuccessResponse");
 const NotFoundError_1 = require("../errors/NotFoundError");
 const selects_1 = require("../prisma/selects");
+const BadRequestError_1 = require("../errors/BadRequestError");
 const reportSickness = async (req, res, next) => {
     try {
-        const { dateOfObservation, observedSymptoms, suspectedCause, notes } = req.body;
+        const { dateOfObservation, observedSymptoms, suspectedCause, notes, healthStatus } = req.body;
         const livestockId = req.params.livestockId;
         const recordedById = req.user.id;
+        if (healthStatus && !['SICK', 'CRITICAL'].includes(healthStatus)) {
+            throw new BadRequestError_1.BadRequestError('Health status must be either SICK or CRITICAL when reporting sickness');
+        }
         // Verify livestock exists
         const livestock = await prisma_1.default.livestock.findUnique({
             where: { id: livestockId }
@@ -37,7 +41,10 @@ const reportSickness = async (req, res, next) => {
             }),
             prisma_1.default.livestock.update({
                 where: { id: livestockId },
-                data: { isSick: true },
+                data: {
+                    isSick: true,
+                    healthStatus: healthStatus || 'SICK'
+                },
             }),
         ]);
         (0, sendSuccessResponse_1.sendSuccessResponse)(res, 'Sickness successfully reported', { sickness }, 201);

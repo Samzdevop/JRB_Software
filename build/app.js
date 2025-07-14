@@ -20,6 +20,7 @@ const vaccination_routes_1 = require("./routes/vaccination.routes");
 const sickness_routes_1 = require("./routes/sickness.routes");
 const treatment_routes_1 = require("./routes/treatment.routes");
 const offtake_routes_1 = require("./routes/offtake.routes");
+const task_routes_1 = require("./routes/task.routes");
 exports.app = (0, express_1.default)();
 exports.app.use(passport_1.default.initialize());
 // Configuration
@@ -49,5 +50,6 @@ exports.app.use('/api/v1/', vaccination_routes_1.vaccinationRouter);
 exports.app.use('/api/v1/sickness', sickness_routes_1.sicknessRouter);
 exports.app.use('/api/v1/treatment', treatment_routes_1.treatmentRouter);
 exports.app.use('/api/v1/offtake', offtake_routes_1.offtakeRouter);
+exports.app.use('/api/v1/tasks', task_routes_1.taskRouter);
 exports.app.use(notFoundRoute_1.notFoundHandler);
 exports.app.use(errorHandler_1.errorHandler);

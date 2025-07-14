@@ -9,6 +9,8 @@ const sendSuccessResponse_1 = require("../utils/sendSuccessResponse");
 const NotFoundError_1 = require("../errors/NotFoundError");
 const selects_1 = require("../prisma/selects");
 const ForbiddenError_1 = require("../errors/ForbiddenError");
+const phoneFormat_1 = require("../utils/phoneFormat");
+const BadRequestError_1 = require("../errors/BadRequestError");
 // import { Prisma } from '@prisma/client';
 const getProfile = async (req, res, next) => {
     try {
@@ -30,9 +32,13 @@ const updateProfile = async (req, res, next) => {
     try {
         const userId = req.user.id;
         const { fullName, location, avatar, phone } = req.body;
+        if (phone && !(0, phoneFormat_1.validatePhoneNumber)(phone)) {
+            throw new BadRequestError_1.BadRequestError('Phone must be in valid international format (+XXX...) or local Nigerian format (0XXX...)');
+        }
+        const normalizedPhone = phone ? (0, phoneFormat_1.normalizePhoneNumber)(phone) : undefined;
         const updatedUser = await prisma_1.default.user.update({
             where: { id: userId },
-            data: { fullName, location, avatar, phone },
+            data: { fullName, location, avatar, phone: normalizedPhone },
             select: selects_1.userSelect
         });
         (0, sendSuccessResponse_1.sendSuccessResponse)(res, 'Profile updated successfully', updatedUser);

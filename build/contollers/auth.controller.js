@@ -18,6 +18,7 @@ const mailTemplate_1 = require("../utils/mailTemplate");
 const dateExpiration_1 = require("../utils/dateExpiration");
 const selects_1 = require("../prisma/selects");
 const ConflictError_1 = require("../errors/ConflictError");
+const phoneFormat_1 = require("../utils/phoneFormat");
 // import { isValid } from "zod";
 const adminRegister = async (req, res, next) => {
     try {
@@ -61,11 +62,15 @@ exports.adminRegister = adminRegister;
 const register = async (req, res, next) => {
     try {
         const { email, phone, fullName, password, role } = req.body;
+        if (phone && !(0, phoneFormat_1.validatePhoneNumber)(phone)) {
+            throw new BadRequestError_1.BadRequestError('Phone must be in valid international format (+XXX...) or local Nigerian format (0XXX...)');
+        }
+        const normalizedPhone = phone ? (0, phoneFormat_1.normalizePhoneNumber)(phone) : null;
         const existingUser = await prisma_1.default.user.findFirst({
             where: {
                 OR: [
                     { email: email || undefined },
-                    { phone: phone || undefined }
+                    { phone: normalizedPhone || undefined }
                 ]
             }
         });
@@ -73,7 +78,7 @@ const register = async (req, res, next) => {
             const conflicts = [];
             if (existingUser.email === email)
                 conflicts.push("email");
-            if (existingUser.phone === phone)
+            if (existingUser.phone === normalizedPhone)
                 conflicts.push("phone");
             throw new ConflictError_1.ConflictError(`User already exists with this ${conflicts.join(" and ")}`);
         }
@@ -82,7 +87,7 @@ const register = async (req, res, next) => {
         await prisma_1.default.user.create({
             data: {
                 email,
-                phone,
+                phone: normalizedPhone,
                 password: hashedPassword,
                 fullName,
                 verificationCode,
@@ -101,12 +106,17 @@ exports.register = register;
 const login = async (req, res, next) => {
     const { email, phone, password } = req.body;
     try {
+        // Validate phone format if provided
+        if (phone && !(0, phoneFormat_1.validatePhoneNumber)(phone)) {
+            throw new BadRequestError_1.BadRequestError('Phone must be in valid international format (+XXX...) or local Nigerian format (0XXX...)');
+        }
+        const normalizedPhone = phone ? (0, phoneFormat_1.normalizePhoneNumber)(phone) : undefined;
         const user = await prisma_1.default.user.findFirst({
             where: {
                 OR: [
                     // Check for email or phone
                     { email: email ?? undefined },
-                    { phone: phone ?? undefined }
+                    { phone: normalizedPhone ?? undefined }
                 ]
             },
         });
