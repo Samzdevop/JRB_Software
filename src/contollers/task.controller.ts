@@ -69,8 +69,8 @@ export const getMyTasks = async (
     const { status, page = 1, limit = 10 } = req.query;
 
     const where = {
-      assignedToId: userId, // This ensures users only see their own tasks
-      ...(status && { status: status as any }) // Cast to 'any' or use the correct enum type if available
+      assignedToId: userId, 
+      ...(status && { status: status as any })
     };
 
     const [tasks, total] = await Promise.all([
