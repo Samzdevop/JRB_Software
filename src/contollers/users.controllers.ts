@@ -5,6 +5,8 @@ import { NotFoundError } from '../errors/NotFoundError';
 import { userSelect } from '../prisma/selects';
 import { ForbiddenError } from '../errors/ForbiddenError';
 import { Role } from '@prisma/client';
+import { normalizePhoneNumber, validatePhoneNumber } from '../utils/phoneFormat';
+import { BadRequestError } from '../errors/BadRequestError';
 // import { Prisma } from '@prisma/client';
 
 export const getProfile = async (
@@ -36,9 +38,18 @@ export const updateProfile = async (
     const userId = (req.user as any).id;
     const { fullName, location, avatar, phone } = req.body;
 
+    if (phone && !validatePhoneNumber(phone)) {
+      throw new BadRequestError(
+        'Phone must be in valid international format (+XXX...) or local Nigerian format (0XXX...)'
+      );
+    }
+
+    const normalizedPhone = phone ? normalizePhoneNumber(phone) : undefined;
+
+
     const updatedUser = await prisma.user.update({
       where: { id: userId },
-      data: { fullName, location, avatar, phone },
+      data: { fullName, location, avatar, phone:normalizedPhone },
       select: userSelect
     });
 

@@ -15,6 +15,7 @@ import { render } from "../utils/mailTemplate";
 import { compareDates } from "../utils/dateExpiration";
 import { userSelect } from "../prisma/selects";
 import { ConflictError } from "../errors/ConflictError";
+import { normalizePhoneNumber, validatePhoneNumber } from "../utils/phoneFormat";
 // import { isValid } from "zod";
 
 export const adminRegister = async (
@@ -78,11 +79,19 @@ export const register = async (
   try {
     const { email, phone, fullName, password, role } = req.body;
 
+     if (phone && !validatePhoneNumber(phone)) {
+      throw new BadRequestError(
+        'Phone must be in valid international format (+XXX...) or local Nigerian format (0XXX...)'
+      );
+    }
+
+    const normalizedPhone = phone ? normalizePhoneNumber(phone) : null;
+
     const existingUser = await prisma.user.findFirst({
       where: {
         OR: [
           {email: email || undefined },
-          { phone: phone || undefined }
+          { phone: normalizedPhone || undefined }
         ]
       }
     });
@@ -91,7 +100,7 @@ export const register = async (
     if (existingUser) {
       const conflicts = [];
       if(existingUser.email === email) conflicts.push("email");
-      if(existingUser.phone === phone) conflicts.push("phone");
+      if(existingUser.phone === normalizedPhone) conflicts.push("phone");
       throw new ConflictError(
         `User already exists with this ${conflicts.join(" and ")}`
       );
@@ -102,7 +111,7 @@ export const register = async (
     await prisma.user.create({
      data: {
       email,
-      phone,
+      phone: normalizedPhone,
       password: hashedPassword,
       fullName,
       verificationCode,
@@ -128,12 +137,20 @@ export const login = async (
   const { email, phone, password } = req.body;
 
   try {
+      // Validate phone format if provided
+    if (phone && !validatePhoneNumber(phone)) {
+      throw new BadRequestError(
+        'Phone must be in valid international format (+XXX...) or local Nigerian format (0XXX...)'
+      );
+    }
+
+    const normalizedPhone = phone ? normalizePhoneNumber(phone) : undefined;
     const user = await prisma.user.findFirst({
       where: {
         OR: [
           // Check for email or phone
         { email: email ?? undefined },
-        {phone: phone ?? undefined }
+        {phone: normalizedPhone ?? undefined }
       ]
       },
       });
