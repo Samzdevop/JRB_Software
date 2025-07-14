@@ -1020,3 +1020,7 @@
 [31mThe table `public.Task` does not exist in the current database.[39m
 2025-07-14 14:05:52 [32minfo[39m [32mGET /api/v1/tasks/my-tasks 400 1212.065 ms - 157[39m
 [32m[39m
+2025-07-14 15:39:12 [32minfo[39m [32mGET /api/v1/auth/users/assignable 404 4.056 ms - 133[39m
+[32m[39m
+2025-07-14 15:39:14 [32minfo[39m [32mGET /api/v1/auth/users/assignable 404 2.043 ms - 133[39m
+[32m[39m

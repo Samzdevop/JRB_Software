@@ -41,10 +41,9 @@ usersRouter.get(
 usersRouter.delete(
 	'/:userId', 
 	authenticateJWT,
-	requireRoles(['AMDIN', 'FARM_KEEPER']),
+	requireRoles(['ADMIN', 'FARM_KEEPER']),
 	deleteUser
 );
-
 
 usersRouter.get(
   '/assignable',
