@@ -109,6 +109,7 @@ export const getAllLivestock = async (
           select: {
             id: true,
             dateOfTreatment: true,
+            nextDueDate: true,
             treatmentType: true,
             dosage: true
           }
