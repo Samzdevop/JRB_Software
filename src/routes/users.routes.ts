@@ -5,7 +5,6 @@ import {
 	getProfile,
 	updateProfile,
 	getUserById,
-	getAssignableUsers
 } from '../contollers/users.controllers';
 import { authenticateJWT } from '../middlewares/errorHandler';
 import { validateRequest } from '../middlewares/validateRequest';
@@ -45,9 +44,5 @@ usersRouter.delete(
 	deleteUser
 );
 
-usersRouter.get(
-  '/assignable',
-  authenticateJWT,
-  requireRoles(['ADMIN', 'FARM_KEEPER']),
-  getAssignableUsers
-);
+
+

@@ -29,8 +29,18 @@ livestockRouter.get(
   getLivestockCounts
 )
 
-livestockRouter.get('/', authenticateJWT, getAllLivestock);
-livestockRouter.get('/:livestockId', authenticateJWT, getLivestock);
+livestockRouter.get(
+  '/',
+  authenticateJWT, 
+  getAllLivestock
+);
+
+livestockRouter.get(
+  '/:livestockId', 
+  authenticateJWT, 
+  getLivestock
+);
+
 livestockRouter.patch(
   '/:livestockId',
   authenticateJWT,

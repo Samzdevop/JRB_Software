@@ -1024,3 +1024,115 @@
 [32m[39m
 2025-07-14 15:39:14 [32minfo[39m [32mGET /api/v1/auth/users/assignable 404 2.043 ms - 133[39m
 [32m[39m
+2025-07-14 15:58:10 [32minfo[39m [32mPOST /api/v1/auth/login 200 3838.825 ms - 507[39m
+[32m[39m
+2025-07-14 16:14:48 [31merror[39m [31mUser not found User not found[39m
+2025-07-14 16:14:48 [32minfo[39m [32mGET /api/v1/users/assignable 404 4165.160 ms - 42[39m
+[32m[39m
+2025-07-14 16:15:40 [31merror[39m [31mUser not found User not found[39m
+2025-07-14 16:15:40 [32minfo[39m [32mGET /api/v1/users/assignable 404 2982.904 ms - 42[39m
+[32m[39m
+2025-07-14 16:18:07 [31merror[39m [31mUser not found User not found[39m
+2025-07-14 16:18:07 [32minfo[39m [32mGET /api/v1/users/assignable 404 1075.747 ms - 42[39m
+[32m[39m
+2025-07-14 16:29:49 [31merror[39m [31mUser not found User not found[39m
+2025-07-14 16:29:49 [32minfo[39m [32mGET /api/v1/users/assignable 404 3168.230 ms - 42[39m
+[32m[39m
+2025-07-14 16:47:08 [31merror[39m [31mUser not found User not found[39m
+2025-07-14 16:47:08 [32minfo[39m [32mGET /api/v1/users/assignable 404 4792.151 ms - 42[39m
+[32m[39m
+2025-07-14 16:48:05 [31merror[39m [31mUser not found User not found[39m
+2025-07-14 16:48:05 [32minfo[39m [32mGET /api/v1/users/assignable 404 3954.078 ms - 42[39m
+[32m[39m
+2025-07-14 16:48:35 [31merror[39m [31mUser not found User not found[39m
+2025-07-14 16:48:35 [32minfo[39m [32mGET /api/v1/users/assignable 404 4391.978 ms - 42[39m
+[32m[39m
+2025-07-14 16:50:03 [31merror[39m [31mUser not found User not found[39m
+2025-07-14 16:50:03 [32minfo[39m [32mGET /api/v1/users/assignable 404 4086.789 ms - 42[39m
+[32m[39m
+2025-07-14 16:55:30 [31merror[39m [31mUser not found User not found[39m
+2025-07-14 16:55:30 [32minfo[39m [32mGET /api/v1/users/assignable 404 3265.760 ms - 42[39m
+[32m[39m
+2025-07-14 17:01:17 [31merror[39m [31mUser not found User not found[39m
+2025-07-14 17:01:17 [32minfo[39m [32mGET /api/v1/users/assignable 404 3334.397 ms - 42[39m
+[32m[39m
+2025-07-14 17:01:36 [31merror[39m [31mUser not found User not found[39m
+2025-07-14 17:01:36 [32minfo[39m [32mGET /api/v1/users/assignable 404 3931.429 ms - 42[39m
+[32m[39m
+2025-07-14 17:05:46 [31merror[39m [31mUser not found User not found[39m
+2025-07-14 17:05:46 [32minfo[39m [32mGET /api/v1/users/assignable 404 4183.681 ms - 42[39m
+[32m[39m
+2025-07-14 17:08:16 [31merror[39m [31mUser not found User not found[39m
+2025-07-14 17:08:16 [32minfo[39m [32mGET /api/v1/users/assignable 404 4429.820 ms - 42[39m
+[32m[39m
+2025-07-14 17:29:59 [32minfo[39m [32mGET /api/v1/users/assignable 401 36.065 ms - 64[39m
+[32m[39m
+2025-07-14 17:30:46 [31merror[39m [31mUser not found User not found[39m
+2025-07-14 17:30:46 [32minfo[39m [32mGET /api/v1/users/assignable 404 3256.365 ms - 42[39m
+[32m[39m
+2025-07-14 17:31:27 [31merror[39m [31mUser not found User not found[39m
+2025-07-14 17:31:27 [32minfo[39m [32mGET /api/v1/users/assignable 404 928.773 ms - 42[39m
+[32m[39m
+2025-07-14 17:34:21 [31merror[39m [31mUser not found User not found[39m
+2025-07-14 17:34:21 [32minfo[39m [32mGET /api/v1/users/assignable 404 3070.990 ms - 42[39m
+[32m[39m
+2025-07-14 17:35:14 [31merror[39m [31mUser not found User not found[39m
+2025-07-14 17:35:14 [32minfo[39m [32mGET /api/v1/users/assignable 404 3931.572 ms - 42[39m
+[32m[39m
+2025-07-14 18:05:30 [31merror[39m [31mUser not found User not found[39m
+2025-07-14 18:05:30 [32minfo[39m [32mGET /api/v1/users/assignable 404 4428.370 ms - 42[39m
+[32m[39m
+2025-07-14 18:06:22 [31merror[39m [31mUser not found User not found[39m
+2025-07-14 18:06:22 [32minfo[39m [32mGET /api/v1/users/assignable 404 2875.430 ms - 42[39m
+[32m[39m
+2025-07-14 18:09:03 [31merror[39m [31mUser not found User not found[39m
+2025-07-14 18:09:03 [32minfo[39m [32mGET /api/v1/users/assignable 404 1360.151 ms - 42[39m
+[32m[39m
+2025-07-14 18:10:38 [31merror[39m [31mUser not found User not found[39m
+2025-07-14 18:10:38 [32minfo[39m [32mGET /api/v1/users/assignable 404 1033.783 ms - 42[39m
+[32m[39m
+2025-07-14 18:40:51 [31merror[39m [31mUser not found User not found[39m
+2025-07-14 18:40:51 [32minfo[39m [32mGET /api/v1/users/assignable 404 2982.128 ms - 42[39m
+[32m[39m
+2025-07-14 18:45:41 [31merror[39m [31mUser not found User not found[39m
+2025-07-14 18:45:41 [32minfo[39m [32mGET /api/v1/users/assignable 404 3897.128 ms - 42[39m
+[32m[39m
+2025-07-14 18:46:08 [31merror[39m [31mTask not found or you do not have permission to view it Task not found or you do not have permission to view it[39m
+2025-07-14 18:46:08 [32minfo[39m [32mGET /api/v1/tasks/assignable 404 1135.904 ms - 83[39m
+[32m[39m
+2025-07-14 18:54:45 [31merror[39m [31mUser not found User not found[39m
+2025-07-14 18:54:45 [32minfo[39m [32mGET /api/v1/users/assignable 404 3833.649 ms - 42[39m
+[32m[39m
+2025-07-14 20:19:43 [32minfo[39m [32mGET /api/v1/users/assignable 401 22.944 ms - 64[39m
+[32m[39m
+2025-07-14 20:21:10 [32minfo[39m [32mGET /api/v1/users/assignable 401 16.702 ms - 64[39m
+[32m[39m
+2025-07-14 20:21:34 [31merror[39m [31mUser not found User not found[39m
+2025-07-14 20:21:34 [32minfo[39m [32mGET /api/v1/users/assignable 404 3501.593 ms - 42[39m
+[32m[39m
+2025-07-14 20:21:59 [31merror[39m [31mUser not found User not found[39m
+2025-07-14 20:21:59 [32minfo[39m [32mGET /api/v1/users/assignable 404 2926.157 ms - 42[39m
+[32m[39m
+2025-07-14 20:22:22 [31merror[39m [31mUser not found User not found[39m
+2025-07-14 20:22:22 [32minfo[39m [32mGET /api/v1/users/assignable 404 2890.138 ms - 42[39m
+[32m[39m
+2025-07-15 07:43:49 [32minfo[39m [32mGET /api/v1/users/assignable 401 22.623 ms - 64[39m
+[32m[39m
+2025-07-15 16:30:44 [31merror[39m [31mInternal Server Error [39m
+[31mInvalid `prisma.user.findFirst()` invocation:[39m
+
+
+[31mCan't reach database server at `dpg-d1nsbeidbo4c73f0jpm0-a.oregon-postgres.render.com:5432`[39m
+
+[31mPlease make sure your database server is running at `dpg-d1nsbeidbo4c73f0jpm0-a.oregon-postgres.render.com:5432`.[39m
+2025-07-15 16:30:44 [32minfo[39m [32mPOST /api/v1/auth/login 500 5080.000 ms - 49[39m
+[32m[39m
+2025-07-15 16:31:22 [31merror[39m [31mInternal Server Error [39m
+[31mInvalid `prisma.user.findFirst()` invocation:[39m
+
+
+[31mCan't reach database server at `dpg-d1nsbeidbo4c73f0jpm0-a.oregon-postgres.render.com:5432`[39m
+
+[31mPlease make sure your database server is running at `dpg-d1nsbeidbo4c73f0jpm0-a.oregon-postgres.render.com:5432`.[39m
+2025-07-15 16:31:22 [32minfo[39m [32mPOST /api/v1/auth/login 500 5010.359 ms - 49[39m
+[32m[39m

@@ -91,7 +91,29 @@ export const getAllLivestock = async (
       where,
       skip: (Number(page) - 1) * Number(limit),
       take: Number(limit),
-      include: { addedBy: { select: userSelect } },
+      include: { 
+        addedBy: { select: userSelect },
+        vaccinationRecords: {
+          orderBy: {dateofVaccination: 'desc'},
+          select: {
+            id: true,
+            dateofVaccination: true,
+            vaccineType: true,
+            dosage: true,
+            administeredBy: true,
+            nextDueDate: true
+          }
+        },
+        treatments: {
+          orderBy: {dateOfTreatment: 'desc'},
+          select: {
+            id: true,
+            dateOfTreatment: true,
+            treatmentType: true,
+            dosage: true
+          }
+        }
+      },
       orderBy: { createdAt: 'desc' },
     });
 
@@ -122,7 +144,7 @@ export const getLivestockCounts = async (
       prisma.livestock.count({
         where: {
           healthStatus: {
-            in: ['SICK', 'IN_TREATMENT', 'CRITICAL'] // Adjust as needed
+            in: ['SICK', 'IN_TREATMENT', 'CRITICAL'] 
           },
           sickness: {
             some: {}

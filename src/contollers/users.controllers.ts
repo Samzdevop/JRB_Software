@@ -150,38 +150,4 @@ export const deleteUser = async (
     next(error);
   }
 };
-
-export const getAssignableUsers = async (
-  req: Request,
-  res: Response,
-  next: NextFunction
-) => {
-  try {
-    const currentUser = (req.user as any);
-    let where = {};
-    
-    // Admin can assign to FarmKeepers and Coworkers
-    if (currentUser.role === 'ADMIN') {
-      where = { role: { in: ['FARM_KEEPER', 'COWORKER'] } };
-    } 
-    // FarmKeepers can only assign to Coworkers
-    else if (currentUser.role === 'FARM_KEEPER') {
-      where = { role: 'COWORKER' };
-    }
-
-    const users = await prisma.user.findMany({
-      where,
-      select: {
-        id: true,
-        fullName: true,
-        email: true,
-        role: true
-      },
-      orderBy: { fullName: 'asc' }
-    });
-
-    sendSuccessResponse(res, 'Assignable users retrieved', { users });
-  } catch (error) {
-    next(error);
-  }
-};
+ 

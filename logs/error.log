@@ -400,3 +400,45 @@
 
 
 [31mThe table `public.Task` does not exist in the current database.[39m
+2025-07-14 16:14:48 [31merror[39m [31mUser not found User not found[39m
+2025-07-14 16:15:40 [31merror[39m [31mUser not found User not found[39m
+2025-07-14 16:18:07 [31merror[39m [31mUser not found User not found[39m
+2025-07-14 16:29:49 [31merror[39m [31mUser not found User not found[39m
+2025-07-14 16:47:08 [31merror[39m [31mUser not found User not found[39m
+2025-07-14 16:48:05 [31merror[39m [31mUser not found User not found[39m
+2025-07-14 16:48:35 [31merror[39m [31mUser not found User not found[39m
+2025-07-14 16:50:03 [31merror[39m [31mUser not found User not found[39m
+2025-07-14 16:55:30 [31merror[39m [31mUser not found User not found[39m
+2025-07-14 17:01:17 [31merror[39m [31mUser not found User not found[39m
+2025-07-14 17:01:36 [31merror[39m [31mUser not found User not found[39m
+2025-07-14 17:05:46 [31merror[39m [31mUser not found User not found[39m
+2025-07-14 17:08:16 [31merror[39m [31mUser not found User not found[39m
+2025-07-14 17:30:46 [31merror[39m [31mUser not found User not found[39m
+2025-07-14 17:31:27 [31merror[39m [31mUser not found User not found[39m
+2025-07-14 17:34:21 [31merror[39m [31mUser not found User not found[39m
+2025-07-14 17:35:14 [31merror[39m [31mUser not found User not found[39m
+2025-07-14 18:05:30 [31merror[39m [31mUser not found User not found[39m
+2025-07-14 18:06:22 [31merror[39m [31mUser not found User not found[39m
+2025-07-14 18:09:03 [31merror[39m [31mUser not found User not found[39m
+2025-07-14 18:10:38 [31merror[39m [31mUser not found User not found[39m
+2025-07-14 18:40:51 [31merror[39m [31mUser not found User not found[39m
+2025-07-14 18:45:41 [31merror[39m [31mUser not found User not found[39m
+2025-07-14 18:46:08 [31merror[39m [31mTask not found or you do not have permission to view it Task not found or you do not have permission to view it[39m
+2025-07-14 18:54:45 [31merror[39m [31mUser not found User not found[39m
+2025-07-14 20:21:34 [31merror[39m [31mUser not found User not found[39m
+2025-07-14 20:21:59 [31merror[39m [31mUser not found User not found[39m
+2025-07-14 20:22:22 [31merror[39m [31mUser not found User not found[39m
+2025-07-15 16:30:44 [31merror[39m [31mInternal Server Error [39m
+[31mInvalid `prisma.user.findFirst()` invocation:[39m
+
+
+[31mCan't reach database server at `dpg-d1nsbeidbo4c73f0jpm0-a.oregon-postgres.render.com:5432`[39m
+
+[31mPlease make sure your database server is running at `dpg-d1nsbeidbo4c73f0jpm0-a.oregon-postgres.render.com:5432`.[39m
+2025-07-15 16:31:22 [31merror[39m [31mInternal Server Error [39m
+[31mInvalid `prisma.user.findFirst()` invocation:[39m
+
+
+[31mCan't reach database server at `dpg-d1nsbeidbo4c73f0jpm0-a.oregon-postgres.render.com:5432`[39m
+
+[31mPlease make sure your database server is running at `dpg-d1nsbeidbo4c73f0jpm0-a.oregon-postgres.render.com:5432`.[39m
