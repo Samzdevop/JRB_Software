@@ -1136,3 +1136,21 @@
 [31mPlease make sure your database server is running at `dpg-d1nsbeidbo4c73f0jpm0-a.oregon-postgres.render.com:5432`.[39m
 2025-07-15 16:31:22 [32minfo[39m [32mPOST /api/v1/auth/login 500 5010.359 ms - 49[39m
 [32m[39m
+2025-07-18 12:42:48 [31merror[39m [31mLivestock not found Livestock not found[39m
+2025-07-18 12:42:49 [32minfo[39m [32mPATCH /api/v1/livestock/cmcoq0grp0001t1tsd0hdha0r 404 3764.962 ms - 47[39m
+[32m[39m
+2025-07-18 12:43:24 [32minfo[39m [32mGET /api/v1/livestock 200 5601.599 ms - 8332[39m
+[32m[39m
+2025-07-18 12:44:00 [32minfo[39m [32mPATCH /api/v1/livestock/cmd7c13ma0007n53215rmekll 200 4482.337 ms - 1053[39m
+[32m[39m
+2025-07-18 12:44:18 [32minfo[39m [32mGET /api/v1/livestock 200 2153.698 ms - 8355[39m
+[32m[39m
+2025-07-18 12:49:14 [31merror[39m [31mExpected double-quoted property name in JSON at position 48 (line 4 column 1) Expected double-quoted property name in JSON at position 48 (line 4 column 1)[39m
+2025-07-18 12:49:21 [32minfo[39m [32mPATCH /api/v1/livestock/cmd7c13ma0007n53215rmekll 401 3.651 ms - 64[39m
+[32m[39m
+2025-07-18 12:49:53 [32minfo[39m [32mPATCH /api/v1/livestock/cmd7c13ma0007n53215rmekll 500 5040.417 ms - 324[39m
+[32m[39m
+2025-07-18 12:50:17 [32minfo[39m [32mPATCH /api/v1/livestock/cmd7c13ma0007n53215rmekll 200 5937.629 ms - 1053[39m
+[32m[39m
+2025-07-18 12:50:37 [32minfo[39m [32mGET /api/v1/livestock 200 3654.820 ms - 8355[39m
+[32m[39m

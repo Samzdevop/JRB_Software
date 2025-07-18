@@ -442,3 +442,5 @@
 [31mCan't reach database server at `dpg-d1nsbeidbo4c73f0jpm0-a.oregon-postgres.render.com:5432`[39m
 
 [31mPlease make sure your database server is running at `dpg-d1nsbeidbo4c73f0jpm0-a.oregon-postgres.render.com:5432`.[39m
+2025-07-18 12:42:48 [31merror[39m [31mLivestock not found Livestock not found[39m
+2025-07-18 12:49:14 [31merror[39m [31mExpected double-quoted property name in JSON at position 48 (line 4 column 1) Expected double-quoted property name in JSON at position 48 (line 4 column 1)[39m

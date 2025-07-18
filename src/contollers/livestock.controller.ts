@@ -163,71 +163,40 @@ export const getLivestockCounts = async (
   }
 };
 
-
 export const updateLivestock = async (
   req: Request,
   res: Response,
   next: NextFunction
 ): Promise<void> => {
   try {
-    const { 
-      tagId, 
-      type, 
-      breed, 
-      birthDate, 
-      healthStatus,
-      weight,
-      gender,
-      livestockSource,
-      livestockPurpose
-    } = req.body;
-
-    const updatedById = (req.user as any).id; // Get current user ID from JWT
-
-    const livestock = await prisma.livestock.update({
-      where: { 
-        id: req.params.livestockId,
-      },
-      data: {
-        tagId,
-        type,
-        breed,
-        birthDate: birthDate ? new Date(birthDate) : null,
-        healthStatus,
-        weight: weight ? parseFloat(weight) : null,
-        gender,
-        livestockSource,
-        livestockPurpose,
-        updatedById 
-      },
-      include: {
-        addedBy: {
-          select: {
-            id: true,
-            fullName: true,
-            email: true,
-            role: true,
-          }
-        },    
-        updatedBy: {
-          select: {
-            id: true,
-            fullName: true,
-            email: true,
-            role: true,
-          }
-        } 
-      }
+    const livestockId = req.params.livestockId;
+    const updateData = req.body;
+    const updatedById = (req.user as any).id;
+    const existingLivestock = await prisma.livestock.findUnique({
+      where: { id: livestockId }
     });
 
-    if (!livestock) throw new NotFoundError('Livestock not found');
+    if (!existingLivestock) {
+      throw new NotFoundError('Livestock not found');
+    }
+    const livestock = await prisma.livestock.update({
+      where: { id: livestockId },
+      data: {
+        ...updateData,
+        updatedById,
+        updatedAt: new Date() // Explicit timestamp update
+      },
+      include: {
+        addedBy: { select: userSelect },
+        updatedBy: { select: userSelect }
+      }
+    });
 
     sendSuccessResponse(res, 'Livestock updated successfully', { livestock });
   } catch (error) {
     next(error);
   }
 };
-
 
 export const deleteLivestock = async (
   req: Request,
