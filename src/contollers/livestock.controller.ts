@@ -3,6 +3,7 @@ import prisma from '../prisma';
 import { sendSuccessResponse } from '../utils/sendSuccessResponse';
 import { NotFoundError } from '../errors/NotFoundError';
 import { userSelect } from '../prisma/selects';
+import { BadRequestError } from '../errors/BadRequestError';
 
 export const addLivestock = async (
   req: Request,
@@ -84,6 +85,7 @@ export const getAllLivestock = async (
   try {
     const { page = 1, limit = 10, type } = req.query;
     const where = { 
+        isDeleted: false,
       ...(type && { type: String(type) }) 
     };
 
@@ -144,6 +146,7 @@ export const getLivestockCounts = async (
       prisma.livestock.count(),
       prisma.livestock.count({
         where: {
+          isDeleted: false,
           healthStatus: {
             in: ['SICK', 'IN_TREATMENT', 'CRITICAL'] 
           },
@@ -198,6 +201,8 @@ export const updateLivestock = async (
   }
 };
 
+// permenant delete livestock
+// This will remove the livestock record from the database
 export const deleteLivestock = async (
   req: Request,
   res: Response,
@@ -214,6 +219,114 @@ export const deleteLivestock = async (
       where: { id: req.params.livestockId, },
     });
     sendSuccessResponse(res, 'Livestock deleted successfully!', { livestock });
+  } catch (error) {
+    next(error);
+  }
+};
+
+
+// This will mark the livestock as deleted without removing it from the database
+export const softDeleteLivestock = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+): Promise<void> => {
+  try {
+    const { livestockId } = req.params;
+    const { reason } = req.body;
+    const userId = (req.user as any).id;
+    const userRole = (req.user as any).role;
+
+    // Verify livestock exists
+    const livestock = await prisma.livestock.findUnique({
+      where: { id: livestockId, isDeleted: false }
+    });
+
+    if (!livestock) {
+      throw new NotFoundError('Livestock not found');
+    }
+    // Soft delete
+    const deletedLivestock = await prisma.livestock.update({
+      where: { id: livestockId },
+      data: {
+        isDeleted: true,
+        deletionReason: reason || (userRole === 'ADMIN' ? 'Admin deletion' : null),
+        deletedAt: new Date(),
+        deletedById: userId
+      },
+      include: {
+        addedBy: { select: userSelect },
+        deletedBy: { select: userSelect }
+      }
+    });
+
+    sendSuccessResponse(res, 'Livestock deleted successfully', { livestock: deletedLivestock });
+  } catch (error) {
+    next(error);
+  }
+};
+
+// Get deleted livestock (Admin only)
+export const getDeletedLivestock = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+): Promise<void> => {
+  try {
+    const { page = 1, limit = 10 } = req.query;
+
+    const [deletedLivestock, total] = await Promise.all([
+      prisma.livestock.findMany({
+        where: { isDeleted: true },
+        include: {
+          addedBy: { select: userSelect },
+          deletedBy: { select: userSelect }
+        },
+        orderBy: { deletedAt: 'desc' },
+        skip: (Number(page) - 1) * Number(limit),
+        take: Number(limit)
+      }),
+      prisma.livestock.count({ where: { isDeleted: true } })
+    ]);
+
+    sendSuccessResponse(res, 'Deleted livestock retrieved', {
+      deletedLivestock,
+      pagination: {
+        page: Number(page),
+        limit: Number(limit),
+        total,
+        pages: Math.ceil(total / Number(limit))
+      }
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+// Restore livestock (Admin only)
+export const restoreLivestock = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+): Promise<void> => {
+  try {
+    const { livestockId } = req.params;
+
+    const livestock = await prisma.livestock.update({
+      where: { id: livestockId, isDeleted: true },
+      data: {
+        isDeleted: false,
+        deletionReason: null,
+        deletedAt: null,
+        deletedById: null
+      }
+    });
+
+    if (!livestock) {
+      throw new NotFoundError('Deleted livestock not found');
+    }
+
+    sendSuccessResponse(res, 'Livestock restored successfully', { livestock });
   } catch (error) {
     next(error);
   }

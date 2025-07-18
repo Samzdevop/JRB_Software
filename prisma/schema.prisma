@@ -14,45 +14,55 @@ datasource db {
 }
 
 model User {
-  id                  String          @id @default(cuid())
-  email               String?         @unique
-  phone               String?         @unique
-  googleId            String?         @unique
+  id                  String    @id @default(cuid())
+  email               String?   @unique
+  phone               String?   @unique
+  googleId            String?   @unique
   password            String?
   fullName            String
   avatar              String?
   location            String?
-  role                Role            @default(ADMIN)
+  role                Role      @default(ADMIN)
   lastLogin           DateTime?
   verificationCode    String?
   verificationExpires DateTime?
-  assignedTasks       Task[]          @relation("TaskAssignedTo")
-  createdTasks        Task[]          @relation("CreatedTasks")
-  isVerified          Boolean         @default(false)
-  isSuspended         Boolean         @default(false)
-  createdAt           DateTime        @default(now())
-  updatedAt           DateTime        @updatedAt
-  livestockAdded      Livestock[]     @relation("LivestockAddedBy")
-  livestockUpdated    Livestock[]     @relation("LivestockUpdatedBy")
-  vaccination         Vaccination[]
-  Sickness            Sickness[]
-  Treatment           Treatment[]
-  OfftakeRecord       OfftakeRecord[]
+  isVerified          Boolean   @default(false)
+  isSuspended         Boolean   @default(false)
+  createdAt           DateTime  @default(now())
+  updatedAt           DateTime  @updatedAt
+
+  // Relations
+  assignedTasks    Task[]          @relation("TaskAssignedTo")
+  createdTasks     Task[]          @relation("CreatedTasks")
+  livestockAdded   Livestock[]     @relation("LivestockAddedBy")
+  livestockUpdated Livestock[]     @relation("LivestockUpdatedBy")
+  deletedLivestock Livestock[]     @relation("LivestockDeletedBy")
+  vaccination      Vaccination[]
+  Sickness         Sickness[]
+  Treatment        Treatment[]
+  OfftakeRecord    OfftakeRecord[]
 }
 
 model Livestock {
-  id                 String          @id @default(cuid())
-  tagId              String          @unique
-  type               String
-  breed              String?
-  birthDate          DateTime?
-  healthStatus       HealthStatus
-  weight             Float?
-  gender             String
-  livestockSource    String?
-  livestockPurpose   String?
-  isSick             Boolean         @default(false)
-  isTreatment        Boolean         @default(false)
+  id               String       @id @default(cuid())
+  tagId            String       @unique
+  type             String
+  breed            String?
+  birthDate        DateTime?
+  healthStatus     HealthStatus
+  weight           Float?
+  gender           String
+  livestockSource  String?
+  livestockPurpose String?
+  isSick           Boolean      @default(false)
+  isTreatment      Boolean      @default(false)
+
+  isDeleted      Boolean   @default(false)
+  deletionReason String?
+  deletedAt      DateTime?
+  deletedBy      User?     @relation("LivestockDeletedBy", fields: [deletedById], references: [id]) // New relation
+  deletedById    String?
+
   sickness           Sickness[]
   treatments         Treatment[]
   addedBy            User            @relation("LivestockAddedBy", fields: [addedById], references: [id])

@@ -6,13 +6,18 @@ import {
   deleteLivestock,
   getAllLivestock,
   getLivestockCounts,
+  softDeleteLivestock,
+  getDeletedLivestock,
+  restoreLivestock,
 } from '../contollers/livestock.controller';
 import { authenticateJWT } from '../middlewares/errorHandler';
 import { validateRequest } from '../middlewares/validateRequest';
 import {
   addLivestockSchema,
+  deleteLivestockSchema,
   updateLivestockSchema,
 } from '../schemas/livestock.schemas';
+import { requireRoles } from '../middlewares/roleCheck';
 
 export const livestockRouter = Router();
 
@@ -47,4 +52,35 @@ livestockRouter.patch(
   validateRequest(updateLivestockSchema),
   updateLivestock
 );
-livestockRouter.delete('/:livestockId', authenticateJWT, deleteLivestock);
+
+// permanent delete livestock
+livestockRouter.delete(
+  '/:livestockId', 
+  requireRoles(['ADMIN', 'FARM_KEEPER']),
+  authenticateJWT, 
+  deleteLivestock
+);
+
+// softdelete livestock 
+livestockRouter.delete(
+  '/:livestockId/soft-delete',
+  authenticateJWT,
+  validateRequest(deleteLivestockSchema),
+  softDeleteLivestock
+);
+
+// Admin-only routes
+livestockRouter.get(
+  '/deleted/all',
+  authenticateJWT,
+  requireRoles(['ADMIN']),
+  getDeletedLivestock
+);
+
+livestockRouter.patch(
+  '/:livestockId/restore',
+  authenticateJWT,
+  requireRoles(['ADMIN']),
+  restoreLivestock
+);
+

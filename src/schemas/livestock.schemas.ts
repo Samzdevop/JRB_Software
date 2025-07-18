@@ -1,3 +1,4 @@
+import {request } from "express";
 import { z } from "zod";
 
 export const addLivestockSchema = z.object({
@@ -27,4 +28,20 @@ export const updateLivestockSchema = z.object({
     livestockSource: z.string().optional(),
     livestockPurpose: z.string().optional()
   }),
+});
+
+
+export const deleteLivestockSchema = z.object({
+  body: z.object({
+    reason: z.string().min(1, "Reason is required for farm keepers").optional()
+  }).refine(data => {
+    const userRole = (request as any)?.user?.role;
+    if (userRole === 'FARM_KEEPER') {
+      return !!data.reason;
+    }
+    return true;
+  }, {
+    message: "Deletion reason is required for farm keepers",
+    path: ["reason"]
+  })
 });
