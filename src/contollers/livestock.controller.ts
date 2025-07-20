@@ -143,7 +143,11 @@ export const getLivestockCounts = async (
 ): Promise<void> => {
    try {
     const [totalLivestock, sickLivestock] = await Promise.all([
-      prisma.livestock.count(),
+      prisma.livestock.count({
+        where: { 
+          isDeleted: false
+        }
+      }),
       prisma.livestock.count({
         where: {
           isDeleted: false,
