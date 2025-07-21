@@ -249,12 +249,20 @@ export const softDeleteLivestock = async (
     if (!livestock) {
       throw new NotFoundError('Livestock not found');
     }
+
+     if (userRole === 'FARM_KEEPER' && !reason) {
+      throw new BadRequestError('Deletion reason is required for farm keepers');
+    }
+
+    // Determine the deletion reason
+    const finalReason = reason || (userRole === 'ADMIN' ? 'Admin deletion' : null);
+
     // Soft delete
     const deletedLivestock = await prisma.livestock.update({
       where: { id: livestockId },
       data: {
         isDeleted: true,
-        deletionReason: reason || (userRole === 'ADMIN' ? 'Admin deletion' : null),
+        deletionReason: finalReason,
         deletedAt: new Date(),
         deletedById: userId
       },

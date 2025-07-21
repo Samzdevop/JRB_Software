@@ -56,8 +56,8 @@ livestockRouter.patch(
 // permanent delete livestock
 livestockRouter.delete(
   '/:livestockId', 
-  requireRoles(['ADMIN', 'FARM_KEEPER']),
   authenticateJWT, 
+  requireRoles(['ADMIN', 'FARM_KEEPER']),
   deleteLivestock
 );
 

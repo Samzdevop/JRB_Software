@@ -1154,3 +1154,51 @@
 [32m[39m
 2025-07-18 12:50:37 [32minfo[39m [32mGET /api/v1/livestock 200 3654.820 ms - 8355[39m
 [32m[39m
+2025-07-20 07:14:28 [32minfo[39m [32mPOST /api/v1/auth/login 200 4679.313 ms - 507[39m
+[32m[39m
+2025-07-20 07:15:04 [32minfo[39m [32mGET /api/v1/livestock 200 4110.712 ms - 9152[39m
+[32m[39m
+2025-07-20 07:15:29 [32minfo[39m [32mGET /api/v1/livestock/counts 200 3328.838 ms - 102[39m
+[32m[39m
+2025-07-20 07:17:37 [32minfo[39m [32mGET /api/v1/livestock/counts 200 1591.688 ms - 102[39m
+[32m[39m
+2025-07-20 07:18:58 [32minfo[39m [32mGET /api/v1/livestock/cmd7c13ma0007n53215rmekll 200 2334.377 ms - 1187[39m
+[32m[39m
+2025-07-20 07:19:59 [32minfo[39m [32mDELETE /api/v1/livestock/cmd7c13ma0007n53215rmekll 403 8.484 ms - 86[39m
+[32m[39m
+2025-07-20 07:20:17 [32minfo[39m [32mPOST /api/v1/auth/login 200 4776.868 ms - 507[39m
+[32m[39m
+2025-07-20 07:20:37 [32minfo[39m [32mDELETE /api/v1/livestock/cmd7c13ma0007n53215rmekll 403 0.695 ms - 86[39m
+[32m[39m
+2025-07-20 07:20:39 [32minfo[39m [32mDELETE /api/v1/livestock/cmd7c13ma0007n53215rmekll 403 1.726 ms - 86[39m
+[32m[39m
+2025-07-20 07:20:56 [32minfo[39m [32mPOST /api/v1/auth/login 200 1441.088 ms - 485[39m
+[32m[39m
+2025-07-20 07:21:11 [32minfo[39m [32mDELETE /api/v1/livestock/cmd7c13ma0007n53215rmekll 403 1.126 ms - 86[39m
+[32m[39m
+2025-07-20 07:21:15 [32minfo[39m [32mDELETE /api/v1/livestock/cmd7c13ma0007n53215rmekll 403 0.660 ms - 86[39m
+[32m[39m
+2025-07-20 07:21:16 [32minfo[39m [32mDELETE /api/v1/livestock/cmd7c13ma0007n53215rmekll 403 0.841 ms - 86[39m
+[32m[39m
+2025-07-20 07:30:56 [32minfo[39m [32mDELETE /api/v1/livestock/cmd7c13ma0007n53215rmekll 500 5033.444 ms - 324[39m
+[32m[39m
+2025-07-20 07:31:12 [32minfo[39m [32mDELETE /api/v1/livestock/cmd7c13ma0007n53215rmekll 200 4921.468 ms - 651[39m
+[32m[39m
+2025-07-20 07:32:24 [31merror[39m [31mLivestock not found Livestock not found[39m
+2025-07-20 07:32:24 [32minfo[39m [32mGET /api/v1/livestock/cmd7c13ma0007n53215rmekll 404 1091.074 ms - 47[39m
+[32m[39m
+2025-07-21 23:35:36 [32minfo[39m [32mPOST /api/v1/auth/login 200 4858.093 ms - 507[39m
+[32m[39m
+2025-07-21 23:36:15 [32minfo[39m [32mGET /api/v1/livestock 200 4252.228 ms - 8440[39m
+[32m[39m
+2025-07-21 23:37:32 [31merror[39m [31mDeletion reason is required for farm keepers Deletion reason is required for farm keepers[39m
+2025-07-21 23:37:32 [32minfo[39m [32mDELETE /api/v1/livestock/cmd5zrkzi0003n532e0pqe40l/soft-delete 400 4072.036 ms - 72[39m
+[32m[39m
+2025-07-21 23:38:13 [31merror[39m [31mDeletion reason is required for farm keepers Deletion reason is required for farm keepers[39m
+2025-07-21 23:38:13 [32minfo[39m [32mDELETE /api/v1/livestock/cmd5zrkzi0003n532e0pqe40l/soft-delete 400 1748.017 ms - 72[39m
+[32m[39m
+2025-07-21 23:38:26 [31merror[39m [31mDeletion reason is required for farm keepers Deletion reason is required for farm keepers[39m
+2025-07-21 23:38:26 [32minfo[39m [32mDELETE /api/v1/livestock/cmd5zrkzi0003n532e0pqe40l/soft-delete 400 1150.372 ms - 72[39m
+[32m[39m
+2025-07-21 23:39:23 [32minfo[39m [32mDELETE /api/v1/livestock/cmd5zrkzi0003n532e0pqe40l/soft-delete 200 12865.268 ms - 1166[39m
+[32m[39m
