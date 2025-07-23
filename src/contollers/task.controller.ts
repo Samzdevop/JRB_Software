@@ -172,3 +172,71 @@ export const updateTaskStatus = async (
     next(error);
   }
 };
+
+
+export const getAllAssignedTasks = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const userId = (req.user as any).id;
+    const userRole = (req.user as any).role;
+    const { status, page = 1, limit = 10 } = req.query;
+    const where: any = {
+      ...(status && { status: status as string })
+    };
+
+    // Role-specific filtering
+    if (userRole === 'FARM_KEEPER') {
+      // Farm keepers can only see tasks they've assigned or tasks assigned to their coworkers
+      where.OR = [
+        { assignedById: userId },
+        { 
+          assignedTo: { 
+            role: 'COWORKER',
+          } 
+        }
+      ];
+    } 
+    // Admin can see all tasks (no additional filtering needed)
+
+    const [tasks, total] = await Promise.all([
+      prisma.task.findMany({
+        where,
+        skip: (Number(page) - 1) * Number(limit),
+        take: Number(limit),
+        orderBy: { dueDate: 'asc' },
+        include: {
+          assignedTo: { 
+            select: {
+              id: true,
+              fullName: true,
+              role: true
+            } 
+          },
+          assignedBy: { 
+            select: {
+              id: true,
+              fullName: true,
+              role: true
+            } 
+          }
+        }
+      }),
+      prisma.task.count({ where })
+    ]);
+
+    sendSuccessResponse(res, 'Assigned tasks retrieved successfully', {
+      tasks,
+      pagination: {
+        page: Number(page),
+        limit: Number(limit),
+        total,
+        pages: Math.ceil(total / Number(limit))
+      }
+    });
+  } catch (error) {
+    next(error);
+  }
+};

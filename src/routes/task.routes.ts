@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import { 
   createTask, 
+  getAllAssignedTasks, 
   getMyTasks, 
   getTask, 
   updateTaskStatus 
@@ -37,6 +38,13 @@ router.patch(
   authenticateJWT,
   validateRequest(updateTaskStatusSchema),
   updateTaskStatus
+);
+
+router.get(
+  '/assigned/all',
+  authenticateJWT,
+  requireRoles(['ADMIN', 'FARM_KEEPER']),
+  getAllAssignedTasks
 );
 
 export const taskRouter = router;
