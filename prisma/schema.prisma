@@ -32,15 +32,16 @@ model User {
   updatedAt           DateTime  @updatedAt
 
   // Relations
-  assignedTasks    Task[]          @relation("TaskAssignedTo")
-  createdTasks     Task[]          @relation("CreatedTasks")
-  livestockAdded   Livestock[]     @relation("LivestockAddedBy")
-  livestockUpdated Livestock[]     @relation("LivestockUpdatedBy")
-  deletedLivestock Livestock[]     @relation("LivestockDeletedBy")
+  assignedTasks    Task[]            @relation("TaskAssignedTo")
+  createdTasks     Task[]            @relation("CreatedTasks")
+  livestockAdded   Livestock[]       @relation("LivestockAddedBy")
+  livestockUpdated Livestock[]       @relation("LivestockUpdatedBy")
+  deletedLivestock Livestock[]       @relation("LivestockDeletedBy")
   vaccination      Vaccination[]
   Sickness         Sickness[]
   Treatment        Treatment[]
   OfftakeRecord    OfftakeRecord[]
+  TaskObservation  TaskObservation[] @relation("UserTaskObservations")
 }
 
 model Livestock {
@@ -139,19 +140,36 @@ model OfftakeRecord {
 }
 
 model Task {
-  id           String     @id @default(cuid())
+  id           String            @id @default(cuid())
   name         String
   description  String
   priority     Priority
   dueDate      DateTime
-  status       TaskStatus @default(PENDING)
-  assignedTo   User       @relation("TaskAssignedTo", fields: [assignedToId], references: [id])
+  status       TaskStatus        @default(PENDING)
+  observations TaskObservation[]
+  assignedTo   User              @relation("TaskAssignedTo", fields: [assignedToId], references: [id])
   assignedToId String
-  assignedBy   User       @relation("CreatedTasks", fields: [assignedById], references: [id])
+  assignedBy   User              @relation("CreatedTasks", fields: [assignedById], references: [id])
   assignedById String
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+}
+
+model TaskObservation {
+  id           String   @id @default(cuid())
+  note         String
+  mediaUrls    String[]
+  reportedAt   DateTime @default(now())
+  task         Task     @relation(fields: [taskId], references: [id])
+  taskId       String
+  reportedBy   User     @relation("UserTaskObservations", fields: [reportedById], references: [id])
+  reportedById String
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@index([taskId])
+  @@index([reportedById])
 }
 
 enum HealthStatus {

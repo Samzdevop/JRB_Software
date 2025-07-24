@@ -5,6 +5,7 @@ import { BadRequestError } from '../errors/BadRequestError';
 import { NotFoundError } from '../errors/NotFoundError';
 import { ForbiddenError } from '../errors/ForbiddenError';
 import { userSelect } from '../prisma/selects';
+import { deleteFile, getFileUrl } from '../config/upload';
 
 
 
@@ -173,7 +174,6 @@ export const updateTaskStatus = async (
   }
 };
 
-
 export const getAllAssignedTasks = async (
   req: Request,
   res: Response,
@@ -237,6 +237,72 @@ export const getAllAssignedTasks = async (
       }
     });
   } catch (error) {
+    next(error);
+  }
+};
+
+
+export const createTaskObservation = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const { taskId } = req.params;
+    const { note } = req.body;
+    const userId = (req.user as any).id;
+    const files = req.files as Express.Multer.File[];
+
+    // Verify task exists and belongs to user
+    const task = await prisma.task.findFirst({
+      where: {
+        id: taskId,
+        assignedToId: userId
+      }
+    });
+
+    if (!task) {
+      // Clean up uploaded files if task not found
+      if (files) {
+        await Promise.all(files.map(file => 
+          deleteFile(file.filename)
+        ));
+      }
+      throw new NotFoundError('Task not found or you are not assigned to it');
+    }
+
+    // Process file URLs
+    const mediaUrls = files?.map(file => getFileUrl(file.filename)) || [];
+
+    // Create the observation
+    const observation = await prisma.taskObservation.create({
+      data: {
+        note,
+        mediaUrls,
+        taskId,
+        reportedById: userId,
+        reportedAt: new Date()
+      },
+      include: {
+        reportedBy: { select: userSelect }
+      }
+    });
+
+    sendSuccessResponse(
+      res,
+      'Task observation reported successfully',
+      { observation },
+      201
+    );
+  } catch (error) {
+    // Clean up files if error occurs
+    if (req.files) {
+      await Promise.all(
+        (req.files as Express.Multer.File[]).map(file => 
+          deleteFile(file.filename)
+        )
+      );
+    }
     next(error);
   }
 };

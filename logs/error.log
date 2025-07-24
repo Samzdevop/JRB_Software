@@ -502,3 +502,4 @@
 [31mCan't reach database server at `dpg-d1nsbeidbo4c73f0jpm0-a.oregon-postgres.render.com:5432`[39m
 
 [31mPlease make sure your database server is running at `dpg-d1nsbeidbo4c73f0jpm0-a.oregon-postgres.render.com:5432`.[39m
+2025-07-24 05:07:13 [31merror[39m [31mTask not found or you are not assigned to it Task not found or you are not assigned to it[39m

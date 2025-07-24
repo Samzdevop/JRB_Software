@@ -1280,3 +1280,22 @@
 [31mPlease make sure your database server is running at `dpg-d1nsbeidbo4c73f0jpm0-a.oregon-postgres.render.com:5432`.[39m
 2025-07-22 17:55:57 [32minfo[39m [32mPOST /api/v1/auth/login 400 5009.565 ms - 303[39m
 [32m[39m
+2025-07-23 12:01:08 [32minfo[39m [32mGET /api/v1/tasks/assigned/all 200 7513.274 ms - 2266[39m
+[32m[39m
+2025-07-24 04:58:09 [32minfo[39m [32mPOST /api/v1/auth/login 200 5447.194 ms - 507[39m
+[32m[39m
+2025-07-24 05:00:28 [32minfo[39m [32mGET /api/v1/tasks/assigned/all 200 5358.569 ms - 2266[39m
+[32m[39m
+2025-07-24 05:02:17 [32minfo[39m [32mPOST /api/v1/tasks/cmd4sj5fg0003lp3mbi6lubt8/observations 401 1.910 ms - 66[39m
+[32m[39m
+2025-07-24 05:02:38 [32minfo[39m [32mPOST /api/v1/tasks/cmd4sj5fg0003lp3mbi6lubt8/observations 422 1080.129 ms - 171[39m
+[32m[39m
+2025-07-24 05:06:59 [32minfo[39m [32mPOST /api/v1/tasks/cmd4sj5fg0003lp3mbi6lubt8/observations 500 5030.424 ms - 324[39m
+[32m[39m
+2025-07-24 05:07:13 [31merror[39m [31mTask not found or you are not assigned to it Task not found or you are not assigned to it[39m
+2025-07-24 05:07:13 [32minfo[39m [32mPOST /api/v1/tasks/cmd4sj5fg0003lp3mbi6lubt8/observations 404 3981.863 ms - 72[39m
+[32m[39m
+2025-07-24 05:08:39 [32minfo[39m [32mPOST /api/v1/auth/login 200 2371.646 ms - 494[39m
+[32m[39m
+2025-07-24 05:09:04 [32minfo[39m [32mPOST /api/v1/tasks/cmd4sj5fg0003lp3mbi6lubt8/observations 201 3678.116 ms - 746[39m
+[32m[39m

@@ -15,3 +15,10 @@ export const updateTaskStatusSchema = z.object({
     status: z.enum(['PENDING', 'IN_PROGRESS', 'COMPLETED', 'OVERDUE'])
   }),
 });
+
+
+export const createTaskObservationSchema = z.object({
+  body: z.object({
+    note: z.string().min(1, "Observation note is required")
+  })
+});
