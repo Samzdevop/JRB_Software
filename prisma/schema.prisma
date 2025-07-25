@@ -32,16 +32,18 @@ model User {
   updatedAt           DateTime  @updatedAt
 
   // Relations
-  assignedTasks    Task[]            @relation("TaskAssignedTo")
-  createdTasks     Task[]            @relation("CreatedTasks")
-  livestockAdded   Livestock[]       @relation("LivestockAddedBy")
-  livestockUpdated Livestock[]       @relation("LivestockUpdatedBy")
-  deletedLivestock Livestock[]       @relation("LivestockDeletedBy")
-  vaccination      Vaccination[]
-  Sickness         Sickness[]
-  Treatment        Treatment[]
-  OfftakeRecord    OfftakeRecord[]
-  TaskObservation  TaskObservation[] @relation("UserTaskObservations")
+  assignedTasks        Task[]                 @relation("TaskAssignedTo")
+  createdTasks         Task[]                 @relation("CreatedTasks")
+  livestockAdded       Livestock[]            @relation("LivestockAddedBy")
+  livestockUpdated     Livestock[]            @relation("LivestockUpdatedBy")
+  deletedLivestock     Livestock[]            @relation("LivestockDeletedBy")
+  vaccination          Vaccination[]
+  Sickness             Sickness[]
+  Treatment            Treatment[]
+  OfftakeRecord        OfftakeRecord[]
+  TaskObservation      TaskObservation[]      @relation("UserTaskObservations")
+  InventoryRecord      InventoryRecord[]
+  FinancialTransaction FinancialTransaction[]
 }
 
 model Livestock {
@@ -172,6 +174,58 @@ model TaskObservation {
   @@index([reportedById])
 }
 
+model Inventory {
+  id              String            @id @default(cuid())
+  type            InventoryType
+  name            String
+  currentQuantity Float
+  unit            String            @default("units")
+  purchasePrice   Float?
+  reorderPoint    Float
+  supplier        String?
+  notes           String?
+  mediaUrls       String[]
+  createdAt       DateTime          @default(now())
+  updatedAt       DateTime          @updatedAt
+  records         InventoryRecord[]
+}
+
+model InventoryRecord {
+  id             String              @id @default(cuid())
+  recordType     InventoryRecordType
+  quantity       Float
+  pricePerUnit   Float?
+  totalCost      Float?
+  date           DateTime
+  movementType   String?
+  relatedAnimals String?
+  notes          String?
+  mediaUrls      String[]
+  inventory      Inventory?          @relation(fields: [inventoryId], references: [id])
+  inventoryId    String?
+  recordedBy     User                @relation(fields: [recordedById], references: [id])
+  recordedById   String
+  createdAt      DateTime            @default(now())
+}
+
+model FinancialTransaction {
+  id              String                   @id @default(cuid())
+  type            FinancialTransactionType
+  referenceNumber String
+  title           String
+  amount          Float
+  paymentMethod   String
+  date            DateTime
+  description     String?
+  partyName       String // Buyer or vendor name
+  mediaUrls       String[]
+  recordedBy      User                     @relation(fields: [recordedById], references: [id])
+  recordedById    String
+  createdAt       DateTime                 @default(now())
+  @@index([type])
+  @@index([date])
+}
+
 enum HealthStatus {
   HEALTHY
   SICK
@@ -204,4 +258,21 @@ enum Role {
   FARM_KEEPER
   COWORKER
   VET
+}
+
+enum FinancialTransactionType {
+  INCOME
+  EXPENSE
+}
+
+enum InventoryType {
+  FEED
+  MEDICINE
+  EQUIPMENT
+}
+
+enum InventoryRecordType {
+  NEW
+  ITEM
+  USE
 }

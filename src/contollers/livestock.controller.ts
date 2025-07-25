@@ -121,7 +121,6 @@ export const getAllLivestock = async (
     });
 
     const total = await prisma.livestock.count({ where });
-
     sendSuccessResponse(res, 'Livestock retrieved successfully', { 
       livestock,
       pagination: {

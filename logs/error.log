@@ -503,3 +503,3091 @@
 
 [31mPlease make sure your database server is running at `dpg-d1nsbeidbo4c73f0jpm0-a.oregon-postgres.render.com:5432`.[39m
 2025-07-24 05:07:13 [31merror[39m [31mTask not found or you are not assigned to it Task not found or you are not assigned to it[39m
+2025-07-24 12:04:09 [31merror[39m [31mInternal Server Error [39m
+[31mInvalid `prisma.user.findFirst()` invocation:[39m
+
+
+[31mCan't reach database server at `dpg-d1nsbeidbo4c73f0jpm0-a.oregon-postgres.render.com:5432`[39m
+
+[31mPlease make sure your database server is running at `dpg-d1nsbeidbo4c73f0jpm0-a.oregon-postgres.render.com:5432`.[39m
+2025-07-24 13:05:32 [31merror[39m [31mDatabase validation error: [39m
+[31mInvalid `prisma.inventory.create()` invocation:[39m
+
+[31m{[39m
+[31m  data: {[39m
+[31m    type: "FEED",[39m
+[31m    name: "Premium Cattle Feed",[39m
+[31m    currentQuantity: "100",[39m
+[31m                     ~~~~~[39m
+[31m    purchasePrice: "2.50",[39m
+[31m    reorderPoint: "20",[39m
+[31m    supplier: "AgroSupplies",[39m
+[31m    notes: "Initial stock",[39m
+[31m    mediaUrls: [[39m
+[31m      "/uploads/1753358732336-cattle feed.jpeg"[39m
+[31m    ],[39m
+[31m    records: {[39m
+[31m      create: {[39m
+[31m        recordType: "NEW",[39m
+[31m        quantity: "100",[39m
+[31m        pricePerUnit: "2.50",[39m
+[31m        totalCost: "250.00",[39m
+[31m        date: "2025-01-02",[39m
+[31m        notes: "Initial stock",[39m
+[31m        mediaUrls: [[39m
+[31m          "/uploads/1753358732336-cattle feed.jpeg"[39m
+[31m        ],[39m
+[31m        recordedById: "cmcnjxm6s0000t1p8rcay1eoq"[39m
+[31m      }[39m
+[31m    }[39m
+[31m  },[39m
+[31m  include: {[39m
+[31m    records: {[39m
+[31m      orderBy: {[39m
+[31m        createdAt: "desc"[39m
+[31m      },[39m
+[31m      take: 1[39m
+[31m    }[39m
+[31m  }[39m
+[31m}[39m
+
+[31mArgument `currentQuantity`: Invalid value provided. Expected Float, provided String. [39m
+[31mInvalid `prisma.inventory.create()` invocation:[39m
+
+[31m{[39m
+[31m  data: {[39m
+[31m    type: "FEED",[39m
+[31m    name: "Premium Cattle Feed",[39m
+[31m    currentQuantity: "100",[39m
+[31m                     ~~~~~[39m
+[31m    purchasePrice: "2.50",[39m
+[31m    reorderPoint: "20",[39m
+[31m    supplier: "AgroSupplies",[39m
+[31m    notes: "Initial stock",[39m
+[31m    mediaUrls: [[39m
+[31m      "/uploads/1753358732336-cattle feed.jpeg"[39m
+[31m    ],[39m
+[31m    records: {[39m
+[31m      create: {[39m
+[31m        recordType: "NEW",[39m
+[31m        quantity: "100",[39m
+[31m        pricePerUnit: "2.50",[39m
+[31m        totalCost: "250.00",[39m
+[31m        date: "2025-01-02",[39m
+[31m        notes: "Initial stock",[39m
+[31m        mediaUrls: [[39m
+[31m          "/uploads/1753358732336-cattle feed.jpeg"[39m
+[31m        ],[39m
+[31m        recordedById: "cmcnjxm6s0000t1p8rcay1eoq"[39m
+[31m      }[39m
+[31m    }[39m
+[31m  },[39m
+[31m  include: {[39m
+[31m    records: {[39m
+[31m      orderBy: {[39m
+[31m        createdAt: "desc"[39m
+[31m      },[39m
+[31m      take: 1[39m
+[31m    }[39m
+[31m  }[39m
+[31m}[39m
+
+[31mArgument `currentQuantity`: Invalid value provided. Expected Float, provided String.[39m
+2025-07-24 13:05:40 [31merror[39m [31mDatabase validation error: [39m
+[31mInvalid `prisma.inventory.create()` invocation:[39m
+
+[31m{[39m
+[31m  data: {[39m
+[31m    type: "FEED",[39m
+[31m    name: "Premium Cattle Feed",[39m
+[31m    currentQuantity: "100",[39m
+[31m                     ~~~~~[39m
+[31m    purchasePrice: "2.50",[39m
+[31m    reorderPoint: "20",[39m
+[31m    supplier: "AgroSupplies",[39m
+[31m    notes: "Initial stock",[39m
+[31m    mediaUrls: [[39m
+[31m      "/uploads/1753358740686-cattle feed.jpeg"[39m
+[31m    ],[39m
+[31m    records: {[39m
+[31m      create: {[39m
+[31m        recordType: "NEW",[39m
+[31m        quantity: "100",[39m
+[31m        pricePerUnit: "2.50",[39m
+[31m        totalCost: "250.00",[39m
+[31m        date: "2025-01-02",[39m
+[31m        notes: "Initial stock",[39m
+[31m        mediaUrls: [[39m
+[31m          "/uploads/1753358740686-cattle feed.jpeg"[39m
+[31m        ],[39m
+[31m        recordedById: "cmcnjxm6s0000t1p8rcay1eoq"[39m
+[31m      }[39m
+[31m    }[39m
+[31m  },[39m
+[31m  include: {[39m
+[31m    records: {[39m
+[31m      orderBy: {[39m
+[31m        createdAt: "desc"[39m
+[31m      },[39m
+[31m      take: 1[39m
+[31m    }[39m
+[31m  }[39m
+[31m}[39m
+
+[31mArgument `currentQuantity`: Invalid value provided. Expected Float, provided String. [39m
+[31mInvalid `prisma.inventory.create()` invocation:[39m
+
+[31m{[39m
+[31m  data: {[39m
+[31m    type: "FEED",[39m
+[31m    name: "Premium Cattle Feed",[39m
+[31m    currentQuantity: "100",[39m
+[31m                     ~~~~~[39m
+[31m    purchasePrice: "2.50",[39m
+[31m    reorderPoint: "20",[39m
+[31m    supplier: "AgroSupplies",[39m
+[31m    notes: "Initial stock",[39m
+[31m    mediaUrls: [[39m
+[31m      "/uploads/1753358740686-cattle feed.jpeg"[39m
+[31m    ],[39m
+[31m    records: {[39m
+[31m      create: {[39m
+[31m        recordType: "NEW",[39m
+[31m        quantity: "100",[39m
+[31m        pricePerUnit: "2.50",[39m
+[31m        totalCost: "250.00",[39m
+[31m        date: "2025-01-02",[39m
+[31m        notes: "Initial stock",[39m
+[31m        mediaUrls: [[39m
+[31m          "/uploads/1753358740686-cattle feed.jpeg"[39m
+[31m        ],[39m
+[31m        recordedById: "cmcnjxm6s0000t1p8rcay1eoq"[39m
+[31m      }[39m
+[31m    }[39m
+[31m  },[39m
+[31m  include: {[39m
+[31m    records: {[39m
+[31m      orderBy: {[39m
+[31m        createdAt: "desc"[39m
+[31m      },[39m
+[31m      take: 1[39m
+[31m    }[39m
+[31m  }[39m
+[31m}[39m
+
+[31mArgument `currentQuantity`: Invalid value provided. Expected Float, provided String.[39m
+2025-07-24 13:10:27 [31merror[39m [31mDatabase validation error: [39m
+[31mInvalid `prisma.inventory.create()` invocation:[39m
+
+[31m{[39m
+[31m  data: {[39m
+[31m    type: "FEED",[39m
+[31m    name: "Premium Cattle Feed",[39m
+[31m    currentQuantity: "100",[39m
+[31m                     ~~~~~[39m
+[31m    purchasePrice: "2.50",[39m
+[31m    reorderPoint: "20",[39m
+[31m    supplier: "AgroSupplies",[39m
+[31m    notes: "Initial stock",[39m
+[31m    mediaUrls: [[39m
+[31m      "/uploads/1753359027588-cattle feed.jpeg"[39m
+[31m    ],[39m
+[31m    records: {[39m
+[31m      create: {[39m
+[31m        recordType: "NEW",[39m
+[31m        quantity: "100",[39m
+[31m        pricePerUnit: "2.50",[39m
+[31m        totalCost: "250.00",[39m
+[31m        date: "2025-01-02",[39m
+[31m        notes: "Initial stock",[39m
+[31m        mediaUrls: [[39m
+[31m          "/uploads/1753359027588-cattle feed.jpeg"[39m
+[31m        ],[39m
+[31m        recordedById: "cmcnjxm6s0000t1p8rcay1eoq"[39m
+[31m      }[39m
+[31m    }[39m
+[31m  },[39m
+[31m  include: {[39m
+[31m    records: {[39m
+[31m      orderBy: {[39m
+[31m        createdAt: "desc"[39m
+[31m      },[39m
+[31m      take: 1[39m
+[31m    }[39m
+[31m  }[39m
+[31m}[39m
+
+[31mArgument `currentQuantity`: Invalid value provided. Expected Float, provided String. [39m
+[31mInvalid `prisma.inventory.create()` invocation:[39m
+
+[31m{[39m
+[31m  data: {[39m
+[31m    type: "FEED",[39m
+[31m    name: "Premium Cattle Feed",[39m
+[31m    currentQuantity: "100",[39m
+[31m                     ~~~~~[39m
+[31m    purchasePrice: "2.50",[39m
+[31m    reorderPoint: "20",[39m
+[31m    supplier: "AgroSupplies",[39m
+[31m    notes: "Initial stock",[39m
+[31m    mediaUrls: [[39m
+[31m      "/uploads/1753359027588-cattle feed.jpeg"[39m
+[31m    ],[39m
+[31m    records: {[39m
+[31m      create: {[39m
+[31m        recordType: "NEW",[39m
+[31m        quantity: "100",[39m
+[31m        pricePerUnit: "2.50",[39m
+[31m        totalCost: "250.00",[39m
+[31m        date: "2025-01-02",[39m
+[31m        notes: "Initial stock",[39m
+[31m        mediaUrls: [[39m
+[31m          "/uploads/1753359027588-cattle feed.jpeg"[39m
+[31m        ],[39m
+[31m        recordedById: "cmcnjxm6s0000t1p8rcay1eoq"[39m
+[31m      }[39m
+[31m    }[39m
+[31m  },[39m
+[31m  include: {[39m
+[31m    records: {[39m
+[31m      orderBy: {[39m
+[31m        createdAt: "desc"[39m
+[31m      },[39m
+[31m      take: 1[39m
+[31m    }[39m
+[31m  }[39m
+[31m}[39m
+
+[31mArgument `currentQuantity`: Invalid value provided. Expected Float, provided String.[39m
+2025-07-24 13:11:01 [31merror[39m [31mDatabase validation error: [39m
+[31mInvalid `prisma.inventory.create()` invocation:[39m
+
+[31m{[39m
+[31m  data: {[39m
+[31m    type: "FEED",[39m
+[31m    name: "Premium Cattle Feed",[39m
+[31m    currentQuantity: "100",[39m
+[31m                     ~~~~~[39m
+[31m    purchasePrice: "2.50",[39m
+[31m    reorderPoint: "20",[39m
+[31m    supplier: "AgroSupplies",[39m
+[31m    notes: "Initial stock",[39m
+[31m    mediaUrls: [[39m
+[31m      "/uploads/1753359061377-cattle feed.jpeg"[39m
+[31m    ],[39m
+[31m    records: {[39m
+[31m      create: {[39m
+[31m        recordType: "NEW",[39m
+[31m        quantity: "100",[39m
+[31m        pricePerUnit: "2.50",[39m
+[31m        totalCost: "250.00",[39m
+[31m        date: "2025-01-02",[39m
+[31m        notes: "Initial stock",[39m
+[31m        mediaUrls: [[39m
+[31m          "/uploads/1753359061377-cattle feed.jpeg"[39m
+[31m        ],[39m
+[31m        recordedById: "cmcnjxm6s0000t1p8rcay1eoq"[39m
+[31m      }[39m
+[31m    }[39m
+[31m  },[39m
+[31m  include: {[39m
+[31m    records: {[39m
+[31m      orderBy: {[39m
+[31m        createdAt: "desc"[39m
+[31m      },[39m
+[31m      take: 1[39m
+[31m    }[39m
+[31m  }[39m
+[31m}[39m
+
+[31mArgument `currentQuantity`: Invalid value provided. Expected Float, provided String. [39m
+[31mInvalid `prisma.inventory.create()` invocation:[39m
+
+[31m{[39m
+[31m  data: {[39m
+[31m    type: "FEED",[39m
+[31m    name: "Premium Cattle Feed",[39m
+[31m    currentQuantity: "100",[39m
+[31m                     ~~~~~[39m
+[31m    purchasePrice: "2.50",[39m
+[31m    reorderPoint: "20",[39m
+[31m    supplier: "AgroSupplies",[39m
+[31m    notes: "Initial stock",[39m
+[31m    mediaUrls: [[39m
+[31m      "/uploads/1753359061377-cattle feed.jpeg"[39m
+[31m    ],[39m
+[31m    records: {[39m
+[31m      create: {[39m
+[31m        recordType: "NEW",[39m
+[31m        quantity: "100",[39m
+[31m        pricePerUnit: "2.50",[39m
+[31m        totalCost: "250.00",[39m
+[31m        date: "2025-01-02",[39m
+[31m        notes: "Initial stock",[39m
+[31m        mediaUrls: [[39m
+[31m          "/uploads/1753359061377-cattle feed.jpeg"[39m
+[31m        ],[39m
+[31m        recordedById: "cmcnjxm6s0000t1p8rcay1eoq"[39m
+[31m      }[39m
+[31m    }[39m
+[31m  },[39m
+[31m  include: {[39m
+[31m    records: {[39m
+[31m      orderBy: {[39m
+[31m        createdAt: "desc"[39m
+[31m      },[39m
+[31m      take: 1[39m
+[31m    }[39m
+[31m  }[39m
+[31m}[39m
+
+[31mArgument `currentQuantity`: Invalid value provided. Expected Float, provided String.[39m
+2025-07-24 13:13:53 [31merror[39m [31mDatabase validation error: [39m
+[31mInvalid `prisma.inventory.create()` invocation:[39m
+
+[31m{[39m
+[31m  data: {[39m
+[31m    type: "FEED",[39m
+[31m    name: "Premium Cattle Feed",[39m
+[31m    currentQuantity: 100,[39m
+[31m    purchasePrice: 2.5,[39m
+[31m    reorderPoint: 20,[39m
+[31m    supplier: "AgroSupplies",[39m
+[31m    notes: "Initial stock",[39m
+[31m    mediaUrls: [[39m
+[31m      "/uploads/1753359233831-cattle feed.jpeg"[39m
+[31m    ],[39m
+[31m    records: {[39m
+[31m      create: {[39m
+[31m        recordType: "NEW",[39m
+[31m        quantity: 100,[39m
+[31m        pricePerUnit: 2.5,[39m
+[31m        totalCost: 250,[39m
+[31m        date: new Date("Invalid Date"),[39m
+[31m              ~~~~~~~~~~~~~~~~~~~~~~~~[39m
+[31m        notes: "Initial stock",[39m
+[31m        mediaUrls: [[39m
+[31m          "/uploads/1753359233831-cattle feed.jpeg"[39m
+[31m        ],[39m
+[31m        recordedById: "cmcnjxm6s0000t1p8rcay1eoq"[39m
+[31m      }[39m
+[31m    }[39m
+[31m  },[39m
+[31m  include: {[39m
+[31m    records: {[39m
+[31m      orderBy: {[39m
+[31m        createdAt: "desc"[39m
+[31m      },[39m
+[31m      take: 1[39m
+[31m    }[39m
+[31m  }[39m
+[31m}[39m
+
+[31mInvalid value for argument `date`: Provided Date object is invalid. Expected Date. [39m
+[31mInvalid `prisma.inventory.create()` invocation:[39m
+
+[31m{[39m
+[31m  data: {[39m
+[31m    type: "FEED",[39m
+[31m    name: "Premium Cattle Feed",[39m
+[31m    currentQuantity: 100,[39m
+[31m    purchasePrice: 2.5,[39m
+[31m    reorderPoint: 20,[39m
+[31m    supplier: "AgroSupplies",[39m
+[31m    notes: "Initial stock",[39m
+[31m    mediaUrls: [[39m
+[31m      "/uploads/1753359233831-cattle feed.jpeg"[39m
+[31m    ],[39m
+[31m    records: {[39m
+[31m      create: {[39m
+[31m        recordType: "NEW",[39m
+[31m        quantity: 100,[39m
+[31m        pricePerUnit: 2.5,[39m
+[31m        totalCost: 250,[39m
+[31m        date: new Date("Invalid Date"),[39m
+[31m              ~~~~~~~~~~~~~~~~~~~~~~~~[39m
+[31m        notes: "Initial stock",[39m
+[31m        mediaUrls: [[39m
+[31m          "/uploads/1753359233831-cattle feed.jpeg"[39m
+[31m        ],[39m
+[31m        recordedById: "cmcnjxm6s0000t1p8rcay1eoq"[39m
+[31m      }[39m
+[31m    }[39m
+[31m  },[39m
+[31m  include: {[39m
+[31m    records: {[39m
+[31m      orderBy: {[39m
+[31m        createdAt: "desc"[39m
+[31m      },[39m
+[31m      take: 1[39m
+[31m    }[39m
+[31m  }[39m
+[31m}[39m
+
+[31mInvalid value for argument `date`: Provided Date object is invalid. Expected Date.[39m
+2025-07-24 13:15:38 [31merror[39m [31mDatabase validation error: [39m
+[31mInvalid `prisma.inventory.create()` invocation:[39m
+
+[31m{[39m
+[31m  data: {[39m
+[31m    type: "FEED",[39m
+[31m    name: "Premium Cattle Feed",[39m
+[31m    currentQuantity: "100",[39m
+[31m                     ~~~~~[39m
+[31m    purchasePrice: "2.50",[39m
+[31m    reorderPoint: "20",[39m
+[31m    supplier: "AgroSupplies",[39m
+[31m    notes: "Initial stock",[39m
+[31m    mediaUrls: [[39m
+[31m      "/uploads/1753359338588-cattle feed.jpeg"[39m
+[31m    ],[39m
+[31m    records: {[39m
+[31m      create: {[39m
+[31m        recordType: "NEW",[39m
+[31m        quantity: "100",[39m
+[31m        pricePerUnit: "2.50",[39m
+[31m        totalCost: "250.00",[39m
+[31m        date: "2025-01-02",[39m
+[31m        notes: "Initial stock",[39m
+[31m        mediaUrls: [[39m
+[31m          "/uploads/1753359338588-cattle feed.jpeg"[39m
+[31m        ],[39m
+[31m        recordedById: "cmcnjxm6s0000t1p8rcay1eoq"[39m
+[31m      }[39m
+[31m    }[39m
+[31m  },[39m
+[31m  include: {[39m
+[31m    records: {[39m
+[31m      orderBy: {[39m
+[31m        createdAt: "desc"[39m
+[31m      },[39m
+[31m      take: 1[39m
+[31m    }[39m
+[31m  }[39m
+[31m}[39m
+
+[31mArgument `currentQuantity`: Invalid value provided. Expected Float, provided String. [39m
+[31mInvalid `prisma.inventory.create()` invocation:[39m
+
+[31m{[39m
+[31m  data: {[39m
+[31m    type: "FEED",[39m
+[31m    name: "Premium Cattle Feed",[39m
+[31m    currentQuantity: "100",[39m
+[31m                     ~~~~~[39m
+[31m    purchasePrice: "2.50",[39m
+[31m    reorderPoint: "20",[39m
+[31m    supplier: "AgroSupplies",[39m
+[31m    notes: "Initial stock",[39m
+[31m    mediaUrls: [[39m
+[31m      "/uploads/1753359338588-cattle feed.jpeg"[39m
+[31m    ],[39m
+[31m    records: {[39m
+[31m      create: {[39m
+[31m        recordType: "NEW",[39m
+[31m        quantity: "100",[39m
+[31m        pricePerUnit: "2.50",[39m
+[31m        totalCost: "250.00",[39m
+[31m        date: "2025-01-02",[39m
+[31m        notes: "Initial stock",[39m
+[31m        mediaUrls: [[39m
+[31m          "/uploads/1753359338588-cattle feed.jpeg"[39m
+[31m        ],[39m
+[31m        recordedById: "cmcnjxm6s0000t1p8rcay1eoq"[39m
+[31m      }[39m
+[31m    }[39m
+[31m  },[39m
+[31m  include: {[39m
+[31m    records: {[39m
+[31m      orderBy: {[39m
+[31m        createdAt: "desc"[39m
+[31m      },[39m
+[31m      take: 1[39m
+[31m    }[39m
+[31m  }[39m
+[31m}[39m
+
+[31mArgument `currentQuantity`: Invalid value provided. Expected Float, provided String.[39m
+2025-07-24 13:17:17 [31merror[39m [31mDatabase validation error: [39m
+[31mInvalid `prisma.inventory.create()` invocation:[39m
+
+[31m{[39m
+[31m  data: {[39m
+[31m    type: "FEED",[39m
+[31m    name: "Premium Cattle Feed",[39m
+[31m    currentQuantity: "100.00",[39m
+[31m                     ~~~~~~~~[39m
+[31m    purchasePrice: "2.50",[39m
+[31m    reorderPoint: "20",[39m
+[31m    supplier: "AgroSupplies",[39m
+[31m    notes: "Initial stock",[39m
+[31m    mediaUrls: [[39m
+[31m      "/uploads/1753359437727-cattle feed.jpeg"[39m
+[31m    ],[39m
+[31m    records: {[39m
+[31m      create: {[39m
+[31m        recordType: "NEW",[39m
+[31m        quantity: "100.00",[39m
+[31m        pricePerUnit: "2.50",[39m
+[31m        totalCost: "250.00",[39m
+[31m        date: "2025-01-02",[39m
+[31m        notes: "Initial stock",[39m
+[31m        mediaUrls: [[39m
+[31m          "/uploads/1753359437727-cattle feed.jpeg"[39m
+[31m        ],[39m
+[31m        recordedById: "cmcnjxm6s0000t1p8rcay1eoq"[39m
+[31m      }[39m
+[31m    }[39m
+[31m  },[39m
+[31m  include: {[39m
+[31m    records: {[39m
+[31m      orderBy: {[39m
+[31m        createdAt: "desc"[39m
+[31m      },[39m
+[31m      take: 1[39m
+[31m    }[39m
+[31m  }[39m
+[31m}[39m
+
+[31mArgument `currentQuantity`: Invalid value provided. Expected Float, provided String. [39m
+[31mInvalid `prisma.inventory.create()` invocation:[39m
+
+[31m{[39m
+[31m  data: {[39m
+[31m    type: "FEED",[39m
+[31m    name: "Premium Cattle Feed",[39m
+[31m    currentQuantity: "100.00",[39m
+[31m                     ~~~~~~~~[39m
+[31m    purchasePrice: "2.50",[39m
+[31m    reorderPoint: "20",[39m
+[31m    supplier: "AgroSupplies",[39m
+[31m    notes: "Initial stock",[39m
+[31m    mediaUrls: [[39m
+[31m      "/uploads/1753359437727-cattle feed.jpeg"[39m
+[31m    ],[39m
+[31m    records: {[39m
+[31m      create: {[39m
+[31m        recordType: "NEW",[39m
+[31m        quantity: "100.00",[39m
+[31m        pricePerUnit: "2.50",[39m
+[31m        totalCost: "250.00",[39m
+[31m        date: "2025-01-02",[39m
+[31m        notes: "Initial stock",[39m
+[31m        mediaUrls: [[39m
+[31m          "/uploads/1753359437727-cattle feed.jpeg"[39m
+[31m        ],[39m
+[31m        recordedById: "cmcnjxm6s0000t1p8rcay1eoq"[39m
+[31m      }[39m
+[31m    }[39m
+[31m  },[39m
+[31m  include: {[39m
+[31m    records: {[39m
+[31m      orderBy: {[39m
+[31m        createdAt: "desc"[39m
+[31m      },[39m
+[31m      take: 1[39m
+[31m    }[39m
+[31m  }[39m
+[31m}[39m
+
+[31mArgument `currentQuantity`: Invalid value provided. Expected Float, provided String.[39m
+2025-07-24 13:18:58 [31merror[39m [31mDatabase validation error: [39m
+[31mInvalid `prisma.inventory.create()` invocation:[39m
+
+[31m{[39m
+[31m  data: {[39m
+[31m    type: "FEED",[39m
+[31m    name: "Premium Cattle Feed",[39m
+[31m    currentQuantity: "100.00",[39m
+[31m                     ~~~~~~~~[39m
+[31m    purchasePrice: "2.50",[39m
+[31m    reorderPoint: "20",[39m
+[31m    supplier: "AgroSupplies",[39m
+[31m    notes: "Initial stock",[39m
+[31m    mediaUrls: [[39m
+[31m      "/uploads/1753359538812-cattle feed.jpeg"[39m
+[31m    ],[39m
+[31m    records: {[39m
+[31m      create: {[39m
+[31m        recordType: "NEW",[39m
+[31m        quantity: "100.00",[39m
+[31m        pricePerUnit: "2.50",[39m
+[31m        totalCost: "250.00",[39m
+[31m        date: "2025-01-02",[39m
+[31m        notes: "Initial stock",[39m
+[31m        mediaUrls: [[39m
+[31m          "/uploads/1753359538812-cattle feed.jpeg"[39m
+[31m        ],[39m
+[31m        recordedById: "cmcnjxm6s0000t1p8rcay1eoq"[39m
+[31m      }[39m
+[31m    }[39m
+[31m  },[39m
+[31m  include: {[39m
+[31m    records: {[39m
+[31m      orderBy: {[39m
+[31m        createdAt: "desc"[39m
+[31m      },[39m
+[31m      take: 1[39m
+[31m    }[39m
+[31m  }[39m
+[31m}[39m
+
+[31mArgument `currentQuantity`: Invalid value provided. Expected Float, provided String. [39m
+[31mInvalid `prisma.inventory.create()` invocation:[39m
+
+[31m{[39m
+[31m  data: {[39m
+[31m    type: "FEED",[39m
+[31m    name: "Premium Cattle Feed",[39m
+[31m    currentQuantity: "100.00",[39m
+[31m                     ~~~~~~~~[39m
+[31m    purchasePrice: "2.50",[39m
+[31m    reorderPoint: "20",[39m
+[31m    supplier: "AgroSupplies",[39m
+[31m    notes: "Initial stock",[39m
+[31m    mediaUrls: [[39m
+[31m      "/uploads/1753359538812-cattle feed.jpeg"[39m
+[31m    ],[39m
+[31m    records: {[39m
+[31m      create: {[39m
+[31m        recordType: "NEW",[39m
+[31m        quantity: "100.00",[39m
+[31m        pricePerUnit: "2.50",[39m
+[31m        totalCost: "250.00",[39m
+[31m        date: "2025-01-02",[39m
+[31m        notes: "Initial stock",[39m
+[31m        mediaUrls: [[39m
+[31m          "/uploads/1753359538812-cattle feed.jpeg"[39m
+[31m        ],[39m
+[31m        recordedById: "cmcnjxm6s0000t1p8rcay1eoq"[39m
+[31m      }[39m
+[31m    }[39m
+[31m  },[39m
+[31m  include: {[39m
+[31m    records: {[39m
+[31m      orderBy: {[39m
+[31m        createdAt: "desc"[39m
+[31m      },[39m
+[31m      take: 1[39m
+[31m    }[39m
+[31m  }[39m
+[31m}[39m
+
+[31mArgument `currentQuantity`: Invalid value provided. Expected Float, provided String.[39m
+2025-07-24 13:19:16 [31merror[39m [31mDatabase validation error: [39m
+[31mInvalid `prisma.inventory.create()` invocation:[39m
+
+[31m{[39m
+[31m  data: {[39m
+[31m    type: "FEED",[39m
+[31m    name: "Premium Cattle Feed",[39m
+[31m    currentQuantity: "100.00",[39m
+[31m                     ~~~~~~~~[39m
+[31m    purchasePrice: "2.50",[39m
+[31m    reorderPoint: "20",[39m
+[31m    supplier: "AgroSupplies",[39m
+[31m    notes: "Initial stock",[39m
+[31m    mediaUrls: [[39m
+[31m      "/uploads/1753359556070-cattle feed.jpeg"[39m
+[31m    ],[39m
+[31m    records: {[39m
+[31m      create: {[39m
+[31m        recordType: "NEW",[39m
+[31m        quantity: "100.00",[39m
+[31m        pricePerUnit: "2.50",[39m
+[31m        totalCost: "250.00",[39m
+[31m        date: "2025-01-02",[39m
+[31m        notes: "Initial stock",[39m
+[31m        mediaUrls: [[39m
+[31m          "/uploads/1753359556070-cattle feed.jpeg"[39m
+[31m        ],[39m
+[31m        recordedById: "cmcnjxm6s0000t1p8rcay1eoq"[39m
+[31m      }[39m
+[31m    }[39m
+[31m  },[39m
+[31m  include: {[39m
+[31m    records: {[39m
+[31m      orderBy: {[39m
+[31m        createdAt: "desc"[39m
+[31m      },[39m
+[31m      take: 1[39m
+[31m    }[39m
+[31m  }[39m
+[31m}[39m
+
+[31mArgument `currentQuantity`: Invalid value provided. Expected Float, provided String. [39m
+[31mInvalid `prisma.inventory.create()` invocation:[39m
+
+[31m{[39m
+[31m  data: {[39m
+[31m    type: "FEED",[39m
+[31m    name: "Premium Cattle Feed",[39m
+[31m    currentQuantity: "100.00",[39m
+[31m                     ~~~~~~~~[39m
+[31m    purchasePrice: "2.50",[39m
+[31m    reorderPoint: "20",[39m
+[31m    supplier: "AgroSupplies",[39m
+[31m    notes: "Initial stock",[39m
+[31m    mediaUrls: [[39m
+[31m      "/uploads/1753359556070-cattle feed.jpeg"[39m
+[31m    ],[39m
+[31m    records: {[39m
+[31m      create: {[39m
+[31m        recordType: "NEW",[39m
+[31m        quantity: "100.00",[39m
+[31m        pricePerUnit: "2.50",[39m
+[31m        totalCost: "250.00",[39m
+[31m        date: "2025-01-02",[39m
+[31m        notes: "Initial stock",[39m
+[31m        mediaUrls: [[39m
+[31m          "/uploads/1753359556070-cattle feed.jpeg"[39m
+[31m        ],[39m
+[31m        recordedById: "cmcnjxm6s0000t1p8rcay1eoq"[39m
+[31m      }[39m
+[31m    }[39m
+[31m  },[39m
+[31m  include: {[39m
+[31m    records: {[39m
+[31m      orderBy: {[39m
+[31m        createdAt: "desc"[39m
+[31m      },[39m
+[31m      take: 1[39m
+[31m    }[39m
+[31m  }[39m
+[31m}[39m
+
+[31mArgument `currentQuantity`: Invalid value provided. Expected Float, provided String.[39m
+2025-07-24 13:19:17 [31merror[39m [31mDatabase validation error: [39m
+[31mInvalid `prisma.inventory.create()` invocation:[39m
+
+[31m{[39m
+[31m  data: {[39m
+[31m    type: "FEED",[39m
+[31m    name: "Premium Cattle Feed",[39m
+[31m    currentQuantity: "100.00",[39m
+[31m                     ~~~~~~~~[39m
+[31m    purchasePrice: "2.50",[39m
+[31m    reorderPoint: "20",[39m
+[31m    supplier: "AgroSupplies",[39m
+[31m    notes: "Initial stock",[39m
+[31m    mediaUrls: [[39m
+[31m      "/uploads/1753359557872-cattle feed.jpeg"[39m
+[31m    ],[39m
+[31m    records: {[39m
+[31m      create: {[39m
+[31m        recordType: "NEW",[39m
+[31m        quantity: "100.00",[39m
+[31m        pricePerUnit: "2.50",[39m
+[31m        totalCost: "250.00",[39m
+[31m        date: "2025-01-02",[39m
+[31m        notes: "Initial stock",[39m
+[31m        mediaUrls: [[39m
+[31m          "/uploads/1753359557872-cattle feed.jpeg"[39m
+[31m        ],[39m
+[31m        recordedById: "cmcnjxm6s0000t1p8rcay1eoq"[39m
+[31m      }[39m
+[31m    }[39m
+[31m  },[39m
+[31m  include: {[39m
+[31m    records: {[39m
+[31m      orderBy: {[39m
+[31m        createdAt: "desc"[39m
+[31m      },[39m
+[31m      take: 1[39m
+[31m    }[39m
+[31m  }[39m
+[31m}[39m
+
+[31mArgument `currentQuantity`: Invalid value provided. Expected Float, provided String. [39m
+[31mInvalid `prisma.inventory.create()` invocation:[39m
+
+[31m{[39m
+[31m  data: {[39m
+[31m    type: "FEED",[39m
+[31m    name: "Premium Cattle Feed",[39m
+[31m    currentQuantity: "100.00",[39m
+[31m                     ~~~~~~~~[39m
+[31m    purchasePrice: "2.50",[39m
+[31m    reorderPoint: "20",[39m
+[31m    supplier: "AgroSupplies",[39m
+[31m    notes: "Initial stock",[39m
+[31m    mediaUrls: [[39m
+[31m      "/uploads/1753359557872-cattle feed.jpeg"[39m
+[31m    ],[39m
+[31m    records: {[39m
+[31m      create: {[39m
+[31m        recordType: "NEW",[39m
+[31m        quantity: "100.00",[39m
+[31m        pricePerUnit: "2.50",[39m
+[31m        totalCost: "250.00",[39m
+[31m        date: "2025-01-02",[39m
+[31m        notes: "Initial stock",[39m
+[31m        mediaUrls: [[39m
+[31m          "/uploads/1753359557872-cattle feed.jpeg"[39m
+[31m        ],[39m
+[31m        recordedById: "cmcnjxm6s0000t1p8rcay1eoq"[39m
+[31m      }[39m
+[31m    }[39m
+[31m  },[39m
+[31m  include: {[39m
+[31m    records: {[39m
+[31m      orderBy: {[39m
+[31m        createdAt: "desc"[39m
+[31m      },[39m
+[31m      take: 1[39m
+[31m    }[39m
+[31m  }[39m
+[31m}[39m
+
+[31mArgument `currentQuantity`: Invalid value provided. Expected Float, provided String.[39m
+2025-07-24 13:20:56 [31merror[39m [31mDatabase validation error: [39m
+[31mInvalid `prisma.inventory.create()` invocation:[39m
+
+[31m{[39m
+[31m  data: {[39m
+[31m    type: "FEED",[39m
+[31m    name: "Premium Cattle Feed",[39m
+[31m    currentQuantity: "100.0",[39m
+[31m                     ~~~~~~~[39m
+[31m    purchasePrice: "2.50",[39m
+[31m    reorderPoint: "20",[39m
+[31m    supplier: "AgroSupplies",[39m
+[31m    notes: "Initial stock",[39m
+[31m    mediaUrls: [[39m
+[31m      "/uploads/1753359656821-cattle feed.jpeg"[39m
+[31m    ],[39m
+[31m    records: {[39m
+[31m      create: {[39m
+[31m        recordType: "NEW",[39m
+[31m        quantity: "100.0",[39m
+[31m        pricePerUnit: "2.50",[39m
+[31m        totalCost: "250.00",[39m
+[31m        date: "2025-01-02",[39m
+[31m        notes: "Initial stock",[39m
+[31m        mediaUrls: [[39m
+[31m          "/uploads/1753359656821-cattle feed.jpeg"[39m
+[31m        ],[39m
+[31m        recordedById: "cmcnjxm6s0000t1p8rcay1eoq"[39m
+[31m      }[39m
+[31m    }[39m
+[31m  },[39m
+[31m  include: {[39m
+[31m    records: {[39m
+[31m      orderBy: {[39m
+[31m        createdAt: "desc"[39m
+[31m      },[39m
+[31m      take: 1[39m
+[31m    }[39m
+[31m  }[39m
+[31m}[39m
+
+[31mArgument `currentQuantity`: Invalid value provided. Expected Float, provided String. [39m
+[31mInvalid `prisma.inventory.create()` invocation:[39m
+
+[31m{[39m
+[31m  data: {[39m
+[31m    type: "FEED",[39m
+[31m    name: "Premium Cattle Feed",[39m
+[31m    currentQuantity: "100.0",[39m
+[31m                     ~~~~~~~[39m
+[31m    purchasePrice: "2.50",[39m
+[31m    reorderPoint: "20",[39m
+[31m    supplier: "AgroSupplies",[39m
+[31m    notes: "Initial stock",[39m
+[31m    mediaUrls: [[39m
+[31m      "/uploads/1753359656821-cattle feed.jpeg"[39m
+[31m    ],[39m
+[31m    records: {[39m
+[31m      create: {[39m
+[31m        recordType: "NEW",[39m
+[31m        quantity: "100.0",[39m
+[31m        pricePerUnit: "2.50",[39m
+[31m        totalCost: "250.00",[39m
+[31m        date: "2025-01-02",[39m
+[31m        notes: "Initial stock",[39m
+[31m        mediaUrls: [[39m
+[31m          "/uploads/1753359656821-cattle feed.jpeg"[39m
+[31m        ],[39m
+[31m        recordedById: "cmcnjxm6s0000t1p8rcay1eoq"[39m
+[31m      }[39m
+[31m    }[39m
+[31m  },[39m
+[31m  include: {[39m
+[31m    records: {[39m
+[31m      orderBy: {[39m
+[31m        createdAt: "desc"[39m
+[31m      },[39m
+[31m      take: 1[39m
+[31m    }[39m
+[31m  }[39m
+[31m}[39m
+
+[31mArgument `currentQuantity`: Invalid value provided. Expected Float, provided String.[39m
+2025-07-24 13:21:13 [31merror[39m [31mDatabase validation error: [39m
+[31mInvalid `prisma.inventory.create()` invocation:[39m
+
+[31m{[39m
+[31m  data: {[39m
+[31m    type: "FEED",[39m
+[31m    name: "Premium Cattle Feed",[39m
+[31m    currentQuantity: "100",[39m
+[31m                     ~~~~~[39m
+[31m    purchasePrice: "2.50",[39m
+[31m    reorderPoint: "20",[39m
+[31m    supplier: "AgroSupplies",[39m
+[31m    notes: "Initial stock",[39m
+[31m    mediaUrls: [[39m
+[31m      "/uploads/1753359673278-cattle feed.jpeg"[39m
+[31m    ],[39m
+[31m    records: {[39m
+[31m      create: {[39m
+[31m        recordType: "NEW",[39m
+[31m        quantity: "100",[39m
+[31m        pricePerUnit: "2.50",[39m
+[31m        totalCost: "250.00",[39m
+[31m        date: "2025-01-02",[39m
+[31m        notes: "Initial stock",[39m
+[31m        mediaUrls: [[39m
+[31m          "/uploads/1753359673278-cattle feed.jpeg"[39m
+[31m        ],[39m
+[31m        recordedById: "cmcnjxm6s0000t1p8rcay1eoq"[39m
+[31m      }[39m
+[31m    }[39m
+[31m  },[39m
+[31m  include: {[39m
+[31m    records: {[39m
+[31m      orderBy: {[39m
+[31m        createdAt: "desc"[39m
+[31m      },[39m
+[31m      take: 1[39m
+[31m    }[39m
+[31m  }[39m
+[31m}[39m
+
+[31mArgument `currentQuantity`: Invalid value provided. Expected Float, provided String. [39m
+[31mInvalid `prisma.inventory.create()` invocation:[39m
+
+[31m{[39m
+[31m  data: {[39m
+[31m    type: "FEED",[39m
+[31m    name: "Premium Cattle Feed",[39m
+[31m    currentQuantity: "100",[39m
+[31m                     ~~~~~[39m
+[31m    purchasePrice: "2.50",[39m
+[31m    reorderPoint: "20",[39m
+[31m    supplier: "AgroSupplies",[39m
+[31m    notes: "Initial stock",[39m
+[31m    mediaUrls: [[39m
+[31m      "/uploads/1753359673278-cattle feed.jpeg"[39m
+[31m    ],[39m
+[31m    records: {[39m
+[31m      create: {[39m
+[31m        recordType: "NEW",[39m
+[31m        quantity: "100",[39m
+[31m        pricePerUnit: "2.50",[39m
+[31m        totalCost: "250.00",[39m
+[31m        date: "2025-01-02",[39m
+[31m        notes: "Initial stock",[39m
+[31m        mediaUrls: [[39m
+[31m          "/uploads/1753359673278-cattle feed.jpeg"[39m
+[31m        ],[39m
+[31m        recordedById: "cmcnjxm6s0000t1p8rcay1eoq"[39m
+[31m      }[39m
+[31m    }[39m
+[31m  },[39m
+[31m  include: {[39m
+[31m    records: {[39m
+[31m      orderBy: {[39m
+[31m        createdAt: "desc"[39m
+[31m      },[39m
+[31m      take: 1[39m
+[31m    }[39m
+[31m  }[39m
+[31m}[39m
+
+[31mArgument `currentQuantity`: Invalid value provided. Expected Float, provided String.[39m
+2025-07-24 13:22:36 [31merror[39m [31mDatabase validation error: [39m
+[31mInvalid `prisma.inventory.create()` invocation:[39m
+
+[31m{[39m
+[31m  data: {[39m
+[31m    type: "FEED",[39m
+[31m    name: "Premium Cattle Feed",[39m
+[31m    currentQuantity: 100,[39m
+[31m    purchasePrice: 2.5,[39m
+[31m    reorderPoint: 20,[39m
+[31m    supplier: "AgroSupplies",[39m
+[31m    notes: "Initial stock",[39m
+[31m    mediaUrls: [[39m
+[31m      "/uploads/1753359756291-cattle feed.jpeg"[39m
+[31m    ],[39m
+[31m    records: {[39m
+[31m      create: {[39m
+[31m        recordType: "NEW",[39m
+[31m        quantity: 100,[39m
+[31m        pricePerUnit: 2.5,[39m
+[31m        totalCost: 250,[39m
+[31m        date: new Date("Invalid Date"),[39m
+[31m              ~~~~~~~~~~~~~~~~~~~~~~~~[39m
+[31m        notes: "Initial stock",[39m
+[31m        mediaUrls: [[39m
+[31m          "/uploads/1753359756291-cattle feed.jpeg"[39m
+[31m        ],[39m
+[31m        recordedById: "cmcnjxm6s0000t1p8rcay1eoq"[39m
+[31m      }[39m
+[31m    }[39m
+[31m  },[39m
+[31m  include: {[39m
+[31m    records: {[39m
+[31m      orderBy: {[39m
+[31m        createdAt: "desc"[39m
+[31m      },[39m
+[31m      take: 1[39m
+[31m    }[39m
+[31m  }[39m
+[31m}[39m
+
+[31mInvalid value for argument `date`: Provided Date object is invalid. Expected Date. [39m
+[31mInvalid `prisma.inventory.create()` invocation:[39m
+
+[31m{[39m
+[31m  data: {[39m
+[31m    type: "FEED",[39m
+[31m    name: "Premium Cattle Feed",[39m
+[31m    currentQuantity: 100,[39m
+[31m    purchasePrice: 2.5,[39m
+[31m    reorderPoint: 20,[39m
+[31m    supplier: "AgroSupplies",[39m
+[31m    notes: "Initial stock",[39m
+[31m    mediaUrls: [[39m
+[31m      "/uploads/1753359756291-cattle feed.jpeg"[39m
+[31m    ],[39m
+[31m    records: {[39m
+[31m      create: {[39m
+[31m        recordType: "NEW",[39m
+[31m        quantity: 100,[39m
+[31m        pricePerUnit: 2.5,[39m
+[31m        totalCost: 250,[39m
+[31m        date: new Date("Invalid Date"),[39m
+[31m              ~~~~~~~~~~~~~~~~~~~~~~~~[39m
+[31m        notes: "Initial stock",[39m
+[31m        mediaUrls: [[39m
+[31m          "/uploads/1753359756291-cattle feed.jpeg"[39m
+[31m        ],[39m
+[31m        recordedById: "cmcnjxm6s0000t1p8rcay1eoq"[39m
+[31m      }[39m
+[31m    }[39m
+[31m  },[39m
+[31m  include: {[39m
+[31m    records: {[39m
+[31m      orderBy: {[39m
+[31m        createdAt: "desc"[39m
+[31m      },[39m
+[31m      take: 1[39m
+[31m    }[39m
+[31m  }[39m
+[31m}[39m
+
+[31mInvalid value for argument `date`: Provided Date object is invalid. Expected Date.[39m
+2025-07-24 13:25:56 [31merror[39m [31mDatabase validation error: [39m
+[31mInvalid `prisma.inventory.create()` invocation:[39m
+
+[31m{[39m
+[31m  data: {[39m
+[31m    type: "FEED",[39m
+[31m    name: "Premium Cattle Feed",[39m
+[31m    currentQuantity: 100,[39m
+[31m    purchasePrice: 2.5,[39m
+[31m    reorderPoint: 20,[39m
+[31m    supplier: "AgroSupplies",[39m
+[31m    notes: "Initial stock",[39m
+[31m    mediaUrls: [[39m
+[31m      "/uploads/1753359956020-cattle feed.jpeg"[39m
+[31m    ],[39m
+[31m    records: {[39m
+[31m      create: {[39m
+[31m        recordType: "NEW",[39m
+[31m        quantity: 100,[39m
+[31m        pricePerUnit: 2.5,[39m
+[31m        totalCost: 250,[39m
+[31m        date: "2025-01-02",[39m
+[31m              ~~~~~~~~~~~~[39m
+[31m        notes: "Initial stock",[39m
+[31m        mediaUrls: [[39m
+[31m          "/uploads/1753359956020-cattle feed.jpeg"[39m
+[31m        ],[39m
+[31m        recordedById: "cmcnjxm6s0000t1p8rcay1eoq"[39m
+[31m      }[39m
+[31m    }[39m
+[31m  },[39m
+[31m  include: {[39m
+[31m    records: {[39m
+[31m      orderBy: {[39m
+[31m        createdAt: "desc"[39m
+[31m      },[39m
+[31m      take: 1[39m
+[31m    }[39m
+[31m  }[39m
+[31m}[39m
+
+[31mInvalid value for argument `date`: premature end of input. Expected ISO-8601 DateTime. [39m
+[31mInvalid `prisma.inventory.create()` invocation:[39m
+
+[31m{[39m
+[31m  data: {[39m
+[31m    type: "FEED",[39m
+[31m    name: "Premium Cattle Feed",[39m
+[31m    currentQuantity: 100,[39m
+[31m    purchasePrice: 2.5,[39m
+[31m    reorderPoint: 20,[39m
+[31m    supplier: "AgroSupplies",[39m
+[31m    notes: "Initial stock",[39m
+[31m    mediaUrls: [[39m
+[31m      "/uploads/1753359956020-cattle feed.jpeg"[39m
+[31m    ],[39m
+[31m    records: {[39m
+[31m      create: {[39m
+[31m        recordType: "NEW",[39m
+[31m        quantity: 100,[39m
+[31m        pricePerUnit: 2.5,[39m
+[31m        totalCost: 250,[39m
+[31m        date: "2025-01-02",[39m
+[31m              ~~~~~~~~~~~~[39m
+[31m        notes: "Initial stock",[39m
+[31m        mediaUrls: [[39m
+[31m          "/uploads/1753359956020-cattle feed.jpeg"[39m
+[31m        ],[39m
+[31m        recordedById: "cmcnjxm6s0000t1p8rcay1eoq"[39m
+[31m      }[39m
+[31m    }[39m
+[31m  },[39m
+[31m  include: {[39m
+[31m    records: {[39m
+[31m      orderBy: {[39m
+[31m        createdAt: "desc"[39m
+[31m      },[39m
+[31m      take: 1[39m
+[31m    }[39m
+[31m  }[39m
+[31m}[39m
+
+[31mInvalid value for argument `date`: premature end of input. Expected ISO-8601 DateTime.[39m
+2025-07-24 13:27:04 [31merror[39m [31mDatabase validation error: [39m
+[31mInvalid `prisma.inventory.update()` invocation:[39m
+
+[31m{[39m
+[31m  where: {[39m
+[31m    id: undefined[39m
+[31m  },[39m
+[31m  data: {[39m
+[31m    currentQuantity: {[39m
+[31m      increment: NaN[39m
+[31m    },[39m
+[31m    reorderPoint: 20,[39m
+[31m    records: {[39m
+[31m      create: {[39m
+[31m        recordType: "ITEM",[39m
+[31m        quantity: NaN,[39m
+[31m        pricePerUnit: 2.5,[39m
+[31m        totalCost: 250,[39m
+[31m        date: new Date("Invalid Date"),[39m
+[31m              ~~~~~~~~~~~~~~~~~~~~~~~~[39m
+[31m        notes: "Initial stock",[39m
+[31m        mediaUrls: [[39m
+[31m          "/uploads/1753360021200-cattle feed.jpeg"[39m
+[31m        ],[39m
+[31m        recordedById: "cmcnjxm6s0000t1p8rcay1eoq"[39m
+[31m      }[39m
+[31m    }[39m
+[31m  },[39m
+[31m  include: {[39m
+[31m    records: {[39m
+[31m      orderBy: {[39m
+[31m        createdAt: "desc"[39m
+[31m      },[39m
+[31m      take: 1[39m
+[31m    }[39m
+[31m  }[39m
+[31m}[39m
+
+[31mInvalid value for argument `date`: Provided Date object is invalid. Expected Date. [39m
+[31mInvalid `prisma.inventory.update()` invocation:[39m
+
+[31m{[39m
+[31m  where: {[39m
+[31m    id: undefined[39m
+[31m  },[39m
+[31m  data: {[39m
+[31m    currentQuantity: {[39m
+[31m      increment: NaN[39m
+[31m    },[39m
+[31m    reorderPoint: 20,[39m
+[31m    records: {[39m
+[31m      create: {[39m
+[31m        recordType: "ITEM",[39m
+[31m        quantity: NaN,[39m
+[31m        pricePerUnit: 2.5,[39m
+[31m        totalCost: 250,[39m
+[31m        date: new Date("Invalid Date"),[39m
+[31m              ~~~~~~~~~~~~~~~~~~~~~~~~[39m
+[31m        notes: "Initial stock",[39m
+[31m        mediaUrls: [[39m
+[31m          "/uploads/1753360021200-cattle feed.jpeg"[39m
+[31m        ],[39m
+[31m        recordedById: "cmcnjxm6s0000t1p8rcay1eoq"[39m
+[31m      }[39m
+[31m    }[39m
+[31m  },[39m
+[31m  include: {[39m
+[31m    records: {[39m
+[31m      orderBy: {[39m
+[31m        createdAt: "desc"[39m
+[31m      },[39m
+[31m      take: 1[39m
+[31m    }[39m
+[31m  }[39m
+[31m}[39m
+
+[31mInvalid value for argument `date`: Provided Date object is invalid. Expected Date.[39m
+2025-07-24 13:32:01 [31merror[39m [31mDatabase validation error: [39m
+[31mInvalid `prisma.inventory.update()` invocation:[39m
+
+[31m{[39m
+[31m  where: {[39m
+[31m    id: undefined[39m
+[31m  },[39m
+[31m  data: {[39m
+[31m    currentQuantity: {[39m
+[31m      increment: NaN[39m
+[31m    },[39m
+[31m    reorderPoint: 20,[39m
+[31m    records: {[39m
+[31m      create: {[39m
+[31m        recordType: "ITEM",[39m
+[31m        quantity: NaN,[39m
+[31m        pricePerUnit: 45.5,[39m
+[31m        totalCost: 650,[39m
+[31m        date: new Date("Invalid Date"),[39m
+[31m              ~~~~~~~~~~~~~~~~~~~~~~~~[39m
+[31m        notes: "Initial stock",[39m
+[31m        mediaUrls: [[39m
+[31m          "/uploads/1753360319758-cattle feed.jpeg"[39m
+[31m        ],[39m
+[31m        recordedById: "cmcnjxm6s0000t1p8rcay1eoq"[39m
+[31m      }[39m
+[31m    }[39m
+[31m  },[39m
+[31m  include: {[39m
+[31m    records: {[39m
+[31m      orderBy: {[39m
+[31m        createdAt: "desc"[39m
+[31m      },[39m
+[31m      take: 1[39m
+[31m    }[39m
+[31m  }[39m
+[31m}[39m
+
+[31mInvalid value for argument `date`: Provided Date object is invalid. Expected Date. [39m
+[31mInvalid `prisma.inventory.update()` invocation:[39m
+
+[31m{[39m
+[31m  where: {[39m
+[31m    id: undefined[39m
+[31m  },[39m
+[31m  data: {[39m
+[31m    currentQuantity: {[39m
+[31m      increment: NaN[39m
+[31m    },[39m
+[31m    reorderPoint: 20,[39m
+[31m    records: {[39m
+[31m      create: {[39m
+[31m        recordType: "ITEM",[39m
+[31m        quantity: NaN,[39m
+[31m        pricePerUnit: 45.5,[39m
+[31m        totalCost: 650,[39m
+[31m        date: new Date("Invalid Date"),[39m
+[31m              ~~~~~~~~~~~~~~~~~~~~~~~~[39m
+[31m        notes: "Initial stock",[39m
+[31m        mediaUrls: [[39m
+[31m          "/uploads/1753360319758-cattle feed.jpeg"[39m
+[31m        ],[39m
+[31m        recordedById: "cmcnjxm6s0000t1p8rcay1eoq"[39m
+[31m      }[39m
+[31m    }[39m
+[31m  },[39m
+[31m  include: {[39m
+[31m    records: {[39m
+[31m      orderBy: {[39m
+[31m        createdAt: "desc"[39m
+[31m      },[39m
+[31m      take: 1[39m
+[31m    }[39m
+[31m  }[39m
+[31m}[39m
+
+[31mInvalid value for argument `date`: Provided Date object is invalid. Expected Date.[39m
+2025-07-24 14:30:02 [31merror[39m [31mInternal Server Error Unexpected field[39m
+2025-07-24 14:30:09 [31merror[39m [31mInternal Server Error Unexpected field[39m
+2025-07-24 14:30:48 [31merror[39m [31mInternal Server Error Unexpected field[39m
+2025-07-24 14:30:50 [31merror[39m [31mInternal Server Error Unexpected field[39m
+2025-07-24 14:31:38 [31merror[39m [31mInternal Server Error Unexpected field[39m
+2025-07-24 14:46:24 [31merror[39m [31mDatabase validation error: [39m
+[31mInvalid `prisma.inventory.create()` invocation:[39m
+
+[31m{[39m
+[31m  data: {[39m
+[31m    type: "MEDICINE",[39m
+[31m    name: "Premium Cattle Feed",[39m
+[31m    currentQuantity: "300",[39m
+[31m                     ~~~~~[39m
+[31m    purchasePrice: "45.50",[39m
+[31m    reorderPoint: "20",[39m
+[31m    supplier: "AgroSupplies LTD",[39m
+[31m    notes: "Initial stock",[39m
+[31m    mediaUrls: [[39m
+[31m      "/uploads/1753364784821-cattle feed.jpeg"[39m
+[31m    ],[39m
+[31m    records: {[39m
+[31m      create: {[39m
+[31m        recordType: "NEW",[39m
+[31m        quantity: "300",[39m
+[31m        pricePerUnit: "45.50",[39m
+[31m        totalCost: 13650,[39m
+[31m        date: new Date("2025-06-04T00:00:00.000Z"),[39m
+[31m        notes: "Initial stock",[39m
+[31m        mediaUrls: [[39m
+[31m          "/uploads/1753364784821-cattle feed.jpeg"[39m
+[31m        ],[39m
+[31m        recordedById: "cmcnjxm6s0000t1p8rcay1eoq"[39m
+[31m      }[39m
+[31m    }[39m
+[31m  },[39m
+[31m  include: {[39m
+[31m    records: true[39m
+[31m  }[39m
+[31m}[39m
+
+[31mArgument `currentQuantity`: Invalid value provided. Expected Float, provided String. [39m
+[31mInvalid `prisma.inventory.create()` invocation:[39m
+
+[31m{[39m
+[31m  data: {[39m
+[31m    type: "MEDICINE",[39m
+[31m    name: "Premium Cattle Feed",[39m
+[31m    currentQuantity: "300",[39m
+[31m                     ~~~~~[39m
+[31m    purchasePrice: "45.50",[39m
+[31m    reorderPoint: "20",[39m
+[31m    supplier: "AgroSupplies LTD",[39m
+[31m    notes: "Initial stock",[39m
+[31m    mediaUrls: [[39m
+[31m      "/uploads/1753364784821-cattle feed.jpeg"[39m
+[31m    ],[39m
+[31m    records: {[39m
+[31m      create: {[39m
+[31m        recordType: "NEW",[39m
+[31m        quantity: "300",[39m
+[31m        pricePerUnit: "45.50",[39m
+[31m        totalCost: 13650,[39m
+[31m        date: new Date("2025-06-04T00:00:00.000Z"),[39m
+[31m        notes: "Initial stock",[39m
+[31m        mediaUrls: [[39m
+[31m          "/uploads/1753364784821-cattle feed.jpeg"[39m
+[31m        ],[39m
+[31m        recordedById: "cmcnjxm6s0000t1p8rcay1eoq"[39m
+[31m      }[39m
+[31m    }[39m
+[31m  },[39m
+[31m  include: {[39m
+[31m    records: true[39m
+[31m  }[39m
+[31m}[39m
+
+[31mArgument `currentQuantity`: Invalid value provided. Expected Float, provided String.[39m
+2025-07-24 14:46:55 [31merror[39m [31mDatabase validation error: [39m
+[31mInvalid `prisma.inventory.create()` invocation:[39m
+
+[31m{[39m
+[31m  data: {[39m
+[31m    type: "MEDICINE",[39m
+[31m    name: "Premium Cattle Feed",[39m
+[31m    currentQuantity: "300",[39m
+[31m                     ~~~~~[39m
+[31m    purchasePrice: "45.50",[39m
+[31m    reorderPoint: "20",[39m
+[31m    supplier: "AgroSupplies LTD",[39m
+[31m    notes: "Initial stock",[39m
+[31m    mediaUrls: [[39m
+[31m      "/uploads/1753364815895-cattle feed.jpeg"[39m
+[31m    ],[39m
+[31m    records: {[39m
+[31m      create: {[39m
+[31m        recordType: "NEW",[39m
+[31m        quantity: "300",[39m
+[31m        pricePerUnit: "45.50",[39m
+[31m        totalCost: 13650,[39m
+[31m        date: new Date("2025-06-04T00:00:00.000Z"),[39m
+[31m        notes: "Initial stock",[39m
+[31m        mediaUrls: [[39m
+[31m          "/uploads/1753364815895-cattle feed.jpeg"[39m
+[31m        ],[39m
+[31m        recordedById: "cmcnjxm6s0000t1p8rcay1eoq"[39m
+[31m      }[39m
+[31m    }[39m
+[31m  },[39m
+[31m  include: {[39m
+[31m    records: true[39m
+[31m  }[39m
+[31m}[39m
+
+[31mArgument `currentQuantity`: Invalid value provided. Expected Float, provided String. [39m
+[31mInvalid `prisma.inventory.create()` invocation:[39m
+
+[31m{[39m
+[31m  data: {[39m
+[31m    type: "MEDICINE",[39m
+[31m    name: "Premium Cattle Feed",[39m
+[31m    currentQuantity: "300",[39m
+[31m                     ~~~~~[39m
+[31m    purchasePrice: "45.50",[39m
+[31m    reorderPoint: "20",[39m
+[31m    supplier: "AgroSupplies LTD",[39m
+[31m    notes: "Initial stock",[39m
+[31m    mediaUrls: [[39m
+[31m      "/uploads/1753364815895-cattle feed.jpeg"[39m
+[31m    ],[39m
+[31m    records: {[39m
+[31m      create: {[39m
+[31m        recordType: "NEW",[39m
+[31m        quantity: "300",[39m
+[31m        pricePerUnit: "45.50",[39m
+[31m        totalCost: 13650,[39m
+[31m        date: new Date("2025-06-04T00:00:00.000Z"),[39m
+[31m        notes: "Initial stock",[39m
+[31m        mediaUrls: [[39m
+[31m          "/uploads/1753364815895-cattle feed.jpeg"[39m
+[31m        ],[39m
+[31m        recordedById: "cmcnjxm6s0000t1p8rcay1eoq"[39m
+[31m      }[39m
+[31m    }[39m
+[31m  },[39m
+[31m  include: {[39m
+[31m    records: true[39m
+[31m  }[39m
+[31m}[39m
+
+[31mArgument `currentQuantity`: Invalid value provided. Expected Float, provided String.[39m
+2025-07-24 14:47:35 [31merror[39m [31mDatabase validation error: [39m
+[31mInvalid `prisma.inventory.create()` invocation:[39m
+
+[31m{[39m
+[31m  data: {[39m
+[31m    type: "MEDICINE",[39m
+[31m    name: "Premium Cattle Feed",[39m
+[31m    currentQuantity: "300",[39m
+[31m                     ~~~~~[39m
+[31m    purchasePrice: "45.50",[39m
+[31m    reorderPoint: "20",[39m
+[31m    supplier: "AgroSupplies LTD",[39m
+[31m    notes: "Initial stock",[39m
+[31m    mediaUrls: [[39m
+[31m      "/uploads/1753364855275-cattle feed.jpeg"[39m
+[31m    ],[39m
+[31m    records: {[39m
+[31m      create: {[39m
+[31m        recordType: "NEW",[39m
+[31m        quantity: "300",[39m
+[31m        pricePerUnit: "45.50",[39m
+[31m        totalCost: 13650,[39m
+[31m        date: new Date("2025-06-04T00:00:00.000Z"),[39m
+[31m        notes: "Initial stock",[39m
+[31m        mediaUrls: [[39m
+[31m          "/uploads/1753364855275-cattle feed.jpeg"[39m
+[31m        ],[39m
+[31m        recordedById: "cmcnjxm6s0000t1p8rcay1eoq"[39m
+[31m      }[39m
+[31m    }[39m
+[31m  },[39m
+[31m  include: {[39m
+[31m    records: true[39m
+[31m  }[39m
+[31m}[39m
+
+[31mArgument `currentQuantity`: Invalid value provided. Expected Float, provided String. [39m
+[31mInvalid `prisma.inventory.create()` invocation:[39m
+
+[31m{[39m
+[31m  data: {[39m
+[31m    type: "MEDICINE",[39m
+[31m    name: "Premium Cattle Feed",[39m
+[31m    currentQuantity: "300",[39m
+[31m                     ~~~~~[39m
+[31m    purchasePrice: "45.50",[39m
+[31m    reorderPoint: "20",[39m
+[31m    supplier: "AgroSupplies LTD",[39m
+[31m    notes: "Initial stock",[39m
+[31m    mediaUrls: [[39m
+[31m      "/uploads/1753364855275-cattle feed.jpeg"[39m
+[31m    ],[39m
+[31m    records: {[39m
+[31m      create: {[39m
+[31m        recordType: "NEW",[39m
+[31m        quantity: "300",[39m
+[31m        pricePerUnit: "45.50",[39m
+[31m        totalCost: 13650,[39m
+[31m        date: new Date("2025-06-04T00:00:00.000Z"),[39m
+[31m        notes: "Initial stock",[39m
+[31m        mediaUrls: [[39m
+[31m          "/uploads/1753364855275-cattle feed.jpeg"[39m
+[31m        ],[39m
+[31m        recordedById: "cmcnjxm6s0000t1p8rcay1eoq"[39m
+[31m      }[39m
+[31m    }[39m
+[31m  },[39m
+[31m  include: {[39m
+[31m    records: true[39m
+[31m  }[39m
+[31m}[39m
+
+[31mArgument `currentQuantity`: Invalid value provided. Expected Float, provided String.[39m
+2025-07-24 14:49:31 [31merror[39m [31mDatabase validation error: [39m
+[31mInvalid `prisma.inventory.create()` invocation:[39m
+
+[31m{[39m
+[31m  data: {[39m
+[31m    type: "MEDICINE",[39m
+[31m    name: "Premium Cattle Feed",[39m
+[31m    currentQuantity: "300",[39m
+[31m                     ~~~~~[39m
+[31m    purchasePrice: "45.50",[39m
+[31m    reorderPoint: 20,[39m
+[31m    supplier: "AgroSupplies LTD",[39m
+[31m    notes: "Initial stock",[39m
+[31m    mediaUrls: [[39m
+[31m      "/uploads/1753364971674-cattle feed.jpeg"[39m
+[31m    ],[39m
+[31m    records: {[39m
+[31m      create: {[39m
+[31m        recordType: "NEW",[39m
+[31m        quantity: "300",[39m
+[31m        pricePerUnit: "45.50",[39m
+[31m        totalCost: 13650,[39m
+[31m        date: new Date("2025-06-04T00:00:00.000Z"),[39m
+[31m        notes: "Initial stock",[39m
+[31m        mediaUrls: [[39m
+[31m          "/uploads/1753364971674-cattle feed.jpeg"[39m
+[31m        ],[39m
+[31m        recordedById: "cmcnjxm6s0000t1p8rcay1eoq"[39m
+[31m      }[39m
+[31m    }[39m
+[31m  },[39m
+[31m  include: {[39m
+[31m    records: true[39m
+[31m  }[39m
+[31m}[39m
+
+[31mArgument `currentQuantity`: Invalid value provided. Expected Float, provided String. [39m
+[31mInvalid `prisma.inventory.create()` invocation:[39m
+
+[31m{[39m
+[31m  data: {[39m
+[31m    type: "MEDICINE",[39m
+[31m    name: "Premium Cattle Feed",[39m
+[31m    currentQuantity: "300",[39m
+[31m                     ~~~~~[39m
+[31m    purchasePrice: "45.50",[39m
+[31m    reorderPoint: 20,[39m
+[31m    supplier: "AgroSupplies LTD",[39m
+[31m    notes: "Initial stock",[39m
+[31m    mediaUrls: [[39m
+[31m      "/uploads/1753364971674-cattle feed.jpeg"[39m
+[31m    ],[39m
+[31m    records: {[39m
+[31m      create: {[39m
+[31m        recordType: "NEW",[39m
+[31m        quantity: "300",[39m
+[31m        pricePerUnit: "45.50",[39m
+[31m        totalCost: 13650,[39m
+[31m        date: new Date("2025-06-04T00:00:00.000Z"),[39m
+[31m        notes: "Initial stock",[39m
+[31m        mediaUrls: [[39m
+[31m          "/uploads/1753364971674-cattle feed.jpeg"[39m
+[31m        ],[39m
+[31m        recordedById: "cmcnjxm6s0000t1p8rcay1eoq"[39m
+[31m      }[39m
+[31m    }[39m
+[31m  },[39m
+[31m  include: {[39m
+[31m    records: true[39m
+[31m  }[39m
+[31m}[39m
+
+[31mArgument `currentQuantity`: Invalid value provided. Expected Float, provided String.[39m
+2025-07-24 14:49:41 [31merror[39m [31mDatabase validation error: [39m
+[31mInvalid `prisma.inventory.create()` invocation:[39m
+
+[31m{[39m
+[31m  data: {[39m
+[31m    type: "MEDICINE",[39m
+[31m    name: "Premium Cattle Feed",[39m
+[31m    currentQuantity: "300",[39m
+[31m                     ~~~~~[39m
+[31m    purchasePrice: "45.50",[39m
+[31m    reorderPoint: 20,[39m
+[31m    supplier: "AgroSupplies LTD",[39m
+[31m    notes: "Initial stock",[39m
+[31m    mediaUrls: [[39m
+[31m      "/uploads/1753364981178-cattle feed.jpeg"[39m
+[31m    ],[39m
+[31m    records: {[39m
+[31m      create: {[39m
+[31m        recordType: "NEW",[39m
+[31m        quantity: "300",[39m
+[31m        pricePerUnit: "45.50",[39m
+[31m        totalCost: 13650,[39m
+[31m        date: new Date("2025-06-04T00:00:00.000Z"),[39m
+[31m        notes: "Initial stock",[39m
+[31m        mediaUrls: [[39m
+[31m          "/uploads/1753364981178-cattle feed.jpeg"[39m
+[31m        ],[39m
+[31m        recordedById: "cmcnjxm6s0000t1p8rcay1eoq"[39m
+[31m      }[39m
+[31m    }[39m
+[31m  },[39m
+[31m  include: {[39m
+[31m    records: true[39m
+[31m  }[39m
+[31m}[39m
+
+[31mArgument `currentQuantity`: Invalid value provided. Expected Float, provided String. [39m
+[31mInvalid `prisma.inventory.create()` invocation:[39m
+
+[31m{[39m
+[31m  data: {[39m
+[31m    type: "MEDICINE",[39m
+[31m    name: "Premium Cattle Feed",[39m
+[31m    currentQuantity: "300",[39m
+[31m                     ~~~~~[39m
+[31m    purchasePrice: "45.50",[39m
+[31m    reorderPoint: 20,[39m
+[31m    supplier: "AgroSupplies LTD",[39m
+[31m    notes: "Initial stock",[39m
+[31m    mediaUrls: [[39m
+[31m      "/uploads/1753364981178-cattle feed.jpeg"[39m
+[31m    ],[39m
+[31m    records: {[39m
+[31m      create: {[39m
+[31m        recordType: "NEW",[39m
+[31m        quantity: "300",[39m
+[31m        pricePerUnit: "45.50",[39m
+[31m        totalCost: 13650,[39m
+[31m        date: new Date("2025-06-04T00:00:00.000Z"),[39m
+[31m        notes: "Initial stock",[39m
+[31m        mediaUrls: [[39m
+[31m          "/uploads/1753364981178-cattle feed.jpeg"[39m
+[31m        ],[39m
+[31m        recordedById: "cmcnjxm6s0000t1p8rcay1eoq"[39m
+[31m      }[39m
+[31m    }[39m
+[31m  },[39m
+[31m  include: {[39m
+[31m    records: true[39m
+[31m  }[39m
+[31m}[39m
+
+[31mArgument `currentQuantity`: Invalid value provided. Expected Float, provided String.[39m
+2025-07-24 14:49:47 [31merror[39m [31mDatabase validation error: [39m
+[31mInvalid `prisma.inventory.create()` invocation:[39m
+
+[31m{[39m
+[31m  data: {[39m
+[31m    type: "MEDICINE",[39m
+[31m    name: "Premium Cattle Feed",[39m
+[31m    currentQuantity: "300",[39m
+[31m                     ~~~~~[39m
+[31m    purchasePrice: "45.50",[39m
+[31m    reorderPoint: 20,[39m
+[31m    supplier: "AgroSupplies LTD",[39m
+[31m    notes: "Initial stock",[39m
+[31m    mediaUrls: [[39m
+[31m      "/uploads/1753364987036-cattle feed.jpeg"[39m
+[31m    ],[39m
+[31m    records: {[39m
+[31m      create: {[39m
+[31m        recordType: "NEW",[39m
+[31m        quantity: "300",[39m
+[31m        pricePerUnit: "45.50",[39m
+[31m        totalCost: 13650,[39m
+[31m        date: new Date("2025-06-04T00:00:00.000Z"),[39m
+[31m        notes: "Initial stock",[39m
+[31m        mediaUrls: [[39m
+[31m          "/uploads/1753364987036-cattle feed.jpeg"[39m
+[31m        ],[39m
+[31m        recordedById: "cmcnjxm6s0000t1p8rcay1eoq"[39m
+[31m      }[39m
+[31m    }[39m
+[31m  },[39m
+[31m  include: {[39m
+[31m    records: true[39m
+[31m  }[39m
+[31m}[39m
+
+[31mArgument `currentQuantity`: Invalid value provided. Expected Float, provided String. [39m
+[31mInvalid `prisma.inventory.create()` invocation:[39m
+
+[31m{[39m
+[31m  data: {[39m
+[31m    type: "MEDICINE",[39m
+[31m    name: "Premium Cattle Feed",[39m
+[31m    currentQuantity: "300",[39m
+[31m                     ~~~~~[39m
+[31m    purchasePrice: "45.50",[39m
+[31m    reorderPoint: 20,[39m
+[31m    supplier: "AgroSupplies LTD",[39m
+[31m    notes: "Initial stock",[39m
+[31m    mediaUrls: [[39m
+[31m      "/uploads/1753364987036-cattle feed.jpeg"[39m
+[31m    ],[39m
+[31m    records: {[39m
+[31m      create: {[39m
+[31m        recordType: "NEW",[39m
+[31m        quantity: "300",[39m
+[31m        pricePerUnit: "45.50",[39m
+[31m        totalCost: 13650,[39m
+[31m        date: new Date("2025-06-04T00:00:00.000Z"),[39m
+[31m        notes: "Initial stock",[39m
+[31m        mediaUrls: [[39m
+[31m          "/uploads/1753364987036-cattle feed.jpeg"[39m
+[31m        ],[39m
+[31m        recordedById: "cmcnjxm6s0000t1p8rcay1eoq"[39m
+[31m      }[39m
+[31m    }[39m
+[31m  },[39m
+[31m  include: {[39m
+[31m    records: true[39m
+[31m  }[39m
+[31m}[39m
+
+[31mArgument `currentQuantity`: Invalid value provided. Expected Float, provided String.[39m
+2025-07-24 14:49:49 [31merror[39m [31mDatabase validation error: [39m
+[31mInvalid `prisma.inventory.create()` invocation:[39m
+
+[31m{[39m
+[31m  data: {[39m
+[31m    type: "MEDICINE",[39m
+[31m    name: "Premium Cattle Feed",[39m
+[31m    currentQuantity: "300",[39m
+[31m                     ~~~~~[39m
+[31m    purchasePrice: "45.50",[39m
+[31m    reorderPoint: 20,[39m
+[31m    supplier: "AgroSupplies LTD",[39m
+[31m    notes: "Initial stock",[39m
+[31m    mediaUrls: [[39m
+[31m      "/uploads/1753364989069-cattle feed.jpeg"[39m
+[31m    ],[39m
+[31m    records: {[39m
+[31m      create: {[39m
+[31m        recordType: "NEW",[39m
+[31m        quantity: "300",[39m
+[31m        pricePerUnit: "45.50",[39m
+[31m        totalCost: 13650,[39m
+[31m        date: new Date("2025-06-04T00:00:00.000Z"),[39m
+[31m        notes: "Initial stock",[39m
+[31m        mediaUrls: [[39m
+[31m          "/uploads/1753364989069-cattle feed.jpeg"[39m
+[31m        ],[39m
+[31m        recordedById: "cmcnjxm6s0000t1p8rcay1eoq"[39m
+[31m      }[39m
+[31m    }[39m
+[31m  },[39m
+[31m  include: {[39m
+[31m    records: true[39m
+[31m  }[39m
+[31m}[39m
+
+[31mArgument `currentQuantity`: Invalid value provided. Expected Float, provided String. [39m
+[31mInvalid `prisma.inventory.create()` invocation:[39m
+
+[31m{[39m
+[31m  data: {[39m
+[31m    type: "MEDICINE",[39m
+[31m    name: "Premium Cattle Feed",[39m
+[31m    currentQuantity: "300",[39m
+[31m                     ~~~~~[39m
+[31m    purchasePrice: "45.50",[39m
+[31m    reorderPoint: 20,[39m
+[31m    supplier: "AgroSupplies LTD",[39m
+[31m    notes: "Initial stock",[39m
+[31m    mediaUrls: [[39m
+[31m      "/uploads/1753364989069-cattle feed.jpeg"[39m
+[31m    ],[39m
+[31m    records: {[39m
+[31m      create: {[39m
+[31m        recordType: "NEW",[39m
+[31m        quantity: "300",[39m
+[31m        pricePerUnit: "45.50",[39m
+[31m        totalCost: 13650,[39m
+[31m        date: new Date("2025-06-04T00:00:00.000Z"),[39m
+[31m        notes: "Initial stock",[39m
+[31m        mediaUrls: [[39m
+[31m          "/uploads/1753364989069-cattle feed.jpeg"[39m
+[31m        ],[39m
+[31m        recordedById: "cmcnjxm6s0000t1p8rcay1eoq"[39m
+[31m      }[39m
+[31m    }[39m
+[31m  },[39m
+[31m  include: {[39m
+[31m    records: true[39m
+[31m  }[39m
+[31m}[39m
+
+[31mArgument `currentQuantity`: Invalid value provided. Expected Float, provided String.[39m
+2025-07-24 14:49:50 [31merror[39m [31mDatabase validation error: [39m
+[31mInvalid `prisma.inventory.create()` invocation:[39m
+
+[31m{[39m
+[31m  data: {[39m
+[31m    type: "MEDICINE",[39m
+[31m    name: "Premium Cattle Feed",[39m
+[31m    currentQuantity: "300",[39m
+[31m                     ~~~~~[39m
+[31m    purchasePrice: "45.50",[39m
+[31m    reorderPoint: 20,[39m
+[31m    supplier: "AgroSupplies LTD",[39m
+[31m    notes: "Initial stock",[39m
+[31m    mediaUrls: [[39m
+[31m      "/uploads/1753364990475-cattle feed.jpeg"[39m
+[31m    ],[39m
+[31m    records: {[39m
+[31m      create: {[39m
+[31m        recordType: "NEW",[39m
+[31m        quantity: "300",[39m
+[31m        pricePerUnit: "45.50",[39m
+[31m        totalCost: 13650,[39m
+[31m        date: new Date("2025-06-04T00:00:00.000Z"),[39m
+[31m        notes: "Initial stock",[39m
+[31m        mediaUrls: [[39m
+[31m          "/uploads/1753364990475-cattle feed.jpeg"[39m
+[31m        ],[39m
+[31m        recordedById: "cmcnjxm6s0000t1p8rcay1eoq"[39m
+[31m      }[39m
+[31m    }[39m
+[31m  },[39m
+[31m  include: {[39m
+[31m    records: true[39m
+[31m  }[39m
+[31m}[39m
+
+[31mArgument `currentQuantity`: Invalid value provided. Expected Float, provided String. [39m
+[31mInvalid `prisma.inventory.create()` invocation:[39m
+
+[31m{[39m
+[31m  data: {[39m
+[31m    type: "MEDICINE",[39m
+[31m    name: "Premium Cattle Feed",[39m
+[31m    currentQuantity: "300",[39m
+[31m                     ~~~~~[39m
+[31m    purchasePrice: "45.50",[39m
+[31m    reorderPoint: 20,[39m
+[31m    supplier: "AgroSupplies LTD",[39m
+[31m    notes: "Initial stock",[39m
+[31m    mediaUrls: [[39m
+[31m      "/uploads/1753364990475-cattle feed.jpeg"[39m
+[31m    ],[39m
+[31m    records: {[39m
+[31m      create: {[39m
+[31m        recordType: "NEW",[39m
+[31m        quantity: "300",[39m
+[31m        pricePerUnit: "45.50",[39m
+[31m        totalCost: 13650,[39m
+[31m        date: new Date("2025-06-04T00:00:00.000Z"),[39m
+[31m        notes: "Initial stock",[39m
+[31m        mediaUrls: [[39m
+[31m          "/uploads/1753364990475-cattle feed.jpeg"[39m
+[31m        ],[39m
+[31m        recordedById: "cmcnjxm6s0000t1p8rcay1eoq"[39m
+[31m      }[39m
+[31m    }[39m
+[31m  },[39m
+[31m  include: {[39m
+[31m    records: true[39m
+[31m  }[39m
+[31m}[39m
+
+[31mArgument `currentQuantity`: Invalid value provided. Expected Float, provided String.[39m
+2025-07-24 14:50:11 [31merror[39m [31mDatabase validation error: [39m
+[31mInvalid `prisma.inventory.create()` invocation:[39m
+
+[31m{[39m
+[31m  data: {[39m
+[31m    type: "MEDICINE",[39m
+[31m    name: "Premium Cattle Feed",[39m
+[31m    currentQuantity: "300",[39m
+[31m                     ~~~~~[39m
+[31m    purchasePrice: "45.50",[39m
+[31m    reorderPoint: "20",[39m
+[31m    supplier: "AgroSupplies LTD",[39m
+[31m    notes: "Initial stock",[39m
+[31m    mediaUrls: [[39m
+[31m      "/uploads/1753365011508-cattle feed.jpeg"[39m
+[31m    ],[39m
+[31m    records: {[39m
+[31m      create: {[39m
+[31m        recordType: "NEW",[39m
+[31m        quantity: "300",[39m
+[31m        pricePerUnit: "45.50",[39m
+[31m        totalCost: 13650,[39m
+[31m        date: new Date("2025-06-04T00:00:00.000Z"),[39m
+[31m        notes: "Initial stock",[39m
+[31m        mediaUrls: [[39m
+[31m          "/uploads/1753365011508-cattle feed.jpeg"[39m
+[31m        ],[39m
+[31m        recordedById: "cmcnjxm6s0000t1p8rcay1eoq"[39m
+[31m      }[39m
+[31m    }[39m
+[31m  },[39m
+[31m  include: {[39m
+[31m    records: true[39m
+[31m  }[39m
+[31m}[39m
+
+[31mArgument `currentQuantity`: Invalid value provided. Expected Float, provided String. [39m
+[31mInvalid `prisma.inventory.create()` invocation:[39m
+
+[31m{[39m
+[31m  data: {[39m
+[31m    type: "MEDICINE",[39m
+[31m    name: "Premium Cattle Feed",[39m
+[31m    currentQuantity: "300",[39m
+[31m                     ~~~~~[39m
+[31m    purchasePrice: "45.50",[39m
+[31m    reorderPoint: "20",[39m
+[31m    supplier: "AgroSupplies LTD",[39m
+[31m    notes: "Initial stock",[39m
+[31m    mediaUrls: [[39m
+[31m      "/uploads/1753365011508-cattle feed.jpeg"[39m
+[31m    ],[39m
+[31m    records: {[39m
+[31m      create: {[39m
+[31m        recordType: "NEW",[39m
+[31m        quantity: "300",[39m
+[31m        pricePerUnit: "45.50",[39m
+[31m        totalCost: 13650,[39m
+[31m        date: new Date("2025-06-04T00:00:00.000Z"),[39m
+[31m        notes: "Initial stock",[39m
+[31m        mediaUrls: [[39m
+[31m          "/uploads/1753365011508-cattle feed.jpeg"[39m
+[31m        ],[39m
+[31m        recordedById: "cmcnjxm6s0000t1p8rcay1eoq"[39m
+[31m      }[39m
+[31m    }[39m
+[31m  },[39m
+[31m  include: {[39m
+[31m    records: true[39m
+[31m  }[39m
+[31m}[39m
+
+[31mArgument `currentQuantity`: Invalid value provided. Expected Float, provided String.[39m
+2025-07-24 14:50:57 [31merror[39m [31mDatabase validation error: [39m
+[31mInvalid `prisma.inventory.create()` invocation:[39m
+
+[31m{[39m
+[31m  data: {[39m
+[31m    type: "MEDICINE",[39m
+[31m    name: "Premium Cattle Feed",[39m
+[31m    currentQuantity: "300",[39m
+[31m                     ~~~~~[39m
+[31m    purchasePrice: "45.50",[39m
+[31m    reorderPoint: "20",[39m
+[31m    supplier: "AgroSupplies LTD",[39m
+[31m    notes: "Initial stock",[39m
+[31m    mediaUrls: [[39m
+[31m      "/uploads/1753365057664-cattle feed.jpeg"[39m
+[31m    ],[39m
+[31m    records: {[39m
+[31m      create: {[39m
+[31m        recordType: "NEW",[39m
+[31m        quantity: "300",[39m
+[31m        pricePerUnit: "45.50",[39m
+[31m        totalCost: 13650,[39m
+[31m        date: new Date("2025-06-04T00:00:00.000Z"),[39m
+[31m        notes: "Initial stock",[39m
+[31m        mediaUrls: [[39m
+[31m          "/uploads/1753365057664-cattle feed.jpeg"[39m
+[31m        ],[39m
+[31m        recordedById: "cmcnjxm6s0000t1p8rcay1eoq"[39m
+[31m      }[39m
+[31m    }[39m
+[31m  },[39m
+[31m  include: {[39m
+[31m    records: true[39m
+[31m  }[39m
+[31m}[39m
+
+[31mArgument `currentQuantity`: Invalid value provided. Expected Float, provided String. [39m
+[31mInvalid `prisma.inventory.create()` invocation:[39m
+
+[31m{[39m
+[31m  data: {[39m
+[31m    type: "MEDICINE",[39m
+[31m    name: "Premium Cattle Feed",[39m
+[31m    currentQuantity: "300",[39m
+[31m                     ~~~~~[39m
+[31m    purchasePrice: "45.50",[39m
+[31m    reorderPoint: "20",[39m
+[31m    supplier: "AgroSupplies LTD",[39m
+[31m    notes: "Initial stock",[39m
+[31m    mediaUrls: [[39m
+[31m      "/uploads/1753365057664-cattle feed.jpeg"[39m
+[31m    ],[39m
+[31m    records: {[39m
+[31m      create: {[39m
+[31m        recordType: "NEW",[39m
+[31m        quantity: "300",[39m
+[31m        pricePerUnit: "45.50",[39m
+[31m        totalCost: 13650,[39m
+[31m        date: new Date("2025-06-04T00:00:00.000Z"),[39m
+[31m        notes: "Initial stock",[39m
+[31m        mediaUrls: [[39m
+[31m          "/uploads/1753365057664-cattle feed.jpeg"[39m
+[31m        ],[39m
+[31m        recordedById: "cmcnjxm6s0000t1p8rcay1eoq"[39m
+[31m      }[39m
+[31m    }[39m
+[31m  },[39m
+[31m  include: {[39m
+[31m    records: true[39m
+[31m  }[39m
+[31m}[39m
+
+[31mArgument `currentQuantity`: Invalid value provided. Expected Float, provided String.[39m
+2025-07-24 14:59:10 [31merror[39m [31mDatabase validation error: [39m
+[31mInvalid `prisma.inventory.update()` invocation:[39m
+
+[31m{[39m
+[31m  where: {[39m
+[31m    id: undefined[39m
+[31m  },[39m
+[31m  data: {[39m
+[31m    currentQuantity: {[39m
+[31m      increment: undefined[39m
+[31m    },[39m
+[31m    ~~~~~~~~~~~~~~~~~~~~~~[39m
+[31m    supplier: "AgroSupplies LTD",[39m
+[31m    records: {[39m
+[31m      create: {[39m
+[31m        recordType: "NEW",[39m
+[31m        quantity: undefined,[39m
+[31m        pricePerUnit: "45.50",[39m
+[31m        totalCost: NaN,[39m
+[31m        date: new Date("2025-06-04T00:00:00.000Z"),[39m
+[31m        notes: "Initial stock",[39m
+[31m        mediaUrls: [[39m
+[31m          "/uploads/1753365542228-cattle feed.jpeg"[39m
+[31m        ],[39m
+[31m        recordedById: "cmcnjxm6s0000t1p8rcay1eoq"[39m
+[31m      }[39m
+[31m    }[39m
+[31m  },[39m
+[31m  include: {[39m
+[31m    records: true[39m
+[31m  }[39m
+[31m}[39m
+
+[31mArgument `currentQuantity`: Invalid value provided. Expected Float, provided Object. [39m
+[31mInvalid `prisma.inventory.update()` invocation:[39m
+
+[31m{[39m
+[31m  where: {[39m
+[31m    id: undefined[39m
+[31m  },[39m
+[31m  data: {[39m
+[31m    currentQuantity: {[39m
+[31m      increment: undefined[39m
+[31m    },[39m
+[31m    ~~~~~~~~~~~~~~~~~~~~~~[39m
+[31m    supplier: "AgroSupplies LTD",[39m
+[31m    records: {[39m
+[31m      create: {[39m
+[31m        recordType: "NEW",[39m
+[31m        quantity: undefined,[39m
+[31m        pricePerUnit: "45.50",[39m
+[31m        totalCost: NaN,[39m
+[31m        date: new Date("2025-06-04T00:00:00.000Z"),[39m
+[31m        notes: "Initial stock",[39m
+[31m        mediaUrls: [[39m
+[31m          "/uploads/1753365542228-cattle feed.jpeg"[39m
+[31m        ],[39m
+[31m        recordedById: "cmcnjxm6s0000t1p8rcay1eoq"[39m
+[31m      }[39m
+[31m    }[39m
+[31m  },[39m
+[31m  include: {[39m
+[31m    records: true[39m
+[31m  }[39m
+[31m}[39m
+
+[31mArgument `currentQuantity`: Invalid value provided. Expected Float, provided Object.[39m
+2025-07-24 15:32:03 [31merror[39m [31mDatabase validation error: [39m
+[31mInvalid `prisma.inventory.update()` invocation:[39m
+
+[31m{[39m
+[31m  where: {[39m
+[31m    id: "MEDICINE"[39m
+[31m  },[39m
+[31m  data: {[39m
+[31m    currentQuantity: {[39m
+[31m      increment: "300"[39m
+[31m                 ~~~~~[39m
+[31m    },[39m
+[31m    supplier: "AgroSupplies LTD",[39m
+[31m    records: {[39m
+[31m      create: {[39m
+[31m        recordType: "ITEM",[39m
+[31m        quantity: "300",[39m
+[31m        pricePerUnit: "45.50",[39m
+[31m        totalCost: 13650,[39m
+[31m        date: new Date("2025-01-04T00:00:00.000Z"),[39m
+[31m        notes: undefined,[39m
+[31m        mediaUrls: [[39m
+[31m          "/uploads/1753367523109-cattle feed.jpeg"[39m
+[31m        ],[39m
+[31m        recordedById: "cmcnjxm6s0000t1p8rcay1eoq"[39m
+[31m      }[39m
+[31m    }[39m
+[31m  },[39m
+[31m  include: {[39m
+[31m    records: true[39m
+[31m  }[39m
+[31m}[39m
+
+[31mArgument `increment`: Invalid value provided. Expected Float, provided String. [39m
+[31mInvalid `prisma.inventory.update()` invocation:[39m
+
+[31m{[39m
+[31m  where: {[39m
+[31m    id: "MEDICINE"[39m
+[31m  },[39m
+[31m  data: {[39m
+[31m    currentQuantity: {[39m
+[31m      increment: "300"[39m
+[31m                 ~~~~~[39m
+[31m    },[39m
+[31m    supplier: "AgroSupplies LTD",[39m
+[31m    records: {[39m
+[31m      create: {[39m
+[31m        recordType: "ITEM",[39m
+[31m        quantity: "300",[39m
+[31m        pricePerUnit: "45.50",[39m
+[31m        totalCost: 13650,[39m
+[31m        date: new Date("2025-01-04T00:00:00.000Z"),[39m
+[31m        notes: undefined,[39m
+[31m        mediaUrls: [[39m
+[31m          "/uploads/1753367523109-cattle feed.jpeg"[39m
+[31m        ],[39m
+[31m        recordedById: "cmcnjxm6s0000t1p8rcay1eoq"[39m
+[31m      }[39m
+[31m    }[39m
+[31m  },[39m
+[31m  include: {[39m
+[31m    records: true[39m
+[31m  }[39m
+[31m}[39m
+
+[31mArgument `increment`: Invalid value provided. Expected Float, provided String.[39m
+2025-07-24 15:32:24 [31merror[39m [31mDatabase validation error: [39m
+[31mInvalid `prisma.inventory.update()` invocation:[39m
+
+[31m{[39m
+[31m  where: {[39m
+[31m    id: "MEDICINE"[39m
+[31m  },[39m
+[31m  data: {[39m
+[31m    currentQuantity: {[39m
+[31m      increment: "300"[39m
+[31m                 ~~~~~[39m
+[31m    },[39m
+[31m    supplier: "AgroSupplies LTD",[39m
+[31m    records: {[39m
+[31m      create: {[39m
+[31m        recordType: "ITEM",[39m
+[31m        quantity: "300",[39m
+[31m        pricePerUnit: "45.50",[39m
+[31m        totalCost: 13650,[39m
+[31m        date: new Date("2025-01-04T00:00:00.000Z"),[39m
+[31m        notes: undefined,[39m
+[31m        mediaUrls: [[39m
+[31m          "/uploads/1753367544307-cattle feed.jpeg"[39m
+[31m        ],[39m
+[31m        recordedById: "cmcnjxm6s0000t1p8rcay1eoq"[39m
+[31m      }[39m
+[31m    }[39m
+[31m  },[39m
+[31m  include: {[39m
+[31m    records: true[39m
+[31m  }[39m
+[31m}[39m
+
+[31mArgument `increment`: Invalid value provided. Expected Float, provided String. [39m
+[31mInvalid `prisma.inventory.update()` invocation:[39m
+
+[31m{[39m
+[31m  where: {[39m
+[31m    id: "MEDICINE"[39m
+[31m  },[39m
+[31m  data: {[39m
+[31m    currentQuantity: {[39m
+[31m      increment: "300"[39m
+[31m                 ~~~~~[39m
+[31m    },[39m
+[31m    supplier: "AgroSupplies LTD",[39m
+[31m    records: {[39m
+[31m      create: {[39m
+[31m        recordType: "ITEM",[39m
+[31m        quantity: "300",[39m
+[31m        pricePerUnit: "45.50",[39m
+[31m        totalCost: 13650,[39m
+[31m        date: new Date("2025-01-04T00:00:00.000Z"),[39m
+[31m        notes: undefined,[39m
+[31m        mediaUrls: [[39m
+[31m          "/uploads/1753367544307-cattle feed.jpeg"[39m
+[31m        ],[39m
+[31m        recordedById: "cmcnjxm6s0000t1p8rcay1eoq"[39m
+[31m      }[39m
+[31m    }[39m
+[31m  },[39m
+[31m  include: {[39m
+[31m    records: true[39m
+[31m  }[39m
+[31m}[39m
+
+[31mArgument `increment`: Invalid value provided. Expected Float, provided String.[39m
+2025-07-24 15:32:38 [31merror[39m [31mDatabase validation error: [39m
+[31mInvalid `prisma.inventory.update()` invocation:[39m
+
+[31m{[39m
+[31m  where: {[39m
+[31m    id: "MEDICINE"[39m
+[31m  },[39m
+[31m  data: {[39m
+[31m    currentQuantity: {[39m
+[31m      increment: "300"[39m
+[31m                 ~~~~~[39m
+[31m    },[39m
+[31m    supplier: "AgroSupplies LTD",[39m
+[31m    records: {[39m
+[31m      create: {[39m
+[31m        recordType: "ITEM",[39m
+[31m        quantity: "300",[39m
+[31m        pricePerUnit: "45.50",[39m
+[31m        totalCost: 13650,[39m
+[31m        date: new Date("2025-01-04T00:00:00.000Z"),[39m
+[31m        notes: undefined,[39m
+[31m        mediaUrls: [[39m
+[31m          "/uploads/1753367558881-cattle feed.jpeg"[39m
+[31m        ],[39m
+[31m        recordedById: "cmcnjxm6s0000t1p8rcay1eoq"[39m
+[31m      }[39m
+[31m    }[39m
+[31m  },[39m
+[31m  include: {[39m
+[31m    records: true[39m
+[31m  }[39m
+[31m}[39m
+
+[31mArgument `increment`: Invalid value provided. Expected Float, provided String. [39m
+[31mInvalid `prisma.inventory.update()` invocation:[39m
+
+[31m{[39m
+[31m  where: {[39m
+[31m    id: "MEDICINE"[39m
+[31m  },[39m
+[31m  data: {[39m
+[31m    currentQuantity: {[39m
+[31m      increment: "300"[39m
+[31m                 ~~~~~[39m
+[31m    },[39m
+[31m    supplier: "AgroSupplies LTD",[39m
+[31m    records: {[39m
+[31m      create: {[39m
+[31m        recordType: "ITEM",[39m
+[31m        quantity: "300",[39m
+[31m        pricePerUnit: "45.50",[39m
+[31m        totalCost: 13650,[39m
+[31m        date: new Date("2025-01-04T00:00:00.000Z"),[39m
+[31m        notes: undefined,[39m
+[31m        mediaUrls: [[39m
+[31m          "/uploads/1753367558881-cattle feed.jpeg"[39m
+[31m        ],[39m
+[31m        recordedById: "cmcnjxm6s0000t1p8rcay1eoq"[39m
+[31m      }[39m
+[31m    }[39m
+[31m  },[39m
+[31m  include: {[39m
+[31m    records: true[39m
+[31m  }[39m
+[31m}[39m
+
+[31mArgument `increment`: Invalid value provided. Expected Float, provided String.[39m
+2025-07-24 15:33:13 [31merror[39m [31mDatabase validation error: [39m
+[31mInvalid `prisma.inventory.update()` invocation:[39m
+
+[31m{[39m
+[31m  where: {[39m
+[31m    id: "MEDICINE"[39m
+[31m  },[39m
+[31m  data: {[39m
+[31m    currentQuantity: {[39m
+[31m      increment: "300"[39m
+[31m                 ~~~~~[39m
+[31m    },[39m
+[31m    supplier: "AgroSupplies LTD",[39m
+[31m    records: {[39m
+[31m      create: {[39m
+[31m        recordType: "ITEM",[39m
+[31m        quantity: "300",[39m
+[31m        pricePerUnit: "45.50",[39m
+[31m        totalCost: 13650,[39m
+[31m        date: new Date("2025-01-04T00:00:00.000Z"),[39m
+[31m        notes: "Initial stock",[39m
+[31m        mediaUrls: [[39m
+[31m          "/uploads/1753367593594-cattle feed.jpeg"[39m
+[31m        ],[39m
+[31m        recordedById: "cmcnjxm6s0000t1p8rcay1eoq"[39m
+[31m      }[39m
+[31m    }[39m
+[31m  },[39m
+[31m  include: {[39m
+[31m    records: true[39m
+[31m  }[39m
+[31m}[39m
+
+[31mArgument `increment`: Invalid value provided. Expected Float, provided String. [39m
+[31mInvalid `prisma.inventory.update()` invocation:[39m
+
+[31m{[39m
+[31m  where: {[39m
+[31m    id: "MEDICINE"[39m
+[31m  },[39m
+[31m  data: {[39m
+[31m    currentQuantity: {[39m
+[31m      increment: "300"[39m
+[31m                 ~~~~~[39m
+[31m    },[39m
+[31m    supplier: "AgroSupplies LTD",[39m
+[31m    records: {[39m
+[31m      create: {[39m
+[31m        recordType: "ITEM",[39m
+[31m        quantity: "300",[39m
+[31m        pricePerUnit: "45.50",[39m
+[31m        totalCost: 13650,[39m
+[31m        date: new Date("2025-01-04T00:00:00.000Z"),[39m
+[31m        notes: "Initial stock",[39m
+[31m        mediaUrls: [[39m
+[31m          "/uploads/1753367593594-cattle feed.jpeg"[39m
+[31m        ],[39m
+[31m        recordedById: "cmcnjxm6s0000t1p8rcay1eoq"[39m
+[31m      }[39m
+[31m    }[39m
+[31m  },[39m
+[31m  include: {[39m
+[31m    records: true[39m
+[31m  }[39m
+[31m}[39m
+
+[31mArgument `increment`: Invalid value provided. Expected Float, provided String.[39m
+2025-07-24 15:33:37 [31merror[39m [31mDatabase validation error: [39m
+[31mInvalid `prisma.inventory.update()` invocation:[39m
+
+[31m{[39m
+[31m  where: {[39m
+[31m    id: "inv123"[39m
+[31m  },[39m
+[31m  data: {[39m
+[31m    currentQuantity: {[39m
+[31m      increment: "300"[39m
+[31m                 ~~~~~[39m
+[31m    },[39m
+[31m    supplier: "AgroSupplies LTD",[39m
+[31m    records: {[39m
+[31m      create: {[39m
+[31m        recordType: "ITEM",[39m
+[31m        quantity: "300",[39m
+[31m        pricePerUnit: "45.50",[39m
+[31m        totalCost: 13650,[39m
+[31m        date: new Date("2025-01-04T00:00:00.000Z"),[39m
+[31m        notes: "Initial stock",[39m
+[31m        mediaUrls: [[39m
+[31m          "/uploads/1753367617817-cattle feed.jpeg"[39m
+[31m        ],[39m
+[31m        recordedById: "cmcnjxm6s0000t1p8rcay1eoq"[39m
+[31m      }[39m
+[31m    }[39m
+[31m  },[39m
+[31m  include: {[39m
+[31m    records: true[39m
+[31m  }[39m
+[31m}[39m
+
+[31mArgument `increment`: Invalid value provided. Expected Float, provided String. [39m
+[31mInvalid `prisma.inventory.update()` invocation:[39m
+
+[31m{[39m
+[31m  where: {[39m
+[31m    id: "inv123"[39m
+[31m  },[39m
+[31m  data: {[39m
+[31m    currentQuantity: {[39m
+[31m      increment: "300"[39m
+[31m                 ~~~~~[39m
+[31m    },[39m
+[31m    supplier: "AgroSupplies LTD",[39m
+[31m    records: {[39m
+[31m      create: {[39m
+[31m        recordType: "ITEM",[39m
+[31m        quantity: "300",[39m
+[31m        pricePerUnit: "45.50",[39m
+[31m        totalCost: 13650,[39m
+[31m        date: new Date("2025-01-04T00:00:00.000Z"),[39m
+[31m        notes: "Initial stock",[39m
+[31m        mediaUrls: [[39m
+[31m          "/uploads/1753367617817-cattle feed.jpeg"[39m
+[31m        ],[39m
+[31m        recordedById: "cmcnjxm6s0000t1p8rcay1eoq"[39m
+[31m      }[39m
+[31m    }[39m
+[31m  },[39m
+[31m  include: {[39m
+[31m    records: true[39m
+[31m  }[39m
+[31m}[39m
+
+[31mArgument `increment`: Invalid value provided. Expected Float, provided String.[39m
+2025-07-24 15:34:11 [31merror[39m [31mDatabase validation error: [39m
+[31mInvalid `prisma.inventory.update()` invocation:[39m
+
+[31m{[39m
+[31m  where: {[39m
+[31m    id: "inv123"[39m
+[31m  },[39m
+[31m  data: {[39m
+[31m    currentQuantity: {[39m
+[31m      increment: "300"[39m
+[31m                 ~~~~~[39m
+[31m    },[39m
+[31m    supplier: "AgroSupplies LTD",[39m
+[31m    records: {[39m
+[31m      create: {[39m
+[31m        recordType: "ITEM",[39m
+[31m        quantity: "300",[39m
+[31m        pricePerUnit: "45.50",[39m
+[31m        totalCost: 13650,[39m
+[31m        date: new Date("2025-01-04T00:00:00.000Z"),[39m
+[31m        notes: undefined,[39m
+[31m        mediaUrls: [[39m
+[31m          "/uploads/1753367651346-cattle feed.jpeg"[39m
+[31m        ],[39m
+[31m        recordedById: "cmcnjxm6s0000t1p8rcay1eoq"[39m
+[31m      }[39m
+[31m    }[39m
+[31m  },[39m
+[31m  include: {[39m
+[31m    records: true[39m
+[31m  }[39m
+[31m}[39m
+
+[31mArgument `increment`: Invalid value provided. Expected Float, provided String. [39m
+[31mInvalid `prisma.inventory.update()` invocation:[39m
+
+[31m{[39m
+[31m  where: {[39m
+[31m    id: "inv123"[39m
+[31m  },[39m
+[31m  data: {[39m
+[31m    currentQuantity: {[39m
+[31m      increment: "300"[39m
+[31m                 ~~~~~[39m
+[31m    },[39m
+[31m    supplier: "AgroSupplies LTD",[39m
+[31m    records: {[39m
+[31m      create: {[39m
+[31m        recordType: "ITEM",[39m
+[31m        quantity: "300",[39m
+[31m        pricePerUnit: "45.50",[39m
+[31m        totalCost: 13650,[39m
+[31m        date: new Date("2025-01-04T00:00:00.000Z"),[39m
+[31m        notes: undefined,[39m
+[31m        mediaUrls: [[39m
+[31m          "/uploads/1753367651346-cattle feed.jpeg"[39m
+[31m        ],[39m
+[31m        recordedById: "cmcnjxm6s0000t1p8rcay1eoq"[39m
+[31m      }[39m
+[31m    }[39m
+[31m  },[39m
+[31m  include: {[39m
+[31m    records: true[39m
+[31m  }[39m
+[31m}[39m
+
+[31mArgument `increment`: Invalid value provided. Expected Float, provided String.[39m
+2025-07-24 15:37:09 [31merror[39m [31mDatabase validation error: [39m
+[31mInvalid `prisma.inventory.update()` invocation:[39m
+
+[31m{[39m
+[31m  where: {[39m
+[31m    id: "inv123"[39m
+[31m  },[39m
+[31m  data: {[39m
+[31m    currentQuantity: {[39m
+[31m      increment: "300"[39m
+[31m                 ~~~~~[39m
+[31m    },[39m
+[31m    supplier: "AgroSupplies LTD",[39m
+[31m    records: {[39m
+[31m      create: {[39m
+[31m        recordType: "ITEM",[39m
+[31m        quantity: 300,[39m
+[31m        pricePerUnit: 45.5,[39m
+[31m        totalCost: 13650,[39m
+[31m        date: new Date("2025-01-04T00:00:00.000Z"),[39m
+[31m        notes: undefined,[39m
+[31m        mediaUrls: [[39m
+[31m          "/uploads/1753367829053-cattle feed.jpeg"[39m
+[31m        ],[39m
+[31m        recordedById: "cmcnjxm6s0000t1p8rcay1eoq"[39m
+[31m      }[39m
+[31m    }[39m
+[31m  },[39m
+[31m  include: {[39m
+[31m    records: true[39m
+[31m  }[39m
+[31m}[39m
+
+[31mArgument `increment`: Invalid value provided. Expected Float, provided String. [39m
+[31mInvalid `prisma.inventory.update()` invocation:[39m
+
+[31m{[39m
+[31m  where: {[39m
+[31m    id: "inv123"[39m
+[31m  },[39m
+[31m  data: {[39m
+[31m    currentQuantity: {[39m
+[31m      increment: "300"[39m
+[31m                 ~~~~~[39m
+[31m    },[39m
+[31m    supplier: "AgroSupplies LTD",[39m
+[31m    records: {[39m
+[31m      create: {[39m
+[31m        recordType: "ITEM",[39m
+[31m        quantity: 300,[39m
+[31m        pricePerUnit: 45.5,[39m
+[31m        totalCost: 13650,[39m
+[31m        date: new Date("2025-01-04T00:00:00.000Z"),[39m
+[31m        notes: undefined,[39m
+[31m        mediaUrls: [[39m
+[31m          "/uploads/1753367829053-cattle feed.jpeg"[39m
+[31m        ],[39m
+[31m        recordedById: "cmcnjxm6s0000t1p8rcay1eoq"[39m
+[31m      }[39m
+[31m    }[39m
+[31m  },[39m
+[31m  include: {[39m
+[31m    records: true[39m
+[31m  }[39m
+[31m}[39m
+
+[31mArgument `increment`: Invalid value provided. Expected Float, provided String.[39m
+2025-07-24 15:40:13 [31merror[39m [31mDatabase validation error: [39m
+[31mInvalid `prisma.inventory.update()` invocation:[39m
+
+[31m{[39m
+[31m  where: {[39m
+[31m    id: "inv123"[39m
+[31m  },[39m
+[31m  data: {[39m
+[31m    currentQuantity: {[39m
+[31m      increment: "300"[39m
+[31m                 ~~~~~[39m
+[31m    },[39m
+[31m    supplier: "AgroSupplies LTD",[39m
+[31m    records: {[39m
+[31m      create: {[39m
+[31m        recordType: "ITEM",[39m
+[31m        quantity: 300,[39m
+[31m        pricePerUnit: 45.5,[39m
+[31m        totalCost: 13650,[39m
+[31m        date: new Date("2025-01-04T00:00:00.000Z"),[39m
+[31m        notes: undefined,[39m
+[31m        mediaUrls: [[39m
+[31m          "/uploads/1753368013470-cattle feed.jpeg"[39m
+[31m        ],[39m
+[31m        recordedById: "cmcnjxm6s0000t1p8rcay1eoq"[39m
+[31m      }[39m
+[31m    }[39m
+[31m  },[39m
+[31m  include: {[39m
+[31m    records: true[39m
+[31m  }[39m
+[31m}[39m
+
+[31mArgument `increment`: Invalid value provided. Expected Float, provided String. [39m
+[31mInvalid `prisma.inventory.update()` invocation:[39m
+
+[31m{[39m
+[31m  where: {[39m
+[31m    id: "inv123"[39m
+[31m  },[39m
+[31m  data: {[39m
+[31m    currentQuantity: {[39m
+[31m      increment: "300"[39m
+[31m                 ~~~~~[39m
+[31m    },[39m
+[31m    supplier: "AgroSupplies LTD",[39m
+[31m    records: {[39m
+[31m      create: {[39m
+[31m        recordType: "ITEM",[39m
+[31m        quantity: 300,[39m
+[31m        pricePerUnit: 45.5,[39m
+[31m        totalCost: 13650,[39m
+[31m        date: new Date("2025-01-04T00:00:00.000Z"),[39m
+[31m        notes: undefined,[39m
+[31m        mediaUrls: [[39m
+[31m          "/uploads/1753368013470-cattle feed.jpeg"[39m
+[31m        ],[39m
+[31m        recordedById: "cmcnjxm6s0000t1p8rcay1eoq"[39m
+[31m      }[39m
+[31m    }[39m
+[31m  },[39m
+[31m  include: {[39m
+[31m    records: true[39m
+[31m  }[39m
+[31m}[39m
+
+[31mArgument `increment`: Invalid value provided. Expected Float, provided String.[39m
+2025-07-24 15:47:20 [31merror[39m [31mDatabase validation error: [39m
+[31mInvalid `prisma.inventory.update()` invocation:[39m
+
+[31m{[39m
+[31m  where: {[39m
+[31m    id: "inv123"[39m
+[31m  },[39m
+[31m  data: {[39m
+[31m    currentQuantity: {[39m
+[31m      increment: "50"[39m
+[31m                 ~~~~[39m
+[31m    },[39m
+[31m    supplier: "AgroSupplies",[39m
+[31m    records: {[39m
+[31m      create: {[39m
+[31m        recordType: "ITEM",[39m
+[31m        quantity: 50,[39m
+[31m        pricePerUnit: 2.75,[39m
+[31m        totalCost: 137.5,[39m
+[31m        date: new Date("2025-01-15T00:00:00.000Z"),[39m
+[31m        notes: undefined,[39m
+[31m        mediaUrls: [[39m
+[31m          "/uploads/1753368440011-cattle feed.jpeg"[39m
+[31m        ],[39m
+[31m        recordedById: "cmcnjxm6s0000t1p8rcay1eoq"[39m
+[31m      }[39m
+[31m    }[39m
+[31m  },[39m
+[31m  include: {[39m
+[31m    records: true[39m
+[31m  }[39m
+[31m}[39m
+
+[31mArgument `increment`: Invalid value provided. Expected Float, provided String. [39m
+[31mInvalid `prisma.inventory.update()` invocation:[39m
+
+[31m{[39m
+[31m  where: {[39m
+[31m    id: "inv123"[39m
+[31m  },[39m
+[31m  data: {[39m
+[31m    currentQuantity: {[39m
+[31m      increment: "50"[39m
+[31m                 ~~~~[39m
+[31m    },[39m
+[31m    supplier: "AgroSupplies",[39m
+[31m    records: {[39m
+[31m      create: {[39m
+[31m        recordType: "ITEM",[39m
+[31m        quantity: 50,[39m
+[31m        pricePerUnit: 2.75,[39m
+[31m        totalCost: 137.5,[39m
+[31m        date: new Date("2025-01-15T00:00:00.000Z"),[39m
+[31m        notes: undefined,[39m
+[31m        mediaUrls: [[39m
+[31m          "/uploads/1753368440011-cattle feed.jpeg"[39m
+[31m        ],[39m
+[31m        recordedById: "cmcnjxm6s0000t1p8rcay1eoq"[39m
+[31m      }[39m
+[31m    }[39m
+[31m  },[39m
+[31m  include: {[39m
+[31m    records: true[39m
+[31m  }[39m
+[31m}[39m
+
+[31mArgument `increment`: Invalid value provided. Expected Float, provided String.[39m
+2025-07-24 15:56:52 [31merror[39m [31mDatabase validation error: [39m
+[31mInvalid `prisma.inventory.update()` invocation:[39m
+
+[31m{[39m
+[31m  where: {[39m
+[31m    id: "inv123"[39m
+[31m  },[39m
+[31m  data: {[39m
+[31m    currentQuantity: {[39m
+[31m      increment: "50"[39m
+[31m                 ~~~~[39m
+[31m    },[39m
+[31m    supplier: "AgroSupplies",[39m
+[31m    records: {[39m
+[31m      create: {[39m
+[31m        recordType: "ITEM",[39m
+[31m        quantity: 50,[39m
+[31m        pricePerUnit: 2.75,[39m
+[31m        totalCost: 137.5,[39m
+[31m        date: new Date("2025-01-15T00:00:00.000Z"),[39m
+[31m        notes: undefined,[39m
+[31m        mediaUrls: [[39m
+[31m          "/uploads/1753369012801-cattle feed.jpeg"[39m
+[31m        ],[39m
+[31m        recordedById: "cmcnjxm6s0000t1p8rcay1eoq"[39m
+[31m      }[39m
+[31m    }[39m
+[31m  },[39m
+[31m  include: {[39m
+[31m    records: true[39m
+[31m  }[39m
+[31m}[39m
+
+[31mArgument `increment`: Invalid value provided. Expected Float, provided String. [39m
+[31mInvalid `prisma.inventory.update()` invocation:[39m
+
+[31m{[39m
+[31m  where: {[39m
+[31m    id: "inv123"[39m
+[31m  },[39m
+[31m  data: {[39m
+[31m    currentQuantity: {[39m
+[31m      increment: "50"[39m
+[31m                 ~~~~[39m
+[31m    },[39m
+[31m    supplier: "AgroSupplies",[39m
+[31m    records: {[39m
+[31m      create: {[39m
+[31m        recordType: "ITEM",[39m
+[31m        quantity: 50,[39m
+[31m        pricePerUnit: 2.75,[39m
+[31m        totalCost: 137.5,[39m
+[31m        date: new Date("2025-01-15T00:00:00.000Z"),[39m
+[31m        notes: undefined,[39m
+[31m        mediaUrls: [[39m
+[31m          "/uploads/1753369012801-cattle feed.jpeg"[39m
+[31m        ],[39m
+[31m        recordedById: "cmcnjxm6s0000t1p8rcay1eoq"[39m
+[31m      }[39m
+[31m    }[39m
+[31m  },[39m
+[31m  include: {[39m
+[31m    records: true[39m
+[31m  }[39m
+[31m}[39m
+
+[31mArgument `increment`: Invalid value provided. Expected Float, provided String.[39m
+2025-07-24 15:59:38 [31merror[39m [31mDatabase validation error: [39m
+[31mInvalid `prisma.inventory.update()` invocation:[39m
+
+[31m{[39m
+[31m  where: {[39m
+[31m    id: "inv123"[39m
+[31m  },[39m
+[31m  data: {[39m
+[31m    currentQuantity: {[39m
+[31m      increment: "50"[39m
+[31m                 ~~~~[39m
+[31m    },[39m
+[31m    supplier: "AgroSupplies",[39m
+[31m    records: {[39m
+[31m      create: {[39m
+[31m        recordType: "ITEM",[39m
+[31m        quantity: 50,[39m
+[31m        pricePerUnit: 2.75,[39m
+[31m        totalCost: 137.5,[39m
+[31m        date: new Date("2025-01-15T00:00:00.000Z"),[39m
+[31m        notes: undefined,[39m
+[31m        mediaUrls: [[39m
+[31m          "/uploads/1753369178179-cattle feed.jpeg"[39m
+[31m        ],[39m
+[31m        recordedById: "cmcnjxm6s0000t1p8rcay1eoq"[39m
+[31m      }[39m
+[31m    }[39m
+[31m  },[39m
+[31m  include: {[39m
+[31m    records: true[39m
+[31m  }[39m
+[31m}[39m
+
+[31mArgument `increment`: Invalid value provided. Expected Float, provided String. [39m
+[31mInvalid `prisma.inventory.update()` invocation:[39m
+
+[31m{[39m
+[31m  where: {[39m
+[31m    id: "inv123"[39m
+[31m  },[39m
+[31m  data: {[39m
+[31m    currentQuantity: {[39m
+[31m      increment: "50"[39m
+[31m                 ~~~~[39m
+[31m    },[39m
+[31m    supplier: "AgroSupplies",[39m
+[31m    records: {[39m
+[31m      create: {[39m
+[31m        recordType: "ITEM",[39m
+[31m        quantity: 50,[39m
+[31m        pricePerUnit: 2.75,[39m
+[31m        totalCost: 137.5,[39m
+[31m        date: new Date("2025-01-15T00:00:00.000Z"),[39m
+[31m        notes: undefined,[39m
+[31m        mediaUrls: [[39m
+[31m          "/uploads/1753369178179-cattle feed.jpeg"[39m
+[31m        ],[39m
+[31m        recordedById: "cmcnjxm6s0000t1p8rcay1eoq"[39m
+[31m      }[39m
+[31m    }[39m
+[31m  },[39m
+[31m  include: {[39m
+[31m    records: true[39m
+[31m  }[39m
+[31m}[39m
+
+[31mArgument `increment`: Invalid value provided. Expected Float, provided String.[39m
+2025-07-24 16:00:20 [31merror[39m [31mDatabase validation error: [39m
+[31mInvalid `prisma.inventory.update()` invocation:[39m
+
+[31m{[39m
+[31m  where: {[39m
+[31m    id: "inv123"[39m
+[31m  },[39m
+[31m  data: {[39m
+[31m    currentQuantity: {[39m
+[31m      increment: "50"[39m
+[31m                 ~~~~[39m
+[31m    },[39m
+[31m    supplier: "AgroSupplies",[39m
+[31m    records: {[39m
+[31m      create: {[39m
+[31m        recordType: "ITEM",[39m
+[31m        quantity: 50,[39m
+[31m        pricePerUnit: 2.75,[39m
+[31m        totalCost: 137.5,[39m
+[31m        date: new Date("2025-01-15T00:00:00.000Z"),[39m
+[31m        notes: undefined,[39m
+[31m        mediaUrls: [[39m
+[31m          "/uploads/1753369220739-cattle feed.jpeg"[39m
+[31m        ],[39m
+[31m        recordedById: "cmcnjxm6s0000t1p8rcay1eoq"[39m
+[31m      }[39m
+[31m    }[39m
+[31m  },[39m
+[31m  include: {[39m
+[31m    records: true[39m
+[31m  }[39m
+[31m}[39m
+
+[31mArgument `increment`: Invalid value provided. Expected Float, provided String. [39m
+[31mInvalid `prisma.inventory.update()` invocation:[39m
+
+[31m{[39m
+[31m  where: {[39m
+[31m    id: "inv123"[39m
+[31m  },[39m
+[31m  data: {[39m
+[31m    currentQuantity: {[39m
+[31m      increment: "50"[39m
+[31m                 ~~~~[39m
+[31m    },[39m
+[31m    supplier: "AgroSupplies",[39m
+[31m    records: {[39m
+[31m      create: {[39m
+[31m        recordType: "ITEM",[39m
+[31m        quantity: 50,[39m
+[31m        pricePerUnit: 2.75,[39m
+[31m        totalCost: 137.5,[39m
+[31m        date: new Date("2025-01-15T00:00:00.000Z"),[39m
+[31m        notes: undefined,[39m
+[31m        mediaUrls: [[39m
+[31m          "/uploads/1753369220739-cattle feed.jpeg"[39m
+[31m        ],[39m
+[31m        recordedById: "cmcnjxm6s0000t1p8rcay1eoq"[39m
+[31m      }[39m
+[31m    }[39m
+[31m  },[39m
+[31m  include: {[39m
+[31m    records: true[39m
+[31m  }[39m
+[31m}[39m
+
+[31mArgument `increment`: Invalid value provided. Expected Float, provided String.[39m
+2025-07-24 16:02:34 [31merror[39m [31mDatabase validation error: [39m
+[31mInvalid `prisma.inventory.update()` invocation:[39m
+
+[31m{[39m
+[31m  where: {[39m
+[31m    id: "inv123"[39m
+[31m  },[39m
+[31m  data: {[39m
+[31m    currentQuantity: {[39m
+[31m      increment: "50"[39m
+[31m                 ~~~~[39m
+[31m    },[39m
+[31m    supplier: "AgroSupplies",[39m
+[31m    records: {[39m
+[31m      create: {[39m
+[31m        recordType: "ITEM",[39m
+[31m        quantity: 50,[39m
+[31m        pricePerUnit: 2.75,[39m
+[31m        totalCost: 137.5,[39m
+[31m        date: new Date("2025-01-15T00:00:00.000Z"),[39m
+[31m        notes: undefined,[39m
+[31m        mediaUrls: [[39m
+[31m          "/uploads/1753369354771-cattle feed.jpeg"[39m
+[31m        ],[39m
+[31m        recordedById: "cmcnjxm6s0000t1p8rcay1eoq"[39m
+[31m      }[39m
+[31m    }[39m
+[31m  },[39m
+[31m  include: {[39m
+[31m    records: true[39m
+[31m  }[39m
+[31m}[39m
+
+[31mArgument `increment`: Invalid value provided. Expected Float, provided String. [39m
+[31mInvalid `prisma.inventory.update()` invocation:[39m
+
+[31m{[39m
+[31m  where: {[39m
+[31m    id: "inv123"[39m
+[31m  },[39m
+[31m  data: {[39m
+[31m    currentQuantity: {[39m
+[31m      increment: "50"[39m
+[31m                 ~~~~[39m
+[31m    },[39m
+[31m    supplier: "AgroSupplies",[39m
+[31m    records: {[39m
+[31m      create: {[39m
+[31m        recordType: "ITEM",[39m
+[31m        quantity: 50,[39m
+[31m        pricePerUnit: 2.75,[39m
+[31m        totalCost: 137.5,[39m
+[31m        date: new Date("2025-01-15T00:00:00.000Z"),[39m
+[31m        notes: undefined,[39m
+[31m        mediaUrls: [[39m
+[31m          "/uploads/1753369354771-cattle feed.jpeg"[39m
+[31m        ],[39m
+[31m        recordedById: "cmcnjxm6s0000t1p8rcay1eoq"[39m
+[31m      }[39m
+[31m    }[39m
+[31m  },[39m
+[31m  include: {[39m
+[31m    records: true[39m
+[31m  }[39m
+[31m}[39m
+
+[31mArgument `increment`: Invalid value provided. Expected Float, provided String.[39m
+2025-07-24 16:07:20 [31merror[39m [31mPrisma error: [39m
+[31mInvalid `prisma.inventory.update()` invocation:[39m
+
+
+[31mAn operation failed because it depends on one or more records that were required but not found. No 'Inventory' record (needed to inline the relation on 'Inventory' record(s)) was found for a nested create on one-to-many relation 'InventoryToInventoryRecord'. [39m
+[31mInvalid `prisma.inventory.update()` invocation:[39m
+
+
+[31mAn operation failed because it depends on one or more records that were required but not found. No 'Inventory' record (needed to inline the relation on 'Inventory' record(s)) was found for a nested create on one-to-many relation 'InventoryToInventoryRecord'.[39m
+2025-07-24 16:08:56 [31merror[39m [31mPrisma error: [39m
+[31mInvalid `prisma.inventory.update()` invocation:[39m
+
+
+[31mAn operation failed because it depends on one or more records that were required but not found. No 'Inventory' record (needed to inline the relation on 'Inventory' record(s)) was found for a nested create on one-to-many relation 'InventoryToInventoryRecord'. [39m
+[31mInvalid `prisma.inventory.update()` invocation:[39m
+
+
+[31mAn operation failed because it depends on one or more records that were required but not found. No 'Inventory' record (needed to inline the relation on 'Inventory' record(s)) was found for a nested create on one-to-many relation 'InventoryToInventoryRecord'.[39m
+2025-07-24 16:10:00 [31merror[39m [31mPrisma error: [39m
+[31mInvalid `prisma.inventory.update()` invocation:[39m
+
+
+[31mAn operation failed because it depends on one or more records that were required but not found. No 'Inventory' record (needed to inline the relation on 'Inventory' record(s)) was found for a nested create on one-to-many relation 'InventoryToInventoryRecord'. [39m
+[31mInvalid `prisma.inventory.update()` invocation:[39m
+
+
+[31mAn operation failed because it depends on one or more records that were required but not found. No 'Inventory' record (needed to inline the relation on 'Inventory' record(s)) was found for a nested create on one-to-many relation 'InventoryToInventoryRecord'.[39m
+2025-07-24 16:21:16 [31merror[39m [31mDatabase validation error: [39m
+[31mInvalid `prisma.inventory.update()` invocation:[39m
+
+[31m{[39m
+[31m  where: {[39m
+[31m    id: "cmdhj85ih0006t198bjhg51x2"[39m
+[31m  },[39m
+[31m  data: {[39m
+[31m    currentQuantity: {[39m
+[31m      decrement: undefined[39m
+[31m    },[39m
+[31m    ~~~~~~~~~~~~~~~~~~~~~~[39m
+[31m    records: {[39m
+[31m      create: {[39m
+[31m        recordType: "USE",[39m
+[31m        quantity: undefined,[39m
+[31m        movementType: "FEEDING",[39m
+[31m        date: new Date("2025-01-20T00:00:00.000Z"),[39m
+[31m        relatedAnimals: "Cow001,Cow002",[39m
+[31m        notes: undefined,[39m
+[31m        mediaUrls: [[39m
+[31m          "/uploads/1753370476707-cow445.jpeg"[39m
+[31m        ],[39m
+[31m        recordedById: "cmcnjxm6s0000t1p8rcay1eoq"[39m
+[31m      }[39m
+[31m    }[39m
+[31m  },[39m
+[31m  include: {[39m
+[31m    records: true[39m
+[31m  }[39m
+[31m}[39m
+
+[31mArgument `currentQuantity`: Invalid value provided. Expected Float, provided Object. [39m
+[31mInvalid `prisma.inventory.update()` invocation:[39m
+
+[31m{[39m
+[31m  where: {[39m
+[31m    id: "cmdhj85ih0006t198bjhg51x2"[39m
+[31m  },[39m
+[31m  data: {[39m
+[31m    currentQuantity: {[39m
+[31m      decrement: undefined[39m
+[31m    },[39m
+[31m    ~~~~~~~~~~~~~~~~~~~~~~[39m
+[31m    records: {[39m
+[31m      create: {[39m
+[31m        recordType: "USE",[39m
+[31m        quantity: undefined,[39m
+[31m        movementType: "FEEDING",[39m
+[31m        date: new Date("2025-01-20T00:00:00.000Z"),[39m
+[31m        relatedAnimals: "Cow001,Cow002",[39m
+[31m        notes: undefined,[39m
+[31m        mediaUrls: [[39m
+[31m          "/uploads/1753370476707-cow445.jpeg"[39m
+[31m        ],[39m
+[31m        recordedById: "cmcnjxm6s0000t1p8rcay1eoq"[39m
+[31m      }[39m
+[31m    }[39m
+[31m  },[39m
+[31m  include: {[39m
+[31m    records: true[39m
+[31m  }[39m
+[31m}[39m
+
+[31mArgument `currentQuantity`: Invalid value provided. Expected Float, provided Object.[39m
