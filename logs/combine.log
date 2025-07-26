@@ -4621,3 +4621,31 @@
 [32m[39m
 2025-07-25 05:54:30 [32minfo[39m [32mPOST /api/v1/finance/transactions 201 6476.215 ms - 553[39m
 [32m[39m
+2025-07-26 06:03:41 [32minfo[39m [32mPOST /api/v1/auth/login 200 5306.705 ms - 507[39m
+[32m[39m
+2025-07-26 06:04:13 [32minfo[39m [32mPOST /api/v1/inventory/records 422 1395.284 ms - 245[39m
+[32m[39m
+2025-07-26 06:17:36 [32minfo[39m [32mGET /api/v1/inventory/records 500 5021.556 ms - 324[39m
+[32m[39m
+2025-07-26 06:17:47 [32minfo[39m [32mGET /api/v1/inventory/records 200 4991.520 ms - 5545[39m
+[32m[39m
+2025-07-26 09:19:41 [32minfo[39m [32mPOST /api/v1/auth/login 200 4452.176 ms - 507[39m
+[32m[39m
+2025-07-26 09:22:31 [32minfo[39m [32mGET /api/v1/inventory/records 200 4400.158 ms - 5376[39m
+[32m[39m
+2025-07-26 09:23:11 [32minfo[39m [32mGET /api/v1/inventory/records 200 2711.897 ms - 5376[39m
+[32m[39m
+2025-07-26 09:23:19 [32minfo[39m [32mGET /api/v1/inventory/records 200 1135.381 ms - 5376[39m
+[32m[39m
+2025-07-26 12:11:33 [32minfo[39m [32mGET /api/v1/inventory/records 401 19.969 ms - 64[39m
+[32m[39m
+2025-07-26 12:11:45 [32minfo[39m [32mPOST /api/v1/auth/login 200 6849.070 ms - 507[39m
+[32m[39m
+2025-07-26 12:12:14 [32minfo[39m [32mGET /api/v1/inventory/records 200 5315.305 ms - 5221[39m
+[32m[39m
+2025-07-26 14:18:19 [32minfo[39m [32mGET /api/v1/inventory/records 401 10.928 ms - 64[39m
+[32m[39m
+2025-07-26 14:18:30 [32minfo[39m [32mPOST /api/v1/auth/login 200 5959.035 ms - 507[39m
+[32m[39m
+2025-07-26 14:18:54 [32minfo[39m [32mGET /api/v1/inventory/records 200 3306.262 ms - 5285[39m
+[32m[39m

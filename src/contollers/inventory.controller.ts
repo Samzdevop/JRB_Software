@@ -180,7 +180,8 @@ export const getInventoryRecords = async (
             select: {
               id: true,
               name: true,
-              type: true
+              type: true,
+              reorderPoint: true,
             }
           },
           recordedBy: {
