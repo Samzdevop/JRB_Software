@@ -141,9 +141,6 @@ export const createInventoryRecord = async (
   }
 };
 
-
-// Add these methods to your existing controller
-
 export const getInventoryRecords = async (
   req: Request,
   res: Response,
@@ -182,6 +179,7 @@ export const getInventoryRecords = async (
               name: true,
               type: true,
               reorderPoint: true,
+              supplier: true,
             }
           },
           recordedBy: {
