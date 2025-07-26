@@ -180,6 +180,7 @@ export const getInventoryRecords = async (
               type: true,
               reorderPoint: true,
               supplier: true,
+              notes: true,
             }
           },
           recordedBy: {
