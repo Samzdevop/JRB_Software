@@ -4659,3 +4659,9 @@
 [32m[39m
 2025-07-26 15:53:31 [32minfo[39m [32mGET /api/v1/inventory/records 200 4910.013 ms - 5747[39m
 [32m[39m
+2025-07-26 16:08:30 [32minfo[39m [32mGET /api/v1/inventory/records 200 4818.420 ms - 5686[39m
+[32m[39m
+2025-07-27 10:31:21 [32minfo[39m [32mPOST /api/v1/auth/login 200 5829.102 ms - 507[39m
+[32m[39m
+2025-07-27 10:31:47 [32minfo[39m [32mGET /api/v1/finance/transactions 200 5175.187 ms - 1869[39m
+[32m[39m
