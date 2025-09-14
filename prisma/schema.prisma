@@ -21,258 +21,87 @@ model User {
   password            String?
   fullName            String
   avatar              String?
+  company             String?
+  jobTitle            String?
   location            String?
-  role                Role      @default(ADMIN)
   lastLogin           DateTime?
-  verificationCode    String?
-  verificationExpires DateTime?
-  isVerified          Boolean   @default(false)
-  isSuspended         Boolean   @default(false)
-  createdAt           DateTime  @default(now())
-  updatedAt           DateTime  @updatedAt
-
-  // Relations
-  assignedTasks        Task[]                 @relation("TaskAssignedTo")
-  createdTasks         Task[]                 @relation("CreatedTasks")
-  livestockAdded       Livestock[]            @relation("LivestockAddedBy")
-  livestockUpdated     Livestock[]            @relation("LivestockUpdatedBy")
-  deletedLivestock     Livestock[]            @relation("LivestockDeletedBy")
-  vaccination          Vaccination[]
-  Sickness             Sickness[]
-  Treatment            Treatment[]
-  OfftakeRecord        OfftakeRecord[]
-  TaskObservation      TaskObservation[]      @relation("UserTaskObservations")
-  InventoryRecord      InventoryRecord[]
-  FinancialTransaction FinancialTransaction[]
+  documents           Document[]
+  searchHistories     SearchHistory[]
+  checklists          Checklist[]
+  notes               Note[]
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
 }
 
-model Livestock {
-  id               String       @id @default(cuid())
-  tagId            String       @unique
-  type             String
-  breed            String?
-  birthDate        DateTime?
-  healthStatus     HealthStatus
-  weight           Float?
-  gender           String
-  livestockSource  String?
-  livestockPurpose String?
-  isSick           Boolean      @default(false)
-  isTreatment      Boolean      @default(false)
+model Document {
+  id          String   @id @default(cuid())
+  title       String
+  filename    String
+  fileUrl     String
+  fileSize    Int
+  uploadedAt  DateTime @default(now())
+  uploadedBy  User     @relation(fields: [uploadedById], references: [id])
+  uploadedById String
+  content     String?  // Store extracted text from PDF
+  processed   Boolean  @default(false)
+  chunks      Chunk[]
+  searches    SearchHistory[]
+  notes       Note[]
+  checklists  Checklist[]
+  processingStatus String? 
 
-  isDeleted      Boolean   @default(false)
-  deletionReason String?
-  deletedAt      DateTime?
-  deletedBy      User?     @relation("LivestockDeletedBy", fields: [deletedById], references: [id]) // New relation
-  deletedById    String?
-
-  sickness           Sickness[]
-  treatments         Treatment[]
-  addedBy            User            @relation("LivestockAddedBy", fields: [addedById], references: [id])
-  addedById          String
-  updatedBy          User?           @relation("LivestockUpdatedBy", fields: [updatedById], references: [id])
-  updatedById        String?
-  createdAt          DateTime        @default(now())
-  updatedAt          DateTime        @updatedAt
-  vaccinationRecords Vaccination[]
-  OfftakeRecord      OfftakeRecord[]
+  @@map("documents")
 }
 
-model Vaccination {
-  id                String    @id @default(cuid())
-  livestock         Livestock @relation(fields: [livestockId], references: [id])
-  livestockId       String
-  dateofVaccination DateTime
-  vaccineType       String
-  dosage            Float
-  administeredBy    String
-  nextDueDate       DateTime?
-  recordedBy        User      @relation(fields: [recordedById], references: [id])
-  recordedById      String
-  createdAt         DateTime  @default(now())
+model Chunk {
+  id          String   @id @default(cuid())
+  documentId  String
+  document    Document @relation(fields: [documentId], references: [id], onDelete: Cascade)
+  chapter     String
+  content     String
+  pageNumber  Int
+  embedding   String?  // For vector search
+  createdAt   DateTime @default(now())
+
+  @@map("chunks")
 }
 
-model Sickness {
-  id                String      @id @default(cuid())
-  livestock         Livestock   @relation(fields: [livestockId], references: [id])
-  livestockId       String
-  dateOfObservation DateTime
-  observedSymptoms  String
-  suspectedCause    String?
-  notes             String?
-  recordedBy        User        @relation(fields: [recordedById], references: [id])
-  recordedById      String
-  createdAt         DateTime    @default(now())
-  treatments        Treatment[]
+model SearchHistory {
+  id          String   @id @default(cuid())
+  query       String
+  results     Json     // Store search results
+  documentId  String
+  document    Document @relation(fields: [documentId], references: [id], onDelete: Cascade)
+  userId      String
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt   DateTime @default(now())
+
+  @@map("search_histories")
 }
 
-model Treatment {
-  id              String    @id @default(cuid())
-  sickness        Sickness? @relation(fields: [sicknessId], references: [id])
-  sicknessId      String?
-  livestock       Livestock @relation(fields: [livestockId], references: [id])
-  livestockId     String
-  dateOfTreatment DateTime
-  treatmentType   String
-  dosage          Float
-  cause           String
-  administeredBy  String
-  nextDueDate     DateTime?
-  recordedBy      User      @relation(fields: [recordedById], references: [id])
-  recordedById    String
-  createdAt       DateTime  @default(now())
+model Checklist {
+  id          String   @id @default(cuid())
+  item        String
+  documentId  String
+  document    Document @relation(fields: [documentId], references: [id], onDelete: Cascade)
+  userId      String
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  completed   Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("checklists")
 }
 
-model OfftakeRecord {
-  id           String    @id @default(cuid())
-  livestock    Livestock @relation(fields: [livestockId], references: [id])
-  livestockId  String
-  type         Offtake
-  dateOfEvent  DateTime
-  destination  String?
-  price        Float?
-  causeOfDeath String?
-  notes        String?
-  recordedBy   User      @relation(fields: [recordedById], references: [id])
-  recordedById String
-  createdAt    DateTime  @default(now())
+model Note {
+  id          String   @id @default(cuid())
+  body        String
+  documentId  String
+  document    Document @relation(fields: [documentId], references: [id], onDelete: Cascade)
+  userId      String
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 
-  @@index([livestockId])
-  @@index([type])
-}
-
-model Task {
-  id           String            @id @default(cuid())
-  name         String
-  description  String
-  priority     Priority
-  dueDate      DateTime
-  status       TaskStatus        @default(PENDING)
-  observations TaskObservation[]
-  assignedTo   User              @relation("TaskAssignedTo", fields: [assignedToId], references: [id])
-  assignedToId String
-  assignedBy   User              @relation("CreatedTasks", fields: [assignedById], references: [id])
-  assignedById String
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-}
-
-model TaskObservation {
-  id           String   @id @default(cuid())
-  note         String
-  mediaUrls    String[]
-  reportedAt   DateTime @default(now())
-  task         Task     @relation(fields: [taskId], references: [id])
-  taskId       String
-  reportedBy   User     @relation("UserTaskObservations", fields: [reportedById], references: [id])
-  reportedById String
-  createdAt    DateTime @default(now())
-  updatedAt    DateTime @updatedAt
-
-  @@index([taskId])
-  @@index([reportedById])
-}
-
-model Inventory {
-  id              String            @id @default(cuid())
-  type            InventoryType
-  name            String
-  currentQuantity Float
-  unit            String            @default("units")
-  purchasePrice   Float?
-  reorderPoint    Float
-  supplier        String?
-  notes           String?
-  mediaUrls       String[]
-  createdAt       DateTime          @default(now())
-  updatedAt       DateTime          @updatedAt
-  records         InventoryRecord[]
-}
-
-model InventoryRecord {
-  id             String              @id @default(cuid())
-  recordType     InventoryRecordType
-  quantity       Float
-  pricePerUnit   Float?
-  totalCost      Float?
-  date           DateTime
-  movementType   String?
-  relatedAnimals String?
-  notes          String?
-  mediaUrls      String[]
-  inventory      Inventory?          @relation(fields: [inventoryId], references: [id])
-  inventoryId    String?
-  recordedBy     User                @relation(fields: [recordedById], references: [id])
-  recordedById   String
-  createdAt      DateTime            @default(now())
-}
-
-model FinancialTransaction {
-  id              String                   @id @default(cuid())
-  type            FinancialTransactionType
-  referenceNumber String
-  title           String
-  amount          Float
-  paymentMethod   String
-  date            DateTime
-  description     String?
-  partyName       String // Buyer or vendor name
-  mediaUrls       String[]
-  recordedBy      User                     @relation(fields: [recordedById], references: [id])
-  recordedById    String
-  createdAt       DateTime                 @default(now())
-  @@index([type])
-  @@index([date])
-}
-
-enum HealthStatus {
-  HEALTHY
-  SICK
-  IN_TREATMENT
-  RECOVERING
-  CRITICAL
-}
-
-enum Offtake {
-  SALE
-  DEATH
-  MISSING
-}
-
-enum Priority {
-  LOW
-  MEDIUM
-  HIGH
-}
-
-enum TaskStatus {
-  PENDING
-  IN_PROGRESS
-  COMPLETED
-  OVERDUE
-}
-
-enum Role {
-  ADMIN
-  FARM_KEEPER
-  COWORKER
-  VET
-}
-
-enum FinancialTransactionType {
-  INCOME
-  EXPENSE
-}
-
-enum InventoryType {
-  FEED
-  MEDICINE
-  EQUIPMENT
-}
-
-enum InventoryRecordType {
-  NEW
-  ITEM
-  USE
+  @@map("notes")
 }

@@ -3,17 +3,20 @@ import {
 	deleteUser,
 	getAllUsers,
 	getProfile,
-	updateProfile,
 	getUserById,
+	updateProfile,
 } from '../contollers/users.controllers';
 import { authenticateJWT } from '../middlewares/errorHandler';
 import { validateRequest } from '../middlewares/validateRequest';
 import { updateUserSchema } from '../schemas/users.schemas';
-import { requireRoles } from '../middlewares/roleCheck';
 
 export const usersRouter = Router();
 
-usersRouter.get('/profile', authenticateJWT, getProfile);
+usersRouter.get(
+	'/profile', 
+	authenticateJWT, 
+	getProfile
+);
 
 usersRouter.patch(
 	'/update',
@@ -26,21 +29,19 @@ usersRouter.patch(
 usersRouter.get(
 	'/', 
 	authenticateJWT,
-	requireRoles(['ADMIN', 'FARM_KEEPER']),
 	getAllUsers
 );
 
 usersRouter.get(
 	'/:userId',
 	authenticateJWT,
-	requireRoles(['ADMIN', 'FARM_KEEPER']),
 	getUserById
 );
 
 usersRouter.delete(
 	'/:userId', 
 	authenticateJWT,
-	requireRoles(['ADMIN', 'FARM_KEEPER']),
+	// requireRoles(['ADMIN', 'FARM_KEEPER']),
 	deleteUser
 );
 

@@ -4665,3 +4665,297 @@
 [32m[39m
 2025-07-27 10:31:47 [32minfo[39m [32mGET /api/v1/finance/transactions 200 5175.187 ms - 1869[39m
 [32m[39m
+2025-09-11 15:21:36 [32minfo[39m [32mGET / 200 44.748 ms - 63[39m
+[32m[39m
+2025-09-11 15:24:34 [31merror[39m [31mExpected double-quoted property name in JSON at position 175 (line 8 column 1) Expected double-quoted property name in JSON at position 175 (line 8 column 1)[39m
+2025-09-11 15:24:52 [32minfo[39m [32mPOST / 404 1.039 ms - 105[39m
+[32m[39m
+2025-09-11 15:25:22 [32minfo[39m [32mPOST /admin-reg 404 0.862 ms - 114[39m
+[32m[39m
+2025-09-11 15:25:34 [32minfo[39m [32mPOST /v1/admin-reg 404 0.486 ms - 117[39m
+[32m[39m
+2025-09-11 15:26:09 [32minfo[39m [32mPOST /api/v1/auth/admin-reg 422 30.538 ms - 173[39m
+[32m[39m
+2025-09-11 15:26:44 [32minfo[39m [32mPOST /api/v1/auth/admin-reg 201 575.986 ms - 96[39m
+[32m[39m
+2025-09-11 15:28:07 [31merror[39m [31mUser already registered! Please proceed to login. User already registered! Please proceed to login.[39m
+2025-09-11 15:28:07 [32minfo[39m [32mPOST /api/v1/auth/admin-reg 403 166.672 ms - 77[39m
+[32m[39m
+2025-09-11 15:28:28 [32minfo[39m [32mPOST /api/v1/auth/admin-reg 404 9.635 ms - 126[39m
+[32m[39m
+2025-09-11 15:28:37 [31merror[39m [31mUser already registered! Please proceed to login. User already registered! Please proceed to login.[39m
+2025-09-11 15:28:37 [32minfo[39m [32mPOST /api/v1/auth/reg 403 203.685 ms - 77[39m
+[32m[39m
+2025-09-11 15:42:10 [32minfo[39m [32mPOST /api/v1/auth/login 422 5.725 ms - 249[39m
+[32m[39m
+2025-09-11 15:42:30 [31merror[39m [31mInvalid credentials Invalid credentials[39m
+2025-09-11 15:42:30 [32minfo[39m [32mPOST /api/v1/auth/login 401 1619.619 ms - 47[39m
+[32m[39m
+2025-09-11 15:42:37 [32minfo[39m [32mPOST /api/v1/auth/login 200 311.503 ms - 624[39m
+[32m[39m
+2025-09-11 15:43:15 [32minfo[39m [32mPOST /api/v1/auth/login 200 442.918 ms - 430[39m
+[32m[39m
+2025-09-12 00:48:07 [32minfo[39m [32mPOST /api/v1/auth/login 200 1636.882 ms - 430[39m
+[32m[39m
+2025-09-12 00:50:24 [32minfo[39m [32mPOST /api/v1/documents/upload 422 77.991 ms - 173[39m
+[32m[39m
+2025-09-12 00:50:51 [32minfo[39m [32mPOST /api/v1/documents/upload 422 53.270 ms - 173[39m
+[32m[39m
+2025-09-12 00:51:37 [32minfo[39m [32mPOST /api/v1/documents/upload 422 29.745 ms - 173[39m
+[32m[39m
+2025-09-12 00:51:40 [32minfo[39m [32mPOST /api/v1/documents/upload 422 29.925 ms - 173[39m
+[32m[39m
+2025-09-12 00:52:08 [32minfo[39m [32mPOST /api/v1/documents/upload 422 13.907 ms - 173[39m
+[32m[39m
+2025-09-12 00:55:59 [32minfo[39m [32mPOST /api/v1/documents/upload 422 705.530 ms - 173[39m
+[32m[39m
+2025-09-12 00:56:24 [32minfo[39m [32mPOST /api/v1/documents/upload 422 19.764 ms - 173[39m
+[32m[39m
+2025-09-12 06:24:03 [32minfo[39m [32mPOST /api/v1/documents/upload 401 20.764 ms - 64[39m
+[32m[39m
+2025-09-12 06:24:21 [32minfo[39m [32mPOST /api/v1/auth/login 200 6131.348 ms - 430[39m
+[32m[39m
+2025-09-12 06:25:32 [32minfo[39m [32mPOST /api/v1/documents/upload 422 66.228 ms - 173[39m
+[32m[39m
+2025-09-12 06:26:05 [32minfo[39m [32mPOST /api/v1/documents/upload 422 263.223 ms - 173[39m
+[32m[39m
+2025-09-12 06:26:12 [32minfo[39m [32mPOST /api/v1/documents/upload 422 108.109 ms - 173[39m
+[32m[39m
+2025-09-12 09:11:33 [32minfo[39m [32mPOST /api/v1/documents/upload 401 143.542 ms - 64[39m
+[32m[39m
+2025-09-12 09:29:52 [32minfo[39m [32mPOST /api/v1/auth/login 200 1614.555 ms - 430[39m
+[32m[39m
+2025-09-12 09:30:10 [32minfo[39m [32mPOST /api/v1/documents/upload 422 28.924 ms - 173[39m
+[32m[39m
+2025-09-12 09:41:19 [31merror[39m [31mUnexpected end of form Unexpected end of form[39m
+2025-09-12 09:41:19 [32minfo[39m [32mPOST /api/v1/documents/upload 400 565.427 ms - 50[39m
+[32m[39m
+2025-09-12 09:41:27 [31merror[39m [31mUnexpected end of form Unexpected end of form[39m
+2025-09-12 09:41:27 [32minfo[39m [32mPOST /api/v1/documents/upload 400 151.243 ms - 50[39m
+[32m[39m
+2025-09-12 09:44:08 [31merror[39m [31mUnexpected end of form Unexpected end of form[39m
+2025-09-12 09:44:08 [32minfo[39m [32mPOST /api/v1/documents/upload 400 349.471 ms - 50[39m
+[32m[39m
+2025-09-12 09:44:11 [31merror[39m [31mUnexpected end of form Unexpected end of form[39m
+2025-09-12 09:44:11 [32minfo[39m [32mPOST /api/v1/documents/upload 400 43.200 ms - 50[39m
+[32m[39m
+2025-09-12 09:44:45 [31merror[39m [31mUnexpected end of form Unexpected end of form[39m
+2025-09-12 09:44:45 [32minfo[39m [32mPOST /api/v1/documents/upload 400 61.034 ms - 50[39m
+[32m[39m
+2025-09-12 09:44:52 [31merror[39m [31mUnexpected end of form Unexpected end of form[39m
+2025-09-12 09:44:52 [32minfo[39m [32mPOST /api/v1/documents/upload 400 24.033 ms - 50[39m
+[32m[39m
+2025-09-12 09:49:25 [31merror[39m [31mUnexpected end of form Unexpected end of form[39m
+2025-09-12 09:49:25 [32minfo[39m [32mPOST /api/v1/documents/upload 400 313.562 ms - 50[39m
+[32m[39m
+2025-09-12 09:52:57 [31merror[39m [31mUnexpected end of form Unexpected end of form[39m
+2025-09-12 09:52:57 [32minfo[39m [32mPOST /api/v1/documents/upload 400 48.148 ms - 50[39m
+[32m[39m
+2025-09-12 09:53:15 [31merror[39m [31mUnexpected end of form Unexpected end of form[39m
+2025-09-12 09:53:15 [32minfo[39m [32mPOST /api/v1/documents/upload 400 45.471 ms - 50[39m
+[32m[39m
+2025-09-12 09:53:36 [31merror[39m [31mUnexpected end of form Unexpected end of form[39m
+2025-09-12 09:53:36 [32minfo[39m [32mPOST /api/v1/documents/upload 400 55.994 ms - 50[39m
+[32m[39m
+2025-09-12 09:54:03 [31merror[39m [31mUnexpected end of form Unexpected end of form[39m
+2025-09-12 09:54:03 [32minfo[39m [32mPOST /api/v1/documents/upload 400 34.837 ms - 50[39m
+[32m[39m
+2025-09-12 09:56:08 [31merror[39m [31mUnexpected end of form Unexpected end of form[39m
+2025-09-12 09:56:08 [32minfo[39m [32mPOST /api/v1/documents/upload 400 164.506 ms - 50[39m
+[32m[39m
+2025-09-12 09:57:28 [31merror[39m [31mUnexpected end of form Unexpected end of form[39m
+2025-09-12 09:57:28 [32minfo[39m [32mPOST /api/v1/documents/upload 400 475.043 ms - 50[39m
+[32m[39m
+2025-09-12 10:13:24 [32minfo[39m [32mPOST /api/v1/documents/upload 201 63106.383 ms - 613996[39m
+[32m[39m
+2025-09-12 11:01:09 [32minfo[39m [32mGET /api/v1/documents 401 20.058 ms - 66[39m
+[32m[39m
+2025-09-12 11:01:43 [32minfo[39m [32mGET /api/v1/documents 401 27.252 ms - 64[39m
+[32m[39m
+2025-09-12 11:01:52 [32minfo[39m [32mPOST /api/v1/auth/login 200 1808.087 ms - 430[39m
+[32m[39m
+2025-09-12 11:02:11 [32minfo[39m [32mGET /api/v1/documents 200 223.953 ms - 614020[39m
+[32m[39m
+2025-09-12 11:04:54 [32minfo[39m [32mGET /api/v1/documents 200 841.582 ms - 233[39m
+[32m[39m
+2025-09-12 11:05:52 [32minfo[39m [32mGET /api/v1/documents - - ms - -[39m
+[32m[39m
+2025-09-12 11:06:08 [32minfo[39m [32mGET /api/v1/documents 200 1105.735 ms - 217[39m
+[32m[39m
+2025-09-12 11:20:55 [32minfo[39m [32mGET /api/v1/documents 200 293.385 ms - 614020[39m
+[32m[39m
+2025-09-12 11:21:37 [31merror[39m [31mDocument is still being processed. Please try again later. Document is still being processed. Please try again later.[39m
+2025-09-12 11:21:37 [32minfo[39m [32mPOST /api/v1/documents/search 400 98.413 ms - 86[39m
+[32m[39m
+2025-09-12 11:21:44 [31merror[39m [31mDocument is still being processed. Please try again later. Document is still being processed. Please try again later.[39m
+2025-09-12 11:21:44 [32minfo[39m [32mPOST /api/v1/documents/search 400 36.783 ms - 86[39m
+[32m[39m
+2025-09-12 11:21:46 [31merror[39m [31mDocument is still being processed. Please try again later. Document is still being processed. Please try again later.[39m
+2025-09-12 11:21:46 [32minfo[39m [32mPOST /api/v1/documents/search 400 35.030 ms - 86[39m
+[32m[39m
+2025-09-12 11:22:41 [31merror[39m [31mDocument is still being processed. Please try again later. Document is still being processed. Please try again later.[39m
+2025-09-12 11:22:41 [32minfo[39m [32mPOST /api/v1/documents/search 400 33.979 ms - 86[39m
+[32m[39m
+2025-09-12 11:40:35 [32minfo[39m [32mPOST /api/v1/documents/cmfgmdwee0001t17ww34j4pkr/status 404 15.201 ms - 154[39m
+[32m[39m
+2025-09-12 11:41:04 [32minfo[39m [32mPOST /api/v1/documents/cmfgmdwee0001t17ww34j4pkr/status 404 5.146 ms - 154[39m
+[32m[39m
+2025-09-12 11:41:24 [32minfo[39m [32mGET /api/v1/documents/cmfgmdwee0001t17ww34j4pkr/status 200 190.730 ms - 145[39m
+[32m[39m
+2025-09-12 12:33:55 [32minfo[39m [32mPOST /api/v1/documents/upload 401 15.580 ms - 64[39m
+[32m[39m
+2025-09-12 12:34:05 [32minfo[39m [32mPOST /api/v1/auth/login 200 717.402 ms - 430[39m
+[32m[39m
+2025-09-12 12:36:55 [32minfo[39m [32mPOST /api/v1/documents/upload 201 91691.735 ms - 614006[39m
+[32m[39m
+2025-09-12 12:58:11 [32minfo[39m [32mGET /api/v1/documents/cmfgmdwee0001t17ww34j4pkr/status 200 665.122 ms - 145[39m
+[32m[39m
+2025-09-12 12:58:16 [32minfo[39m [32mGET /api/v1/documents/cmfgmdwee0001t17ww34j4pkr/status 200 30.719 ms - 145[39m
+[32m[39m
+2025-09-12 12:58:51 [32minfo[39m [32mGET /api/v1/documents/cmfgmdwee0001t17ww34j4pkr/status 200 17.402 ms - 145[39m
+[32m[39m
+2025-09-12 12:59:09 [31merror[39m [31mDocument is still being processed. Please try again later. Document is still being processed. Please try again later.[39m
+2025-09-12 12:59:09 [32minfo[39m [32mPOST /api/v1/documents/search 400 94.718 ms - 86[39m
+[32m[39m
+2025-09-12 12:59:15 [31merror[39m [31mDocument is still being processed. Please try again later. Document is still being processed. Please try again later.[39m
+2025-09-12 12:59:15 [32minfo[39m [32mPOST /api/v1/documents/search 400 47.627 ms - 86[39m
+[32m[39m
+2025-09-12 13:00:52 [32minfo[39m [32mPOST /api/v1/documents/search 200 7480.076 ms - 48156[39m
+[32m[39m
+2025-09-12 13:03:47 [32minfo[39m [32mPOST /api/v1/documents/search 200 8071.131 ms - 87511[39m
+[32m[39m
+2025-09-13 18:52:57 [32minfo[39m [32mPOST /api/v1/auth/login 200 1225.478 ms - 430[39m
+[32m[39m
+2025-09-13 18:53:16 [32minfo[39m [32mGET /api/v1/documents/search-history 200 81.441 ms - 136251[39m
+[32m[39m
+2025-09-13 18:56:50 [32minfo[39m [32mGET /api/v1/checklist 404 0.631 ms - 121[39m
+[32m[39m
+2025-09-13 18:57:00 [32minfo[39m [32mGET /api/v1/checklists 200 13.782 ms - 72[39m
+[32m[39m
+2025-09-13 18:57:09 [32minfo[39m [32mPOST /api/v1/checklists 201 133.168 ms - 382[39m
+[32m[39m
+2025-09-13 18:59:41 [32minfo[39m [32mPATCH /api/v1/checklists/cmfikjbda0001t1t4rmmya629 200 120.542 ms - 380[39m
+[32m[39m
+2025-09-13 19:20:25 [32minfo[39m [32mPOST /api/v1/documents/search 401 3.313 ms - 64[39m
+[32m[39m
+2025-09-13 19:21:04 [32minfo[39m [32mPOST /api/v1/documents/search 200 8840.963 ms - 87511[39m
+[32m[39m
+2025-09-13 19:22:39 [32minfo[39m [32mPOST /api/v1/documents/search 200 8000.645 ms - 1030[39m
+[32m[39m
+2025-09-13 19:23:56 [32minfo[39m [32mPOST /api/v1/documents/search 200 11875.199 ms - 1030[39m
+[32m[39m
+2025-09-13 19:26:20 [32minfo[39m [32mPOST /api/v1/documents/search 200 8984.465 ms - 53593[39m
+[32m[39m
+2025-09-13 19:28:30 [32minfo[39m [32mPOST /api/v1/documents/search 200 6235.953 ms - 18947[39m
+[32m[39m
+2025-09-13 19:48:59 [32minfo[39m [32mPOST /api/v1/auth/login 200 469.922 ms - 430[39m
+[32m[39m
+2025-09-13 19:49:24 [32minfo[39m [32mPOST /api/v1/documents/search 404 0.932 ms - 128[39m
+[32m[39m
+2025-09-13 19:50:21 [32minfo[39m [32mPOST /api/v1/documents/cmfgrigdd0001t190ehi7iqr8/search 200 11845.753 ms - 18947[39m
+[32m[39m
+2025-09-13 19:50:48 [32minfo[39m [32mPOST /api/v1/documents/cmfgrigdd0001t190ehi7iqr8/search 200 19869.646 ms - 18947[39m
+[32m[39m
+2025-09-13 19:51:58 [32minfo[39m [32mGET /api/v1/documents/ 401 1.346 ms - 66[39m
+[32m[39m
+2025-09-13 19:52:30 [32minfo[39m [32mGET /api/v1/documents/ 200 92.410 ms - 1227923[39m
+[32m[39m
+2025-09-13 19:56:24 [32minfo[39m [32mGET /api/v1/documents/cmfgmdwee0001t17ww34j4pkr 404 0.851 ms - 147[39m
+[32m[39m
+2025-09-13 19:56:45 [32minfo[39m [32mGET /api/v1/cmfgmdwee0001t17ww34j4pkr/document 404 0.370 ms - 146[39m
+[32m[39m
+2025-09-13 19:57:40 [32minfo[39m [32mPOST /api/v1/checklists 404 1.141 ms - 122[39m
+[32m[39m
+2025-09-13 20:00:48 [32minfo[39m [32mGET /api/v1/checklists/cmfgrigdd0001t190ehi7iqr8 200 107.467 ms - 379[39m
+[32m[39m
+2025-09-13 20:09:05 [32minfo[39m [32mPOST /api/v1/checklists/cmfgmdwee0001t17ww34j4pkr 401 2.096 ms - 64[39m
+[32m[39m
+2025-09-13 20:09:37 [32minfo[39m [32mGET /api/v1/checklists/:documentId 200 102.055 ms - 72[39m
+[32m[39m
+2025-09-13 20:10:56 [32minfo[39m [32mGET /api/v1/checklists/cmfgrigdd0001t190ehi7iqr8 200 9.208 ms - 379[39m
+[32m[39m
+2025-09-13 20:11:28 [32minfo[39m [32mDELETE /api/v1/checklists/cmfikjbda0001t1t4rmmya629 401 0.495 ms - 66[39m
+[32m[39m
+2025-09-13 20:11:54 [32minfo[39m [32mDELETE /api/v1/checklists/cmfikjbda0001t1t4rmmya629 200 30.724 ms - 74[39m
+[32m[39m
+2025-09-13 22:32:07 [32minfo[39m [32mPOST /api/v1/notes/cmfgrigdd0001t190ehi7iqr8 401 3.176 ms - 64[39m
+[32m[39m
+2025-09-13 22:55:07 [32minfo[39m [32mPOST /api/v1/auth/login 200 316.488 ms - 430[39m
+[32m[39m
+2025-09-13 22:55:33 [32minfo[39m [32mPOST /api/v1/notes/cmfgrigdd0001t190ehi7iqr8 201 60.932 ms - 389[39m
+[32m[39m
+2025-09-13 23:00:58 [32minfo[39m [32mGET /api/v1/notes 404 0.577 ms - 117[39m
+[32m[39m
+2025-09-13 23:03:11 [32minfo[39m [32mGET /api/v1/notes 200 147.039 ms - 437[39m
+[32m[39m
+2025-09-13 23:03:48 [31merror[39m [31mDocument not found Document not found[39m
+2025-09-13 23:03:48 [32minfo[39m [32mPOST /api/v1/notes/:documentId 404 43.445 ms - 46[39m
+[32m[39m
+2025-09-13 23:04:26 [32minfo[39m [32mPOST /api/v1/notes/cmfgrigdd0001t190ehi7iqr8 201 58.059 ms - 438[39m
+[32m[39m
+2025-09-13 23:04:53 [32minfo[39m [32mGET /api/v1/notes 200 15.093 ms - 805[39m
+[32m[39m
+2025-09-13 23:06:47 [32minfo[39m [32mGET /api/v1/notes/cmfit1weh0005t1rcrcnotp01 200 10.245 ms - 119[39m
+[32m[39m
+2025-09-13 23:07:03 [32minfo[39m [32mGET /api/v1/notes/cmfit1weh0005t1rcrcnotp01 200 8.333 ms - 119[39m
+[32m[39m
+2025-09-13 23:07:36 [32minfo[39m [32mGET /api/v1/notes/cmfitdb7s0001t168gl7m5c9c 200 10.845 ms - 119[39m
+[32m[39m
+2025-09-13 23:09:24 [32minfo[39m [32mPATCH /api/v1/notes/cmfitdb7s0001t168gl7m5c9c 200 108.038 ms - 365[39m
+[32m[39m
+2025-09-13 23:09:40 [32minfo[39m [32mGET /api/v1/notes 200 15.064 ms - 732[39m
+[32m[39m
+2025-09-13 23:10:02 [32minfo[39m [32mGET /api/v1/notes/cmfitdb7s0001t168gl7m5c9c 200 86.773 ms - 119[39m
+[32m[39m
+2025-09-13 23:14:32 [32minfo[39m [32mDELETE /api/v1/notes/cmfitdb7s0001t168gl7m5c9c 200 91.770 ms - 64[39m
+[32m[39m
+2025-09-13 23:14:52 [32minfo[39m [32mGET /api/v1/notes 200 12.859 ms - 437[39m
+[32m[39m
+2025-09-13 23:22:28 [31merror[39m [31mDocument not found Document not found[39m
+2025-09-13 23:22:28 [32minfo[39m [32mGET /api/v1/notes/cmfitdb7s0001t168gl7m5c9c 404 239.828 ms - 46[39m
+[32m[39m
+2025-09-13 23:22:52 [31merror[39m [31mDocument not found Document not found[39m
+2025-09-13 23:22:52 [32minfo[39m [32mGET /api/v1/notes/cmfit1weh0005t1rcrcnotp01 404 13.059 ms - 46[39m
+[32m[39m
+2025-09-13 23:22:57 [31merror[39m [31mDocument not found Document not found[39m
+2025-09-13 23:22:57 [32minfo[39m [32mGET /api/v1/notes/cmfit1weh0005t1rcrcnotp01 404 9.517 ms - 46[39m
+[32m[39m
+2025-09-13 23:39:35 [32minfo[39m [32mGET /api/v1/notes/cmfit1weh0005t1rcrcnotp01 200 346.504 ms - 446[39m
+[32m[39m
+2025-09-14 01:00:15 [32minfo[39m [32mGET /api/v1/users/profile 401 6.643 ms - 66[39m
+[32m[39m
+2025-09-14 01:00:43 [32minfo[39m [32mGET /api/v1/users/profile 401 6.844 ms - 64[39m
+[32m[39m
+2025-09-14 01:00:54 [32minfo[39m [32mPOST /api/v1/auth/login 200 383.571 ms - 430[39m
+[32m[39m
+2025-09-14 01:00:58 [32minfo[39m [32mPOST /api/v1/auth/login 200 277.108 ms - 430[39m
+[32m[39m
+2025-09-14 01:01:20 [32minfo[39m [32mGET /api/v1/users/profile 200 14.652 ms - 343[39m
+[32m[39m
+2025-09-14 01:02:39 [32minfo[39m [32mGET /api/v1/users/cmffi4zux0000t1pgt4cifw6r 200 10.390 ms - 340[39m
+[32m[39m
+2025-09-14 01:19:50 [31merror[39m [31mUser not found User not found[39m
+2025-09-14 01:19:50 [32minfo[39m [32mGET /api/v1/users/update 404 123.552 ms - 42[39m
+[32m[39m
+2025-09-14 01:20:03 [31merror[39m [31mUser not found User not found[39m
+2025-09-14 01:20:03 [32minfo[39m [32mGET /api/v1/users/update 404 13.378 ms - 42[39m
+[32m[39m
+2025-09-14 01:20:26 [32minfo[39m [32mPOST /api/v1/auth/login 200 268.060 ms - 430[39m
+[32m[39m
+2025-09-14 01:20:45 [31merror[39m [31mUser not found User not found[39m
+2025-09-14 01:20:45 [32minfo[39m [32mGET /api/v1/users/update 404 12.854 ms - 42[39m
+[32m[39m
+2025-09-14 01:21:08 [32minfo[39m [32mPATCH /api/v1/users/update 200 44.788 ms - 373[39m
+[32m[39m
+2025-09-14 01:21:55 [32minfo[39m [32mGET /api/v1/users/profile 200 10.047 ms - 375[39m
+[32m[39m
+2025-09-14 01:44:50 [32minfo[39m [32mPOST /api/v1/auth/login 200 416.794 ms - 667[39m
+[32m[39m
+2025-09-14 02:00:26 [32minfo[39m [32mPOST /api/v1/documents/cmfgmdwee0001t17ww34j4pkr 404 3.699 ms - 147[39m
+[32m[39m
+2025-09-14 02:01:13 [32minfo[39m [32mDELETE /api/v1/documents/cmfgmdwee0001t17ww34j4pkr 200 240.524 ms - 89[39m
+[32m[39m
+2025-09-14 02:06:38 [32minfo[39m [32mGET /api/v1 404 1.628 ms - 111[39m
+[32m[39m
+2025-09-14 02:06:39 [32minfo[39m [32mGET /favicon.ico 404 0.771 ms - 116[39m
+[32m[39m

@@ -1,4 +1,3 @@
-
 import { NextFunction, Request, Response } from "express";
 import prisma from "../prisma";
 import generateToken from "../utils/generateToken";
@@ -6,16 +5,9 @@ import { hash, verify } from "argon2";
 import { sendSuccessResponse } from "../utils/sendSuccessResponse";
 import { NotFoundError } from "../errors/NotFoundError";
 import { UnauthorizedError } from "../errors/UnauthorizedError";
-import { generateVerificationCode } from "../utils/generateVerificationCode";
-import { BadRequestError } from "../errors/BadRequestError";
-import { MailInterface } from "../interfaces/mail.interfaces";
-import { sendCustomMail } from "../services/mail.services";
 import { ForbiddenError } from "../errors/ForbiddenError";
-import { render } from "../utils/mailTemplate";
-import { compareDates } from "../utils/dateExpiration";
 import { userSelect } from "../prisma/selects";
-import { ConflictError } from "../errors/ConflictError";
-import { normalizePhoneNumber, validatePhoneNumber } from "../utils/phoneFormat";
+
 // import { isValid } from "zod";
 
 export const adminRegister = async (
@@ -24,7 +16,7 @@ export const adminRegister = async (
   next: NextFunction
 ): Promise<void> => {
   try {
-    const { email, fullName, password } = req.body;
+    const { email, fullName, password, jobTitle, company, location } = req.body;
 
     const existingUser = await prisma.user.findUnique({ where: { email } });
     if (existingUser)
@@ -33,95 +25,23 @@ export const adminRegister = async (
       );
 
     const hashedPassword = await hash(password);
-    const verificationCode = generateVerificationCode().toString();
     const data = {
       email,
       password: hashedPassword,
       fullName,
-      verificationCode,
-      verificationExpires: new Date(new Date().getTime() + 30 * 60 * 1000),
+      jobTitle,
+      company,
+      location
     };
     await prisma.user.create({
       data,
     });
-    const html = render("verification", {
-      fullName,
-      verificationCode,
-      currentYear: new Date().getFullYear(),
-    });
-    const mailOptions: MailInterface = {
-      to: email,
-      from: `"Agritech" samzdevop@yahoo.com`,
-      subject: "Verify your Agritech Account",
-      text: "",
-      html,
-    };
-
-    if (process.env.NODE_ENV !== "test") sendCustomMail(mailOptions);
-
-
     sendSuccessResponse(
       res,
       "Account successfully created, kindly verify your account!",
       {},
       201
     );
-  } catch (error) {
-    next(error);
-  }
-};
-
-export const register = async (
-  req: Request,
-  res: Response,
-  next: NextFunction
-): Promise<void> => {
-  try {
-    const { email, phone, fullName, password, role } = req.body;
-
-     if (phone && !validatePhoneNumber(phone)) {
-      throw new BadRequestError(
-        'Phone must be in valid international format (+XXX...) or local Nigerian format (0XXX...)'
-      );
-    }
-
-    const normalizedPhone = phone ? normalizePhoneNumber(phone) : null;
-
-    const existingUser = await prisma.user.findFirst({
-      where: {
-        OR: [
-          {email: email || undefined },
-          { phone: normalizedPhone || undefined }
-        ]
-      }
-    });
-
-
-    if (existingUser) {
-      const conflicts = [];
-      if(existingUser.email === email) conflicts.push("email");
-      if(existingUser.phone === normalizedPhone) conflicts.push("phone");
-      throw new ConflictError(
-        `User already exists with this ${conflicts.join(" and ")}`
-      );
-    }
-
-    const hashedPassword = await hash(password);
-    const verificationCode = generateVerificationCode().toString();
-    await prisma.user.create({
-     data: {
-      email,
-      phone: normalizedPhone,
-      password: hashedPassword,
-      fullName,
-      verificationCode,
-      verificationExpires: new Date(new Date().getTime() + 30 * 60 * 1000),
-      role: role || "COWORKER",
-      isVerified: true
-    }
-  });
-  sendSuccessResponse(res, "Registeration successfully", 
-{}, 201);
   } catch (error) {
     next(error);
   }
@@ -134,188 +54,35 @@ export const login = async (
   res: Response,
   next: NextFunction
 ): Promise<void> => {
-  const { email, phone, password } = req.body;
+  const { email, password } = req.body;
 
   try {
-      // Validate phone format if provided
-    if (phone && !validatePhoneNumber(phone)) {
-      throw new BadRequestError(
-        'Phone must be in valid international format (+XXX...) or local Nigerian format (0XXX...)'
-      );
-    }
-
-    const normalizedPhone = phone ? normalizePhoneNumber(phone) : undefined;
-    const user = await prisma.user.findFirst({
-      where: {
-        OR: [
-          // Check for email or phone
-        { email: email ?? undefined },
-        {phone: normalizedPhone ?? undefined }
-      ]
-      },
-      });
-
+    const user = await prisma.user.findUnique({where: { email } });
     if (!user) throw new NotFoundError("User not found");
 
-    const isPasswordValid = await verify(
-      user.password || "$passwordless",
-      password
-    );
-    if (!isPasswordValid) throw new UnauthorizedError("Invalid credentials");
+    const validPassword = await verify(user.password || "$passwordless", password);
+    if (!validPassword) throw new UnauthorizedError("Invalid credentials");
 
-    if (!user.isVerified) throw new UnauthorizedError("Account not verified!");
-    if (user.isSuspended)
-      throw new UnauthorizedError(
-        "Account suspended! Kindly reachout to support@penetralia.com"
-      );
-
-    await prisma.user.update({
-      where: {id: user.id},
-      data: {lastLogin: new Date()}
-    })
+    const availableDocument = await prisma.document.findFirst({
+      orderBy: { uploadedAt: 'desc' }, // Get the most recent document
+      select: { id: true, title: true }
+    });
 
     const userData = await prisma.user.findUnique({
-      where: { id: user.id},
+      where: { id: user.id },
       select: userSelect
-    }) 
-    const token = generateToken({
-      id: user.id,
-      // ...(user.email && {email: user.email}),
-      // ...(user.phone && {phone: user.phone})
     });
+    if (!userData) throw new NotFoundError("User data not found");
+    const token = generateToken ({email, id: user.id});
     sendSuccessResponse(res, "Login successful", { 
       token, 
-      user: userData
-     });
+      user:{
+        ...userData, 
+      documentId: availableDocument?.id || null,
+      documentTitle: availableDocument?.title || null
+      }
+    });
   } catch (error) {
     next(error);
   }
-};
-
-export const requestVerificationCode = async (
-  req: Request,
-  res: Response,
-  next: NextFunction
-): Promise<void> => {
-  const { email } = req.body;
-
-  try {
-    const user = await prisma.user.findUnique({ where: { email } });
-    if (!user) throw new NotFoundError("User not found");
-
-    const verificationCode = generateVerificationCode().toString();
-
-    await prisma.user.update({
-      where: { email },
-      data: {
-        verificationCode,
-        verificationExpires: new Date(new Date().getTime() + 30 * 60 * 1000),
-      },
-    });
-    const html = render("resend", {
-      verificationCode,
-      currentYear: new Date().getFullYear(),
-    });
-    const mailOptions: MailInterface = {
-      to: email,
-      from: `"Penetralia" samzdevop@yahoo.com`,
-      subject: "Reset your Agritech Password",
-      text: "",
-      html,
-    };
-    if (process.env.NODE_ENV !== "test") sendCustomMail(mailOptions);
-
-    sendSuccessResponse(res, "Verification code successfully sent");
-  } catch (error) {
-    next(error);
-  }
-};
-
-export const verifyAccount = async (
-  req: Request,
-  res: Response,
-  next: NextFunction
-): Promise<void> => {
-  const { email, verificationCode } = req.body;
-
-  try {
-    const user = await prisma.user.findUnique({ where: { email } });
-    if (!user) throw new NotFoundError("User not found");
-
-    if (verificationCode !== user.verificationCode)
-      throw new UnauthorizedError("Invalid or expired verification code");
-
-    if (
-      compareDates(user.verificationExpires || new Date(), new Date(), "before")
-    )
-      throw new UnauthorizedError("Invalid or expired verification code");
-
-    await prisma.user.update({
-      where: { email },
-      data: { isVerified: true, verificationCode: "0" },
-    });
-
-    const html = render("welcome", {
-      fullName: user.fullName,
-      verificationCode,
-      currentYear: new Date().getFullYear(),
-    });
-    const mailOptions: MailInterface = {
-      to: email,
-      from: `"Penetralia" samzdevop@yahoo.com`,
-      subject: "Welcome to Agritech Africa",
-      text: "",
-      html,
-    };
-    if (process.env.NODE_ENV !== "test") sendCustomMail(mailOptions);
-    sendSuccessResponse(res, "Account verification successful");
-  } catch (error) {
-    next(error);
-  }
-};
-
-export const resetPassword = async (
-  req: Request,
-  res: Response,
-  next: NextFunction
-): Promise<void> => {
-  const { email, password, confirmPassword, verificationCode } = req.body;
-
-  try {
-    const user = await prisma.user.findUnique({ where: { email } });
-    if (!user) throw new NotFoundError("User not found");
-
-    if (password !== confirmPassword)
-      throw new BadRequestError(`Password don't match`);
-
-    if (verificationCode !== user.verificationCode)
-      throw new UnauthorizedError("Invalid or expired verification code");
-
-    if (
-      compareDates(user.verificationExpires || new Date(), new Date(), "before")
-    )
-      throw new UnauthorizedError("Invalid or expired verification code");
-
-    const hashedPassword = await hash(password);
-    await prisma.user.update({
-      where: { email },
-      data: { password: hashedPassword, verificationCode: "0" },
-    });
-
-    const html = render("reset", {
-      fullName: user.fullName,
-      currentYear: new Date().getFullYear(),
-    });
-    const mailOptions: MailInterface = {
-      to: email,
-      from: `"Penetralia" samzdevop@yahoo.com`,
-      subject: "Agritech Password Reset Successful",
-      text: "",
-      html,
-    };
-    if (process.env.NODE_ENV !== "test") sendCustomMail(mailOptions);
-    sendSuccessResponse(res, "Password reset successful");
-  } catch (error) {
-    next(error);
-  }
-};
+}

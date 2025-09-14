@@ -2,48 +2,41 @@ import { Router } from 'express';
 import {
 	login,
 	adminRegister,
-	requestVerificationCode,
-	resetPassword,
-	verifyAccount,
-	register,
+
 } from '../contollers/auth.controller';
 import { validateRequest } from '../middlewares/validateRequest';
 import {
 	loginSchema,
 	adminRegisterSchema,
-	requestVerificationSchema,
-	resetPasswordSchema,
-	verifyAccountSchema,
-	registerSchema,
+
 } from '../schemas/auth.schemas';
 import passport from 'passport';
 import { sendSuccessResponse } from '../utils/sendSuccessResponse';
-import { authenticateJWT } from '../middlewares/errorHandler';
-import { requireRoles } from '../middlewares/roleCheck';
+
 
 export const authRouter = Router();
 
-authRouter.post('/admin-reg', validateRequest(adminRegisterSchema), adminRegister);
+authRouter.post('/reg', validateRequest(adminRegisterSchema), adminRegister);
 
-authRouter.post(
-	'/register',
-	authenticateJWT,
-	requireRoles(['ADMIN', 'FARM_KEEPER']),
-	validateRequest(registerSchema),
-	register
-);
+// authRouter.post(
+// 	'/register',
+// 	authenticateJWT,
+// 	requireRoles(['ADMIN', 'FARM_KEEPER']),
+// 	validateRequest(registerSchema),
+// 	register
+// );
 
 authRouter.post('/login', validateRequest(loginSchema), login);
 
-authRouter.post(
-	'/resend',
-	validateRequest(requestVerificationSchema),
-	requestVerificationCode
-);
+// authRouter.post(
+// 	'/resend',
+// 	validateRequest(requestVerificationSchema),
+// 	requestVerificationCode
+// );
 
-authRouter.put('/verify', validateRequest(verifyAccountSchema), verifyAccount);
+// authRouter.put('/verify', validateRequest(verifyAccountSchema), verifyAccount);
 
-authRouter.put('/reset', validateRequest(resetPasswordSchema), resetPassword);
+// authRouter.put('/reset', validateRequest(resetPasswordSchema), resetPassword);
 
 // Google Strategy
 authRouter.get(

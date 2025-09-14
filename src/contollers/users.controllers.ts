@@ -3,10 +3,6 @@ import prisma from '../prisma';
 import { sendSuccessResponse } from '../utils/sendSuccessResponse';
 import { NotFoundError } from '../errors/NotFoundError';
 import { userSelect } from '../prisma/selects';
-import { ForbiddenError } from '../errors/ForbiddenError';
-import { Role } from '@prisma/client';
-import { normalizePhoneNumber, validatePhoneNumber } from '../utils/phoneFormat';
-import { BadRequestError } from '../errors/BadRequestError';
 // import { Prisma } from '@prisma/client';
 
 export const getProfile = async (
@@ -36,20 +32,13 @@ export const updateProfile = async (
 ) => {
   try {
     const userId = (req.user as any).id;
-    const { fullName, location, avatar, phone } = req.body;
+    const { fullName, location, company, jobTitle, avatar } = req.body;
 
-    if (phone && !validatePhoneNumber(phone)) {
-      throw new BadRequestError(
-        'Phone must be in valid international format (+XXX...) or local Nigerian format (0XXX...)'
-      );
-    }
-
-    const normalizedPhone = phone ? normalizePhoneNumber(phone) : undefined;
 
 
     const updatedUser = await prisma.user.update({
       where: { id: userId },
-      data: { fullName, location, avatar, phone:normalizedPhone },
+      data: { fullName, location, company, jobTitle, avatar},
       select: userSelect
     });
 
@@ -60,53 +49,19 @@ export const updateProfile = async (
 };
 
 export const getAllUsers = async (
-  req: Request,
-  res: Response,
-  next: NextFunction
+	_req: Request,
+	res: Response,
+	next: NextFunction
 ) => {
-  try {
-    const requestingUser = (req as any).user; // Get the current user
-    const { page = 1, limit = 10 } = req.query;
+	try {
+		const users = await prisma.user.findMany({
+			orderBy: { createdAt: 'desc' },
+		});
 
-    // Determine which roles the current user can access
-    let allowedRoles: Role[] = [];
-    
-    if (requestingUser.role === 'ADMIN') {
-      allowedRoles = ['FARM_KEEPER', 'COWORKER'];
-    } else if (requestingUser.role === 'FARM_KEEPER') {
-      allowedRoles = ['COWORKER'];
-    } else {
-      throw new ForbiddenError('You do not have permission to view users');
-    }
-
-    const where = {
-      role: { in: allowedRoles },
-      id: { not: requestingUser.id } // Exclude the current user
-    };
-
-    const [users, total] = await Promise.all([
-      prisma.user.findMany({
-        where,
-        skip: (Number(page) - 1) * Number(limit),
-        take: Number(limit),
-        select: userSelect,
-        orderBy: { createdAt: 'desc' },
-      }),
-      prisma.user.count({ where })
-    ]);
-
-    sendSuccessResponse(res, 'Users retrieved successfully', {
-      users,
-      pagination: {
-        page: Number(page),
-        limit: Number(limit),
-        total,
-        pages: Math.ceil(total / Number(limit))
-      }
-    });
-  } catch (error) {
-    next(error);
-  }
+		res.status(200).json({ data: users });
+	} catch (error) {
+		next(error);
+	}
 };
 
 

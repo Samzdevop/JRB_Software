@@ -9,14 +9,11 @@ import { errorHandler } from './middlewares/errorHandler';
 import { usersRouter } from './routes/users.routes';
 import passport from 'passport';
 import './config/passport';
-import { livestockRouter } from './routes/livestock.routes';
-import { vaccinationRouter } from './routes/vaccination.routes';
-import { sicknessRouter } from './routes/sickness.routes';
-import { treatmentRouter } from './routes/treatment.routes';
-import { offtakeRouter } from './routes/offtake.routes';
-import { taskRouter } from './routes/task.routes';
-import { inventoryRouter } from './routes/inventory.routes';
-import { financeRouter } from './routes/finance.routes';
+import { documentRouter } from './routes/document.routes';
+import { checklistRouter } from './routes/checkList.routes';
+import { notesRouter } from './routes/notes.routes';
+import path from 'path';
+
 
 export const app = express();
 
@@ -50,14 +47,10 @@ app.get('/', (_req: Request, res: Response) => {
 
 app.use('/api/v1/auth', authRouter);
 app.use('/api/v1/users', usersRouter);
-app.use('/api/v1/livestock', livestockRouter);
-app.use('/api/v1/', vaccinationRouter);
-app.use('/api/v1/sickness', sicknessRouter)
-app.use('/api/v1/treatment', treatmentRouter);
-app.use('/api/v1/offtake', offtakeRouter);
-app.use('/api/v1/tasks', taskRouter)
-app.use('/api/v1/inventory', inventoryRouter)
-app.use('/api/v1/finance', financeRouter)
+app.use('/api/v1/documents', documentRouter);
+app.use('/api/v1/checklists', checklistRouter);
+app.use('/api/v1/notes', notesRouter);
+// app.use('/uploads', express.static(path.join(process.cwd(), 'uploads')));
 
 app.use(notFoundHandler);
 app.use(errorHandler);

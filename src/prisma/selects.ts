@@ -3,13 +3,23 @@ export const userSelect = {
     fullName: true,
     email: true,
     phone: true,
+    company: true,
+    jobTitle: true,
     // password: false,
     // isSuspended: false,
-    role: true,
-    isVerified: true,
     avatar: true,
     location: true,
     createdAt: true,
     updatedAt: true,
     
+}
+
+export const documentSelect = {
+    id: true,
+    title: true,
+    fileUrl: true,
+    fileSize: true,
+    uploadedById: true,
+    // content: false,
+    // processed: true,
 }
