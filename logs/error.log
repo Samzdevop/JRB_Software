@@ -3621,3 +3621,28 @@
 2025-09-14 01:19:50 [31merror[39m [31mUser not found User not found[39m
 2025-09-14 01:20:03 [31merror[39m [31mUser not found User not found[39m
 2025-09-14 01:20:45 [31merror[39m [31mUser not found User not found[39m
+2025-09-14 05:16:32 [31merror[39m [31mInternal Server Error [39m
+[31mInvalid `prisma.user.findUnique()` invocation:[39m
+
+
+[31mDatabase `wrightenergydb&connection_limit=5&pool_timeout=10` does not exist[39m
+2025-09-14 05:16:40 [31merror[39m [31mInternal Server Error [39m
+[31mInvalid `prisma.user.findUnique()` invocation:[39m
+
+
+[31mDatabase `wrightenergydb&connection_limit=5&pool_timeout=10` does not exist[39m
+2025-09-14 05:18:36 [31merror[39m [31mInternal Server Error [39m
+[31mInvalid `prisma.user.findUnique()` invocation:[39m
+
+
+[31mDatabase `wrightenergydb&connection_limit=5&pool_timeout=10` does not exist[39m
+2025-09-14 05:18:49 [31merror[39m [31mInternal Server Error [39m
+[31mInvalid `prisma.user.findUnique()` invocation:[39m
+
+
+[31mDatabase `wrightenergydb&connection_limit=5&pool_timeout=10` does not exist[39m
+2025-09-14 05:19:27 [31merror[39m [31mInternal Server Error [39m
+[31mInvalid `prisma.user.findUnique()` invocation:[39m
+
+
+[31mDatabase `wrightenergydb&connection_limit=5&pool_timeout=10` does not exist[39m

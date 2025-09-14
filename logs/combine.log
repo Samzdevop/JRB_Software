@@ -4959,3 +4959,40 @@
 [32m[39m
 2025-09-14 02:06:39 [32minfo[39m [32mGET /favicon.ico 404 0.771 ms - 116[39m
 [32m[39m
+2025-09-14 05:16:32 [31merror[39m [31mInternal Server Error [39m
+[31mInvalid `prisma.user.findUnique()` invocation:[39m
+
+
+[31mDatabase `wrightenergydb&connection_limit=5&pool_timeout=10` does not exist[39m
+2025-09-14 05:16:32 [32minfo[39m [32mPOST /api/v1/auth/login 500 4611.848 ms - 49[39m
+[32m[39m
+2025-09-14 05:16:40 [31merror[39m [31mInternal Server Error [39m
+[31mInvalid `prisma.user.findUnique()` invocation:[39m
+
+
+[31mDatabase `wrightenergydb&connection_limit=5&pool_timeout=10` does not exist[39m
+2025-09-14 05:16:40 [32minfo[39m [32mPOST /api/v1/auth/login 500 1936.714 ms - 49[39m
+[32m[39m
+2025-09-14 05:18:36 [31merror[39m [31mInternal Server Error [39m
+[31mInvalid `prisma.user.findUnique()` invocation:[39m
+
+
+[31mDatabase `wrightenergydb&connection_limit=5&pool_timeout=10` does not exist[39m
+2025-09-14 05:18:36 [32minfo[39m [32mPOST /api/v1/auth/login 500 2305.859 ms - 49[39m
+[32m[39m
+2025-09-14 05:18:49 [31merror[39m [31mInternal Server Error [39m
+[31mInvalid `prisma.user.findUnique()` invocation:[39m
+
+
+[31mDatabase `wrightenergydb&connection_limit=5&pool_timeout=10` does not exist[39m
+2025-09-14 05:18:49 [32minfo[39m [32mPOST /api/v1/auth/login 500 1946.682 ms - 49[39m
+[32m[39m
+2025-09-14 05:19:27 [31merror[39m [31mInternal Server Error [39m
+[31mInvalid `prisma.user.findUnique()` invocation:[39m
+
+
+[31mDatabase `wrightenergydb&connection_limit=5&pool_timeout=10` does not exist[39m
+2025-09-14 05:19:27 [32minfo[39m [32mPOST /api/v1/auth/login 500 1939.472 ms - 49[39m
+[32m[39m
+2025-09-14 05:19:48 [32minfo[39m [32mPOST /api/v1/auth/login 200 432.671 ms - 667[39m
+[32m[39m
