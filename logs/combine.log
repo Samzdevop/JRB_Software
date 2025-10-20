@@ -5016,3 +5016,19 @@
 2025-10-19 07:29:27 [31merror[39m [31mNo file uploaded No file uploaded[39m
 2025-10-19 07:29:27 [32minfo[39m [32mPOST /api/v1/documents/upload 400 9.380 ms - 44[39m
 [32m[39m
+2025-10-19 07:39:21 [32minfo[39m [32mGET /api/v1/documents 200 286.720 ms - 614053[39m
+[32m[39m
+2025-10-19 07:39:23 [32minfo[39m [32mGET /api/v1/documents 200 38.600 ms - 614053[39m
+[32m[39m
+2025-10-19 07:39:28 [32minfo[39m [32mGET /api/v1/documents 200 236.543 ms - 614053[39m
+[32m[39m
+2025-10-19 07:39:36 [32minfo[39m [32mGET /api/v1/documents 200 41.299 ms - 614053[39m
+[32m[39m
+2025-10-19 07:40:26 [32minfo[39m [32mPOST /api/v1/documents/upload 201 42247.568 ms - 588198[39m
+[32m[39m
+2025-10-19 07:43:04 [32minfo[39m [32mGET /api/v1/documents 200 84.958 ms - 1201843[39m
+[32m[39m
+2025-10-19 07:44:48 [32minfo[39m [32mDELETE /api/v1/documents/cmfgrigdd0001t190ehi7iqr8 200 181.622 ms - 89[39m
+[32m[39m
+2025-10-19 07:45:03 [32minfo[39m [32mGET /api/v1/documents 200 42.423 ms - 587916[39m
+[32m[39m
