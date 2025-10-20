@@ -4996,3 +4996,23 @@
 [32m[39m
 2025-09-14 05:19:48 [32minfo[39m [32mPOST /api/v1/auth/login 200 432.671 ms - 667[39m
 [32m[39m
+2025-10-19 05:18:46 [32minfo[39m [32mPOST /api/v1/auth/login 200 1047.249 ms - 667[39m
+[32m[39m
+2025-10-19 05:19:08 [32minfo[39m [32mGET /api/v1/documents 200 45.080 ms - 614053[39m
+[32m[39m
+2025-10-19 07:19:38 [32minfo[39m [32mPOST /api/v1/auth/login 200 341.816 ms - 667[39m
+[32m[39m
+2025-10-19 07:20:02 [32minfo[39m [32mGET /api/v1/documents/cmfgrigdd0001t190ehi7iqr8/content 200 218.546 ms - 1300389[39m
+[32m[39m
+2025-10-19 07:25:58 [32minfo[39m [32mGET /api/v1/documents/cmfgrigdd0001t190ehi7iqr8/toc 200 443.155 ms - 243139[39m
+[32m[39m
+2025-10-19 07:27:58 [32minfo[39m [32mGET /api/v1/documents 401 4.123 ms - 64[39m
+[32m[39m
+2025-10-19 07:28:18 [32minfo[39m [32mGET /api/v1/documents 200 44.964 ms - 614053[39m
+[32m[39m
+2025-10-19 07:28:45 [31merror[39m [31mNo file uploaded No file uploaded[39m
+2025-10-19 07:28:45 [32minfo[39m [32mPOST /api/v1/documents/upload 400 105.849 ms - 44[39m
+[32m[39m
+2025-10-19 07:29:27 [31merror[39m [31mNo file uploaded No file uploaded[39m
+2025-10-19 07:29:27 [32minfo[39m [32mPOST /api/v1/documents/upload 400 9.380 ms - 44[39m
+[32m[39m

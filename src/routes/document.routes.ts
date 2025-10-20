@@ -6,6 +6,8 @@ import {
   getDocuments,
   getDocumentStatus,
   deleteDocument,
+  getDocumentContent,
+  getDocumentTableOfContents,
 } from '../contollers/document.controller';
 import { authenticateJWT } from '../middlewares/errorHandler';
 import { validateRequest } from '../middlewares/validateRequest';
@@ -57,4 +59,16 @@ documentRouter.delete(
   '/:documentId',
   authenticateJWT,
   deleteDocument
+);
+
+documentRouter.get(
+  '/:documentId/content',
+  authenticateJWT,
+  getDocumentContent
+);
+
+documentRouter.get(
+  '/:documentId/toc',
+  authenticateJWT,
+  getDocumentTableOfContents
 );

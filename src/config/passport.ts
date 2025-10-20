@@ -1,8 +1,8 @@
 import passport from 'passport';
 import { Strategy as JwtStrategy, ExtractJwt } from 'passport-jwt';
-import { Strategy as GoogleStrategy } from 'passport-google-oauth20';
+// import { Strategy as GoogleStrategy } from 'passport-google-oauth20';
 import prisma from '../prisma';
-import generateToken from '../utils/generateToken';
+// import generateToken from '../utils/generateToken';
 
 passport.use(
 	new JwtStrategy(
