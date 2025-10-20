@@ -1,4 +1,3 @@
-// routes/notes.routes.ts
 import { Router } from 'express';
 import {
   createNote,

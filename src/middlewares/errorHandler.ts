@@ -8,7 +8,7 @@ import { UnauthorizedError } from '../errors/UnauthorizedError';
 import { BadRequestError } from '../errors/BadRequestError';
 import { ForbiddenError } from '../errors/ForbiddenError';
 import { NotFoundError } from '../errors/NotFoundError';
-import { PrismaClientKnownRequestError } from '@prisma/client/runtime/library';
+import { PrismaClientKnownRequestError, PrismaClientValidationError } from '@prisma/client/runtime/library';
 
 // export const authenticateJWT = passport.authenticate('jwt', { session: false });
 
@@ -58,14 +58,14 @@ export const errorHandler = (
 	let errorMessage = 'Internal Server Error';
 
 	// Handle Prisma errors
-	if (err instanceof Prisma.PrismaClientKnownRequestError) {
+	if (err instanceof PrismaClientKnownRequestError) {
 		statusCode = 400; // Bad Request
 		errorMessage = `Prisma error: ${err.message}`;
-		if (err.code === 'P2002') {
+		if ((err as any).code === 'P2002') {
 			statusCode = ERROR_CODES.CONFLICT;
 			errorMessage = 'Unique constraint failed. Duplicate entry.';
 		}
-	} else if (err instanceof Prisma.PrismaClientValidationError) {
+	} else if (err instanceof PrismaClientValidationError) {
 		statusCode = 422; // Unprocessable Entity
 		errorMessage = `Database validation error: ${err.message}`;
 	}
@@ -74,7 +74,7 @@ export const errorHandler = (
 	else if (err instanceof ZodError) {
 		statusCode = 422; // Unprocessable Entity
 		errorMessage =  'Validation failed';
-		const issues = err.errors.map((issue) => ({
+		const issues = err.issues.map((issue) => ({
 			field: issue.path.join('.').replace(/^body\./, ''),
 			message: issue.message.replace(/^\w/, (c) => c.toUpperCase()),
 		}));

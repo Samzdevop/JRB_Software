@@ -1,29 +1,29 @@
-import passport from 'passport';
-import { Strategy as JwtStrategy, ExtractJwt } from 'passport-jwt';
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const passport_1 = __importDefault(require("passport"));
+const passport_jwt_1 = require("passport-jwt");
 // import { Strategy as GoogleStrategy } from 'passport-google-oauth20';
-import prisma from '../prisma';
+const prisma_1 = __importDefault(require("../prisma"));
 // import generateToken from '../utils/generateToken';
-
-passport.use(
-	new JwtStrategy(
-		{
-			jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
-			secretOrKey: process.env.JWT_SECRET as string,
-		},
-		async (jwtPayload, done) => {
-			try {
-				const user = await prisma.user.findUnique({
-					where: { id: jwtPayload.id },
-				});
-				if (!user) return done(null, false);
-				return done(null, user);
-			} catch (err) {
-				return done(err, false);
-			}
-		}
-	)
-);
-
+passport_1.default.use(new passport_jwt_1.Strategy({
+    jwtFromRequest: passport_jwt_1.ExtractJwt.fromAuthHeaderAsBearerToken(),
+    secretOrKey: process.env.JWT_SECRET,
+}, async (jwtPayload, done) => {
+    try {
+        const user = await prisma_1.default.user.findUnique({
+            where: { id: jwtPayload.id },
+        });
+        if (!user)
+            return done(null, false);
+        return done(null, user);
+    }
+    catch (err) {
+        return done(err, false);
+    }
+}));
 // passport.use(
 // 	new GoogleStrategy(
 // 		{
@@ -39,7 +39,6 @@ passport.use(
 // 					email: profile.emails![0].value,
 // 					fullName: profile.displayName,
 // 				};
-
 // 				let userExist = await prisma.user.findFirst({
 // 					where: { OR: [{ email: userObj.email }, { googleId: profile.id }] },
 // 				});
@@ -54,7 +53,6 @@ passport.use(
 // 				} else {
 // 					user = userExist;
 // 				}
-
 // 				const token = generateToken({ email: userObj.email, id });
 // 				return done(null, { user, token });
 // 			} catch (err) {
@@ -63,5 +61,4 @@ passport.use(
 // 		}
 // 	)
 // );
-
-export default passport;
+exports.default = passport_1.default;
