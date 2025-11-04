@@ -5032,3 +5032,41 @@
 [32m[39m
 2025-10-19 07:45:03 [32minfo[39m [32mGET /api/v1/documents 200 42.423 ms - 587916[39m
 [32m[39m
+2025-11-04 14:20:30 [32minfo[39m [32mPOST /api/v1/auth/login 200 417.564 ms - 681[39m
+[32m[39m
+2025-11-04 14:21:18 [32minfo[39m [32mGET /api/v1/documents 200 151.741 ms - 587932[39m
+[32m[39m
+2025-11-04 14:24:51 [32minfo[39m [32mGET /api/v1/documents/cmgxc7pat0001t1vk8l3y40nx/content?format=structured 200 2238.935 ms - 61934[39m
+[32m[39m
+2025-11-04 14:28:29 [32minfo[39m [32mGET /api/v1/documents/cmgxc7pat0001t1vk8l3y40nx/content?format=raw 200 194.955 ms - 587592[39m
+[32m[39m
+2025-11-04 14:29:03 [32minfo[39m [32mGET /api/v1/documents/cmgxc7pat0001t1vk8l3y40nx/content?format=sructured 200 3228.906 ms - 61934[39m
+[32m[39m
+2025-11-04 14:30:50 [32minfo[39m [32mGET /api/v1/documents/cmgxc7pat0001t1vk8l3y40nx/toc 200 2109.695 ms - 48714[39m
+[32m[39m
+2025-11-04 15:06:02 [32minfo[39m [32mGET /api/v1/documents/cmgxc7pat0001t1vk8l3y40nx/toc 200 7465.189 ms - 48714[39m
+[32m[39m
+2025-11-04 15:06:44 [32minfo[39m [32mGET /api/v1/documents/cmgxc7pat0001t1vk8l3y40nx/toc 200 2189.227 ms - 48714[39m
+[32m[39m
+2025-11-04 15:06:52 [32minfo[39m [32mGET /api/v1/documents/cmgxc7pat0001t1vk8l3y40nx/toc 200 2626.281 ms - 48714[39m
+[32m[39m
+2025-11-04 15:07:48 [32minfo[39m [32mGET /api/v1/documents/cmgxc7pat0001t1vk8l3y40nx/toc 200 326.691 ms - 6357[39m
+[32m[39m
+2025-11-04 15:19:13 [32minfo[39m [32mGET /api/v1/documents/cmgxc7pat0001t1vk8l3y40nx/toc 200 252.142 ms - 6357[39m
+[32m[39m
+2025-11-04 15:19:44 [32minfo[39m [32mGET /api/v1/documents/cmgxc7pat0001t1vk8l3y40nx/toc 200 159.029 ms - 6357[39m
+[32m[39m
+2025-11-04 15:22:49 [32minfo[39m [32mGET /api/v1/documents/cmgxc7pat0001t1vk8l3y40nx/toc 401 3.545 ms - 64[39m
+[32m[39m
+2025-11-04 15:22:57 [32minfo[39m [32mPOST /api/v1/auth/login 200 166.508 ms - 681[39m
+[32m[39m
+2025-11-04 15:23:18 [32minfo[39m [32mGET /api/v1/documents/cmgxc7pat0001t1vk8l3y40nx/toc 200 135.213 ms - 6357[39m
+[32m[39m
+2025-11-04 15:25:31 [32minfo[39m [32mGET /api/v1/documents/cmgxc7pat0001t1vk8l3y40nx/toc 200 214.174 ms - 79473[39m
+[32m[39m
+2025-11-04 15:27:15 [32minfo[39m [32mGET /api/v1/documents/cmgxc7pat0001t1vk8l3y40nx/toc 200 145.092 ms - 79473[39m
+[32m[39m
+2025-11-04 15:27:36 [32minfo[39m [32mGET /api/v1/documents/cmgxc7pat0001t1vk8l3y40nx/toc 200 116.358 ms - 79473[39m
+[32m[39m
+2025-11-04 15:27:43 [32minfo[39m [32mGET /api/v1/documents/cmgxc7pat0001t1vk8l3y40nx/toc 200 96.757 ms - 79473[39m
+[32m[39m

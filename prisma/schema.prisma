@@ -21,6 +21,7 @@ model User {
   password            String?
   fullName            String
   avatar              String?
+  role                Role      @default(USER)
   company             String?
   jobTitle            String?
   location            String?
@@ -48,7 +49,8 @@ model Document {
   searches    SearchHistory[]
   notes       Note[]
   checklists  Checklist[]
-  processingStatus String? 
+  processingStatus String?
+  isPublic    Boolean  @default(true) 
 
   @@map("documents")
 }
@@ -104,4 +106,10 @@ model Note {
   updatedAt   DateTime @updatedAt
 
   @@map("notes")
+}
+
+
+enum Role {
+  ADMIN
+  USER
 }

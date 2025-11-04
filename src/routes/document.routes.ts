@@ -16,6 +16,7 @@ import {
   searchDocumentSchema,
 } from '../schemas/document.schemas';
 import { upload } from '../config/multer';
+import { requireRoles } from '../middlewares/roleCheck';
 
 const uploadMiddleware = upload.single('document');
 
@@ -24,6 +25,7 @@ export const documentRouter = Router();
 documentRouter.post(
   '/upload',
   authenticateJWT,
+  requireRoles(['ADMIN']),
   uploadMiddleware,
   validateRequest(uploadDocumentSchema),
   uploadDocument
@@ -58,6 +60,7 @@ documentRouter.get(
 documentRouter.delete(
   '/:documentId',
   authenticateJWT,
+  requireRoles(['ADMIN']),
   deleteDocument
 );
 

@@ -1,8 +1,21 @@
 import { z } from "zod";
-import { validatePhoneNumber } from "../utils/phoneFormat";
-import { Jobs } from "openai/resources/fine-tuning/jobs/jobs";
+// import { validatePhoneNumber } from "../utils/phoneFormat";
+// import { Jobs } from "openai/resources/fine-tuning/jobs/jobs";
+
 
 export const adminRegisterSchema = z.object({
+  body: z.object({
+    fullName: z.string().min(1, "Full Name is required"),
+    email: z.string().email("Invalid email format"),
+    jobTitle: z.string().min(1, "Job Title is required").optional(),
+    company: z.string().min(1, "Company is required").optional(),
+    location: z.string().min(1, "Location is required").optional(),
+    password: z.string().min(8, "Password must be at least 8 characters long"),
+  }),
+});
+
+
+export const userRegisterSchema = z.object({
   body: z.object({
     fullName: z.string().min(1, "First Name is required"),
     email: z.string().email("Invalid email format"),

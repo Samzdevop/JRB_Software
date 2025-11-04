@@ -10,13 +10,51 @@ import { userSelect } from "../prisma/selects";
 
 // import { isValid } from "zod";
 
+
+
 export const adminRegister = async (
   req: Request,
   res: Response,
   next: NextFunction
 ): Promise<void> => {
   try {
-    const { email, fullName, password, jobTitle, company, location } = req.body;
+    const { email, fullName, password, company, location, role } = req.body;
+
+    const existingUser = await prisma.user.findUnique({ where: { email } });
+    if (existingUser)
+      throw new ForbiddenError(
+        "User already registered! Please proceed to login."
+      );
+
+    const hashedPassword = await hash(password);
+    const data = {
+      email,
+      password: hashedPassword,
+      fullName,
+      company,
+      location,
+      role: role || 'ADMIN'
+    };
+    await prisma.user.create({
+      data,
+    });
+    sendSuccessResponse(
+      res,
+      "Admin account successfully created!",
+      {},
+      201
+    );
+  } catch (error) {
+    next(error);
+  }
+};
+export const userRegister = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+): Promise<void> => {
+  try {
+    const { email, fullName, password, jobTitle, company, location, role } = req.body;
 
     const existingUser = await prisma.user.findUnique({ where: { email } });
     if (existingUser)
@@ -31,7 +69,8 @@ export const adminRegister = async (
       fullName,
       jobTitle,
       company,
-      location
+      location,
+      role: role || 'USER'
     };
     await prisma.user.create({
       data,
@@ -64,7 +103,8 @@ export const login = async (
     if (!validPassword) throw new UnauthorizedError("Invalid credentials");
 
     const availableDocument = await prisma.document.findFirst({
-      orderBy: { uploadedAt: 'desc' }, // Get the most recent document
+      where: { isPublic: true },
+      orderBy: { uploadedAt: 'desc' }, 
       select: { id: true, title: true }
     });
 
@@ -78,6 +118,7 @@ export const login = async (
       token, 
       user:{
         ...userData, 
+      role: user.role,
       documentId: availableDocument?.id || null,
       documentTitle: availableDocument?.title || null
       }

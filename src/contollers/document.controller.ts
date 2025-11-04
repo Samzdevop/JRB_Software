@@ -15,6 +15,7 @@ import {
 import { extractTextFromFile } from '../utils/fileExtractors';
 import { documentSelect } from '../prisma/selects';
 import { ProcessedContent, StructuredSection, TextProcessor } from '../utils/textProcessor';
+import { DocumentStructuredProcessor } from '../utils/documentStructuredProcessor';
 
 // Configure OpenAI
 const openai = new OpenAI({
@@ -98,7 +99,7 @@ export const uploadDocument = async (
       201
     );
   } catch (error) {
-     console.error('Upload error:', error);
+     console.error('Upload error:', error); 
     next(error);
   }
 };
@@ -705,13 +706,13 @@ export const getDocuments = async (
     const { page = 1, limit = 10 } = req.query;
 
     const documents = await prisma.document.findMany({
-      where: { uploadedById: userId },
+      // where: { uploadedById: userId },
       orderBy: { uploadedAt: 'desc' },
       skip: (Number(page) - 1) * Number(limit),
       take: Number(limit),
     });
 
-    const total = await prisma.document.count({ where: { uploadedById: userId } });
+    const total = await prisma.document.count();
 
     sendSuccessResponse(res, 'Documents retrieved', {
       documents,
@@ -828,6 +829,7 @@ export const getDocumentContent = async (
   try {
     const { documentId } = req.params;
     const { format = 'structured' } = req.query;
+
     const document = await prisma.document.findUnique({
       where: { id: documentId },
     });
@@ -842,31 +844,31 @@ export const getDocumentContent = async (
 
     let responseData: any = {};
 
+     const processedContent = TextProcessor.processRawText(
+      document.content,
+      document.filename
+    );
+
     if (format === 'raw') {
       responseData = {
         content: document.content,
         format: 'raw'
       };
     } else if (format === 'formatted') {
-      // Process on-the-fly for formatted display
-      const processedContent = TextProcessor.processRawText(
-        document.content,
-        document.filename
-      );
       responseData = {
         content: TextProcessor.formatForDisplay(processedContent.structuredContent),
         format: 'formatted'
       };
     } else {
-      // Return structured content
-      const processedContent = TextProcessor.processRawText(
-        document.content,
+      // Use DocumentStructuredProcessor for structured API response
+      const structuredDocument = DocumentStructuredProcessor.processToStructuredFormat(
+        processedContent, // Already cleaned and structured content
+        documentId,
         document.filename
       );
+      
       responseData = {
-        content: processedContent.structuredContent,
-        metadata: processedContent.metadata,
-        tableOfContents: TextProcessor.generateTableOfContents(processedContent.structuredContent),
+        content: structuredDocument,
         format: 'structured'
       };
     }
@@ -876,6 +878,35 @@ export const getDocumentContent = async (
     next(error);
   }
 };
+//     else if (format === 'formatted') {
+//       // Process on-the-fly for formatted display
+//       const processedContent = TextProcessor.processRawText(
+//         document.content,
+//         document.filename
+//       );
+//       responseData = {
+//         content: TextProcessor.formatForDisplay(processedContent.structuredContent),
+//         format: 'formatted'
+//       };
+//     } else {
+//       // Return structured content
+//       const processedContent = TextProcessor.processRawText(
+//         document.content,
+//         document.filename
+//       );
+//       responseData = {
+//         content: processedContent.structuredContent,
+//         metadata: processedContent.metadata,
+//         tableOfContents: TextProcessor.generateTableOfContents(processedContent.structuredContent),
+//         format: 'structured'
+//       };
+//     }
+
+//     sendSuccessResponse(res, 'Document content retrieved', responseData);
+//   } catch (error) {
+//     next(error);
+//   }
+// };
 
 export const getDocumentTableOfContents = async (
   req: Request,
@@ -902,13 +933,19 @@ export const getDocumentTableOfContents = async (
       document.filename
     );
 
-    const tableOfContents = TextProcessor.generateTableOfContents(
-      processedContent.structuredContent
+     const structuredDocument = DocumentStructuredProcessor.processToStructuredFormat(
+      processedContent,
+      documentId,
+      document.filename
+    );
+
+    const tableOfContents = DocumentStructuredProcessor.generateTableOfContents(
+      structuredDocument
     );
 
     sendSuccessResponse(res, 'Table of contents retrieved', {
       tableOfContents,
-      metadata: processedContent.metadata
+      // metadata: processedContent.metadata
     });
   } catch (error) {
     next(error);

@@ -1,13 +1,15 @@
 import { Router } from 'express';
 import {
-	login,
 	adminRegister,
+	login,
+	userRegister,
 
 } from '../contollers/auth.controller';
 import { validateRequest } from '../middlewares/validateRequest';
 import {
-	loginSchema,
 	adminRegisterSchema,
+	loginSchema,
+	userRegisterSchema,
 
 } from '../schemas/auth.schemas';
 import passport from 'passport';
@@ -16,17 +18,22 @@ import { sendSuccessResponse } from '../utils/sendSuccessResponse';
 
 export const authRouter = Router();
 
-authRouter.post('/reg', validateRequest(adminRegisterSchema), adminRegister);
+authRouter.post(
+	'/admi-reg', 
+	validateRequest(adminRegisterSchema),
+	adminRegister
+);
+authRouter.post(
+	'/reg', 
+	validateRequest(userRegisterSchema),
+	userRegister
+);
 
-// authRouter.post(
-// 	'/register',
-// 	authenticateJWT,
-// 	requireRoles(['ADMIN', 'FARM_KEEPER']),
-// 	validateRequest(registerSchema),
-// 	register
-// );
-
-authRouter.post('/login', validateRequest(loginSchema), login);
+authRouter.post(
+	'/login', 
+	validateRequest(loginSchema), 
+	login
+);
 
 // authRouter.post(
 // 	'/resend',
