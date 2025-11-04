@@ -5095,3 +5095,13 @@
 2025-10-20 07:48:17 [32minfo[39m [32mGET /api/v1/documents 200 208.830 ms - 127[39m
 [32m[39m
 >>>>>>> 68bd3daad73efdabec6630790e597ba82450df8d
+2025-11-04 16:57:40 [32minfo[39m [32mGET /api/v1/documents/cmgxc7pat0001t1vk8l3y40nx/toc 401 15.950 ms - 64[39m
+[32m[39m
+2025-11-04 16:58:12 [32minfo[39m [32mGET /api/v1/documents/cmgxc7pat0001t1vk8l3y40nx/content?format=sructured 401 2.637 ms - 64[39m
+[32m[39m
+2025-11-04 16:58:25 [32minfo[39m [32mPOST /api/v1/auth/login 200 385.804 ms - 681[39m
+[32m[39m
+2025-11-04 16:58:44 [32minfo[39m [32mGET /api/v1/documents/cmgxc7pat0001t1vk8l3y40nx/content?format=sructured 200 175.458 ms - 148710[39m
+[32m[39m
+2025-11-04 16:59:01 [32minfo[39m [32mGET /api/v1/documents 200 36.105 ms - 587932[39m
+[32m[39m
