@@ -1,7 +1,7 @@
+# Keep environment variables out of version control
+node_modules
+
+.env
 
 /generated/prisma
 
-node_modules
-dist
-build
-.env

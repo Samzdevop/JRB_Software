@@ -5032,6 +5032,7 @@
 [32m[39m
 2025-10-19 07:45:03 [32minfo[39m [32mGET /api/v1/documents 200 42.423 ms - 587916[39m
 [32m[39m
+<<<<<<< HEAD
 2025-11-04 14:20:30 [32minfo[39m [32mPOST /api/v1/auth/login 200 417.564 ms - 681[39m
 [32m[39m
 2025-11-04 14:21:18 [32minfo[39m [32mGET /api/v1/documents 200 151.741 ms - 587932[39m
@@ -5070,3 +5071,27 @@
 [32m[39m
 2025-11-04 15:27:43 [32minfo[39m [32mGET /api/v1/documents/cmgxc7pat0001t1vk8l3y40nx/toc 200 96.757 ms - 79473[39m
 [32m[39m
+=======
+2025-10-20 07:30:48 [31merror[39m [31mUser not found User not found[39m
+2025-10-20 07:30:48 [32minfo[39m [32mPOST /api/v1/auth/login 404 334.541 ms - 42[39m
+[32m[39m
+2025-10-20 07:39:31 [31merror[39m [31mUser not found User not found[39m
+2025-10-20 07:39:31 [32minfo[39m [32mPOST /api/v1/auth/login 404 142.735 ms - 42[39m
+[32m[39m
+2025-10-20 07:43:15 [32minfo[39m [32mPOST /api/v1/auth/reg 201 484.389 ms - 96[39m
+[32m[39m
+2025-10-20 07:44:59 [32minfo[39m [32mPOST /api/v1/auth/reg 422 28.363 ms - 263[39m
+[32m[39m
+2025-10-20 07:45:06 [32minfo[39m [32mPOST /api/v1/auth/login 200 625.640 ms - 595[39m
+[32m[39m
+2025-10-20 07:48:02 [32minfo[39m [32mPOST /api/v1/auth/documents 404 13.884 ms - 126[39m
+[32m[39m
+2025-10-20 07:48:08 [32minfo[39m [32mGET /api/v1/auth/documents 404 0.838 ms - 126[39m
+[32m[39m
+2025-10-20 07:48:09 [32minfo[39m [32mGET /api/v1/auth/documents 404 0.470 ms - 126[39m
+[32m[39m
+2025-10-20 07:48:12 [32minfo[39m [32mGET /api/v1/auth/documents 404 0.995 ms - 126[39m
+[32m[39m
+2025-10-20 07:48:17 [32minfo[39m [32mGET /api/v1/documents 200 208.830 ms - 127[39m
+[32m[39m
+>>>>>>> 68bd3daad73efdabec6630790e597ba82450df8d

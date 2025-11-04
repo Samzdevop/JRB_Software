@@ -77,13 +77,13 @@ export const uploadDocument = async (
 
    processDocumentWithEnhancedAI(extractedData, document.id, req.file.mimetype)
       .then(() => console.log('AI processing completed for document:', document.id))
-      .catch(error => {
+      .catch((error:any) => {
         console.error('AI processing failed for document:', document.id, error);
         // You might want to update the document status to indicate failure
         prisma.document.update({
           where: { id: document.id },
           data: { processingStatus: 'FAILED' },
-        }).catch(err => console.error('Failed to update document status:', err));
+        }).catch((error:any) => console.error('Failed to update document status:', error));
       });
 
     sendSuccessResponse(
@@ -605,7 +605,7 @@ const semanticSearch = async (query: string, documentId: string) => {
     });
 
     // Calculate similarity and filter low-quality matches
-    const chunksWithSimilarity = chunks.map(chunk => {
+    const chunksWithSimilarity = chunks.map((chunk:any) => {
       if (!chunk.embedding) return { ...chunk, similarity: 0 };
       
       const chunkEmbedding = JSON.parse(chunk.embedding);
@@ -616,10 +616,10 @@ const semanticSearch = async (query: string, documentId: string) => {
 
     // Filter out low similarity results and return top chunks
     return chunksWithSimilarity
-      .filter(chunk => chunk.similarity > 0.7) // Higher threshold for better precision
-      .sort((a, b) => b.similarity - a.similarity)
+      .filter((chunk:any) => chunk.similarity > 0.7) // Higher threshold for better precision
+      .sort((a:any, b:any) => b.similarity - a.similarity)
       .slice(0, 3)
-      .map(({ similarity, ...chunk }) => chunk);
+      .map(({ similarity, ...chunk }: any) => chunk);
 
   } catch (error) {
     console.error('Semantic search failed:', error);
@@ -639,7 +639,7 @@ const keywordSearch = async (query: string, documentId: string) => {
   });
 
   return chunks
-    .map(chunk => {
+    .map((chunk:any) => {
       const chunkText = (chunk.chapter + ' ' + chunk.content).toLowerCase();
       
       // More sophisticated scoring: exact matches score higher
@@ -651,10 +651,10 @@ const keywordSearch = async (query: string, documentId: string) => {
       
       return { ...chunk, score };
     })
-    .filter(chunk => chunk.score > 0)
-    .sort((a, b) => b.score - a.score)
+    .filter((chunk:any) => chunk.score > 0)
+    .sort((a:any, b:any) => b.score - a.score)
     .slice(0, 3)
-    .map(({ score, ...chunk }) => chunk);
+    .map(({ score, ...chunk }:any) => chunk);
 };
 
 export const getSearchHistory = async (
@@ -775,7 +775,7 @@ export const deleteDocument = async (
     }
 
         // Use a transaction to ensure all related data is deleted
-    await prisma.$transaction(async (tx) => {
+    await prisma.$transaction(async (tx:any) => {
       // Delete all related data first (due to foreign key constraints)
       if (document.chunks.length > 0) {
         await tx.chunk.deleteMany({
