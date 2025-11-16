@@ -1,4 +1,3 @@
-// middlewares/aiSafetyCheck.ts
 import { Request, Response, NextFunction } from 'express';
 
 export const validateAIResponse = (req: Request, res: Response, next: NextFunction): void => {

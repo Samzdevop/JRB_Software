@@ -5105,3 +5105,246 @@
 [32m[39m
 2025-11-04 16:59:01 [32minfo[39m [32mGET /api/v1/documents 200 36.105 ms - 587932[39m
 [32m[39m
+2025-11-04 17:09:28 [32minfo[39m [32mGET /api/v1/documents/cmgxc7pat0001t1vk8l3y40nx/content?format=raw 200 308.447 ms - 587592[39m
+[32m[39m
+2025-11-04 17:10:01 [32minfo[39m [32mGET /api/v1/documents/cmgxc7pat0001t1vk8l3y40nx/content?format=structured 200 160.162 ms - 148710[39m
+[32m[39m
+2025-11-04 17:10:05 [32minfo[39m [32mGET /api/v1/documents/cmgxc7pat0001t1vk8l3y40nx/content?format=structured 200 98.287 ms - 148710[39m
+[32m[39m
+2025-11-04 17:11:46 [32minfo[39m [32mPOST /api/v1/documents/:documentId/search 401 2.202 ms - 64[39m
+[32m[39m
+2025-11-04 17:13:13 [32minfo[39m [32mPOST /api/v1/documents/cmgxc7pat0001t1vk8l3y40nx/search 200 9556.724 ms - 18947[39m
+[32m[39m
+2025-11-08 14:31:53 [32minfo[39m [32mPOST /api/v1/auth/login 200 1354.340 ms - 681[39m
+[32m[39m
+2025-11-08 14:32:50 [32minfo[39m [32mGET /api/v1/documents/cmgxc7pat0001t1vk8l3y40nx/content?format=structured 200 173.019 ms - 148710[39m
+[32m[39m
+2025-11-08 16:03:09 [32minfo[39m [32mPOST /api/v1/auth/login 200 1093.872 ms - 681[39m
+[32m[39m
+2025-11-08 16:04:13 [32minfo[39m [32mGET /api/v1/documents/cmgxc7pat0001t1vk8l3y40nx/content?format=structured 401 1.900 ms - 66[39m
+[32m[39m
+2025-11-08 16:04:27 [32minfo[39m [32mGET /api/v1/documents/cmgxc7pat0001t1vk8l3y40nx/content?format=structured 200 176.051 ms - 148710[39m
+[32m[39m
+2025-11-08 17:17:01 [32minfo[39m [32mGET /api/v1/documents/cmgxc7pat0001t1vk8l3y40nx/content?format=structured 401 12.692 ms - 64[39m
+[32m[39m
+2025-11-08 17:17:07 [32minfo[39m [32mPOST /api/v1/auth/login 200 519.419 ms - 681[39m
+[32m[39m
+2025-11-08 17:17:27 [32minfo[39m [32mGET /api/v1/documents/cmgxc7pat0001t1vk8l3y40nx/content?format=structured 200 134.711 ms - 102891[39m
+[32m[39m
+2025-11-08 17:17:37 [32minfo[39m [32mGET /api/v1/documents/cmgxc7pat0001t1vk8l3y40nx/content?format=structured 200 116.508 ms - 102891[39m
+[32m[39m
+2025-11-08 17:19:39 [32minfo[39m [32mGET /api/v1/documents/cmgxc7pat0001t1vk8l3y40nx/content?format=structured 200 179.081 ms - 102891[39m
+[32m[39m
+2025-11-08 17:25:04 [32minfo[39m [32mGET /api/v1/documents/cmgxc7pat0001t1vk8l3y40nx/content?format=structured 200 655.582 ms - 587446[39m
+[32m[39m
+2025-11-08 17:41:30 [32minfo[39m [32mGET /api/v1/documents/cmgxc7pat0001t1vk8l3y40nx/content?format=structured 200 257.171 ms - 597590[39m
+[32m[39m
+2025-11-08 17:54:28 [32minfo[39m [32mGET /api/v1/documents/cmgxc7pat0001t1vk8l3y40nx/content?format=structured 200 600.101 ms - 597590[39m
+[32m[39m
+2025-11-08 18:00:05 [32minfo[39m [32mGET /api/v1/documents/cmgxc7pat0001t1vk8l3y40nx/content?format=structured 200 263.634 ms - 597590[39m
+[32m[39m
+2025-11-08 18:00:36 [32minfo[39m [32mGET /api/v1/documents/cmgxc7pat0001t1vk8l3y40nx/content?format=structured 200 184.581 ms - 597590[39m
+[32m[39m
+2025-11-08 18:09:31 [32minfo[39m [32mGET /api/v1/documents/cmgxc7pat0001t1vk8l3y40nx/content?format=structured 200 257.542 ms - 597590[39m
+[32m[39m
+2025-11-08 18:10:13 [32minfo[39m [32mGET /api/v1/documents/cmgxc7pat0001t1vk8l3y40nx/content?format=structured 200 291.294 ms - 597590[39m
+[32m[39m
+2025-11-08 18:13:14 [32minfo[39m [32mGET /api/v1/documents/cmgxc7pat0001t1vk8l3y40nx/content?format=structured 200 366.004 ms - 353970[39m
+[32m[39m
+2025-11-08 18:17:02 [32minfo[39m [32mGET /api/v1/documents/cmgxc7pat0001t1vk8l3y40nx/content?format=structured 200 320.152 ms - 353970[39m
+[32m[39m
+2025-11-08 18:23:45 [32minfo[39m [32mGET /api/v1/documents/cmgxc7pat0001t1vk8l3y40nx/content?format=structured 401 17.895 ms - 64[39m
+[32m[39m
+2025-11-08 18:25:00 [32minfo[39m [32mPOST /api/v1/auth/login 200 310.973 ms - 681[39m
+[32m[39m
+2025-11-08 18:25:51 [32minfo[39m [32mGET /api/v1/documents/cmgxc7pat0001t1vk8l3y40nx/content?format=structured 200 302.230 ms - 602142[39m
+[32m[39m
+2025-11-08 18:26:06 [32minfo[39m [32mGET /api/v1/documents/cmgxc7pat0001t1vk8l3y40nx/content?format=structured 200 237.467 ms - 602142[39m
+[32m[39m
+2025-11-08 18:41:44 [32minfo[39m [32mGET /api/v1/documents/cmgxc7pat0001t1vk8l3y40nx/content?format=structured 200 647.151 ms - 601685[39m
+[32m[39m
+2025-11-08 18:50:48 [32minfo[39m [32mGET /api/v1/documents/cmgxc7pat0001t1vk8l3y40nx/content?format=structured 200 540.460 ms - 601685[39m
+[32m[39m
+2025-11-08 18:51:35 [32minfo[39m [32mGET /api/v1/documents/cmgxc7pat0001t1vk8l3y40nx/content?format=structured 200 452.482 ms - 600059[39m
+[32m[39m
+2025-11-08 18:57:37 [32minfo[39m [32mGET /api/v1/documents/cmgxc7pat0001t1vk8l3y40nx/content?format=structured 200 715.856 ms - 600059[39m
+[32m[39m
+2025-11-08 19:07:28 [32minfo[39m [32mGET /api/v1/documents/cmgxc7pat0001t1vk8l3y40nx/content?format=structured 200 349.762 ms - 663047[39m
+[32m[39m
+2025-11-08 19:25:57 [32minfo[39m [32mGET /api/v1/documents/cmgxc7pat0001t1vk8l3y40nx/content?format=structured 401 70.034 ms - 64[39m
+[32m[39m
+2025-11-08 19:26:15 [32minfo[39m [32mPOST /api/v1/auth/login 200 447.360 ms - 681[39m
+[32m[39m
+2025-11-08 19:26:39 [32minfo[39m [32mGET /api/v1/documents/cmgxc7pat0001t1vk8l3y40nx/content?format=structured 200 238.663 ms - 663047[39m
+[32m[39m
+2025-11-08 19:52:53 [32minfo[39m [32mGET /api/v1/documents/cmgxc7pat0001t1vk8l3y40nx/content?format=structured 200 415.671 ms - 187668[39m
+[32m[39m
+2025-11-08 19:53:42 [32minfo[39m [32mGET /api/v1/documents/cmgxc7pat0001t1vk8l3y40nx/content?format=structured 200 150.393 ms - 187668[39m
+[32m[39m
+2025-11-08 20:13:11 [32minfo[39m [32mPOST /api/v1/auth/login 200 403.963 ms - 681[39m
+[32m[39m
+2025-11-08 20:13:31 [32minfo[39m [32mGET /api/v1/documents/cmgxc7pat0001t1vk8l3y40nx/content?format=structured 200 254.418 ms - 187668[39m
+[32m[39m
+2025-11-08 20:14:12 [32minfo[39m [32mGET /api/v1/documents/cmgxc7pat0001t1vk8l3y40nx/content?format=structured 200 667.142 ms - 584356[39m
+[32m[39m
+2025-11-08 20:18:42 [32minfo[39m [32mGET /api/v1/documents/cmgxc7pat0001t1vk8l3y40nx/content?format=structured 200 532.726 ms - 458783[39m
+[32m[39m
+2025-11-08 20:20:51 [32minfo[39m [32mGET /api/v1/documents/cmgxc7pat0001t1vk8l3y40nx/content?format=structured 200 225.650 ms - 458783[39m
+[32m[39m
+2025-11-08 20:21:21 [32minfo[39m [32mGET /api/v1/documents/cmgxc7pat0001t1vk8l3y40nx/content?format=structured 200 184.086 ms - 458783[39m
+[32m[39m
+2025-11-08 21:40:37 [32minfo[39m [32mPOST /api/v1/auth/login 200 393.307 ms - 681[39m
+[32m[39m
+2025-11-08 21:40:51 [32minfo[39m [32mGET /api/v1/documents/cmgxc7pat0001t1vk8l3y40nx/content?format=structured 200 158.331 ms - 175422[39m
+[32m[39m
+2025-11-08 21:45:56 [31merror[39m [31mDocument not found Document not found[39m
+2025-11-08 21:45:56 [32minfo[39m [32mGET /api/v1/documents/:documentId/toc 404 120.354 ms - 46[39m
+[32m[39m
+2025-11-08 21:46:16 [32minfo[39m [32mGET /api/v1/documents/cmgxc7pat0001t1vk8l3y40nx/toc 200 150.895 ms - 142269[39m
+[32m[39m
+2025-11-08 21:53:22 [32minfo[39m [32mGET /api/v1/documents/cmgxc7pat0001t1vk8l3y40nx/content?format=structured 200 357.515 ms - 175422[39m
+[32m[39m
+2025-11-09 05:02:47 [32minfo[39m [32mPOST /api/v1/auth/login 200 965.148 ms - 681[39m
+[32m[39m
+2025-11-09 05:03:03 [32minfo[39m [32mGET /api/v1/documents/cmgxc7pat0001t1vk8l3y40nx/content?format=structured 200 300.851 ms - 175422[39m
+[32m[39m
+2025-11-09 05:03:52 [32minfo[39m [32mGET /api/v1/documents/cmgxc7pat0001t1vk8l3y40nx/content?format=structured 200 3311.486 ms - 175424[39m
+[32m[39m
+2025-11-09 05:13:45 [32minfo[39m [32mPOST /api/v1/auth/login 200 528.590 ms - 681[39m
+[32m[39m
+2025-11-09 05:14:14 [32minfo[39m [32mGET /api/v1/documents/cmgxc7pat0001t1vk8l3y40nx/content?format=structured 200 2694.543 ms - 569840[39m
+[32m[39m
+2025-11-09 05:25:57 [32minfo[39m [32mGET /api/v1/documents/cmgxc7pat0001t1vk8l3y40nx/content?format=structured 200 5658.619 ms - 118853[39m
+[32m[39m
+2025-11-09 05:43:48 [32minfo[39m [32mGET /api/v1/documents/cmgxc7pat0001t1vk8l3y40nx/content?format=structured 200 1812.053 ms - 118853[39m
+[32m[39m
+2025-11-09 05:52:00 [32minfo[39m [32mGET /api/v1/documents/cmgxc7pat0001t1vk8l3y40nx/content?format=structured 200 1681.459 ms - 118853[39m
+[32m[39m
+2025-11-09 06:01:26 [32minfo[39m [32mGET /api/v1/documents/cmgxc7pat0001t1vk8l3y40nx/content?format=structured 200 1580.875 ms - 118853[39m
+[32m[39m
+2025-11-09 06:02:34 [32minfo[39m [32mGET /api/v1/documents/cmgxc7pat0001t1vk8l3y40nx/content?format=structured 200 1626.551 ms - 118853[39m
+[32m[39m
+2025-11-09 06:04:30 [32minfo[39m [32mGET /api/v1/documents/cmgxc7pat0001t1vk8l3y40nx/content?format=structured 200 312.040 ms - 168118[39m
+[32m[39m
+2025-11-09 06:15:32 [32minfo[39m [32mGET /api/v1/documents/cmgxc7pat0001t1vk8l3y40nx/content?format=structured 401 24.498 ms - 64[39m
+[32m[39m
+2025-11-09 06:15:37 [32minfo[39m [32mPOST /api/v1/auth/login 200 408.706 ms - 681[39m
+[32m[39m
+2025-11-09 06:16:01 [32minfo[39m [32mGET /api/v1/documents/cmgxc7pat0001t1vk8l3y40nx/content?format=structured 200 212.525 ms - 165848[39m
+[32m[39m
+2025-11-09 06:39:12 [32minfo[39m [32mGET /api/v1/documents/cmgxc7pat0001t1vk8l3y40nx/content?format=structured 200 360.044 ms - 164304[39m
+[32m[39m
+2025-11-09 07:04:53 [32minfo[39m [32mGET /api/v1/documents/cmgxc7pat0001t1vk8l3y40nx/content?format=structured 200 334.726 ms - 175422[39m
+[32m[39m
+2025-11-09 07:16:32 [32minfo[39m [32mGET /api/v1/documents/cmgxc7pat0001t1vk8l3y40nx/content?format=structured 401 9.169 ms - 64[39m
+[32m[39m
+2025-11-09 07:16:45 [32minfo[39m [32mPOST /api/v1/auth/login 200 494.671 ms - 681[39m
+[32m[39m
+2025-11-09 07:17:35 [32minfo[39m [32mGET /api/v1/documents/cmgxc7pat0001t1vk8l3y40nx/content?format=structured 200 194.200 ms - 175679[39m
+[32m[39m
+2025-11-09 11:41:16 [32minfo[39m [32mPOST /api/v1/auth/login 200 552.141 ms - 681[39m
+[32m[39m
+2025-11-09 11:41:41 [32minfo[39m [32mGET /api/v1/documents/cmgxc7pat0001t1vk8l3y40nx/content?format=structured 200 262.120 ms - 175679[39m
+[32m[39m
+2025-11-09 11:45:44 [32minfo[39m [32mGET /api/v1/documents/cmgxc7pat0001t1vk8l3y40nx/content?format=structured 200 179.938 ms - 175679[39m
+[32m[39m
+2025-11-09 11:47:46 [32minfo[39m [32mGET /api/v1/documents/cmgxc7pat0001t1vk8l3y40nx/content?format=structured 200 590.581 ms - 175679[39m
+[32m[39m
+2025-11-14 15:26:42 [32minfo[39m [32mPOST /api/v1/auth/login 200 1207.132 ms - 681[39m
+[32m[39m
+2025-11-14 15:29:15 [32minfo[39m [32mGET /api/v1/document-comparison/compare 404 3.108 ms - 139[39m
+[32m[39m
+2025-11-14 15:30:07 [32minfo[39m [32mGET /api/v1/document-comparison/compare 404 0.689 ms - 139[39m
+[32m[39m
+2025-11-14 15:30:38 [31merror[39m [31mComparison result not found Comparison result not found[39m
+2025-11-14 15:30:38 [32minfo[39m [32mGET /api/v1/document-comparison/compare 404 142.306 ms - 55[39m
+[32m[39m
+2025-11-14 15:31:44 [31merror[39m [31mInternal Server Error Field name missing[39m
+2025-11-14 15:31:44 [32minfo[39m [32mPOST /api/v1/document-comparison/compare 500 23.866 ms - 49[39m
+[32m[39m
+2025-11-14 15:32:48 [31merror[39m [31mInternal Server Error Field name missing[39m
+2025-11-14 15:32:48 [32minfo[39m [32mPOST /api/v1/document-comparison/compare 500 15.477 ms - 49[39m
+[32m[39m
+2025-11-14 15:35:04 [31merror[39m [31mInternal Server Error Field name missing[39m
+2025-11-14 15:35:04 [32minfo[39m [32mPOST /api/v1/document-comparison/compare 500 9.675 ms - 49[39m
+[32m[39m
+2025-11-14 15:35:39 [31merror[39m [31mInternal Server Error Field name missing[39m
+2025-11-14 15:35:39 [32minfo[39m [32mPOST /api/v1/document-comparison/compare 500 191.751 ms - 49[39m
+[32m[39m
+2025-11-14 15:36:03 [31merror[39m [31mInternal Server Error Field name missing[39m
+2025-11-14 15:36:03 [32minfo[39m [32mPOST /api/v1/document-comparison/compare 500 124.933 ms - 49[39m
+[32m[39m
+2025-11-14 15:59:06 [31merror[39m [31mInternal Server Error Field name missing[39m
+2025-11-14 15:59:06 [32minfo[39m [32mPOST /api/v1/document-comparison/compare 500 247.467 ms - 49[39m
+[32m[39m
+2025-11-14 16:00:23 [32minfo[39m [32mGET /api/v1/document-comparison/history 200 96.791 ms - 138[39m
+[32m[39m
+2025-11-14 16:02:10 [32minfo[39m [32mPOST /api/v1/document-comparison/compare 401 2.542 ms - 66[39m
+[32m[39m
+2025-11-14 16:02:17 [31merror[39m [31mInternal Server Error Field name missing[39m
+2025-11-14 16:02:17 [32minfo[39m [32mPOST /api/v1/document-comparison/compare 500 8.084 ms - 49[39m
+[32m[39m
+2025-11-14 16:04:58 [31merror[39m [31mInternal Server Error Field name missing[39m
+2025-11-14 16:04:58 [32minfo[39m [32mPOST /api/v1/document-comparison/compare 500 256.275 ms - 49[39m
+[32m[39m
+2025-11-14 16:07:26 [31merror[39m [31mInternal Server Error Field name missing[39m
+2025-11-14 16:07:26 [32minfo[39m [32mPOST /api/v1/document-comparison/compare 500 18.414 ms - 49[39m
+[32m[39m
+2025-11-14 16:08:05 [31merror[39m [31mInternal Server Error Field name missing[39m
+2025-11-14 16:08:05 [32minfo[39m [32mPOST /api/v1/document-comparison/compare 500 135.076 ms - 49[39m
+[32m[39m
+2025-11-14 16:15:10 [31merror[39m [31mInternal Server Error Field name missing[39m
+2025-11-14 16:15:10 [32minfo[39m [32mPOST /api/v1/document-comparison/compare 500 231.661 ms - 49[39m
+[32m[39m
+2025-11-14 16:15:15 [31merror[39m [31mInternal Server Error Field name missing[39m
+2025-11-14 16:15:15 [32minfo[39m [32mPOST /api/v1/document-comparison/compare 500 9.414 ms - 49[39m
+[32m[39m
+2025-11-14 16:15:53 [31merror[39m [31mInternal Server Error Field name missing[39m
+2025-11-14 16:15:53 [32minfo[39m [32mPOST /api/v1/document-comparison/compare 500 19.699 ms - 49[39m
+[32m[39m
+2025-11-14 16:21:38 [31merror[39m [31mInternal Server Error Field name missing[39m
+2025-11-14 16:21:38 [32minfo[39m [32mPOST /api/v1/document-comparison/compare 500 247.720 ms - 49[39m
+[32m[39m
+2025-11-14 16:22:10 [32minfo[39m [32mPOST /api/v1/document-comparison/compare 400 152.491 ms - 66[39m
+[32m[39m
+2025-11-14 16:22:46 [31merror[39m [31mPIA document not found. Please try again later. PIA document not found. Please try again later.[39m
+2025-11-14 16:22:46 [32minfo[39m [32mPOST /api/v1/document-comparison/compare 404 76.851 ms - 75[39m
+[32m[39m
+2025-11-14 16:28:48 [32minfo[39m [32mGET /api/v1/documents/cmgxc7pat0001t1vk8l3y40nx/content?format=structured 401 8.487 ms - 64[39m
+[32m[39m
+2025-11-14 16:28:54 [32minfo[39m [32mGET /api/v1/documents/cmgxc7pat0001t1vk8l3y40nx/content?format=structured 401 3.420 ms - 64[39m
+[32m[39m
+2025-11-14 16:29:16 [32minfo[39m [32mGET /api/v1/documents/cmgxc7pat0001t1vk8l3y40nx/content?format=structured 401 2.174 ms - 64[39m
+[32m[39m
+2025-11-14 16:29:38 [32minfo[39m [32mPOST /api/v1/auth/login 200 228.065 ms - 681[39m
+[32m[39m
+2025-11-14 16:29:52 [32minfo[39m [32mGET /api/v1/documents/cmgxc7pat0001t1vk8l3y40nx/content?format=structured 200 206.958 ms - 175679[39m
+[32m[39m
+2025-11-14 16:30:59 [31merror[39m [31mPIA document not found. Please try again later. PIA document not found. Please try again later.[39m
+2025-11-14 16:30:59 [32minfo[39m [32mPOST /api/v1/document-comparison/compare 404 135.884 ms - 75[39m
+[32m[39m
+2025-11-14 16:34:46 [31merror[39m [31mFailed to process file: Failed to process PIA_A4.pdf: bad XRef entry Failed to process file: Failed to process PIA_A4.pdf: bad XRef entry[39m
+2025-11-14 16:34:46 [32minfo[39m [32mPOST /api/v1/document-comparison/compare 400 684.889 ms - 96[39m
+[32m[39m
+2025-11-14 16:39:36 [32minfo[39m [32mPOST /api/v1/document-comparison/compare 200 5974.484 ms - 520[39m
+[32m[39m
+2025-11-15 06:52:43 [32minfo[39m [32mPOST /api/v1/document-comparison/compare 401 9.979 ms - 64[39m
+[32m[39m
+2025-11-15 06:52:53 [32minfo[39m [32mPOST /api/v1/auth/login 200 345.981 ms - 681[39m
+[32m[39m
+2025-11-15 06:53:47 [32minfo[39m [32mPOST /api/v1/document-comparison/compare 200 8331.439 ms - 3387[39m
+[32m[39m
+2025-11-15 15:43:57 [32minfo[39m [32mPOST /api/v1/auth/login 200 1406.858 ms - 681[39m
+[32m[39m
+2025-11-15 15:44:58 [32minfo[39m [32mPOST /api/v1/document-comparison/compare 400 19.732 ms - 64[39m
+[32m[39m
+2025-11-15 15:46:05 [32minfo[39m [32mPOST /api/v1/document-comparison/compare 400 9.895 ms - 64[39m
+[32m[39m
+2025-11-15 15:46:33 [32minfo[39m [32mPOST /api/v1/document-comparison/compare 200 5709.415 ms - 3307[39m
+[32m[39m
+2025-11-15 15:57:34 [32minfo[39m [32mPOST /api/v1/document-comparison/compare 200 8228.081 ms - 3400[39m
+[32m[39m
+2025-11-15 16:02:16 [32minfo[39m [32mGET /api/v1/document-comparison/history 200 30.048 ms - 9787[39m
+[32m[39m
+2025-11-15 16:04:59 [32minfo[39m [32mGET /api/v1/document-comparison/cmi0ev1ba0003t1bgchyfnlqg 200 178.748 ms - 3330[39m
+[32m[39m
