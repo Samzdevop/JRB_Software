@@ -5443,3 +5443,75 @@
 [32m[39m
 2025-12-02 18:28:55 [32minfo[39m [32mGET /api/v1/documents/cmgxc7pat0001t1vk8l3y40nx/content?format=structured 200 436.916 ms - 588502[39m
 [32m[39m
+2025-12-02 18:48:37 [32minfo[39m [32mGET /api/v1/documents/cmgxc7pat0001t1vk8l3y40nx/content?format=structured 200 390.268 ms - 395646[39m
+[32m[39m
+2025-12-02 18:48:43 [32minfo[39m [32mGET /api/v1/documents/cmgxc7pat0001t1vk8l3y40nx/content?format=structured 200 251.889 ms - 395646[39m
+[32m[39m
+2025-12-02 18:55:40 [32minfo[39m [32mGET /api/v1/documents/cmgxc7pat0001t1vk8l3y40nx/toc 401 3.413 ms - 64[39m
+[32m[39m
+2025-12-02 18:55:54 [32minfo[39m [32mPOST /api/v1/auth/login 200 303.250 ms - 681[39m
+[32m[39m
+2025-12-02 18:56:03 [32minfo[39m [32mGET /api/v1/documents/cmgxc7pat0001t1vk8l3y40nx/toc 200 686.765 ms - 116288[39m
+[32m[39m
+2026-01-12 11:40:26 [32minfo[39m [32mPOST /api/v1/document-comparison/compare 401 76.701 ms - 64[39m
+[32m[39m
+2026-01-12 11:42:12 [32minfo[39m [32mPOST /api/v1/auth/login 200 1270.808 ms - 681[39m
+[32m[39m
+2026-01-12 11:45:17 [32minfo[39m [32mPOST /api/v1/document-comparison/compare 400 60.362 ms - 100[39m
+[32m[39m
+2026-01-12 11:50:39 [32minfo[39m [32mPOST /api/v1/document-comparison/compare 200 7800.136 ms - 3400[39m
+[32m[39m
+2026-01-12 11:51:34 [32minfo[39m [32mPOST /api/v1/document-comparison/compare 200 10396.582 ms - 3400[39m
+[32m[39m
+2026-01-12 12:11:17 [32minfo[39m [32mPOST /api/v1/document-comparison/compare 200 4822.753 ms - 3298[39m
+[32m[39m
+2026-01-12 12:31:57 [31merror[39m [31mDocument appears to be empty or contains insufficient content for analysis. Minimum 50 characters required. Document appears to be empty or contains insufficient content for analysis. Minimum 50 characters required.[39m
+2026-01-12 12:31:57 [32minfo[39m [32mPOST /api/v1/document-comparison/compare 400 976.089 ms - 135[39m
+[32m[39m
+2026-01-12 12:39:43 [32minfo[39m [32mPOST /api/v1/document-comparison/compare 200 9786.345 ms - 2792[39m
+[32m[39m
+2026-01-12 12:53:14 [32minfo[39m [32mPOST /api/v1/document-comparison/compare 401 4.846 ms - 64[39m
+[32m[39m
+2026-01-12 12:53:21 [32minfo[39m [32mPOST /api/v1/document-comparison/compare 401 1.799 ms - 64[39m
+[32m[39m
+2026-01-12 12:53:33 [32minfo[39m [32mPOST /api/v1/auth/login 200 247.645 ms - 681[39m
+[32m[39m
+2026-01-12 12:54:50 [32minfo[39m [32mPOST /api/v1/document-comparison/compare 200 50473.155 ms - 2644[39m
+[32m[39m
+2026-01-12 14:44:42 [32minfo[39m [32mPOST /api/v1/auth/login 200 369.390 ms - 681[39m
+[32m[39m
+2026-01-12 14:45:05 [32minfo[39m [32mPOST /api/v1/document-comparison/compare 200 7240.966 ms - 3976[39m
+[32m[39m
+2026-01-12 15:27:18 [32minfo[39m [32mPOST /api/v1/document-comparison/compare 200 13642.933 ms - 9869[39m
+[32m[39m
+2026-01-12 15:30:17 [32minfo[39m [32mPOST /api/v1/document-comparison/compare 200 7301.278 ms - 9877[39m
+[32m[39m
+2026-01-12 16:14:18 [32minfo[39m [32mPOST /api/v1/document-comparison/compare 401 11.280 ms - 64[39m
+[32m[39m
+2026-01-12 16:14:30 [32minfo[39m [32mPOST /api/v1/auth/login 200 379.280 ms - 681[39m
+[32m[39m
+2026-01-12 16:14:52 [32minfo[39m [32mPOST /api/v1/document-comparison/compare 200 5460.755 ms - 2969[39m
+[32m[39m
+2026-01-12 16:18:04 [32minfo[39m [32mPOST /api/v1/document-comparison/compare 200 3552.322 ms - 2995[39m
+[32m[39m
+2026-01-12 16:18:50 [32minfo[39m [32mPOST /api/v1/document-comparison/compare 200 5501.223 ms - 2995[39m
+[32m[39m
+2026-01-12 16:20:20 [32minfo[39m [32mPOST /api/v1/document-comparison/compare 200 3477.423 ms - 3009[39m
+[32m[39m
+2026-01-12 16:33:02 [32minfo[39m [32mPOST /api/v1/document-comparison/compare 200 9048.783 ms - 6646[39m
+[32m[39m
+2026-01-12 16:34:30 [32minfo[39m [32mPOST /api/v1/document-comparison/compare 200 4735.842 ms - 6146[39m
+[32m[39m
+2026-01-12 16:35:56 [32minfo[39m [32mPOST /api/v1/document-comparison/compare 200 4434.678 ms - 103465[39m
+[32m[39m
+2026-01-12 16:39:43 [31merror[39m [31mDocument appears to be empty or contains insufficient content for analysis. Minimum 30 characters required. Document appears to be empty or contains insufficient content for analysis. Minimum 30 characters required.[39m
+2026-01-12 16:39:43 [32minfo[39m [32mPOST /api/v1/document-comparison/compare 400 427.750 ms - 135[39m
+[32m[39m
+2026-01-12 16:41:44 [32minfo[39m [32mPOST /api/v1/document-comparison/compare 200 4186.404 ms - 6646[39m
+[32m[39m
+2026-01-12 16:58:45 [32minfo[39m [32mPOST /api/v1/document-comparison/compare 200 4441.405 ms - 6892[39m
+[32m[39m
+2026-01-12 17:01:06 [32minfo[39m [32mPOST /api/v1/document-comparison/compare 200 4104.140 ms - 15114[39m
+[32m[39m
+2026-01-12 17:05:32 [32minfo[39m [32mPOST /api/v1/document-comparison/compare 200 3840.560 ms - 6388[39m
+[32m[39m

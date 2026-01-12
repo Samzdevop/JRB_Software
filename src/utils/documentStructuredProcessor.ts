@@ -79,21 +79,21 @@ export class DocumentStructuredProcessor {
     
     const { rawText } = processedContent;
     
-    console.log('=== PROCESSING DOCUMENT ===');
-    console.log('Text length:', rawText.length);
+    // console.log('=== PROCESSING DOCUMENT ===');
+    // console.log('Text length:', rawText.length);
     
     // Find where the actual content starts (after table of contents)
     const contentStartIndex = this.findContentStartIndex(rawText);
     
     if (contentStartIndex === -1) {
-      console.log('Could not find content start, using full text');
+      // console.log('Could not find content start, using full text');
       return this.processFullDocument(rawText, documentId, originalFileName);
     }
     
     // Extract only the content part (from CHAPTER 1 onwards)
     const contentText = rawText.substring(contentStartIndex);
-    console.log('Content text starts at index:', contentStartIndex);
-    console.log('Content text length:', contentText.length);
+    // console.log('Content text starts at index:', contentStartIndex);
+    // console.log('Content text length:', contentText.length);
     
     return this.processFullDocument(contentText, documentId, originalFileName);
   }
@@ -174,7 +174,7 @@ export class DocumentStructuredProcessor {
       });
     }
     
-    console.log(`Found ${chapterMatches.length} chapters in text`);
+    // console.log(`Found ${chapterMatches.length} chapters in text`);
     
     // Process each chapter found
     for (let i = 0; i < chapterMatches.length; i++) {
@@ -190,7 +190,7 @@ export class DocumentStructuredProcessor {
       
       const chapterContent = text.substring(currentChapter.index, nextChapterIndex);
       
-      console.log(`Processing Chapter ${currentChapter.number}: ${currentChapter.title}`);
+      // console.log(`Processing Chapter ${currentChapter.number}: ${currentChapter.title}`);
       
       let cleanChapterContent = chapterContent;
       
@@ -199,7 +199,7 @@ export class DocumentStructuredProcessor {
         const chapter4Start = chapterContent.indexOf('CHAPTER 4');
         if (chapter4Start !== -1) {
           cleanChapterContent = chapterContent.substring(0, chapter4Start);
-          console.log(`  Truncated Chapter 3 at Chapter 4 start`);
+          // console.log(`  Truncated Chapter 3 at Chapter 4 start`);
         }
       }
       
@@ -208,7 +208,7 @@ export class DocumentStructuredProcessor {
         const chapter5Start = chapterContent.indexOf('CHAPTER 5');
         if (chapter5Start !== -1) {
           cleanChapterContent = chapterContent.substring(0, chapter5Start);
-          console.log(`  Truncated Chapter 4 at Chapter 5 start`);
+          // console.log(`  Truncated Chapter 4 at Chapter 5 start`);
         }
       }
       
@@ -228,7 +228,7 @@ export class DocumentStructuredProcessor {
     
     // Add Chapter 4 if missing
     if (!chapterNumbers.includes(4)) {
-      console.log('Adding missing Chapter 4...');
+      // console.log('Adding missing Chapter 4...');
       const chapter4Index = text.indexOf('CHAPTER 4');
       if (chapter4Index !== -1) {
         let chapter4EndIndex = text.indexOf('CHAPTER 5', chapter4Index);
@@ -253,13 +253,13 @@ export class DocumentStructuredProcessor {
           parts
         });
         
-        console.log(`Added Chapter 4: ${chapter4Title}`);
+        // console.log(`Added Chapter 4: ${chapter4Title}`);
       }
     }
     
     // Add Chapter 5 if missing
     if (!chapterNumbers.includes(5)) {
-      console.log('Adding missing Chapter 5...');
+      // console.log('Adding missing Chapter 5...');
       const chapter5Index = text.indexOf('CHAPTER 5');
       if (chapter5Index !== -1) {
         let chapter5EndIndex = text.indexOf('FIRST SCHEDULE', chapter5Index);
@@ -281,7 +281,7 @@ export class DocumentStructuredProcessor {
           parts
         });
         
-        console.log(`Added Chapter 5: ${chapter5Title}`);
+        // console.log(`Added Chapter 5: ${chapter5Title}`);
       }
     }
     
@@ -329,7 +329,7 @@ export class DocumentStructuredProcessor {
       });
     }
     
-    console.log(`  Chapter ${chapterNumber}: Found ${partMatches.length} parts`);
+    // console.log(`  Chapter ${chapterNumber}: Found ${partMatches.length} parts`);
     
     if (partMatches.length > 0) {
       for (let i = 0; i < partMatches.length; i++) {
@@ -396,20 +396,20 @@ export class DocumentStructuredProcessor {
       if (chapterNumber === 5) {
         // Chapter 5 sections start at 307, skip lower numbers (definitions)
         if (sectionNumber < 300) {
-          console.log(`  Skipping section ${sectionNumber} in Chapter 5 - likely definition`);
+          // console.log(`  Skipping section ${sectionNumber} in Chapter 5 - likely definition`);
           continue;
         }
       }
       
       // Special handling for Chapter 4 - sections start at 258
       if (chapterNumber === 4 && sectionNumber < 258) {
-        console.log(`  Skipping section ${sectionNumber} in Chapter 4 - likely Chapter 3 content`);
+        // console.log(`  Skipping section ${sectionNumber} in Chapter 4 - likely Chapter 3 content`);
         continue;
       }
       
       // Special handling for Chapter 3 - sections should be around 234
       if (chapterNumber === 3 && sectionNumber > 300) {
-        console.log(`  Skipping section ${sectionNumber} in Chapter 3 - likely Chapter 4 content`);
+        // console.log(`  Skipping section ${sectionNumber} in Chapter 3 - likely Chapter 4 content`);
         continue;
       }
       
