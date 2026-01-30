@@ -5515,3 +5515,56 @@
 [32m[39m
 2026-01-12 17:05:32 [32minfo[39m [32mPOST /api/v1/document-comparison/compare 200 3840.560 ms - 6388[39m
 [32m[39m
+2026-01-30 03:57:19 [32minfo[39m [32mPOST /api/v1/auth/login 200 1318.477 ms - 681[39m
+[32m[39m
+2026-01-30 03:58:33 [32minfo[39m [32mPOST /api/v1/auth/login 200 158.621 ms - 681[39m
+[32m[39m
+2026-01-30 03:58:59 [31merror[39m [31mDocument not found Document not found[39m
+2026-01-30 03:58:59 [32minfo[39m [32mGET /api/v1/documents/cmh6369av000294u49xdltr6v/content?format=structured 404 22.414 ms - 46[39m
+[32m[39m
+2026-01-30 03:59:33 [32minfo[39m [32mGET /api/v1/documents/cmgxc7pat0001t1vk8l3y40nx/content?format=structured 200 343.212 ms - 2146259[39m
+[32m[39m
+2026-01-30 03:59:58 [32minfo[39m [32mGET /api/v1/documents/cmgxc7pat0001t1vk8l3y40nx/content?format=structured 200 380.519 ms - 2146259[39m
+[32m[39m
+2026-01-30 04:00:12 [32minfo[39m [32mGET /api/v1/documents/cmgxc7pat0001t1vk8l3y40nx/content?format=structured 200 227.918 ms - 2146259[39m
+[32m[39m
+2026-01-30 13:01:52 [32minfo[39m [32mPOST /api/v1/auth/login 200 1102.622 ms - 681[39m
+[32m[39m
+2026-01-30 13:03:35 [32minfo[39m [32mGET /api/v1/documents/cmgxc7pat0001t1vk8l3y40nx/content?format=structured 200 227.019 ms - 395646[39m
+[32m[39m
+2026-01-30 13:03:49 [32minfo[39m [32mGET /api/v1/documents/cmgxc7pat0001t1vk8l3y40nx/content?format=structured 200 178.841 ms - 395646[39m
+[32m[39m
+2026-01-30 15:19:16 [32minfo[39m [32mPOST /api/v1/auth/login 200 540.068 ms - 681[39m
+[32m[39m
+2026-01-30 15:19:24 [32minfo[39m [32mPOST /api/v1/auth/login 200 196.254 ms - 681[39m
+[32m[39m
+2026-01-30 15:19:43 [32minfo[39m [32mGET /api/v1/documents/cmgxc7pat0001t1vk8l3y40nx/content?format=structured 200 1146.549 ms - 395646[39m
+[32m[39m
+2026-01-30 15:23:07 [32minfo[39m [32mGET /api/v1/documents/cmgxc7pat0001t1vk8l3y40nx/content?format=structured 200 436.897 ms - 301155[39m
+[32m[39m
+2026-01-30 15:36:29 [32minfo[39m [32mGET /api/v1/documents/cmgxc7pat0001t1vk8l3y40nx/content?format=structured 200 422.440 ms - 204612[39m
+[32m[39m
+2026-01-30 16:03:28 [32minfo[39m [32mGET /api/v1/documents/cmgxc7pat0001t1vk8l3y40nx/content?format=structured 200 509.630 ms - 401171[39m
+[32m[39m
+2026-01-30 16:49:15 [32minfo[39m [32mGET /api/v1/documents/cmgxc7pat0001t1vk8l3y40nx/content?format=structured 401 17.272 ms - 64[39m
+[32m[39m
+2026-01-30 16:49:25 [32minfo[39m [32mPOST /api/v1/auth/login 200 1974.243 ms - 681[39m
+[32m[39m
+2026-01-30 16:49:32 [32minfo[39m [32mPOST /api/v1/auth/login 200 395.705 ms - 681[39m
+[32m[39m
+2026-01-30 16:49:49 [32minfo[39m [32mGET /api/v1/documents/cmgxc7pat0001t1vk8l3y40nx/content?format=structured 200 351.312 ms - 678807[39m
+[32m[39m
+2026-01-30 16:55:45 [32minfo[39m [32mGET /api/v1/documents/cmgxc7pat0001t1vk8l3y40nx/content?format=structured 200 950.428 ms - 395646[39m
+[32m[39m
+2026-01-30 17:14:15 [32minfo[39m [32mGET /api/v1/documents/cmgxc7pat0001t1vk8l3y40nx/content?format=structured 200 630.310 ms - 405310[39m
+[32m[39m
+2026-01-30 18:55:12 [32minfo[39m [32mPOST /api/v1/auth/login 200 526.614 ms - 681[39m
+[32m[39m
+2026-01-30 18:55:33 [32minfo[39m [32mGET /api/v1/documents/cmgxc7pat0001t1vk8l3y40nx/content?format=structured 200 235.779 ms - 406274[39m
+[32m[39m
+2026-01-30 18:59:44 [32minfo[39m [32mGET /api/v1/documents/cmgxc7pat0001t1vk8l3y40nx/content?format=structured 200 229.734 ms - 406274[39m
+[32m[39m
+2026-01-30 19:00:19 [32minfo[39m [32mGET /api/v1/documents/cmgxc7pat0001t1vk8l3y40nx/content?format=structured 200 518.739 ms - 406274[39m
+[32m[39m
+2026-01-30 19:08:59 [32minfo[39m [32mGET /api/v1/documents/cmgxc7pat0001t1vk8l3y40nx/content?format=structured 200 312.291 ms - 403060[39m
+[32m[39m

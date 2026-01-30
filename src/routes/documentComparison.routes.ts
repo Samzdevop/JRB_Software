@@ -13,7 +13,6 @@ const uploadMiddleware = comparisonUpload.single('document');
 const handleUpload = (req: any, res: any, next: any) => {
   uploadMiddleware(req, res, (err: any) => {
     if (err) {
-      console.log('❌ Multer error:', err.message);
       if (err.code === 'LIMIT_FILE_SIZE') {
         return res.status(400).json({
           success: false,
@@ -32,9 +31,9 @@ const handleUpload = (req: any, res: any, next: any) => {
       });
     }
 // Log what we received
-    console.log('📤 Upload processed:');
-    console.log('   File:', req.file ? `Yes - ${req.file.originalname}` : 'No');
-    console.log('   Body:', req.body);
+    // console.log('📤 Upload processed:');
+    // console.log('   File:', req.file ? `Yes - ${req.file.originalname}` : 'No');
+    // console.log('   Body:', req.body);
     
     if (!req.file) {
       return res.status(400).json({
