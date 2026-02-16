@@ -1648,7 +1648,28 @@ export const uploadAndQueryTaxDocument = async (
     if (!req.file) {
       return next(new BadRequestError('No file uploaded'));
     }
+
     const userId = (req.user as any).id;
+
+    // Get the Nigeria Tax Act document from database (for reference)
+    const taxReferenceDocument = await prisma.document.findFirst({
+      where: { 
+        OR: [
+          { title: { contains: 'Nigeria Tax Act', mode: 'insensitive' } },
+          { title: { contains: 'Companies Income Tax Act', mode: 'insensitive' } },
+          { title: { contains: 'CITA', mode: 'insensitive' } }
+        ]
+      },
+      orderBy: { uploadedAt: 'desc' }
+    });
+
+    if (!taxReferenceDocument) {
+      throw new NotFoundError('Nigeria Tax Act document not found in database. Please contact administrator.');
+    }
+
+    console.log('✅ Found tax reference document:', taxReferenceDocument.id);
+
+    // Extract text from uploaded document
     let extractedData;
     try {
       extractedData = await extractTextFromFile(
@@ -1656,55 +1677,51 @@ export const uploadAndQueryTaxDocument = async (
         req.file.originalname,
         req.file.mimetype
       );
-      console.log('Document text extracted');
-      console.log('Extracted text length:', extractedData.text.length);
     } catch (error) {
       const errorMessage = (error instanceof Error) ? error.message : String(error);
       return next(new BadRequestError(`Failed to process file: ${errorMessage}`));
     }
 
+    // Validate document content
     if (!extractedData.text || extractedData.text.trim().length < 30) {
       return next(new BadRequestError(
         'The uploaded document appears to be empty or contains insufficient content.'
       ));
     }
+
+      
     const processedContent = TextProcessor.processRawText(
       extractedData.text,
       req.file.originalname
     );
 
-    console.log('📝 Processed content length:', processedContent.rawText.length);
-    const document = await prisma.document.create({
-      data: {
-        title: req.file.originalname.replace(/\.[^/.]+$/, ""),
-        filename: req.file.originalname,
-        fileUrl: `memory://${req.file.filename}`,
-        fileSize: req.file.size,
-        uploadedById: userId,
-        content: processedContent.rawText,
-        processed: true,
-        isPublic: false,
-      },
-    });
+    // console.log('📝 Processed content length:', processedContent.rawText.length);
 
-    // console.log('💾 Document saved with ID:', document.id);
-    // console.log('🔍 Analyzing document with tax logic...');
     const result = await analyzeDocumentWithTaxLogic(processedContent.rawText);
-
-    console.log('✅ Analysis complete. Found:', result.answeredQuestions?.length || 0, 'questions');
+    // console.log('✅ Analysis complete. Found:', result.answeredQuestions?.length || 0, 'questions');
     const searchHistory = await prisma.searchHistory.create({
       data: {
-        query: `[Document Upload] ${document.title}`,
+        query: `[Tax Document Upload] ${req.file.originalname}`,
         results: {
           filename: req.file.originalname,
+          fileSize: req.file.size,
+          fileType: req.file.mimetype,
           timestamp: new Date().toISOString(),
           source: 'tax_document_upload',
-          analysis: result
+          analysis: result,
+          referenceDocument: {
+            id: taxReferenceDocument.id,
+            title: taxReferenceDocument.title
+          }
         },
-        documentId: document.id,
+        documentId: taxReferenceDocument.id, 
         userId,
       },
     });
+
+    console.log('Search history created with ID:', searchHistory.id);
+
+    // Send success response with document metadata but NO document ID
     sendSuccessResponse(res, 'Document analyzed successfully', {
       answers: {
         summary: result.summary,
@@ -1714,18 +1731,14 @@ export const uploadAndQueryTaxDocument = async (
         keyFindings: result.keyFindings || []
       },
       queryId: searchHistory.id,
-      document: {
-        id: document.id,
-        title: document.title,
-        filename: document.filename,
-        fileSize: document.fileSize,
-        pageCount: extractedData.pageCount || null,
-        wordCount: result.wordCount
+      referenceDocument: {
+        id: taxReferenceDocument.id,
+        title: taxReferenceDocument.title
       }
     });
 
   } catch (error) {
-    console.error('❌ Document processing error:', error);
+    console.error('Document processing error:', error);
     next(error);
   }
 };

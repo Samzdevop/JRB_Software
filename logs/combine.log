@@ -6528,3 +6528,31 @@
 [32m[39m
 2026-02-16 11:11:44 [32minfo[39m [32mPOST /api/v1/tax-query/answer-upload 200 1293.112 ms - 4015[39m
 [32m[39m
+2026-02-16 12:47:33 [32minfo[39m [32mPOST /api/v1/auth/login 200 759.488 ms - 747[39m
+[32m[39m
+2026-02-16 12:49:18 [32minfo[39m [32mPOST /api/v1/document-comparison/compare 200 6689.516 ms - 5948[39m
+[32m[39m
+2026-02-16 12:56:29 [32minfo[39m [32mPOST /api/v1/auth/login 200 622.062 ms - 747[39m
+[32m[39m
+2026-02-16 13:20:29 [32minfo[39m [32mPOST /api/v1/tax-query/answer-upload 200 2196.284 ms - 4017[39m
+[32m[39m
+2026-02-16 13:22:56 [32minfo[39m [32mPOST /api/v1/tax-query/answer-upload 200 883.749 ms - 3958[39m
+[32m[39m
+2026-02-16 13:25:30 [32minfo[39m [32mDELETE /api/v1/documents/cmlnneain0001t1c494p587n7 401 9.356 ms - 66[39m
+[32m[39m
+2026-02-16 13:26:29 [32minfo[39m [32mPOST /api/v1/auth/login 200 398.560 ms - 723[39m
+[32m[39m
+2026-02-16 13:26:46 [32minfo[39m [32mDELETE /api/v1/documents/cmlnneain0001t1c494p587n7 200 100.836 ms - 89[39m
+[32m[39m
+2026-02-16 13:27:14 [32minfo[39m [32mDELETE /api/v1/documents/cmlolgcci0001t1pc0fexpt8n 200 41.913 ms - 89[39m
+[32m[39m
+2026-02-16 13:27:30 [32minfo[39m [32mDELETE /api/v1/documents/cmlolk2b50005t1pcdljpx69f 200 122.265 ms - 89[39m
+[32m[39m
+2026-02-16 13:27:58 [32minfo[39m [32mDELETE /api/v1/documents/cmlomr2d1000ft1pcoqoz4nqm 200 201.494 ms - 89[39m
+[32m[39m
+2026-02-16 13:28:10 [32minfo[39m [32mDELETE /api/v1/documents/cmlonnpvy0001t10cyk5zlhaw 200 30.147 ms - 89[39m
+[32m[39m
+2026-02-16 13:28:20 [32minfo[39m [32mDELETE /api/v1/documents/cmlp0lncg0001t1twvvznqchg 200 60.230 ms - 89[39m
+[32m[39m
+2026-02-16 13:28:32 [32minfo[39m [32mDELETE /api/v1/documents/cmlp578cd0003t1q43mxrbs50 200 231.340 ms - 89[39m
+[32m[39m
