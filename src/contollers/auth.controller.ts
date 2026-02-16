@@ -102,11 +102,13 @@ export const login = async (
     const validPassword = await verify(user.password || "$passwordless", password);
     if (!validPassword) throw new UnauthorizedError("Invalid credentials");
 
-    const availableDocument = await prisma.document.findFirst({
+    const availableDocument = await prisma.document.findMany({
       where: { isPublic: true },
       orderBy: { uploadedAt: 'desc' }, 
       select: { id: true, title: true }
     });
+
+    //  const mostRecentDocument = availableDocument.length > 0 ? availableDocument[0] : null;
 
     const userData = await prisma.user.findUnique({
       where: { id: user.id },
@@ -119,8 +121,12 @@ export const login = async (
       user:{
         ...userData, 
       role: user.role,
-      documentId: availableDocument?.id || null,
-      documentTitle: availableDocument?.title || null
+      // documentId: mostRecentDocument?.id || null,
+      // documentTitle: mostRecentDocument?.title || null,
+      documents: availableDocument.map(doc => ({
+          id: doc.id,
+          title: doc.title,
+        }))
       }
     });
   } catch (error) {

@@ -3673,3 +3673,565 @@
 2026-01-12 12:31:57 [31merror[39m [31mDocument appears to be empty or contains insufficient content for analysis. Minimum 50 characters required. Document appears to be empty or contains insufficient content for analysis. Minimum 50 characters required.[39m
 2026-01-12 16:39:43 [31merror[39m [31mDocument appears to be empty or contains insufficient content for analysis. Minimum 30 characters required. Document appears to be empty or contains insufficient content for analysis. Minimum 30 characters required.[39m
 2026-01-30 03:58:59 [31merror[39m [31mDocument not found Document not found[39m
+2026-02-09 22:35:27 [31merror[39m [31mDocument not found Document not found[39m
+2026-02-09 22:35:51 [31merror[39m [31mDocument not found Document not found[39m
+2026-02-09 22:36:00 [31merror[39m [31mDocument not found Document not found[39m
+2026-02-09 22:45:58 [31merror[39m [31mExpected double-quoted property name in JSON at position 229 (line 9 column 1) Expected double-quoted property name in JSON at position 229 (line 9 column 1)[39m
+2026-02-11 15:38:32 [31merror[39m [31mDocument not found Document not found[39m
+2026-02-12 11:59:13 [31merror[39m [31mDocument not found Document not found[39m
+2026-02-15 03:07:14 [31merror[39m [31mDatabase validation error: [39m
+[31mInvalid `prisma.searchHistory.findMany()` invocation:[39m
+
+[31m{[39m
+[31m  where: {[39m
+[31m    userId: "cmffi4zux0000t1pgt4cifw6r",[39m
+[31m    query: {[39m
+[31m      NOT: [[39m
+[31m      ~~~[39m
+[31m        {[39m
+[31m          contains: "Compliance Check"[39m
+[31m        },[39m
+[31m        {[39m
+[31m          contains: "Tax Query:"[39m
+[31m        },[39m
+[31m        {[39m
+[31m          contains: "[Document Query]"[39m
+[31m        }[39m
+[31m      ],[39m
+[31m?     equals?: String | StringFieldRefInput,[39m
+[31m?     in?: String[] | ListStringFieldRefInput,[39m
+[31m?     notIn?: String[] | ListStringFieldRefInput,[39m
+[31m?     lt?: String | StringFieldRefInput,[39m
+[31m?     lte?: String | StringFieldRefInput,[39m
+[31m?     gt?: String | StringFieldRefInput,[39m
+[31m?     gte?: String | StringFieldRefInput,[39m
+[31m?     contains?: String | StringFieldRefInput,[39m
+[31m?     startsWith?: String | StringFieldRefInput,[39m
+[31m?     endsWith?: String | StringFieldRefInput,[39m
+[31m?     mode?: QueryMode,[39m
+[31m?     not?: String | NestedStringFilter[39m
+[31m    }[39m
+[31m  },[39m
+[31m  include: {[39m
+[31m    document: {[39m
+[31m      select: {[39m
+[31m        id: true,[39m
+[31m        title: true,[39m
+[31m        filename: true[39m
+[31m      }[39m
+[31m    }[39m
+[31m  },[39m
+[31m  orderBy: {[39m
+[31m    createdAt: "desc"[39m
+[31m  },[39m
+[31m  skip: 0,[39m
+[31m  take: 10[39m
+[31m}[39m
+
+[31mUnknown argument `NOT`. Did you mean `in`? Available options are marked with ?. [39m
+[31mInvalid `prisma.searchHistory.findMany()` invocation:[39m
+
+[31m{[39m
+[31m  where: {[39m
+[31m    userId: "cmffi4zux0000t1pgt4cifw6r",[39m
+[31m    query: {[39m
+[31m      NOT: [[39m
+[31m      ~~~[39m
+[31m        {[39m
+[31m          contains: "Compliance Check"[39m
+[31m        },[39m
+[31m        {[39m
+[31m          contains: "Tax Query:"[39m
+[31m        },[39m
+[31m        {[39m
+[31m          contains: "[Document Query]"[39m
+[31m        }[39m
+[31m      ],[39m
+[31m?     equals?: String | StringFieldRefInput,[39m
+[31m?     in?: String[] | ListStringFieldRefInput,[39m
+[31m?     notIn?: String[] | ListStringFieldRefInput,[39m
+[31m?     lt?: String | StringFieldRefInput,[39m
+[31m?     lte?: String | StringFieldRefInput,[39m
+[31m?     gt?: String | StringFieldRefInput,[39m
+[31m?     gte?: String | StringFieldRefInput,[39m
+[31m?     contains?: String | StringFieldRefInput,[39m
+[31m?     startsWith?: String | StringFieldRefInput,[39m
+[31m?     endsWith?: String | StringFieldRefInput,[39m
+[31m?     mode?: QueryMode,[39m
+[31m?     not?: String | NestedStringFilter[39m
+[31m    }[39m
+[31m  },[39m
+[31m  include: {[39m
+[31m    document: {[39m
+[31m      select: {[39m
+[31m        id: true,[39m
+[31m        title: true,[39m
+[31m        filename: true[39m
+[31m      }[39m
+[31m    }[39m
+[31m  },[39m
+[31m  orderBy: {[39m
+[31m    createdAt: "desc"[39m
+[31m  },[39m
+[31m  skip: 0,[39m
+[31m  take: 10[39m
+[31m}[39m
+
+[31mUnknown argument `NOT`. Did you mean `in`? Available options are marked with ?.[39m
+2026-02-15 04:07:52 [31merror[39m [31mDatabase validation error: [39m
+[31mInvalid `prisma.searchHistory.findMany()` invocation:[39m
+
+[31m{[39m
+[31m  where: {[39m
+[31m    userId: "cmffi4zux0000t1pgt4cifw6r",[39m
+[31m    query: {[39m
+[31m      NOT: [[39m
+[31m      ~~~[39m
+[31m        {[39m
+[31m          contains: "Compliance Check"[39m
+[31m        },[39m
+[31m        {[39m
+[31m          contains: "PIA Query"[39m
+[31m        }[39m
+[31m      ],[39m
+[31m?     equals?: String | StringFieldRefInput,[39m
+[31m?     in?: String[] | ListStringFieldRefInput,[39m
+[31m?     notIn?: String[] | ListStringFieldRefInput,[39m
+[31m?     lt?: String | StringFieldRefInput,[39m
+[31m?     lte?: String | StringFieldRefInput,[39m
+[31m?     gt?: String | StringFieldRefInput,[39m
+[31m?     gte?: String | StringFieldRefInput,[39m
+[31m?     contains?: String | StringFieldRefInput,[39m
+[31m?     startsWith?: String | StringFieldRefInput,[39m
+[31m?     endsWith?: String | StringFieldRefInput,[39m
+[31m?     mode?: QueryMode,[39m
+[31m?     not?: String | NestedStringFilter[39m
+[31m    }[39m
+[31m  },[39m
+[31m  include: {[39m
+[31m    document: {[39m
+[31m      select: {[39m
+[31m        id: true,[39m
+[31m        title: true,[39m
+[31m        filename: true[39m
+[31m      }[39m
+[31m    }[39m
+[31m  },[39m
+[31m  orderBy: {[39m
+[31m    createdAt: "desc"[39m
+[31m  },[39m
+[31m  skip: 0,[39m
+[31m  take: 10[39m
+[31m}[39m
+
+[31mUnknown argument `NOT`. Did you mean `in`? Available options are marked with ?. [39m
+[31mInvalid `prisma.searchHistory.findMany()` invocation:[39m
+
+[31m{[39m
+[31m  where: {[39m
+[31m    userId: "cmffi4zux0000t1pgt4cifw6r",[39m
+[31m    query: {[39m
+[31m      NOT: [[39m
+[31m      ~~~[39m
+[31m        {[39m
+[31m          contains: "Compliance Check"[39m
+[31m        },[39m
+[31m        {[39m
+[31m          contains: "PIA Query"[39m
+[31m        }[39m
+[31m      ],[39m
+[31m?     equals?: String | StringFieldRefInput,[39m
+[31m?     in?: String[] | ListStringFieldRefInput,[39m
+[31m?     notIn?: String[] | ListStringFieldRefInput,[39m
+[31m?     lt?: String | StringFieldRefInput,[39m
+[31m?     lte?: String | StringFieldRefInput,[39m
+[31m?     gt?: String | StringFieldRefInput,[39m
+[31m?     gte?: String | StringFieldRefInput,[39m
+[31m?     contains?: String | StringFieldRefInput,[39m
+[31m?     startsWith?: String | StringFieldRefInput,[39m
+[31m?     endsWith?: String | StringFieldRefInput,[39m
+[31m?     mode?: QueryMode,[39m
+[31m?     not?: String | NestedStringFilter[39m
+[31m    }[39m
+[31m  },[39m
+[31m  include: {[39m
+[31m    document: {[39m
+[31m      select: {[39m
+[31m        id: true,[39m
+[31m        title: true,[39m
+[31m        filename: true[39m
+[31m      }[39m
+[31m    }[39m
+[31m  },[39m
+[31m  orderBy: {[39m
+[31m    createdAt: "desc"[39m
+[31m  },[39m
+[31m  skip: 0,[39m
+[31m  take: 10[39m
+[31m}[39m
+
+[31mUnknown argument `NOT`. Did you mean `in`? Available options are marked with ?.[39m
+2026-02-15 04:21:31 [31merror[39m [31mDatabase validation error: [39m
+[31mInvalid `prisma.searchHistory.findMany()` invocation:[39m
+
+[31m{[39m
+[31m  where: {[39m
+[31m    userId: "cmffi4zux0000t1pgt4cifw6r",[39m
+[31m    query: {[39m
+[31m      NOT: {[39m
+[31m      ~~~[39m
+[31m        OR: [[39m
+[31m          {[39m
+[31m            contains: "Compliance Check"[39m
+[31m          },[39m
+[31m          {[39m
+[31m            contains: "PIA Query"[39m
+[31m          }[39m
+[31m        ][39m
+[31m      },[39m
+[31m?     equals?: String | StringFieldRefInput,[39m
+[31m?     in?: String[] | ListStringFieldRefInput,[39m
+[31m?     notIn?: String[] | ListStringFieldRefInput,[39m
+[31m?     lt?: String | StringFieldRefInput,[39m
+[31m?     lte?: String | StringFieldRefInput,[39m
+[31m?     gt?: String | StringFieldRefInput,[39m
+[31m?     gte?: String | StringFieldRefInput,[39m
+[31m?     contains?: String | StringFieldRefInput,[39m
+[31m?     startsWith?: String | StringFieldRefInput,[39m
+[31m?     endsWith?: String | StringFieldRefInput,[39m
+[31m?     mode?: QueryMode,[39m
+[31m?     not?: String | NestedStringFilter[39m
+[31m    }[39m
+[31m  },[39m
+[31m  include: {[39m
+[31m    document: {[39m
+[31m      select: {[39m
+[31m        id: true,[39m
+[31m        title: true,[39m
+[31m        filename: true[39m
+[31m      }[39m
+[31m    }[39m
+[31m  },[39m
+[31m  orderBy: {[39m
+[31m    createdAt: "desc"[39m
+[31m  },[39m
+[31m  skip: 0,[39m
+[31m  take: 10[39m
+[31m}[39m
+
+[31mUnknown argument `NOT`. Did you mean `in`? Available options are marked with ?. [39m
+[31mInvalid `prisma.searchHistory.findMany()` invocation:[39m
+
+[31m{[39m
+[31m  where: {[39m
+[31m    userId: "cmffi4zux0000t1pgt4cifw6r",[39m
+[31m    query: {[39m
+[31m      NOT: {[39m
+[31m      ~~~[39m
+[31m        OR: [[39m
+[31m          {[39m
+[31m            contains: "Compliance Check"[39m
+[31m          },[39m
+[31m          {[39m
+[31m            contains: "PIA Query"[39m
+[31m          }[39m
+[31m        ][39m
+[31m      },[39m
+[31m?     equals?: String | StringFieldRefInput,[39m
+[31m?     in?: String[] | ListStringFieldRefInput,[39m
+[31m?     notIn?: String[] | ListStringFieldRefInput,[39m
+[31m?     lt?: String | StringFieldRefInput,[39m
+[31m?     lte?: String | StringFieldRefInput,[39m
+[31m?     gt?: String | StringFieldRefInput,[39m
+[31m?     gte?: String | StringFieldRefInput,[39m
+[31m?     contains?: String | StringFieldRefInput,[39m
+[31m?     startsWith?: String | StringFieldRefInput,[39m
+[31m?     endsWith?: String | StringFieldRefInput,[39m
+[31m?     mode?: QueryMode,[39m
+[31m?     not?: String | NestedStringFilter[39m
+[31m    }[39m
+[31m  },[39m
+[31m  include: {[39m
+[31m    document: {[39m
+[31m      select: {[39m
+[31m        id: true,[39m
+[31m        title: true,[39m
+[31m        filename: true[39m
+[31m      }[39m
+[31m    }[39m
+[31m  },[39m
+[31m  orderBy: {[39m
+[31m    createdAt: "desc"[39m
+[31m  },[39m
+[31m  skip: 0,[39m
+[31m  take: 10[39m
+[31m}[39m
+
+[31mUnknown argument `NOT`. Did you mean `in`? Available options are marked with ?.[39m
+2026-02-15 04:23:47 [31merror[39m [31mDatabase validation error: [39m
+[31mInvalid `prisma.searchHistory.findMany()` invocation:[39m
+
+[31m{[39m
+[31m  where: {[39m
+[31m    userId: "cmffi4zux0000t1pgt4cifw6r",[39m
+[31m    AND: [[39m
+[31m      {[39m
+[31m        query: {[39m
+[31m          NOT: {[39m
+[31m            contains: "Compliance Check"[39m
+[31m          }[39m
+[31m        }[39m
+[31m      },[39m
+[31m      {[39m
+[31m        query: {[39m
+[31m          NOT: {[39m
+[31m            contains: "PIA Query"[39m
+[31m          }[39m
+[31m        }[39m
+[31m      }[39m
+[31m    ][39m
+[31m  },[39m
+[31m  include: {[39m
+[31m    document: {[39m
+[31m      select: {[39m
+[31m        id: true,[39m
+[31m        title: true,[39m
+[31m        filename: true[39m
+[31m      }[39m
+[31m    }[39m
+[31m  },[39m
+[31m  orderBy: {[39m
+[31m    createdAt: "desc"[39m
+[31m  },[39m
+[31m  skip: 0,[39m
+[31m  take: 10[39m
+[31m}[39m
+
+[31mUnknown argument `NOT`. Did you mean `in`? Available options are marked with ?. [39m
+[31mInvalid `prisma.searchHistory.findMany()` invocation:[39m
+
+[31m{[39m
+[31m  where: {[39m
+[31m    userId: "cmffi4zux0000t1pgt4cifw6r",[39m
+[31m    AND: [[39m
+[31m      {[39m
+[31m        query: {[39m
+[31m          NOT: {[39m
+[31m            contains: "Compliance Check"[39m
+[31m          }[39m
+[31m        }[39m
+[31m      },[39m
+[31m      {[39m
+[31m        query: {[39m
+[31m          NOT: {[39m
+[31m            contains: "PIA Query"[39m
+[31m          }[39m
+[31m        }[39m
+[31m      }[39m
+[31m    ][39m
+[31m  },[39m
+[31m  include: {[39m
+[31m    document: {[39m
+[31m      select: {[39m
+[31m        id: true,[39m
+[31m        title: true,[39m
+[31m        filename: true[39m
+[31m      }[39m
+[31m    }[39m
+[31m  },[39m
+[31m  orderBy: {[39m
+[31m    createdAt: "desc"[39m
+[31m  },[39m
+[31m  skip: 0,[39m
+[31m  take: 10[39m
+[31m}[39m
+
+[31mUnknown argument `NOT`. Did you mean `in`? Available options are marked with ?.[39m
+2026-02-15 04:34:31 [31merror[39m [31mDatabase validation error: [39m
+[31mInvalid `prisma.searchHistory.findMany()` invocation:[39m
+
+[31m{[39m
+[31m  where: {[39m
+[31m    userId: "cmffi4zux0000t1pgt4cifw6r",[39m
+[31m    query: {[39m
+[31m      NOT: {[39m
+[31m      ~~~[39m
+[31m        contains: "Compliance Check"[39m
+[31m      },[39m
+[31m      OR: {[39m
+[31m        contains: "PIA Query"[39m
+[31m      },[39m
+[31m?     equals?: String | StringFieldRefInput,[39m
+[31m?     in?: String[] | ListStringFieldRefInput,[39m
+[31m?     notIn?: String[] | ListStringFieldRefInput,[39m
+[31m?     lt?: String | StringFieldRefInput,[39m
+[31m?     lte?: String | StringFieldRefInput,[39m
+[31m?     gt?: String | StringFieldRefInput,[39m
+[31m?     gte?: String | StringFieldRefInput,[39m
+[31m?     contains?: String | StringFieldRefInput,[39m
+[31m?     startsWith?: String | StringFieldRefInput,[39m
+[31m?     endsWith?: String | StringFieldRefInput,[39m
+[31m?     mode?: QueryMode,[39m
+[31m?     not?: String | NestedStringFilter[39m
+[31m    }[39m
+[31m  },[39m
+[31m  include: {[39m
+[31m    document: {[39m
+[31m      select: {[39m
+[31m        id: true,[39m
+[31m        title: true,[39m
+[31m        filename: true[39m
+[31m      }[39m
+[31m    }[39m
+[31m  },[39m
+[31m  orderBy: {[39m
+[31m    createdAt: "desc"[39m
+[31m  },[39m
+[31m  skip: 0,[39m
+[31m  take: 10[39m
+[31m}[39m
+
+[31mUnknown argument `NOT`. Did you mean `in`? Available options are marked with ?. [39m
+[31mInvalid `prisma.searchHistory.findMany()` invocation:[39m
+
+[31m{[39m
+[31m  where: {[39m
+[31m    userId: "cmffi4zux0000t1pgt4cifw6r",[39m
+[31m    query: {[39m
+[31m      NOT: {[39m
+[31m      ~~~[39m
+[31m        contains: "Compliance Check"[39m
+[31m      },[39m
+[31m      OR: {[39m
+[31m        contains: "PIA Query"[39m
+[31m      },[39m
+[31m?     equals?: String | StringFieldRefInput,[39m
+[31m?     in?: String[] | ListStringFieldRefInput,[39m
+[31m?     notIn?: String[] | ListStringFieldRefInput,[39m
+[31m?     lt?: String | StringFieldRefInput,[39m
+[31m?     lte?: String | StringFieldRefInput,[39m
+[31m?     gt?: String | StringFieldRefInput,[39m
+[31m?     gte?: String | StringFieldRefInput,[39m
+[31m?     contains?: String | StringFieldRefInput,[39m
+[31m?     startsWith?: String | StringFieldRefInput,[39m
+[31m?     endsWith?: String | StringFieldRefInput,[39m
+[31m?     mode?: QueryMode,[39m
+[31m?     not?: String | NestedStringFilter[39m
+[31m    }[39m
+[31m  },[39m
+[31m  include: {[39m
+[31m    document: {[39m
+[31m      select: {[39m
+[31m        id: true,[39m
+[31m        title: true,[39m
+[31m        filename: true[39m
+[31m      }[39m
+[31m    }[39m
+[31m  },[39m
+[31m  orderBy: {[39m
+[31m    createdAt: "desc"[39m
+[31m  },[39m
+[31m  skip: 0,[39m
+[31m  take: 10[39m
+[31m}[39m
+
+[31mUnknown argument `NOT`. Did you mean `in`? Available options are marked with ?.[39m
+2026-02-15 04:35:06 [31merror[39m [31mDatabase validation error: [39m
+[31mInvalid `prisma.searchHistory.findMany()` invocation:[39m
+
+[31m{[39m
+[31m  where: {[39m
+[31m    userId: "cmffi4zux0000t1pgt4cifw6r",[39m
+[31m    query: {[39m
+[31m      not: {[39m
+[31m        contains: "Compliance Check"[39m
+[31m      },[39m
+[31m      or: {[39m
+[31m      ~~[39m
+[31m        contains: "PIA Query"[39m
+[31m      },[39m
+[31m?     equals?: String | StringFieldRefInput,[39m
+[31m?     in?: String[] | ListStringFieldRefInput,[39m
+[31m?     notIn?: String[] | ListStringFieldRefInput,[39m
+[31m?     lt?: String | StringFieldRefInput,[39m
+[31m?     lte?: String | StringFieldRefInput,[39m
+[31m?     gt?: String | StringFieldRefInput,[39m
+[31m?     gte?: String | StringFieldRefInput,[39m
+[31m?     contains?: String | StringFieldRefInput,[39m
+[31m?     startsWith?: String | StringFieldRefInput,[39m
+[31m?     endsWith?: String | StringFieldRefInput,[39m
+[31m?     mode?: QueryMode[39m
+[31m    }[39m
+[31m  },[39m
+[31m  include: {[39m
+[31m    document: {[39m
+[31m      select: {[39m
+[31m        id: true,[39m
+[31m        title: true,[39m
+[31m        filename: true[39m
+[31m      }[39m
+[31m    }[39m
+[31m  },[39m
+[31m  orderBy: {[39m
+[31m    createdAt: "desc"[39m
+[31m  },[39m
+[31m  skip: 0,[39m
+[31m  take: 10[39m
+[31m}[39m
+
+[31mUnknown argument `or`. Did you mean `in`? Available options are marked with ?. [39m
+[31mInvalid `prisma.searchHistory.findMany()` invocation:[39m
+
+[31m{[39m
+[31m  where: {[39m
+[31m    userId: "cmffi4zux0000t1pgt4cifw6r",[39m
+[31m    query: {[39m
+[31m      not: {[39m
+[31m        contains: "Compliance Check"[39m
+[31m      },[39m
+[31m      or: {[39m
+[31m      ~~[39m
+[31m        contains: "PIA Query"[39m
+[31m      },[39m
+[31m?     equals?: String | StringFieldRefInput,[39m
+[31m?     in?: String[] | ListStringFieldRefInput,[39m
+[31m?     notIn?: String[] | ListStringFieldRefInput,[39m
+[31m?     lt?: String | StringFieldRefInput,[39m
+[31m?     lte?: String | StringFieldRefInput,[39m
+[31m?     gt?: String | StringFieldRefInput,[39m
+[31m?     gte?: String | StringFieldRefInput,[39m
+[31m?     contains?: String | StringFieldRefInput,[39m
+[31m?     startsWith?: String | StringFieldRefInput,[39m
+[31m?     endsWith?: String | StringFieldRefInput,[39m
+[31m?     mode?: QueryMode[39m
+[31m    }[39m
+[31m  },[39m
+[31m  include: {[39m
+[31m    document: {[39m
+[31m      select: {[39m
+[31m        id: true,[39m
+[31m        title: true,[39m
+[31m        filename: true[39m
+[31m      }[39m
+[31m    }[39m
+[31m  },[39m
+[31m  orderBy: {[39m
+[31m    createdAt: "desc"[39m
+[31m  },[39m
+[31m  skip: 0,[39m
+[31m  take: 10[39m
+[31m}[39m
+
+[31mUnknown argument `or`. Did you mean `in`? Available options are marked with ?.[39m
+2026-02-16 03:13:37 [31merror[39m [31mQuery not found Query not found[39m
+2026-02-16 03:13:54 [31merror[39m [31mQuery not found Query not found[39m
+2026-02-16 03:34:16 [31merror[39m [31mQuery not found Query not found[39m
+2026-02-16 03:35:24 [31merror[39m [31mThe uploaded document appears to be empty. Please upload a document with content. The uploaded document appears to be empty. Please upload a document with content.[39m
+2026-02-16 03:35:38 [31merror[39m [31mQuery not found Query not found[39m
+2026-02-16 03:42:19 [31merror[39m [31mQuery not found Query not found[39m
+2026-02-16 03:44:52 [31merror[39m [31mQuery not found Query not found[39m
+2026-02-16 03:47:43 [31merror[39m [31mQuery not found Query not found[39m
+2026-02-16 03:58:07 [31merror[39m [31mComparison result not found Comparison result not found[39m
+2026-02-16 04:03:20 [31merror[39m [31mQuery not found Query not found[39m
+2026-02-16 04:04:20 [31merror[39m [31mNo file uploaded No file uploaded[39m
+2026-02-16 04:06:18 [31merror[39m [31mThe uploaded document appears to be empty. Please upload a document with content. The uploaded document appears to be empty. Please upload a document with content.[39m

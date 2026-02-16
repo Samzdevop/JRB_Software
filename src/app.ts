@@ -14,6 +14,7 @@ import { checklistRouter } from './routes/checkList.routes';
 import { notesRouter } from './routes/notes.routes';
 import path from 'path';
 import { documentComparisonRouter } from './routes/documentComparison.routes';
+import { taxQueryRouter } from './routes/taxQuery.routes';
 
 
 export const app = express();
@@ -52,6 +53,7 @@ app.use('/api/v1/documents', documentRouter);
 app.use('/api/v1/checklists', checklistRouter);
 app.use('/api/v1/notes', notesRouter);
 app.use('/api/v1/document-comparison', documentComparisonRouter);
+app.use('/api/v1/tax-query', taxQueryRouter);
 // app.use('/uploads', express.static(path.join(process.cwd(), 'uploads')));
 
 app.use(notFoundHandler);

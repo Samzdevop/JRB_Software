@@ -499,7 +499,7 @@ export const searchDocument = async (
     if (relevantChunks.length < 2) {
       const keywordResults = await keywordSearch(query, documentId);
       finalChunks = [...relevantChunks, ...keywordResults]
-        .filter((v, i, a) => a.findIndex(t => t.id === v.id) === i) // Remove duplicates
+        .filter((v, i, a) => a.findIndex(t => t.id === v.id) === i) 
         .slice(0, 5);
     }
 
@@ -509,7 +509,7 @@ export const searchDocument = async (
     // Store search history
     const searchHistory = await prisma.searchHistory.create({
       data: {
-        query,
+        query: `PIA Query: ${query}`,
         results: {
           chunks: finalChunks,
           aiResponse: aiResponse
@@ -664,15 +664,35 @@ export const getSearchHistory = async (
 ): Promise<void> => {
   try {
     const userId = (req.user as any).id;
-    const { page = 1, limit = 10, documentId } = req.query;
+    const { page = 1, limit = 10, documentId, queryType = "all" } = req.query;
 
-    const where = { userId, ...(documentId && { documentId: String(documentId) }) };
+    // const where = { userId, ...(documentId && { documentId: String(documentId) }) };
+    const where: any = {userId};
+
+    if(documentId) {
+      where.documentId = String(documentId);
+    }
+
+    if (queryType === 'tax_query') {
+      where.NOT = [
+      { query: { contains: 'Compliance Check' } },
+      { query: { contains: 'PIA Query' } }
+    ];
+    } else if (queryType === 'compare') {
+      where.query = {
+        contains: 'Compliance Check'
+      };
+    } else if (queryType === 'pia_query') {
+      where.query = {
+        contains: "PIA Query"
+      };
+    }
 
     const searches = await prisma.searchHistory.findMany({
       where,
       include: {
         document: {
-          select: { id: true, title: true }
+          select: { id: true, title: true, filename:true }
         }
       },
       orderBy: { createdAt: 'desc' },
@@ -680,21 +700,37 @@ export const getSearchHistory = async (
       take: Number(limit),
     });
 
+    const transformedSearches = searches.map(search => {
+      const isComparison = search.query.includes('Compliance Check');
+      return {
+        ...search,
+        type: isComparison ? 'comparison' : 'search',
+        displayTitle: isComparison 
+          ? search.query.replace('Compliance Check: ', '').split(' (')[0]
+          : search.query
+      };
+    });
+
     const total = await prisma.searchHistory.count({ where });
 
     sendSuccessResponse(res, 'Search history retrieved', {
-      searches,
+      searches: transformedSearches,
       pagination: {
         page: Number(page),
         limit: Number(limit),
         total,
         pages: Math.ceil(total / Number(limit))
+      },
+      filters: {
+        queryType,
+        documentId: documentId || 'all'
       }
     });
   } catch (error) {
     next(error);
   }
 };
+
 
 export const getDocuments = async (
   req: Request,

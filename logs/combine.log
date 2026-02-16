@@ -5568,3 +5568,963 @@
 [32m[39m
 2026-01-30 19:08:59 [32minfo[39m [32mGET /api/v1/documents/cmgxc7pat0001t1vk8l3y40nx/content?format=structured 200 312.291 ms - 403060[39m
 [32m[39m
+2026-02-09 22:24:33 [32minfo[39m [32mPOST /api/v1/auth/login 200 417.242 ms - 681[39m
+[32m[39m
+2026-02-09 22:35:27 [31merror[39m [31mDocument not found Document not found[39m
+2026-02-09 22:35:27 [32minfo[39m [32mGET /api/v1/documents/cmh6369av000294u49xdltr6v/content?format=structured 404 250.651 ms - 46[39m
+[32m[39m
+2026-02-09 22:35:51 [31merror[39m [31mDocument not found Document not found[39m
+2026-02-09 22:35:51 [32minfo[39m [32mGET /api/v1/documents/cmffi4zux0000t1pgt4cifw6r/content?format=structured 404 12.276 ms - 46[39m
+[32m[39m
+2026-02-09 22:36:00 [31merror[39m [31mDocument not found Document not found[39m
+2026-02-09 22:36:00 [32minfo[39m [32mGET /api/v1/documents/cmffi4zux0000t1pgt4cifw6r/content?format=structured 404 10.632 ms - 46[39m
+[32m[39m
+2026-02-09 22:36:05 [32minfo[39m [32mPOST /api/v1/auth/login 200 328.769 ms - 681[39m
+[32m[39m
+2026-02-09 22:36:23 [32minfo[39m [32mGET /api/v1/documents/cmgxc7pat0001t1vk8l3y40nx/content?format=structured 200 226.629 ms - 403060[39m
+[32m[39m
+2026-02-09 22:40:47 [32minfo[39m [32mPOST /api/v1/documents/upload 403 131.721 ms - 73[39m
+[32m[39m
+2026-02-09 22:41:11 [32minfo[39m [32mPOST /api/v1/documents/upload 403 7.481 ms - 73[39m
+[32m[39m
+2026-02-09 22:41:24 [32minfo[39m [32mPOST /api/v1/documents/upload 403 14.124 ms - 73[39m
+[32m[39m
+2026-02-09 22:44:50 [32minfo[39m [32mPOST /api/v1/auth/reg 201 202.034 ms - 96[39m
+[32m[39m
+2026-02-09 22:45:08 [32minfo[39m [32mPOST /api/v1/auth/login 200 186.811 ms - 654[39m
+[32m[39m
+2026-02-09 22:45:58 [31merror[39m [31mExpected double-quoted property name in JSON at position 229 (line 9 column 1) Expected double-quoted property name in JSON at position 229 (line 9 column 1)[39m
+2026-02-09 22:46:18 [32minfo[39m [32mPOST /api/v1/auth/reg 201 235.735 ms - 96[39m
+[32m[39m
+2026-02-09 22:46:37 [32minfo[39m [32mPOST /api/v1/auth/login 200 162.442 ms - 657[39m
+[32m[39m
+2026-02-09 22:48:13 [32minfo[39m [32mPOST /api/v1/documents/upload 201 43439.037 ms - 449107[39m
+[32m[39m
+2026-02-09 22:50:32 [32minfo[39m [32mGET /api/v1/documents/cmlfpedfz0003t1m8tsi4vg2e/content?format=structured 200 137.771 ms - 135616[39m
+[32m[39m
+2026-02-10 19:14:29 [32minfo[39m [32mPOST /api/v1/auth/login 200 1098.437 ms - 684[39m
+[32m[39m
+2026-02-10 19:16:02 [32minfo[39m [32mGET /api/v1/documents/search-history?queryType=query 200 79.239 ms - 20062[39m
+[32m[39m
+2026-02-10 19:17:56 [32minfo[39m [32mGET /api/v1/documents/search-history?queryType=compare 200 22.139 ms - 159932[39m
+[32m[39m
+2026-02-10 19:19:01 [32minfo[39m [32mGET /api/v1/documents/search-history?queryType=all 200 34.097 ms - 159928[39m
+[32m[39m
+2026-02-10 19:56:22 [32minfo[39m [32mGET /api/v1/documents/cmlfpedfz0003t1m8tsi4vg2e/content?format=structured 200 481.945 ms - 135616[39m
+[32m[39m
+2026-02-10 19:56:57 [32minfo[39m [32mGET /api/v1/documents/cmlfpedfz0003t1m8tsi4vg2e/content?format=structured 200 130.220 ms - 135616[39m
+[32m[39m
+2026-02-10 20:01:55 [32minfo[39m [32mGET /api/v1/documents/cmgxc7pat0001t1vk8l3y40nx/content?format=structured 200 3976.365 ms - 403060[39m
+[32m[39m
+2026-02-10 20:21:33 [32minfo[39m [32mGET /api/v1/documents/cmgxc7pat0001t1vk8l3y40nx/content?format=structured 401 10.501 ms - 64[39m
+[32m[39m
+2026-02-10 20:21:41 [32minfo[39m [32mPOST /api/v1/auth/login 200 267.423 ms - 684[39m
+[32m[39m
+2026-02-10 20:22:00 [32minfo[39m [32mGET /api/v1/documents/cmgxc7pat0001t1vk8l3y40nx/content?format=structured 200 271.731 ms - 1411018[39m
+[32m[39m
+2026-02-10 20:22:45 [32minfo[39m [32mGET /api/v1/documents/cmlfpedfz0003t1m8tsi4vg2e/content?format=structured 200 219.191 ms - 1142099[39m
+[32m[39m
+2026-02-10 21:22:40 [32minfo[39m [32mGET /api/v1/documents/cmgxc7pat0001t1vk8l3y40nx/content?format=structured 401 16.638 ms - 64[39m
+[32m[39m
+2026-02-10 21:22:53 [32minfo[39m [32mPOST /api/v1/auth/login 200 372.742 ms - 684[39m
+[32m[39m
+2026-02-10 21:23:22 [32minfo[39m [32mGET /api/v1/documents/cmgxc7pat0001t1vk8l3y40nx/content?format=structured 200 1407.675 ms - 1411018[39m
+[32m[39m
+2026-02-10 21:27:53 [32minfo[39m [32mGET /api/v1/documents/cmgxc7pat0001t1vk8l3y40nx/content?format=structured 200 328.788 ms - 403060[39m
+[32m[39m
+2026-02-10 21:32:22 [32minfo[39m [32mGET /api/v1/documents/cmgxc7pat0001t1vk8l3y40nx/content?format=structured 200 362.874 ms - 1411018[39m
+[32m[39m
+2026-02-10 22:11:52 [32minfo[39m [32mGET /api/v1/documents/cmgxc7pat0001t1vk8l3y40nx/content?format=structured 200 500.431 ms - 373971[39m
+[32m[39m
+2026-02-10 22:13:51 [32minfo[39m [32mGET /api/v1/documents/cmlfpedfz0003t1m8tsi4vg2e/content?format=structured 200 273.712 ms - 533078[39m
+[32m[39m
+2026-02-10 23:38:59 [32minfo[39m [32mPOST /api/v1/auth/login 200 402.126 ms - 684[39m
+[32m[39m
+2026-02-10 23:39:29 [32minfo[39m [32mGET /api/v1/documents/cmlfpedfz0003t1m8tsi4vg2e/content?format=structured 200 298.443 ms - 1575499[39m
+[32m[39m
+2026-02-11 00:07:02 [32minfo[39m [32mGET /api/v1/documents/cmlfpedfz0003t1m8tsi4vg2e/content?format=structured 200 1051.903 ms - 1369909[39m
+[32m[39m
+2026-02-11 00:17:07 [32minfo[39m [32mGET /api/v1/documents/cmgxc7pat0001t1vk8l3y40nx/content?format=structured 200 333.218 ms - 1362326[39m
+[32m[39m
+2026-02-11 00:19:01 [32minfo[39m [32mGET /api/v1/documents/cmlfpedfz0003t1m8tsi4vg2e/content?format=structured 200 770.726 ms - 1369909[39m
+[32m[39m
+2026-02-11 15:37:42 [32minfo[39m [32mPOST /api/v1/auth/login 200 1083.297 ms - 684[39m
+[32m[39m
+2026-02-11 15:38:32 [31merror[39m [31mDocument not found Document not found[39m
+2026-02-11 15:38:32 [32minfo[39m [32mGET /api/v1/documents/cmh6369av000294u49xdltr6v/content?format=structured 404 122.904 ms - 46[39m
+[32m[39m
+2026-02-11 15:39:08 [32minfo[39m [32mGET /api/v1/documents/cmlfpedfz0003t1m8tsi4vg2e/content?format=structured 200 1604.781 ms - 1103095[39m
+[32m[39m
+2026-02-12 11:53:30 [32minfo[39m [32mPOST /api/v1/auth/login 200 1285.041 ms - 684[39m
+[32m[39m
+2026-02-12 11:59:13 [31merror[39m [31mDocument not found Document not found[39m
+2026-02-12 11:59:13 [32minfo[39m [32mGET /api/v1/documents/cmh6369av000294u49xdltr6v/content?format=structured 404 152.045 ms - 46[39m
+[32m[39m
+2026-02-12 11:59:40 [32minfo[39m [32mGET /api/v1/documents/cmlfpedfz0003t1m8tsi4vg2e/content?format=structured 200 307.946 ms - 533078[39m
+[32m[39m
+2026-02-12 12:14:45 [32minfo[39m [32mGET /api/v1/documents/cmgxc7pat0001t1vk8l3y40nx/content?format=structured 200 336.577 ms - 298222[39m
+[32m[39m
+2026-02-12 12:23:22 [32minfo[39m [32mGET /api/v1/documents/cmlfpedfz0003t1m8tsi4vg2e/content?format=structured 200 398.592 ms - 1354266[39m
+[32m[39m
+2026-02-12 12:40:27 [32minfo[39m [32mGET /api/v1/documents/cmlfpedfz0003t1m8tsi4vg2e/content?format=structured 200 734.768 ms - 1124646[39m
+[32m[39m
+2026-02-12 12:47:58 [32minfo[39m [32mGET /api/v1/documents/cmlfpedfz0003t1m8tsi4vg2e/content?format=structured 200 662.945 ms - 938203[39m
+[32m[39m
+2026-02-12 13:05:18 [32minfo[39m [32mGET /api/v1/documents/cmgxc7pat0001t1vk8l3y40nx/content?format=structured 401 22.872 ms - 64[39m
+[32m[39m
+2026-02-12 13:07:45 [32minfo[39m [32mPOST /api/v1/auth/login 200 558.339 ms - 684[39m
+[32m[39m
+2026-02-12 13:08:13 [32minfo[39m [32mGET /api/v1/documents/cmgxc7pat0001t1vk8l3y40nx/content?format=structured 200 561.238 ms - 879843[39m
+[32m[39m
+2026-02-12 13:16:57 [32minfo[39m [32mPOST /api/v1/auth/login 200 462.889 ms - 684[39m
+[32m[39m
+2026-02-12 13:17:19 [32minfo[39m [32mGET /api/v1/documents/cmgxc7pat0001t1vk8l3y40nx/content?format=structured 200 293.740 ms - 879843[39m
+[32m[39m
+2026-02-12 13:19:45 [32minfo[39m [32mGET /api/v1/documents/cmlfpedfz0003t1m8tsi4vg2e/content?format=structured 200 302.916 ms - 252548[39m
+[32m[39m
+2026-02-12 13:37:22 [32minfo[39m [32mPOST /api/v1/auth/login 200 233.752 ms - 684[39m
+[32m[39m
+2026-02-12 13:37:52 [32minfo[39m [32mGET /api/v1/documents/cmlfpedfz0003t1m8tsi4vg2e/content?format=structured 200 998.185 ms - 252548[39m
+[32m[39m
+2026-02-12 13:40:54 [32minfo[39m [32mGET /api/v1/documents/cmlfpedfz0003t1m8tsi4vg2e/content?format=structured 200 396.105 ms - 204143[39m
+[32m[39m
+2026-02-12 13:50:53 [32minfo[39m [32mGET /api/v1/documents/cmgxc7pat0001t1vk8l3y40nx/content?format=structured 200 343.112 ms - 879843[39m
+[32m[39m
+2026-02-12 13:55:12 [32minfo[39m [32mGET /api/v1/documents/cmgxc7pat0001t1vk8l3y40nx/content?format=structured 200 312.645 ms - 879843[39m
+[32m[39m
+2026-02-12 13:55:40 [32minfo[39m [32mGET /api/v1/documents/cmlfpedfz0003t1m8tsi4vg2e/content?format=structured 200 244.662 ms - 237817[39m
+[32m[39m
+2026-02-12 14:18:50 [32minfo[39m [32mGET /api/v1/documents/cmlfpedfz0003t1m8tsi4vg2e/content?format=structured 200 686.490 ms - 237800[39m
+[32m[39m
+2026-02-12 14:21:24 [32minfo[39m [32mGET /api/v1/documents/cmlfpedfz0003t1m8tsi4vg2e/content?format=structured 200 478.656 ms - 237800[39m
+[32m[39m
+2026-02-12 14:28:18 [32minfo[39m [32mGET /api/v1/documents/cmlfpedfz0003t1m8tsi4vg2e/content?format=structured 200 475.948 ms - 136995[39m
+[32m[39m
+2026-02-12 14:48:08 [32minfo[39m [32mGET /api/v1/documents/cmlfpedfz0003t1m8tsi4vg2e/content?format=structured 401 17.520 ms - 64[39m
+[32m[39m
+2026-02-12 14:49:54 [32minfo[39m [32mPOST /api/v1/auth/login 200 554.038 ms - 684[39m
+[32m[39m
+2026-02-12 14:50:17 [32minfo[39m [32mGET /api/v1/documents/cmlfpedfz0003t1m8tsi4vg2e/content?format=structured 200 240.969 ms - 1092958[39m
+[32m[39m
+2026-02-12 17:00:16 [32minfo[39m [32mPOST /api/v1/auth/login 200 335.138 ms - 684[39m
+[32m[39m
+2026-02-12 17:00:45 [32minfo[39m [32mGET /api/v1/documents/cmlfpedfz0003t1m8tsi4vg2e/content?format=structured 200 229.019 ms - 409246[39m
+[32m[39m
+2026-02-12 17:11:29 [32minfo[39m [32mGET /api/v1/documents/cmlfpedfz0003t1m8tsi4vg2e/content?format=structured 200 440.619 ms - 1092958[39m
+[32m[39m
+2026-02-12 21:07:47 [32minfo[39m [32mPOST /api/v1/auth/login 200 876.695 ms - 684[39m
+[32m[39m
+2026-02-12 21:08:10 [32minfo[39m [32mGET /api/v1/documents/cmlfpedfz0003t1m8tsi4vg2e/content?format=structured 200 302.149 ms - 1092958[39m
+[32m[39m
+2026-02-12 21:13:30 [32minfo[39m [32mGET /api/v1/documents/cmlfpedfz0003t1m8tsi4vg2e/content?format=structured 200 387.077 ms - 409246[39m
+[32m[39m
+2026-02-12 21:22:07 [32minfo[39m [32mGET /api/v1/documents/cmgxc7pat0001t1vk8l3y40nx/content?format=structured 200 378.155 ms - 872137[39m
+[32m[39m
+2026-02-12 21:39:21 [32minfo[39m [32mGET /api/v1/documents/cmlfpedfz0003t1m8tsi4vg2e/content?format=structured 200 326.426 ms - 409246[39m
+[32m[39m
+2026-02-12 21:56:11 [32minfo[39m [32mGET /api/v1/documents/cmlfpedfz0003t1m8tsi4vg2e/content?format=structured 200 647.028 ms - 488860[39m
+[32m[39m
+2026-02-12 22:07:21 [32minfo[39m [32mGET /api/v1/documents/cmgxc7pat0001t1vk8l3y40nx/content?format=structured 200 763.806 ms - 872137[39m
+[32m[39m
+2026-02-13 14:56:49 [32minfo[39m [32mPOST /api/v1/auth/login 200 368.558 ms - 747[39m
+[32m[39m
+2026-02-13 16:57:34 [32minfo[39m [32mPOST /api/v1/auth/login 200 522.817 ms - 747[39m
+[32m[39m
+2026-02-13 16:58:50 [32minfo[39m [32mPOST /api/v1/tax-query 422 12.456 ms - 173[39m
+[32m[39m
+2026-02-13 16:59:52 [32minfo[39m [32mPOST /api/v1/tax-query 200 8886.704 ms - 1616[39m
+[32m[39m
+2026-02-13 17:08:11 [32minfo[39m [32mPOST /api/v1/tax-query 200 9864.059 ms - 1079[39m
+[32m[39m
+2026-02-13 18:27:46 [32minfo[39m [32mPOST /api/v1/auth/login 200 420.566 ms - 747[39m
+[32m[39m
+2026-02-13 18:28:17 [32minfo[39m [32mPOST /api/v1/tax-query 200 9051.097 ms - 1219[39m
+[32m[39m
+2026-02-13 18:28:55 [32minfo[39m [32mPOST /api/v1/tax-query 200 7786.459 ms - 2019[39m
+[32m[39m
+2026-02-13 18:31:04 [32minfo[39m [32mPOST /api/v1/tax-query 200 6953.438 ms - 1616[39m
+[32m[39m
+2026-02-13 18:38:04 [32minfo[39m [32mPOST /api/v1/tax-query 200 8952.082 ms - 1079[39m
+[32m[39m
+2026-02-13 18:39:25 [32minfo[39m [32mPOST /api/v1/tax-query 200 8067.450 ms - 1347[39m
+[32m[39m
+2026-02-13 18:41:49 [32minfo[39m [32mPOST /api/v1/tax-query 200 7964.614 ms - 1129[39m
+[32m[39m
+2026-02-13 18:48:45 [32minfo[39m [32mPOST /api/v1/tax-query 200 3871.919 ms - 998[39m
+[32m[39m
+2026-02-14 01:13:38 [32minfo[39m [32mPOST /api/v1/auth/login 200 466.437 ms - 747[39m
+[32m[39m
+2026-02-14 01:14:56 [32minfo[39m [32mPOST /api/v1/tax-query 200 7553.269 ms - 269[39m
+[32m[39m
+2026-02-14 01:17:54 [32minfo[39m [32mPOST /api/v1/tax-query 200 9077.227 ms - 269[39m
+[32m[39m
+2026-02-14 01:18:28 [32minfo[39m [32mPOST /api/v1/tax-query 200 7523.744 ms - 269[39m
+[32m[39m
+2026-02-14 01:19:07 [32minfo[39m [32mPOST /api/v1/tax-query 200 4773.210 ms - 269[39m
+[32m[39m
+2026-02-14 01:23:17 [32minfo[39m [32mPOST /api/v1/tax-query 200 13079.695 ms - 346[39m
+[32m[39m
+2026-02-14 01:24:02 [32minfo[39m [32mPOST /api/v1/tax-query 200 14909.128 ms - 332[39m
+[32m[39m
+2026-02-14 01:24:46 [32minfo[39m [32mPOST /api/v1/tax-query 200 10125.377 ms - 346[39m
+[32m[39m
+2026-02-14 01:32:13 [32minfo[39m [32mPOST /api/v1/tax-query 200 5733.932 ms - 702[39m
+[32m[39m
+2026-02-14 01:35:49 [32minfo[39m [32mPOST /api/v1/tax-query 200 5581.520 ms - 827[39m
+[32m[39m
+2026-02-14 01:36:39 [32minfo[39m [32mPOST /api/v1/tax-query 200 4801.023 ms - 562[39m
+[32m[39m
+2026-02-14 01:37:15 [32minfo[39m [32mPOST /api/v1/tax-query 200 4452.837 ms - 827[39m
+[32m[39m
+2026-02-14 01:39:45 [32minfo[39m [32mPOST /api/v1/tax-query 200 5257.177 ms - 229[39m
+[32m[39m
+2026-02-14 01:40:04 [32minfo[39m [32mPOST /api/v1/tax-query 200 4976.371 ms - 229[39m
+[32m[39m
+2026-02-14 01:40:33 [32minfo[39m [32mPOST /api/v1/tax-query 200 4603.085 ms - 229[39m
+[32m[39m
+2026-02-14 01:41:14 [32minfo[39m [32mPOST /api/v1/tax-query 200 4454.764 ms - 229[39m
+[32m[39m
+2026-02-14 01:54:54 [32minfo[39m [32mPOST /api/v1/tax-query 200 4121.443 ms - 827[39m
+[32m[39m
+2026-02-14 01:55:24 [32minfo[39m [32mPOST /api/v1/tax-query 200 4350.395 ms - 562[39m
+[32m[39m
+2026-02-14 01:56:11 [32minfo[39m [32mPOST /api/v1/tax-query 200 3861.579 ms - 827[39m
+[32m[39m
+2026-02-14 02:01:27 [32minfo[39m [32mPOST /api/v1/tax-query 200 4865.980 ms - 827[39m
+[32m[39m
+2026-02-14 02:03:33 [32minfo[39m [32mPOST /api/v1/tax-query 200 6829.816 ms - 604[39m
+[32m[39m
+2026-02-14 02:04:22 [32minfo[39m [32mPOST /api/v1/tax-query 200 4350.981 ms - 827[39m
+[32m[39m
+2026-02-14 02:05:18 [32minfo[39m [32mPOST /api/v1/tax-query 200 4043.776 ms - 606[39m
+[32m[39m
+2026-02-14 02:32:38 [32minfo[39m [32mPOST /api/v1/tax-query 401 12.106 ms - 64[39m
+[32m[39m
+2026-02-14 02:32:44 [32minfo[39m [32mPOST /api/v1/auth/login 200 259.162 ms - 747[39m
+[32m[39m
+2026-02-14 02:33:09 [32minfo[39m [32mPOST /api/v1/tax-query 200 5025.251 ms - 351[39m
+[32m[39m
+2026-02-14 02:34:13 [32minfo[39m [32mPOST /api/v1/tax-query 200 4590.608 ms - 435[39m
+[32m[39m
+2026-02-14 02:35:16 [32minfo[39m [32mPOST /api/v1/tax-query 200 17518.723 ms - 469[39m
+[32m[39m
+2026-02-14 02:42:51 [32minfo[39m [32mPOST /api/v1/tax-query 200 9379.948 ms - 2159[39m
+[32m[39m
+2026-02-14 02:46:28 [32minfo[39m [32mPOST /api/v1/tax-query 200 13439.471 ms - 2687[39m
+[32m[39m
+2026-02-14 02:48:58 [32minfo[39m [32mPOST /api/v1/tax-query 200 12561.700 ms - 1821[39m
+[32m[39m
+2026-02-15 03:03:03 [32minfo[39m [32mPOST /api/v1/auth/login 200 1152.125 ms - 747[39m
+[32m[39m
+2026-02-15 03:05:34 [32minfo[39m [32mGET /api/v1/documents/search-history/?type=pia_comparison 200 38.122 ms - 15703[39m
+[32m[39m
+2026-02-15 03:06:44 [32minfo[39m [32mGET /api/v1/documents/search-history/?type=tax_query 200 11.716 ms - 181[39m
+[32m[39m
+2026-02-15 03:07:03 [32minfo[39m [32mGET /api/v1/documents/search-history/?type=tax_document_query 200 8.772 ms - 190[39m
+[32m[39m
+2026-02-15 03:07:14 [31merror[39m [31mDatabase validation error: [39m
+[31mInvalid `prisma.searchHistory.findMany()` invocation:[39m
+
+[31m{[39m
+[31m  where: {[39m
+[31m    userId: "cmffi4zux0000t1pgt4cifw6r",[39m
+[31m    query: {[39m
+[31m      NOT: [[39m
+[31m      ~~~[39m
+[31m        {[39m
+[31m          contains: "Compliance Check"[39m
+[31m        },[39m
+[31m        {[39m
+[31m          contains: "Tax Query:"[39m
+[31m        },[39m
+[31m        {[39m
+[31m          contains: "[Document Query]"[39m
+[31m        }[39m
+[31m      ],[39m
+[31m?     equals?: String | StringFieldRefInput,[39m
+[31m?     in?: String[] | ListStringFieldRefInput,[39m
+[31m?     notIn?: String[] | ListStringFieldRefInput,[39m
+[31m?     lt?: String | StringFieldRefInput,[39m
+[31m?     lte?: String | StringFieldRefInput,[39m
+[31m?     gt?: String | StringFieldRefInput,[39m
+[31m?     gte?: String | StringFieldRefInput,[39m
+[31m?     contains?: String | StringFieldRefInput,[39m
+[31m?     startsWith?: String | StringFieldRefInput,[39m
+[31m?     endsWith?: String | StringFieldRefInput,[39m
+[31m?     mode?: QueryMode,[39m
+[31m?     not?: String | NestedStringFilter[39m
+[31m    }[39m
+[31m  },[39m
+[31m  include: {[39m
+[31m    document: {[39m
+[31m      select: {[39m
+[31m        id: true,[39m
+[31m        title: true,[39m
+[31m        filename: true[39m
+[31m      }[39m
+[31m    }[39m
+[31m  },[39m
+[31m  orderBy: {[39m
+[31m    createdAt: "desc"[39m
+[31m  },[39m
+[31m  skip: 0,[39m
+[31m  take: 10[39m
+[31m}[39m
+
+[31mUnknown argument `NOT`. Did you mean `in`? Available options are marked with ?. [39m
+[31mInvalid `prisma.searchHistory.findMany()` invocation:[39m
+
+[31m{[39m
+[31m  where: {[39m
+[31m    userId: "cmffi4zux0000t1pgt4cifw6r",[39m
+[31m    query: {[39m
+[31m      NOT: [[39m
+[31m      ~~~[39m
+[31m        {[39m
+[31m          contains: "Compliance Check"[39m
+[31m        },[39m
+[31m        {[39m
+[31m          contains: "Tax Query:"[39m
+[31m        },[39m
+[31m        {[39m
+[31m          contains: "[Document Query]"[39m
+[31m        }[39m
+[31m      ],[39m
+[31m?     equals?: String | StringFieldRefInput,[39m
+[31m?     in?: String[] | ListStringFieldRefInput,[39m
+[31m?     notIn?: String[] | ListStringFieldRefInput,[39m
+[31m?     lt?: String | StringFieldRefInput,[39m
+[31m?     lte?: String | StringFieldRefInput,[39m
+[31m?     gt?: String | StringFieldRefInput,[39m
+[31m?     gte?: String | StringFieldRefInput,[39m
+[31m?     contains?: String | StringFieldRefInput,[39m
+[31m?     startsWith?: String | StringFieldRefInput,[39m
+[31m?     endsWith?: String | StringFieldRefInput,[39m
+[31m?     mode?: QueryMode,[39m
+[31m?     not?: String | NestedStringFilter[39m
+[31m    }[39m
+[31m  },[39m
+[31m  include: {[39m
+[31m    document: {[39m
+[31m      select: {[39m
+[31m        id: true,[39m
+[31m        title: true,[39m
+[31m        filename: true[39m
+[31m      }[39m
+[31m    }[39m
+[31m  },[39m
+[31m  orderBy: {[39m
+[31m    createdAt: "desc"[39m
+[31m  },[39m
+[31m  skip: 0,[39m
+[31m  take: 10[39m
+[31m}[39m
+
+[31mUnknown argument `NOT`. Did you mean `in`? Available options are marked with ?.[39m
+2026-02-15 03:07:14 [32minfo[39m [32mGET /api/v1/documents/search-history/?type=search 422 37.541 ms - 1238[39m
+[32m[39m
+2026-02-15 03:11:03 [32minfo[39m [32mPOST /api/v1/auth/login 200 251.295 ms - 747[39m
+[32m[39m
+2026-02-15 03:12:00 [32minfo[39m [32mGET /api/v1/documents/search-history?queryType=query&queryType=compare 200 24.648 ms - 15711[39m
+[32m[39m
+2026-02-15 03:13:49 [32minfo[39m [32mGET /api/v1/documents/search-history?queryType=query&queryType=compare 200 12.617 ms - 15711[39m
+[32m[39m
+2026-02-15 03:14:41 [32minfo[39m [32mGET /api/v1/documents/search-history?queryType=compare 200 28.585 ms - 159932[39m
+[32m[39m
+2026-02-15 03:16:13 [32minfo[39m [32mGET /api/v1/documents/search-history?queryType=query 200 269.181 ms - 15699[39m
+[32m[39m
+2026-02-15 03:23:51 [32minfo[39m [32mPOST /api/v1/documents/cmgxc7pat0001t1vk8l3y40nx/search 401 14.060 ms - 64[39m
+[32m[39m
+2026-02-15 03:24:50 [32minfo[39m [32mPOST /api/v1/documents/cmgxc7pat0001t1vk8l3y40nx/search 200 7950.211 ms - 18947[39m
+[32m[39m
+2026-02-15 03:26:08 [32minfo[39m [32mGET /api/v1/documents/search-history?=PIA%20Query 200 23.012 ms - 33653[39m
+[32m[39m
+2026-02-15 03:31:58 [32minfo[39m [32mGET /api/v1/documents/search-history?queryType=query 200 91.270 ms - 33655[39m
+[32m[39m
+2026-02-15 03:35:22 [32minfo[39m [32mGET /api/v1/documents/search-history?queryType=PIA%20Query 200 118.795 ms - 33659[39m
+[32m[39m
+2026-02-15 04:05:23 [32minfo[39m [32mGET /api/v1/documents/search-history?queryType=PIA%20Query 200 170.250 ms - 33659[39m
+[32m[39m
+2026-02-15 04:06:02 [32minfo[39m [32mGET /api/v1/documents/search-history?queryType=pia_query 200 22.882 ms - 19475[39m
+[32m[39m
+2026-02-15 04:07:01 [32minfo[39m [32mGET /api/v1/documents/search-history?queryType=compare 200 20.296 ms - 159932[39m
+[32m[39m
+2026-02-15 04:07:52 [31merror[39m [31mDatabase validation error: [39m
+[31mInvalid `prisma.searchHistory.findMany()` invocation:[39m
+
+[31m{[39m
+[31m  where: {[39m
+[31m    userId: "cmffi4zux0000t1pgt4cifw6r",[39m
+[31m    query: {[39m
+[31m      NOT: [[39m
+[31m      ~~~[39m
+[31m        {[39m
+[31m          contains: "Compliance Check"[39m
+[31m        },[39m
+[31m        {[39m
+[31m          contains: "PIA Query"[39m
+[31m        }[39m
+[31m      ],[39m
+[31m?     equals?: String | StringFieldRefInput,[39m
+[31m?     in?: String[] | ListStringFieldRefInput,[39m
+[31m?     notIn?: String[] | ListStringFieldRefInput,[39m
+[31m?     lt?: String | StringFieldRefInput,[39m
+[31m?     lte?: String | StringFieldRefInput,[39m
+[31m?     gt?: String | StringFieldRefInput,[39m
+[31m?     gte?: String | StringFieldRefInput,[39m
+[31m?     contains?: String | StringFieldRefInput,[39m
+[31m?     startsWith?: String | StringFieldRefInput,[39m
+[31m?     endsWith?: String | StringFieldRefInput,[39m
+[31m?     mode?: QueryMode,[39m
+[31m?     not?: String | NestedStringFilter[39m
+[31m    }[39m
+[31m  },[39m
+[31m  include: {[39m
+[31m    document: {[39m
+[31m      select: {[39m
+[31m        id: true,[39m
+[31m        title: true,[39m
+[31m        filename: true[39m
+[31m      }[39m
+[31m    }[39m
+[31m  },[39m
+[31m  orderBy: {[39m
+[31m    createdAt: "desc"[39m
+[31m  },[39m
+[31m  skip: 0,[39m
+[31m  take: 10[39m
+[31m}[39m
+
+[31mUnknown argument `NOT`. Did you mean `in`? Available options are marked with ?. [39m
+[31mInvalid `prisma.searchHistory.findMany()` invocation:[39m
+
+[31m{[39m
+[31m  where: {[39m
+[31m    userId: "cmffi4zux0000t1pgt4cifw6r",[39m
+[31m    query: {[39m
+[31m      NOT: [[39m
+[31m      ~~~[39m
+[31m        {[39m
+[31m          contains: "Compliance Check"[39m
+[31m        },[39m
+[31m        {[39m
+[31m          contains: "PIA Query"[39m
+[31m        }[39m
+[31m      ],[39m
+[31m?     equals?: String | StringFieldRefInput,[39m
+[31m?     in?: String[] | ListStringFieldRefInput,[39m
+[31m?     notIn?: String[] | ListStringFieldRefInput,[39m
+[31m?     lt?: String | StringFieldRefInput,[39m
+[31m?     lte?: String | StringFieldRefInput,[39m
+[31m?     gt?: String | StringFieldRefInput,[39m
+[31m?     gte?: String | StringFieldRefInput,[39m
+[31m?     contains?: String | StringFieldRefInput,[39m
+[31m?     startsWith?: String | StringFieldRefInput,[39m
+[31m?     endsWith?: String | StringFieldRefInput,[39m
+[31m?     mode?: QueryMode,[39m
+[31m?     not?: String | NestedStringFilter[39m
+[31m    }[39m
+[31m  },[39m
+[31m  include: {[39m
+[31m    document: {[39m
+[31m      select: {[39m
+[31m        id: true,[39m
+[31m        title: true,[39m
+[31m        filename: true[39m
+[31m      }[39m
+[31m    }[39m
+[31m  },[39m
+[31m  orderBy: {[39m
+[31m    createdAt: "desc"[39m
+[31m  },[39m
+[31m  skip: 0,[39m
+[31m  take: 10[39m
+[31m}[39m
+
+[31mUnknown argument `NOT`. Did you mean `in`? Available options are marked with ?.[39m
+2026-02-15 04:07:52 [32minfo[39m [32mGET /api/v1/documents/search-history?queryType=tax_query 422 207.788 ms - 1172[39m
+[32m[39m
+2026-02-15 04:21:09 [32minfo[39m [32mGET /api/v1/documents/search-history?queryType=tax_query 401 10.527 ms - 64[39m
+[32m[39m
+2026-02-15 04:21:15 [32minfo[39m [32mPOST /api/v1/auth/login 200 451.217 ms - 747[39m
+[32m[39m
+2026-02-15 04:21:31 [31merror[39m [31mDatabase validation error: [39m
+[31mInvalid `prisma.searchHistory.findMany()` invocation:[39m
+
+[31m{[39m
+[31m  where: {[39m
+[31m    userId: "cmffi4zux0000t1pgt4cifw6r",[39m
+[31m    query: {[39m
+[31m      NOT: {[39m
+[31m      ~~~[39m
+[31m        OR: [[39m
+[31m          {[39m
+[31m            contains: "Compliance Check"[39m
+[31m          },[39m
+[31m          {[39m
+[31m            contains: "PIA Query"[39m
+[31m          }[39m
+[31m        ][39m
+[31m      },[39m
+[31m?     equals?: String | StringFieldRefInput,[39m
+[31m?     in?: String[] | ListStringFieldRefInput,[39m
+[31m?     notIn?: String[] | ListStringFieldRefInput,[39m
+[31m?     lt?: String | StringFieldRefInput,[39m
+[31m?     lte?: String | StringFieldRefInput,[39m
+[31m?     gt?: String | StringFieldRefInput,[39m
+[31m?     gte?: String | StringFieldRefInput,[39m
+[31m?     contains?: String | StringFieldRefInput,[39m
+[31m?     startsWith?: String | StringFieldRefInput,[39m
+[31m?     endsWith?: String | StringFieldRefInput,[39m
+[31m?     mode?: QueryMode,[39m
+[31m?     not?: String | NestedStringFilter[39m
+[31m    }[39m
+[31m  },[39m
+[31m  include: {[39m
+[31m    document: {[39m
+[31m      select: {[39m
+[31m        id: true,[39m
+[31m        title: true,[39m
+[31m        filename: true[39m
+[31m      }[39m
+[31m    }[39m
+[31m  },[39m
+[31m  orderBy: {[39m
+[31m    createdAt: "desc"[39m
+[31m  },[39m
+[31m  skip: 0,[39m
+[31m  take: 10[39m
+[31m}[39m
+
+[31mUnknown argument `NOT`. Did you mean `in`? Available options are marked with ?. [39m
+[31mInvalid `prisma.searchHistory.findMany()` invocation:[39m
+
+[31m{[39m
+[31m  where: {[39m
+[31m    userId: "cmffi4zux0000t1pgt4cifw6r",[39m
+[31m    query: {[39m
+[31m      NOT: {[39m
+[31m      ~~~[39m
+[31m        OR: [[39m
+[31m          {[39m
+[31m            contains: "Compliance Check"[39m
+[31m          },[39m
+[31m          {[39m
+[31m            contains: "PIA Query"[39m
+[31m          }[39m
+[31m        ][39m
+[31m      },[39m
+[31m?     equals?: String | StringFieldRefInput,[39m
+[31m?     in?: String[] | ListStringFieldRefInput,[39m
+[31m?     notIn?: String[] | ListStringFieldRefInput,[39m
+[31m?     lt?: String | StringFieldRefInput,[39m
+[31m?     lte?: String | StringFieldRefInput,[39m
+[31m?     gt?: String | StringFieldRefInput,[39m
+[31m?     gte?: String | StringFieldRefInput,[39m
+[31m?     contains?: String | StringFieldRefInput,[39m
+[31m?     startsWith?: String | StringFieldRefInput,[39m
+[31m?     endsWith?: String | StringFieldRefInput,[39m
+[31m?     mode?: QueryMode,[39m
+[31m?     not?: String | NestedStringFilter[39m
+[31m    }[39m
+[31m  },[39m
+[31m  include: {[39m
+[31m    document: {[39m
+[31m      select: {[39m
+[31m        id: true,[39m
+[31m        title: true,[39m
+[31m        filename: true[39m
+[31m      }[39m
+[31m    }[39m
+[31m  },[39m
+[31m  orderBy: {[39m
+[31m    createdAt: "desc"[39m
+[31m  },[39m
+[31m  skip: 0,[39m
+[31m  take: 10[39m
+[31m}[39m
+
+[31mUnknown argument `NOT`. Did you mean `in`? Available options are marked with ?.[39m
+2026-02-15 04:21:31 [32minfo[39m [32mGET /api/v1/documents/search-history?queryType=tax_query 422 69.200 ms - 1210[39m
+[32m[39m
+2026-02-15 04:23:47 [31merror[39m [31mDatabase validation error: [39m
+[31mInvalid `prisma.searchHistory.findMany()` invocation:[39m
+
+[31m{[39m
+[31m  where: {[39m
+[31m    userId: "cmffi4zux0000t1pgt4cifw6r",[39m
+[31m    AND: [[39m
+[31m      {[39m
+[31m        query: {[39m
+[31m          NOT: {[39m
+[31m            contains: "Compliance Check"[39m
+[31m          }[39m
+[31m        }[39m
+[31m      },[39m
+[31m      {[39m
+[31m        query: {[39m
+[31m          NOT: {[39m
+[31m            contains: "PIA Query"[39m
+[31m          }[39m
+[31m        }[39m
+[31m      }[39m
+[31m    ][39m
+[31m  },[39m
+[31m  include: {[39m
+[31m    document: {[39m
+[31m      select: {[39m
+[31m        id: true,[39m
+[31m        title: true,[39m
+[31m        filename: true[39m
+[31m      }[39m
+[31m    }[39m
+[31m  },[39m
+[31m  orderBy: {[39m
+[31m    createdAt: "desc"[39m
+[31m  },[39m
+[31m  skip: 0,[39m
+[31m  take: 10[39m
+[31m}[39m
+
+[31mUnknown argument `NOT`. Did you mean `in`? Available options are marked with ?. [39m
+[31mInvalid `prisma.searchHistory.findMany()` invocation:[39m
+
+[31m{[39m
+[31m  where: {[39m
+[31m    userId: "cmffi4zux0000t1pgt4cifw6r",[39m
+[31m    AND: [[39m
+[31m      {[39m
+[31m        query: {[39m
+[31m          NOT: {[39m
+[31m            contains: "Compliance Check"[39m
+[31m          }[39m
+[31m        }[39m
+[31m      },[39m
+[31m      {[39m
+[31m        query: {[39m
+[31m          NOT: {[39m
+[31m            contains: "PIA Query"[39m
+[31m          }[39m
+[31m        }[39m
+[31m      }[39m
+[31m    ][39m
+[31m  },[39m
+[31m  include: {[39m
+[31m    document: {[39m
+[31m      select: {[39m
+[31m        id: true,[39m
+[31m        title: true,[39m
+[31m        filename: true[39m
+[31m      }[39m
+[31m    }[39m
+[31m  },[39m
+[31m  orderBy: {[39m
+[31m    createdAt: "desc"[39m
+[31m  },[39m
+[31m  skip: 0,[39m
+[31m  take: 10[39m
+[31m}[39m
+
+[31mUnknown argument `NOT`. Did you mean `in`? Available options are marked with ?.[39m
+2026-02-15 04:23:47 [32minfo[39m [32mGET /api/v1/documents/search-history?queryType=tax_query 422 226.894 ms - 724[39m
+[32m[39m
+2026-02-15 04:34:31 [31merror[39m [31mDatabase validation error: [39m
+[31mInvalid `prisma.searchHistory.findMany()` invocation:[39m
+
+[31m{[39m
+[31m  where: {[39m
+[31m    userId: "cmffi4zux0000t1pgt4cifw6r",[39m
+[31m    query: {[39m
+[31m      NOT: {[39m
+[31m      ~~~[39m
+[31m        contains: "Compliance Check"[39m
+[31m      },[39m
+[31m      OR: {[39m
+[31m        contains: "PIA Query"[39m
+[31m      },[39m
+[31m?     equals?: String | StringFieldRefInput,[39m
+[31m?     in?: String[] | ListStringFieldRefInput,[39m
+[31m?     notIn?: String[] | ListStringFieldRefInput,[39m
+[31m?     lt?: String | StringFieldRefInput,[39m
+[31m?     lte?: String | StringFieldRefInput,[39m
+[31m?     gt?: String | StringFieldRefInput,[39m
+[31m?     gte?: String | StringFieldRefInput,[39m
+[31m?     contains?: String | StringFieldRefInput,[39m
+[31m?     startsWith?: String | StringFieldRefInput,[39m
+[31m?     endsWith?: String | StringFieldRefInput,[39m
+[31m?     mode?: QueryMode,[39m
+[31m?     not?: String | NestedStringFilter[39m
+[31m    }[39m
+[31m  },[39m
+[31m  include: {[39m
+[31m    document: {[39m
+[31m      select: {[39m
+[31m        id: true,[39m
+[31m        title: true,[39m
+[31m        filename: true[39m
+[31m      }[39m
+[31m    }[39m
+[31m  },[39m
+[31m  orderBy: {[39m
+[31m    createdAt: "desc"[39m
+[31m  },[39m
+[31m  skip: 0,[39m
+[31m  take: 10[39m
+[31m}[39m
+
+[31mUnknown argument `NOT`. Did you mean `in`? Available options are marked with ?. [39m
+[31mInvalid `prisma.searchHistory.findMany()` invocation:[39m
+
+[31m{[39m
+[31m  where: {[39m
+[31m    userId: "cmffi4zux0000t1pgt4cifw6r",[39m
+[31m    query: {[39m
+[31m      NOT: {[39m
+[31m      ~~~[39m
+[31m        contains: "Compliance Check"[39m
+[31m      },[39m
+[31m      OR: {[39m
+[31m        contains: "PIA Query"[39m
+[31m      },[39m
+[31m?     equals?: String | StringFieldRefInput,[39m
+[31m?     in?: String[] | ListStringFieldRefInput,[39m
+[31m?     notIn?: String[] | ListStringFieldRefInput,[39m
+[31m?     lt?: String | StringFieldRefInput,[39m
+[31m?     lte?: String | StringFieldRefInput,[39m
+[31m?     gt?: String | StringFieldRefInput,[39m
+[31m?     gte?: String | StringFieldRefInput,[39m
+[31m?     contains?: String | StringFieldRefInput,[39m
+[31m?     startsWith?: String | StringFieldRefInput,[39m
+[31m?     endsWith?: String | StringFieldRefInput,[39m
+[31m?     mode?: QueryMode,[39m
+[31m?     not?: String | NestedStringFilter[39m
+[31m    }[39m
+[31m  },[39m
+[31m  include: {[39m
+[31m    document: {[39m
+[31m      select: {[39m
+[31m        id: true,[39m
+[31m        title: true,[39m
+[31m        filename: true[39m
+[31m      }[39m
+[31m    }[39m
+[31m  },[39m
+[31m  orderBy: {[39m
+[31m    createdAt: "desc"[39m
+[31m  },[39m
+[31m  skip: 0,[39m
+[31m  take: 10[39m
+[31m}[39m
+
+[31mUnknown argument `NOT`. Did you mean `in`? Available options are marked with ?.[39m
+2026-02-15 04:34:31 [32minfo[39m [32mGET /api/v1/documents/search-history?queryType=tax_query 422 245.746 ms - 1146[39m
+[32m[39m
+2026-02-15 04:35:06 [31merror[39m [31mDatabase validation error: [39m
+[31mInvalid `prisma.searchHistory.findMany()` invocation:[39m
+
+[31m{[39m
+[31m  where: {[39m
+[31m    userId: "cmffi4zux0000t1pgt4cifw6r",[39m
+[31m    query: {[39m
+[31m      not: {[39m
+[31m        contains: "Compliance Check"[39m
+[31m      },[39m
+[31m      or: {[39m
+[31m      ~~[39m
+[31m        contains: "PIA Query"[39m
+[31m      },[39m
+[31m?     equals?: String | StringFieldRefInput,[39m
+[31m?     in?: String[] | ListStringFieldRefInput,[39m
+[31m?     notIn?: String[] | ListStringFieldRefInput,[39m
+[31m?     lt?: String | StringFieldRefInput,[39m
+[31m?     lte?: String | StringFieldRefInput,[39m
+[31m?     gt?: String | StringFieldRefInput,[39m
+[31m?     gte?: String | StringFieldRefInput,[39m
+[31m?     contains?: String | StringFieldRefInput,[39m
+[31m?     startsWith?: String | StringFieldRefInput,[39m
+[31m?     endsWith?: String | StringFieldRefInput,[39m
+[31m?     mode?: QueryMode[39m
+[31m    }[39m
+[31m  },[39m
+[31m  include: {[39m
+[31m    document: {[39m
+[31m      select: {[39m
+[31m        id: true,[39m
+[31m        title: true,[39m
+[31m        filename: true[39m
+[31m      }[39m
+[31m    }[39m
+[31m  },[39m
+[31m  orderBy: {[39m
+[31m    createdAt: "desc"[39m
+[31m  },[39m
+[31m  skip: 0,[39m
+[31m  take: 10[39m
+[31m}[39m
+
+[31mUnknown argument `or`. Did you mean `in`? Available options are marked with ?. [39m
+[31mInvalid `prisma.searchHistory.findMany()` invocation:[39m
+
+[31m{[39m
+[31m  where: {[39m
+[31m    userId: "cmffi4zux0000t1pgt4cifw6r",[39m
+[31m    query: {[39m
+[31m      not: {[39m
+[31m        contains: "Compliance Check"[39m
+[31m      },[39m
+[31m      or: {[39m
+[31m      ~~[39m
+[31m        contains: "PIA Query"[39m
+[31m      },[39m
+[31m?     equals?: String | StringFieldRefInput,[39m
+[31m?     in?: String[] | ListStringFieldRefInput,[39m
+[31m?     notIn?: String[] | ListStringFieldRefInput,[39m
+[31m?     lt?: String | StringFieldRefInput,[39m
+[31m?     lte?: String | StringFieldRefInput,[39m
+[31m?     gt?: String | StringFieldRefInput,[39m
+[31m?     gte?: String | StringFieldRefInput,[39m
+[31m?     contains?: String | StringFieldRefInput,[39m
+[31m?     startsWith?: String | StringFieldRefInput,[39m
+[31m?     endsWith?: String | StringFieldRefInput,[39m
+[31m?     mode?: QueryMode[39m
+[31m    }[39m
+[31m  },[39m
+[31m  include: {[39m
+[31m    document: {[39m
+[31m      select: {[39m
+[31m        id: true,[39m
+[31m        title: true,[39m
+[31m        filename: true[39m
+[31m      }[39m
+[31m    }[39m
+[31m  },[39m
+[31m  orderBy: {[39m
+[31m    createdAt: "desc"[39m
+[31m  },[39m
+[31m  skip: 0,[39m
+[31m  take: 10[39m
+[31m}[39m
+
+[31mUnknown argument `or`. Did you mean `in`? Available options are marked with ?.[39m
+2026-02-15 04:35:06 [32minfo[39m [32mGET /api/v1/documents/search-history?queryType=tax_query 422 336.977 ms - 1102[39m
+[32m[39m
+2026-02-15 04:37:29 [32minfo[39m [32mGET /api/v1/documents/search-history?queryType=tax_query 200 252.649 ms - 15703[39m
+[32m[39m
+2026-02-15 04:47:24 [32minfo[39m [32mPOST /api/v1/documents/cmgxc7pat0001t1vk8l3y40nx/search 401 3.517 ms - 64[39m
+[32m[39m
+2026-02-15 04:47:33 [32minfo[39m [32mPOST /api/v1/auth/login 200 473.463 ms - 747[39m
+[32m[39m
+2026-02-15 04:47:56 [32minfo[39m [32mPOST /api/v1/auth/login 200 142.609 ms - 747[39m
+[32m[39m
+2026-02-15 04:48:33 [32minfo[39m [32mPOST /api/v1/documents/cmgxc7pat0001t1vk8l3y40nx/search 401 2.221 ms - 64[39m
+[32m[39m
+2026-02-15 04:50:30 [32minfo[39m [32mPOST /api/v1/documents/cmgxc7pat0001t1vk8l3y40nx/search 200 9731.985 ms - 56538[39m
+[32m[39m
+2026-02-15 04:52:14 [32minfo[39m [32mPOST /api/v1/documents/cmlfpedfz0003t1m8tsi4vg2e/search 200 6349.192 ms - 33597[39m
+[32m[39m
+2026-02-15 04:54:29 [32minfo[39m [32mPOST /api/v1/documents/cmlfpedfz0003t1m8tsi4vg2e/search 200 5312.087 ms - 41608[39m
+[32m[39m
+2026-02-15 10:32:05 [32minfo[39m [32mPOST /api/v1/auth/login 200 2096.044 ms - 747[39m
+[32m[39m
+2026-02-15 10:32:42 [32minfo[39m [32mPOST /api/v1/documents/cmlfpedfz0003t1m8tsi4vg2e/search 200 3076.528 ms - 41608[39m
+[32m[39m
+2026-02-15 10:35:24 [32minfo[39m [32mGET /api/v1/documents/cmgxc7pat0001t1vk8l3y40nx/tax-query 404 3.306 ms - 157[39m
+[32m[39m
+2026-02-15 10:35:32 [32minfo[39m [32mGET /api/v1/documents/tax-query 404 3.380 ms - 131[39m
+[32m[39m
+2026-02-15 10:35:58 [32minfo[39m [32mPOST /api/v1/documents/cmgxc7pat0001t1vk8l3y40nx/tax-query 404 0.356 ms - 157[39m
+[32m[39m
+2026-02-15 10:38:58 [32minfo[39m [32mPOST /api/v1/documents/tax-query 404 0.424 ms - 131[39m
+[32m[39m
+2026-02-15 10:40:25 [32minfo[39m [32mPOST /api/v1/tax-query 401 10.631 ms - 66[39m
+[32m[39m
+2026-02-15 10:50:31 [32minfo[39m [32mPOST /api/v1/tax-query 422 331.056 ms - 173[39m
+[32m[39m
+2026-02-15 10:51:06 [32minfo[39m [32mPOST /api/v1/tax-query 422 13.157 ms - 173[39m
+[32m[39m
+2026-02-15 10:51:57 [32minfo[39m [32mPOST /api/v1/tax-query 200 20480.292 ms - 559[39m
+[32m[39m
+2026-02-15 12:12:14 [32minfo[39m [32mPOST /api/v1/auth/login 200 250.626 ms - 747[39m
+[32m[39m
+2026-02-15 12:14:31 [32minfo[39m [32mPOST /api/v1/tax-query/upload-and-ask 200 12453.353 ms - 678[39m
+[32m[39m
+2026-02-16 03:11:44 [32minfo[39m [32mPOST /api/v1/auth/login 200 953.203 ms - 747[39m
+[32m[39m
+2026-02-16 03:13:37 [31merror[39m [31mQuery not found Query not found[39m
+2026-02-16 03:13:37 [32minfo[39m [32mGET /api/v1/tax-query/upload-and-ask 404 25.474 ms - 43[39m
+[32m[39m
+2026-02-16 03:13:54 [31merror[39m [31mQuery not found Query not found[39m
+2026-02-16 03:13:54 [32minfo[39m [32mGET /api/v1/tax-query/upload-and-ask 404 7.542 ms - 43[39m
+[32m[39m
+2026-02-16 03:34:16 [31merror[39m [31mQuery not found Query not found[39m
+2026-02-16 03:34:16 [32minfo[39m [32mGET /api/v1/tax-query/upload-and-ask 404 141.660 ms - 43[39m
+[32m[39m
+2026-02-16 03:35:24 [31merror[39m [31mThe uploaded document appears to be empty. Please upload a document with content. The uploaded document appears to be empty. Please upload a document with content.[39m
+2026-02-16 03:35:24 [32minfo[39m [32mPOST /api/v1/tax-query/upload-and-ask 400 109.034 ms - 109[39m
+[32m[39m
+2026-02-16 03:35:38 [31merror[39m [31mQuery not found Query not found[39m
+2026-02-16 03:35:38 [32minfo[39m [32mGET /api/v1/tax-query/upload-and-ask 404 9.033 ms - 43[39m
+[32m[39m
+2026-02-16 03:36:21 [32minfo[39m [32mGET /api/v1/auth/login 404 0.841 ms - 122[39m
+[32m[39m
+2026-02-16 03:42:19 [31merror[39m [31mQuery not found Query not found[39m
+2026-02-16 03:42:19 [32minfo[39m [32mGET /api/v1/tax-query/upload-and-ask 404 145.901 ms - 43[39m
+[32m[39m
+2026-02-16 03:43:06 [32minfo[39m [32mGET /api/v1/auth/login 404 0.915 ms - 122[39m
+[32m[39m
+2026-02-16 03:44:52 [31merror[39m [31mQuery not found Query not found[39m
+2026-02-16 03:44:52 [32minfo[39m [32mGET /api/v1/tax-query/upload-and-ask 404 140.670 ms - 43[39m
+[32m[39m
+2026-02-16 03:46:55 [32minfo[39m [32mPOST /api/v1/auth/login 200 294.002 ms - 747[39m
+[32m[39m
+2026-02-16 03:47:43 [31merror[39m [31mQuery not found Query not found[39m
+2026-02-16 03:47:43 [32minfo[39m [32mGET /api/v1/tax-query/upload-and-ask 404 33.737 ms - 43[39m
+[32m[39m
+2026-02-16 03:57:48 [32minfo[39m [32mGET /api/v1/document-comparison/compare 401 4.410 ms - 64[39m
+[32m[39m
+2026-02-16 03:58:07 [31merror[39m [31mComparison result not found Comparison result not found[39m
+2026-02-16 03:58:07 [32minfo[39m [32mGET /api/v1/document-comparison/compare 404 141.375 ms - 55[39m
+[32m[39m
+2026-02-16 03:59:23 [32minfo[39m [32mGET /api/v1/document-comparison/compare 200 155.662 ms - 83[39m
+[32m[39m
+2026-02-16 04:00:55 [32minfo[39m [32mGET /api/v1/document-comparison/history 401 4.607 ms - 64[39m
+[32m[39m
+2026-02-16 04:01:10 [32minfo[39m [32mGET /api/v1/document-comparison/history 200 61.230 ms - 158954[39m
+[32m[39m
+2026-02-16 04:02:18 [32minfo[39m [32mGET /api/v1/document-comparison/cmkbctupu0005t10gs35rfkgk 200 9.806 ms - 6318[39m
+[32m[39m
+2026-02-16 04:03:11 [32minfo[39m [32mPOST /api/v1/tax-query/upload-and-ask 404 0.801 ms - 136[39m
+[32m[39m
+2026-02-16 04:03:20 [31merror[39m [31mQuery not found Query not found[39m
+2026-02-16 04:03:20 [32minfo[39m [32mGET /api/v1/tax-query/upload-and-ask 404 21.403 ms - 43[39m
+[32m[39m
+2026-02-16 04:04:20 [31merror[39m [31mNo file uploaded No file uploaded[39m
+2026-02-16 04:04:20 [32minfo[39m [32mPOST /api/v1/tax-query/answer-upload 400 22.745 ms - 44[39m
+[32m[39m
+2026-02-16 04:06:18 [31merror[39m [31mThe uploaded document appears to be empty. Please upload a document with content. The uploaded document appears to be empty. Please upload a document with content.[39m
+2026-02-16 04:06:18 [32minfo[39m [32mPOST /api/v1/tax-query/answer-upload 400 197.860 ms - 109[39m
+[32m[39m
+2026-02-16 04:07:46 [32minfo[39m [32mPOST /api/v1/tax-query/answer-upload 200 4940.155 ms - 409[39m
+[32m[39m
+2026-02-16 04:10:40 [32minfo[39m [32mPOST /api/v1/tax-query/answer-upload 200 6426.122 ms - 405[39m
+[32m[39m
+2026-02-16 04:12:32 [32minfo[39m [32mPOST /api/v1/tax-query 401 2.324 ms - 64[39m
+[32m[39m
+2026-02-16 04:12:55 [32minfo[39m [32mPOST /api/v1/tax-query 200 4915.652 ms - 606[39m
+[32m[39m
+2026-02-16 04:13:40 [32minfo[39m [32mPOST /api/v1/tax-query 200 3302.863 ms - 559[39m
+[32m[39m
+2026-02-16 04:14:22 [32minfo[39m [32mPOST /api/v1/tax-query 200 3987.848 ms - 877[39m
+[32m[39m
+2026-02-16 04:44:05 [32minfo[39m [32mPOST /api/v1/tax-query/answer-upload 200 4200.376 ms - 405[39m
+[32m[39m
+2026-02-16 05:08:55 [32minfo[39m [32mPOST /api/v1/tax-query/answer-upload 401 9.248 ms - 64[39m
+[32m[39m
+2026-02-16 05:09:04 [32minfo[39m [32mPOST /api/v1/auth/login 200 397.148 ms - 747[39m
+[32m[39m
+2026-02-16 05:09:29 [32minfo[39m [32mPOST /api/v1/tax-query/answer-upload 200 4296.531 ms - 2374[39m
+[32m[39m
+2026-02-16 11:10:58 [32minfo[39m [32mPOST /api/v1/auth/login 200 8769.541 ms - 747[39m
+[32m[39m
+2026-02-16 11:11:44 [32minfo[39m [32mPOST /api/v1/tax-query/answer-upload 200 1293.112 ms - 4015[39m
+[32m[39m
