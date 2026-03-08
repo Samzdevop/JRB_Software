@@ -8,6 +8,7 @@ import {
   deleteDocument,
   getDocumentContent,
   getDocumentTableOfContents,
+  getSearchHistoryById,
 } from '../contollers/document.controller';
 import { authenticateJWT } from '../middlewares/errorHandler';
 import { validateRequest } from '../middlewares/validateRequest';
@@ -42,6 +43,12 @@ documentRouter.get(
   '/search-history',
   authenticateJWT,
   getSearchHistory
+);
+
+documentRouter.get(
+  '/search-history/:id',
+  authenticateJWT,
+  getSearchHistoryById
 );
 
 documentRouter.get(

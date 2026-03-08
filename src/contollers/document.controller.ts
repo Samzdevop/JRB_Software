@@ -732,6 +732,126 @@ export const getSearchHistory = async (
 };
 
 
+
+export const getSearchHistoryById = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+): Promise<void> => {
+  try {
+    const { id } = req.params;
+    const userId = (req.user as any).id;
+
+    if (!id) {
+      throw new BadRequestError('Search history ID is required');
+    }
+
+    // Fetch the search history with related document
+    const searchHistory = await prisma.searchHistory.findUnique({
+      where: { id },
+      include: {
+        document: {
+          select: {
+            id: true,
+            title: true,
+            filename: true,
+            fileUrl: true,
+            uploadedAt: true,
+            processed: true,
+            processingStatus: true
+          }
+        }
+      }
+    });
+
+    if (!searchHistory) {
+      throw new NotFoundError('Search history not found');
+    }
+
+    // Check if the user owns this search history
+    // if (searchHistory.userId !== userId) {
+    //   const user = await prisma.user.findUnique({
+    //     where: { id: userId },
+    //     select: { role: true }
+    //   });
+
+    //   if (user?.role !== 'ADMIN') {
+    //     throw new BadRequestError('You do not have permission to access this search history');
+    //   }
+    // }
+
+    // Determine the type of search
+    const isComparison = searchHistory.query.includes('Compliance Check');
+    const isPiaQuery = searchHistory.query.includes('PIA Query');
+    
+    let formattedResults = searchHistory.results;
+    let displayTitle = searchHistory.query;
+
+    // Format based on type
+    if (isComparison) {
+      displayTitle = searchHistory.query.replace('Compliance Check: ', '').split(' (')[0];
+      
+      // Structure comparison results
+      const comparisonData = searchHistory.results as any;
+      formattedResults = {
+        analysis: comparisonData?.analysis || comparisonData,
+        metadata: comparisonData?.metadata || {},
+        overview: comparisonData?.analysis?.overview || null,
+        detailedFindings: comparisonData?.analysis?.detailedFindings || [],
+        riskAssessment: comparisonData?.analysis?.riskAssessment || null,
+        recommendations: comparisonData?.analysis?.recommendations || null
+      };
+    } else if (isPiaQuery) {
+      displayTitle = searchHistory.query.replace('PIA Query: ', '');
+      
+      // Structure PIA query results
+      const queryData = searchHistory.results as any;
+      formattedResults = {
+        answer: queryData?.answer || null,
+        chunks: queryData?.chunks?.map((chunk: any) => ({
+          id: chunk.id,
+          chapter: chunk.chapter,
+          content: chunk.content,
+          pageNumber: chunk.pageNumber,
+          similarity: chunk.similarity
+        })) || [],
+        totalChunks: queryData?.chunks?.length || 0
+      };
+    } else {
+      // Tax query or other types
+      formattedResults = searchHistory.results;
+    }
+
+    // Format the response
+    const formattedSearch = {
+      id: searchHistory.id,
+      query: searchHistory.query,
+      displayTitle,
+      type: isComparison ? 'comparison' : isPiaQuery ? 'pia_query' : 'tax_query',
+      results: formattedResults,
+      document: searchHistory.document ? {
+        id: searchHistory.document.id,
+        title: searchHistory.document.title,
+        filename: searchHistory.document.filename,
+        fileUrl: searchHistory.document.fileUrl,
+        uploadedAt: searchHistory.document.uploadedAt,
+        processed: searchHistory.document.processed,
+        status: searchHistory.document.processingStatus
+      } : null,
+      createdAt: searchHistory.createdAt,
+    };
+
+    sendSuccessResponse(res, 'Search history retrieved successfully', {
+      searchHistory: formattedSearch
+    });
+
+  } catch (error) {
+    console.error('Error fetching search history by ID:', error);
+    next(error);
+  }
+};
+
+
 export const getDocuments = async (
   req: Request,
   res: Response,
@@ -896,9 +1016,9 @@ export const getDocumentContent = async (
         format: 'formatted'
       };
     } else {
-      // Use DocumentStructuredProcessor for structured API response
+      
       const structuredDocument = DocumentStructuredProcessor.processToStructuredFormat(
-        processedContent, // Already cleaned and structured content
+        processedContent,
         documentId,
         document.filename
       );
