@@ -17,6 +17,7 @@ import { documentComparisonRouter } from './routes/documentComparison.routes';
 import { taxQueryRouter } from './routes/taxQuery.routes';
 
 
+
 export const app = express();
 
 app.use(passport.initialize());
@@ -46,6 +47,8 @@ app.use(
 app.get('/', (_req: Request, res: Response) => {
 	res.json({ success: true, message: 'Wrightenergy API is working just fine!' });
 });
+
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 app.use('/api/v1/auth', authRouter);
 app.use('/api/v1/users', usersRouter);

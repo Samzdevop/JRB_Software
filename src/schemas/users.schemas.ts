@@ -14,3 +14,10 @@ export const updateUserSchema = z.object({
       .optional()
   }),
 });
+
+
+export const uploadAvatarSchema = z.object({
+  body: z.object({}).optional(),
+});
+
+export type UploadAvatarInput = z.infer<typeof uploadAvatarSchema>;

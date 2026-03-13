@@ -6568,3 +6568,29 @@
 [32m[39m
 2026-03-08 20:13:57 [32minfo[39m [32mGET /api/v1/documents/search-history/cmloloxtq000dt1pc00qyoiqm 200 6.749 ms - 1401[39m
 [32m[39m
+2026-03-12 21:50:20 [32minfo[39m [32mPOST /api/v1/auth/login 200 1103.595 ms - 747[39m
+[32m[39m
+2026-03-12 21:53:20 [31merror[39m [31mUser not found User not found[39m
+2026-03-12 21:53:20 [32minfo[39m [32mGET /api/v1/users/avatar 404 19.729 ms - 42[39m
+[32m[39m
+2026-03-12 21:53:55 [31merror[39m [31mUser not found User not found[39m
+2026-03-12 21:53:55 [32minfo[39m [32mGET /api/v1/users/avatar 404 10.597 ms - 42[39m
+[32m[39m
+2026-03-12 21:58:56 [31merror[39m [31mInternal Server Error Unexpected field[39m
+2026-03-12 21:58:56 [32minfo[39m [32mPOST /api/v1/users/avatar 500 152.643 ms - 49[39m
+[32m[39m
+2026-03-12 21:59:05 [31merror[39m [31mInternal Server Error Unexpected field[39m
+2026-03-12 21:59:05 [32minfo[39m [32mPOST /api/v1/users/avatar 500 7.034 ms - 49[39m
+[32m[39m
+2026-03-12 22:02:43 [32minfo[39m [32mPATCH /api/v1/users/avatar 404 1.302 ms - 124[39m
+[32m[39m
+2026-03-12 22:03:17 [31merror[39m [31mInternal Server Error Unexpected field[39m
+2026-03-12 22:03:17 [32minfo[39m [32mPATCH /api/v1/users/avatar 500 157.035 ms - 49[39m
+[32m[39m
+2026-03-12 22:03:37 [31merror[39m [31mInternal Server Error Unexpected field[39m
+2026-03-12 22:03:37 [32minfo[39m [32mPATCH /api/v1/users/avatar 500 7.952 ms - 49[39m
+[32m[39m
+2026-03-12 22:03:48 [32minfo[39m [32mPOST /api/v1/users/avatar 404 1.055 ms - 124[39m
+[32m[39m
+2026-03-12 22:06:24 [32minfo[39m [32mPOST /api/v1/users/avatar 200 337.807 ms - 49950[39m
+[32m[39m

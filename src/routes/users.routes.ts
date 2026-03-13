@@ -1,14 +1,19 @@
 import { Router } from 'express';
 import {
+	deleteAvatar,
 	deleteUser,
 	getAllUsers,
+	getAvatar,
+	getMyAvatar,
 	getProfile,
 	getUserById,
 	updateProfile,
+	uploadAvatar,
 } from '../contollers/users.controllers';
 import { authenticateJWT } from '../middlewares/errorHandler';
 import { validateRequest } from '../middlewares/validateRequest';
-import { updateUserSchema } from '../schemas/users.schemas';
+import { updateUserSchema, uploadAvatarSchema } from '../schemas/users.schemas';
+import { avatarUpload } from '../config/multer';
 
 export const usersRouter = Router();
 
@@ -46,4 +51,28 @@ usersRouter.delete(
 );
 
 
+usersRouter.post(
+  '/avatar',
+  authenticateJWT,
+  avatarUpload.single('avatar'),
+  uploadAvatar
+);
+
+usersRouter.delete(
+  '/avatar',
+  authenticateJWT,
+  deleteAvatar
+);
+
+usersRouter.get(
+  '/avatar/me',
+  authenticateJWT,
+  getMyAvatar
+);
+
+usersRouter.get(
+  '/avatar/:userId',
+  authenticateJWT,
+  getAvatar
+);
 
