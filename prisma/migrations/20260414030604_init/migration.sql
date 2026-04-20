@@ -1,5 +1,5 @@
 -- CreateEnum
-CREATE TYPE "Role" AS ENUM ('ADMIN', 'COWORKER', 'FARM_KEEPER');
+CREATE TYPE "Role" AS ENUM ('ADMIN', 'USER');
 
 -- CreateTable
 CREATE TABLE "User" (
@@ -10,9 +10,13 @@ CREATE TABLE "User" (
     "password" TEXT,
     "fullName" TEXT NOT NULL,
     "avatar" TEXT,
+    "role" "Role" NOT NULL DEFAULT 'USER',
+    "company" TEXT,
+    "jobTitle" TEXT,
     "location" TEXT,
-    "role" "Role" NOT NULL DEFAULT 'ADMIN',
     "lastLogin" TIMESTAMP(3),
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL,
 
     CONSTRAINT "User_pkey" PRIMARY KEY ("id")
 );
@@ -28,6 +32,8 @@ CREATE TABLE "documents" (
     "uploadedById" TEXT NOT NULL,
     "content" TEXT,
     "processed" BOOLEAN NOT NULL DEFAULT false,
+    "processingStatus" TEXT,
+    "isPublic" BOOLEAN NOT NULL DEFAULT true,
 
     CONSTRAINT "documents_pkey" PRIMARY KEY ("id")
 );

@@ -14,100 +14,99 @@ datasource db {
 }
 
 model User {
-  id                  String    @id @default(cuid())
-  email               String?   @unique
-  phone               String?   @unique
-  googleId            String?   @unique
-  password            String?
-  fullName            String
-  avatar              String?
-  role                Role      @default(USER)
-  company             String?
-  jobTitle            String?
-  location            String?
-  lastLogin           DateTime?
-  documents           Document[]
-  searchHistories     SearchHistory[]
-  checklists          Checklist[]
-  notes               Note[]
-  createdAt   DateTime    @default(now())
-  updatedAt   DateTime    @updatedAt
+  id              String          @id @default(cuid())
+  email           String?         @unique
+  phone           String?         @unique
+  googleId        String?         @unique
+  password        String?
+  fullName        String
+  avatar          String?
+  role            Role            @default(USER)
+  company         String?
+  jobTitle        String?
+  location        String?
+  lastLogin       DateTime?
+  documents       Document[]
+  searchHistories SearchHistory[]
+  checklists      Checklist[]
+  notes           Note[]
+  createdAt       DateTime        @default(now())
+  updatedAt       DateTime        @updatedAt
 }
 
 model Document {
-  id          String   @id @default(cuid())
-  title       String
-  filename    String
-  fileUrl     String
-  fileSize    Int
-  uploadedAt  DateTime @default(now())
-  uploadedBy  User     @relation(fields: [uploadedById], references: [id])
-  uploadedById String
-  content     String?  // Store extracted text from PDF
-  processed   Boolean  @default(false)
-  chunks      Chunk[]
-  searches    SearchHistory[]
-  notes       Note[]
-  checklists  Checklist[]
+  id               String          @id @default(cuid())
+  title            String
+  filename         String
+  fileUrl          String
+  fileSize         Int
+  uploadedAt       DateTime        @default(now())
+  uploadedBy       User            @relation(fields: [uploadedById], references: [id])
+  uploadedById     String
+  content          String? // Store extracted text from PDF
+  processed        Boolean         @default(false)
+  chunks           Chunk[]
+  searches         SearchHistory[]
+  notes            Note[]
+  checklists       Checklist[]
   processingStatus String?
-  isPublic    Boolean  @default(true) 
+  isPublic         Boolean         @default(true)
 
   @@map("documents")
 }
 
 model Chunk {
-  id          String   @id @default(cuid())
-  documentId  String
-  document    Document @relation(fields: [documentId], references: [id], onDelete: Cascade)
-  chapter     String
-  content     String
-  pageNumber  Int
-  embedding   String?  // For vector search
-  createdAt   DateTime @default(now())
+  id         String   @id @default(cuid())
+  documentId String
+  document   Document @relation(fields: [documentId], references: [id], onDelete: Cascade)
+  chapter    String
+  content    String
+  pageNumber Int
+  embedding  String? // For vector search
+  createdAt  DateTime @default(now())
 
   @@map("chunks")
 }
 
 model SearchHistory {
-  id          String   @id @default(cuid())
-  query       String
-  results     Json     // Store search results
-  documentId  String
-  document    Document @relation(fields: [documentId], references: [id], onDelete: Cascade)
-  userId      String
-  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  createdAt   DateTime @default(now())
+  id         String   @id @default(cuid())
+  query      String
+  results    Json // Store search results
+  documentId String
+  document   Document @relation(fields: [documentId], references: [id], onDelete: Cascade)
+  userId     String
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt  DateTime @default(now())
 
   @@map("search_histories")
 }
 
 model Checklist {
-  id          String   @id @default(cuid())
-  item        String
-  documentId  String
-  document    Document @relation(fields: [documentId], references: [id], onDelete: Cascade)
-  userId      String
-  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  completed   Boolean  @default(false)
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  id         String   @id @default(cuid())
+  item       String
+  documentId String
+  document   Document @relation(fields: [documentId], references: [id], onDelete: Cascade)
+  userId     String
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  completed  Boolean  @default(false)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
 
   @@map("checklists")
 }
 
 model Note {
-  id          String   @id @default(cuid())
-  body        String
-  documentId  String
-  document    Document @relation(fields: [documentId], references: [id], onDelete: Cascade)
-  userId      String
-  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  id         String   @id @default(cuid())
+  body       String
+  documentId String
+  document   Document @relation(fields: [documentId], references: [id], onDelete: Cascade)
+  userId     String
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
 
   @@map("notes")
 }
-
 
 enum Role {
   ADMIN

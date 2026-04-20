@@ -19,7 +19,7 @@ import { sendSuccessResponse } from '../utils/sendSuccessResponse';
 export const authRouter = Router();
 
 authRouter.post(
-	'/admi-reg', 
+	'/admin-reg', 
 	validateRequest(adminRegisterSchema),
 	adminRegister
 );

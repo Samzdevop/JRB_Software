@@ -45,7 +45,7 @@ app.use(
 );
 
 app.get('/', (_req: Request, res: Response) => {
-	res.json({ success: true, message: 'Wrightenergy API is working just fine!' });
+	res.json({ success: true, message: 'JRB API is working just fine!' });
 });
 
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));

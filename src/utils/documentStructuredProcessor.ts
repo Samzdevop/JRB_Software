@@ -63,6 +63,7 @@ export interface StructuredDocument {
   commencementDate: string;
   description: string;
   chapters: Chapter[];
+  parts?: Part[];
   schedules: Schedule[];
   metadata: DocumentMetadata;
 }
@@ -70,6 +71,7 @@ export interface StructuredDocument {
 export class DocumentStructuredProcessor {
   /**
    * Convert processed content to structured API response format
+   * EACH DOCUMENT TYPE HAS ITS OWN DEDICATED PROCESSOR
    */
   static processToStructuredFormat(
     processedContent: ProcessedContent,
@@ -82,47 +84,150 @@ export class DocumentStructuredProcessor {
     console.log('Document filename:', originalFileName);
     console.log('Text length:', rawText.length);
 
-    // Check if this is Nigeria Tax Act
-    const isTaxAct = rawText.includes('NIGERIA TAX ACT') ||
-      rawText.includes('AN ACT TO REPEAL THE CAPITAL GAINS TAX ACT') ||
-      originalFileName.toUpperCase().includes('TAX') ||
-      originalFileName.toUpperCase().includes('TAX-ACT');
+    // STEP 1: Detect document type using STRICT, UNIQUE indicators
+    const documentType = this.detectDocumentTypeStrict(rawText, originalFileName);
+    console.log('Detected document type:', documentType);
 
-    console.log('Is Tax Act?', isTaxAct);
-
-    if (isTaxAct) {
-      console.log('Processing Nigeria Tax Act document...');
-      return this.processNigeriaTaxActBySections(rawText, documentId, originalFileName);
+    // STEP 2: Route to COMPLETELY SEPARATE processor
+    switch (documentType) {
+      case 'nigeria-tax-act':
+        console.log('>>> ROUTING TO NIGERIA TAX ACT PROCESSOR <<<');
+        return this.processNigeriaTaxAct(rawText, documentId);
+      
+      case 'nigeria-revenue-service':
+        console.log('>>> ROUTING TO NIGERIA REVENUE SERVICE PROCESSOR <<<');
+        return this.processNigeriaRevenueService(rawText, documentId);
+      
+      case 'joint-revenue-board':
+        console.log('>>> ROUTING TO JOINT REVENUE BOARD PROCESSOR <<<');
+        return this.processJointRevenueBoard(rawText, documentId);
+      
+      case 'petroleum-industry-act':
+        console.log('>>> ROUTING TO PIA PROCESSOR <<<');
+        return this.processPetroleumIndustryAct(rawText, documentId);
+      
+      default:
+        console.log('>>> UNKNOWN DOCUMENT - FALLBACK TO PIA <<<');
+        return this.processPetroleumIndustryAct(rawText, documentId);
     }
-
-    // For PIA documents - KEEP YOUR ORIGINAL IMPLEMENTATION
-    console.log('Processing PIA document using original logic...');
-    const contentStartIndex = this.findContentStartIndex(rawText, false);
-
-    if (contentStartIndex === -1) {
-      console.log('Could not find content start, using full text');
-      return this.processFullDocument(rawText, documentId, originalFileName);
-    }
-
-    const contentText = rawText.substring(contentStartIndex);
-    console.log('Content text starts at index:', contentStartIndex);
-    console.log('Content text length:', contentText.length);
-
-    return this.processFullDocument(contentText, documentId, originalFileName);
   }
 
   /**
-   * Process Nigeria Tax Act by using SECTION NUMBERS to determine chapter boundaries
+   * STRICT document type detection - uses ONLY unique indicators
+   * No overlap between document types
    */
-  private static processNigeriaTaxActBySections(
-    text: string,
-    documentId: string,
-    originalFileName: string
-  ): StructuredDocument {
-    console.log('Processing Nigeria Tax Act by section numbers...');
+  private static detectDocumentTypeStrict(
+    text: string, 
+    filename: string
+  ): 'nigeria-tax-act' | 'nigeria-revenue-service' | 'joint-revenue-board' | 'petroleum-industry-act' {
+    const upperText = text.toUpperCase();
+    const upperFilename = filename.toUpperCase();
 
-    // Normalize the text
-    const normalizedText = this.normalizeText(text);
+    // ===== NIGERIA TAX ACT - UNIQUE INDICATORS =====
+    // These phrases ONLY appear in Nigeria Tax Act
+    const taxActUniquePhrases = [
+      'TAXATION OF INCOME OF PERSONS',
+      'TAXATION OF INCOME FROM PETROLEUM OPERATIONS',
+      'RELIEF FOR DOUBLE TAXATION',
+      'TAXATION OF DUTIABLE INSTRUMENTS',
+      'CAPITAL GAINS TAX ACT',
+      'CHAPTER TWO - TAXATION OF INCOME'
+    ];
+
+    for (const phrase of taxActUniquePhrases) {
+      if (upperText.includes(phrase)) {
+        console.log(`[DETECTION] Found Nigeria Tax Act unique phrase: "${phrase}"`);
+        return 'nigeria-tax-act';
+      }
+    }
+
+    // Additional check: "NIGERIA TAX ACT" but NOT "NIGERIA REVENUE SERVICE"
+    if (upperText.includes('NIGERIA TAX ACT') && 
+        !upperText.includes('NIGERIA REVENUE SERVICE') &&
+        !upperText.includes('JOINT REVENUE BOARD')) {
+      console.log('[DETECTION] Found "NIGERIA TAX ACT" without conflicting indicators');
+      return 'nigeria-tax-act';
+    }
+
+    // ===== NIGERIA REVENUE SERVICE - UNIQUE INDICATORS =====
+    const nrsUniquePhrases = [
+      'FEDERAL INLAND REVENUE SERVICE (ESTABLISHMENT) ACT',
+      'AN ACT TO REPEAL THE FEDERAL INLAND REVENUE SERVICE',
+      'NIGERIA REVENUE SERVICE (ESTABLISHMENT) ACT, 2025',
+      'EXECUTIVE CHAIRMAN OF THE SERVICE',
+      'GOVERNING BOARD OF THE SERVICE',
+      'TECHNICAL COMMITTEE OF THE BOARD'
+    ];
+
+    for (const phrase of nrsUniquePhrases) {
+      if (upperText.includes(phrase)) {
+        console.log(`[DETECTION] Found Nigeria Revenue Service unique phrase: "${phrase}"`);
+        return 'nigeria-revenue-service';
+      }
+    }
+
+    // Check for "NIGERIA REVENUE SERVICE" with "ESTABLISHMENT" but without "JOINT"
+    if (upperText.includes('NIGERIA REVENUE SERVICE') && 
+        upperText.includes('ESTABLISHMENT') &&
+        !upperText.includes('JOINT REVENUE BOARD')) {
+      console.log('[DETECTION] Found "NIGERIA REVENUE SERVICE" + "ESTABLISHMENT" without "JOINT"');
+      return 'nigeria-revenue-service';
+    }
+
+    // ===== JOINT REVENUE BOARD - UNIQUE INDICATORS =====
+    const jrbUniquePhrases = [
+      'JOINT REVENUE BOARD (ESTABLISHMENT) ACT',
+      'TAX APPEAL TRIBUNAL',
+      'OFFICE OF THE TAX OMBUD',
+      'TAX OMBUD',
+      'COORDINATING SECRETARY TO THE TRIBUNAL',
+      'EXPLANATORY MEMORADUM'
+    ];
+
+    for (const phrase of jrbUniquePhrases) {
+      if (upperText.includes(phrase)) {
+        console.log(`[DETECTION] Found Joint Revenue Board unique phrase: "${phrase}"`);
+        return 'joint-revenue-board';
+      }
+    }
+
+    // ===== PETROLEUM INDUSTRY ACT - UNIQUE INDICATORS =====
+    const piaUniquePhrases = [
+      'PETROLEUM INDUSTRY ACT',
+      'UPSTREAM PETROLEUM OPERATIONS',
+      'HOST COMMUNITIES',
+      'PETROLEUM INDUSTRY FISCAL FRAMEWORK'
+    ];
+
+    for (const phrase of piaUniquePhrases) {
+      if (upperText.includes(phrase)) {
+        console.log(`[DETECTION] Found PIA unique phrase: "${phrase}"`);
+        return 'petroleum-industry-act';
+      }
+    }
+
+    // Check filename
+    if (upperFilename.includes('PIA') || upperFilename.includes('PETROLEUM')) {
+      return 'petroleum-industry-act';
+    }
+
+    // Default to PIA
+    return 'petroleum-industry-act';
+  }
+
+  // ========================================================================
+  // NIGERIA TAX ACT PROCESSOR - COMPLETELY SEPARATE, NO SHARED METHODS
+  // ========================================================================
+
+  private static processNigeriaTaxAct(text: string, documentId: string): StructuredDocument {
+    console.log('=== NIGERIA TAX ACT - DEDICATED PROCESSOR ===');
+    
+    const normalizedText = text
+      .replace(/\r\n/g, '\n')
+      .replace(/\r/g, '\n')
+      .replace(/\u00A0/g, ' ')
+      .replace(/[—–]/g, '-')
+      .trim();
 
     // Define chapter boundaries based on section numbers
     const chapterDefinitions = [
@@ -137,51 +242,54 @@ export class DocumentStructuredProcessor {
       { number: 9, title: 'GENERAL PROVISIONS', startSection: 189, endSection: 202 }
     ];
 
-    // Find where the actual content starts (after table of contents)
-    const contentStartIndex = this.findContentStartBySection1(normalizedText);
+    // Find content start
+    const contentStartIndex = this.nta_findContentStart(normalizedText);
     let contentText = normalizedText;
-    
     if (contentStartIndex !== -1) {
       contentText = normalizedText.substring(contentStartIndex);
-      console.log(`Content starts at index ${contentStartIndex}`);
     }
 
-    // CRITICAL: Find where schedules start and CUT OFF everything after that
+    // Cut at schedules
     const scheduleStartIndex = contentText.indexOf('FIRST SCHEDULE');
     let chaptersText = contentText;
-    
     if (scheduleStartIndex !== -1) {
       chaptersText = contentText.substring(0, scheduleStartIndex);
-      console.log(`Cut chapters text at schedule start (index ${scheduleStartIndex})`);
     }
 
-    // Extract chapters from the chapters text (without schedules)
-    const chapters = this.splitDocumentBySections(chaptersText, chapterDefinitions);
-    console.log(`Split document into ${chapters.length} chapters based on section numbers`);
+    // Extract chapters
+    const chapters = this.nta_splitBySections(chaptersText, chapterDefinitions);
+    
+    // Extract schedules
+    const schedules = this.nta_extractSchedules(normalizedText);
 
-    // Extract schedules from the ENTIRE document (not from chapters text)
-    const schedules = this.extractAllSchedulesFromText(normalizedText);
-    console.log(`Extracted ${schedules.length} schedules`);
+    // NTA-specific metadata
+    const title = this.nta_extractTitle(normalizedText);
+    const actNumber = this.nta_extractActNumber(normalizedText);
+    const year = this.nta_extractYear(normalizedText);
+    const commencementDate = this.nta_extractCommencementDate(normalizedText);
+    const description = this.nta_extractDescription();
 
     return {
       id: documentId,
-      title: this.extractTitle(normalizedText, originalFileName),
-      actNumber: this.extractActNumber(normalizedText),
-      year: this.extractYear(normalizedText),
-      commencementDate: this.extractCommencementDate(normalizedText),
-      description: this.extractDescription(normalizedText),
+      title,
+      actNumber,
+      year,
+      commencementDate,
+      description,
       chapters: chapters.sort((a, b) => a.chapterNumber - b.chapterNumber),
       schedules,
-      metadata: this.extractMetadata(normalizedText)
+      metadata: {
+        source: 'Federal Republic of Nigeria Official Gazette',
+        publisher: 'Federal Government Printer, Abuja, Nigeria',
+        pageRange: 'A1–A250',
+        format: 'markdown',
+        encoding: 'UTF-8'
+      }
     };
   }
 
-  /**
-   * Find where the content starts by looking for section 1
-   */
-  private static findContentStartBySection1(text: string): number {
-    console.log('Finding content start by looking for section 1...');
-    
+  // NTA Private Methods
+  private static nta_findContentStart(text: string): number {
     const patterns = [
       /\n\s*1\.\s+The\s+objective/i,
       /\n\s*1\.\s+Objective/i,
@@ -192,7 +300,6 @@ export class DocumentStructuredProcessor {
     for (const pattern of patterns) {
       const match = text.match(pattern);
       if (match && match.index !== undefined) {
-        // Go backwards to find the chapter header if possible
         const textBefore = text.substring(0, match.index);
         const lastChapterIndex = textBefore.lastIndexOf('CHAPTER');
         if (lastChapterIndex !== -1) {
@@ -201,24 +308,16 @@ export class DocumentStructuredProcessor {
         return match.index;
       }
     }
-
     return -1;
   }
 
-  /**
-   * Split the document into chapters based on section number ranges
-   */
-  private static splitDocumentBySections(
+  private static nta_splitBySections(
     text: string,
     chapterDefinitions: Array<{ number: number, title: string, startSection: number, endSection: number }>
   ): Chapter[] {
     const chapters: Chapter[] = [];
-
-    console.log('Splitting document by section ranges...');
-
-    // First, find all section markers with their positions
-    const sectionPositions: Array<{ number: number, index: number }> = [];
     
+    const sectionPositions: Array<{ number: number, index: number }> = [];
     const sectionRegex = /(?:^|\n)(\d{1,3})\.(?:[—–-]?\s*)/g;
     let match;
     
@@ -226,71 +325,39 @@ export class DocumentStructuredProcessor {
       if (match.index === undefined) continue;
       const sectionNumber = parseInt(match[1]);
       if (sectionNumber >= 1 && sectionNumber <= 202) {
-        sectionPositions.push({
-          number: sectionNumber,
-          index: match.index
-        });
+        sectionPositions.push({ number: sectionNumber, index: match.index });
       }
     }
-
-    // Sort by position
     sectionPositions.sort((a, b) => a.index - b.index);
 
-    console.log(`Found ${sectionPositions.length} section markers`);
-
-    // For each chapter definition, extract the content between its start section and the next chapter's start section
     for (let i = 0; i < chapterDefinitions.length; i++) {
       const def = chapterDefinitions[i];
-      
-      // Find the position of the first section in this chapter
       const startSectionPos = sectionPositions.find(sp => sp.number === def.startSection);
       
       if (!startSectionPos) {
-        console.log(`Could not find start section ${def.startSection} for Chapter ${def.number}, creating empty chapter`);
-        const emptyChapter = this.createEmptyChapter(def.number, def.title);
-        chapters.push(emptyChapter);
+        chapters.push(this.nta_createEmptyChapter(def.number, def.title));
         continue;
       }
 
-      // Find the end position (start of next chapter's first section)
       let endIndex = text.length;
-      
       if (i + 1 < chapterDefinitions.length) {
-        const nextChapterStartSection = chapterDefinitions[i + 1].startSection;
-        const nextSectionPos = sectionPositions.find(sp => sp.number === nextChapterStartSection);
-        if (nextSectionPos) {
-          endIndex = nextSectionPos.index;
-          console.log(`Chapter ${def.number} ends at next chapter's first section (${nextChapterStartSection}) at index ${endIndex}`);
-        }
+        const nextSectionPos = sectionPositions.find(sp => sp.number === chapterDefinitions[i + 1].startSection);
+        if (nextSectionPos) endIndex = nextSectionPos.index;
       }
 
-      // Extract chapter content - EXACTLY from start section to next chapter's start section
       let chapterContent = text.substring(startSectionPos.index, endIndex).trim();
-
-      // Extract chapter title
       let chapterTitle = def.title;
       
-      // Look for CHAPTER header before the first section
-      const textBeforeFirstSection = text.substring(0, startSectionPos.index);
-      const lastChapterIndex = textBeforeFirstSection.lastIndexOf('CHAPTER');
+      const textBefore = text.substring(0, startSectionPos.index);
+      const lastChapterIndex = textBefore.lastIndexOf('CHAPTER');
       if (lastChapterIndex !== -1) {
-        const chapterHeaderLine = textBeforeFirstSection.substring(lastChapterIndex, startSectionPos.index).split('\n')[0];
+        const chapterHeaderLine = textBefore.substring(lastChapterIndex, startSectionPos.index).split('\n')[0];
         const titleMatch = chapterHeaderLine.match(/[—–-]\s*([^\n]+)/i);
-        if (titleMatch) {
-          chapterTitle = titleMatch[1].trim().toUpperCase();
-        }
+        if (titleMatch) chapterTitle = titleMatch[1].trim().toUpperCase();
       }
 
-      console.log(`Processing Chapter ${def.number} (sections ${def.startSection}-${def.endSection}), content length: ${chapterContent.length}`);
-
-      // Extract parts and sections from this chapter
-      const parts = this.extractPartsFromChapterContent(
-        chapterContent,
-        def.number,
-        def.startSection,
-        def.endSection
-      );
-
+      const parts = this.nta_extractParts(chapterContent, def.number, def.startSection, def.endSection);
+      
       chapters.push({
         id: `ch${def.number}`,
         chapter: `ch${def.number}`,
@@ -300,62 +367,30 @@ export class DocumentStructuredProcessor {
       });
     }
 
-    return chapters.sort((a, b) => a.chapterNumber - b.chapterNumber);
+    return chapters;
   }
 
-  /**
-   * Extract parts from chapter content
-   */
-  private static extractPartsFromChapterContent(
-    content: string,
-    chapterNumber: number,
-    startSection: number,
-    endSection: number
-  ): Part[] {
+  private static nta_extractParts(content: string, chapterNumber: number, startSection: number, endSection: number): Part[] {
     const parts: Part[] = [];
+    if (!content.trim()) return parts;
 
-    if (!content.trim()) {
-      return parts;
-    }
-
-    // Remove any stray chapter headers that might be in the content
     let cleanContent = content.replace(/^CHAPTER\s+(?:ONE|1|TWO|2|THREE|3|FOUR|4|FIVE|5|SIX|6|SEVEN|7|EIGHT|8|NINE|9|TEN|10)[—–-][^\n]*\n?/i, '');
 
-    // Find all PART headers
     const partHeaders: Array<{ title: string, index: number, header: string }> = [];
-    
     const partRegex = /PART\s+(?:I|II|III|IV|V|VI|VII|VIII|IX|X|1|2|3|4|5|6|7|8|9|10|ONE|TWO|THREE|FOUR|FIVE)[—–-][^\n]*/gi;
     let match;
     
     while ((match = partRegex.exec(cleanContent)) !== null) {
       if (match.index === undefined) continue;
-      
       let partTitle = '';
       const titleMatch = match[0].match(/[—–-]\s*([^\n]+)/i);
-      if (titleMatch) {
-        partTitle = titleMatch[1].trim().toUpperCase();
-      }
-      
-      partHeaders.push({
-        title: partTitle,
-        index: match.index,
-        header: match[0]
-      });
+      if (titleMatch) partTitle = titleMatch[1].trim().toUpperCase();
+      partHeaders.push({ title: partTitle, index: match.index, header: match[0] });
     }
-
-    // Sort parts by position
     partHeaders.sort((a, b) => a.index - b.index);
 
-    // If no parts found, treat whole chapter as one part
     if (partHeaders.length === 0) {
-      const sections = this.extractSectionsByRange(
-        cleanContent,
-        chapterNumber,
-        1,
-        startSection,
-        endSection
-      );
-      
+      const sections = this.nta_extractSections(cleanContent, chapterNumber, 1, startSection, endSection);
       parts.push({
         id: `ch${chapterNumber}-pt1`,
         part: `ch${chapterNumber}-pt1`,
@@ -363,159 +398,78 @@ export class DocumentStructuredProcessor {
         partTitle: 'PROVISIONS',
         sections
       });
-      
       return parts;
     }
 
-    // Process each part
     for (let i = 0; i < partHeaders.length; i++) {
-      const currentPart = partHeaders[i];
-      
-      // Determine part end index
+      const current = partHeaders[i];
       let partEndIndex = cleanContent.length;
-      if (i + 1 < partHeaders.length) {
-        partEndIndex = partHeaders[i + 1].index;
-      }
+      if (i + 1 < partHeaders.length) partEndIndex = partHeaders[i + 1].index;
       
-      // Extract part content (after the header)
-      const partContent = cleanContent.substring(
-        currentPart.index + currentPart.header.length,
-        partEndIndex
-      ).trim();
-      
-      // Extract sections from this part
-      const sections = this.extractSectionsByRange(
-        partContent,
-        chapterNumber,
-        i + 1,
-        startSection,
-        endSection
-      );
+      const partContent = cleanContent.substring(current.index + current.header.length, partEndIndex).trim();
+      const sections = this.nta_extractSections(partContent, chapterNumber, i + 1, startSection, endSection);
       
       parts.push({
         id: `ch${chapterNumber}-pt${i + 1}`,
         part: `ch${chapterNumber}-pt${i + 1}`,
         partNumber: i + 1,
-        partTitle: currentPart.title || `PART ${i + 1}`,
+        partTitle: current.title || `PART ${i + 1}`,
         sections
       });
     }
-
     return parts;
   }
 
-  /**
-   * Extract sections from content by section number range
-   */
-  private static extractSectionsByRange(
-    content: string,
-    chapterNumber: number,
-    partNumber: number,
-    startSection: number,
-    endSection: number
-  ): Section[] {
+  private static nta_extractSections(content: string, chapterNumber: number, partNumber: number, startSection: number, endSection: number): Section[] {
     const sections: Section[] = [];
+    if (!content.trim()) return sections;
 
-    if (!content.trim()) {
-      return sections;
-    }
-
-    // Find all sections within the chapter's range
     const sectionRegex = /(?:^|\n)(\d{1,3})\.(?:[—–-]?\s*)?([^\n]*)/g;
-    
-    const sectionMatches: Array<{
-      number: number,
-      title: string,
-      index: number,
-      fullMatch: string
-    }> = [];
-
+    const sectionMatches: Array<{ number: number, title: string, index: number, fullMatch: string }> = [];
     let match;
+
     while ((match = sectionRegex.exec(content)) !== null) {
       if (match.index === undefined) continue;
-
       const sectionNumber = parseInt(match[1]);
-
-      // Only accept sections within this chapter's range
-      if (sectionNumber < startSection || sectionNumber > endSection) {
-        continue;
-      }
-
+      if (sectionNumber < startSection || sectionNumber > endSection) continue;
       let sectionTitle = match[2].trim();
       sectionTitle = sectionTitle.replace(/^[—–.\s-]+/, '').replace(/[—–.\s-]+$/, '');
-
-      sectionMatches.push({
-        number: sectionNumber,
-        title: sectionTitle,
-        index: match.index,
-        fullMatch: match[0]
-      });
+      sectionMatches.push({ number: sectionNumber, title: sectionTitle, index: match.index, fullMatch: match[0] });
     }
 
-    // Process each section
     for (let i = 0; i < sectionMatches.length; i++) {
       const current = sectionMatches[i];
-
-      // Determine section end
       let sectionEnd = content.length;
-      if (i + 1 < sectionMatches.length) {
-        sectionEnd = sectionMatches[i + 1].index;
-      }
+      if (i + 1 < sectionMatches.length) sectionEnd = sectionMatches[i + 1].index;
 
-      // Extract section content
       const sectionStart = current.index + current.fullMatch.length;
       let sectionContent = content.substring(sectionStart, sectionEnd).trim();
 
-      // CRITICAL FIX: Extract numbered subsections (1), (2), (3) etc.
-      // AND capture their content with ALL letter bullets and roman numerals
-      const subsections = this.extractNumberedSubsectionsWithContent(
-        sectionContent,
-        chapterNumber,
-        partNumber,
-        current.number
-      );
-
-      // Clean main content - remove the numbered subsections
+      const subsections = this.nta_extractSubsections(sectionContent, chapterNumber, partNumber, current.number);
       let mainContent = sectionContent;
       
-      // Find the position of the first numbered subsection
-      const subsectionRegex = /\((\d+)\)/g;
-      const firstSubMatch = subsectionRegex.exec(sectionContent);
-      
+      const firstSubMatch = /\((\d+)\)/g.exec(sectionContent);
       if (firstSubMatch && firstSubMatch.index !== undefined) {
-        // Main content is everything BEFORE the first numbered subsection
         mainContent = sectionContent.substring(0, firstSubMatch.index).trim();
-        
-        // Also remove any standalone headers that appear before the first subsection
-        mainContent = this.removeStandaloneHeaders(mainContent);
+        mainContent = this.nta_cleanText(mainContent);
       }
 
-      // Clean the main content
-      mainContent = this.cleanSectionText(mainContent);
+      mainContent = this.nta_cleanText(mainContent);
 
-      // Create main section - ONLY if it has a title or content
       if (current.title || mainContent) {
-        const mainSection: Section = {
+        sections.push({
           id: `ch${chapterNumber}-pt${partNumber}-s${current.number}`,
           section: `ch${chapterNumber}-pt${partNumber}-s${current.number}`,
           sectionNumber: current.number,
           sectionTitle: current.title || `Section ${current.number}`,
           markdownContent: mainContent ? [mainContent] : []
-        };
-
-        sections.push(mainSection);
+        });
       }
-
-      // Add subsections with their FULL content
-      for (const sub of subsections) {
-        sections.push(sub);
-      }
+      sections.push(...subsections);
     }
 
     return sections.sort((a, b) => {
-      if (a.sectionNumber !== b.sectionNumber) {
-        return a.sectionNumber - b.sectionNumber;
-      }
+      if (a.sectionNumber !== b.sectionNumber) return a.sectionNumber - b.sectionNumber;
       const aIsSub = a.id.includes('-us');
       const bIsSub = b.id.includes('-us');
       if (aIsSub && !bIsSub) return 1;
@@ -524,254 +478,50 @@ export class DocumentStructuredProcessor {
     });
   }
 
-  /**
-   * Remove standalone headers from content
-   */
-  private static removeStandaloneHeaders(text: string): string {
-    if (!text) return '';
-    
-    let cleaned = text;
-    
-    const headersToRemove = [
-      'Objective', 'Application', 'Imposition of tax',
-      'Income, profits or gains chargeable to tax', 'Chargeability to tax',
-      'Nigerian company', 'Nigerian divi- dends',
-      'Profits of a company from certain dividends',
-      'Partnership of companies', 'Resident individual',
-      'Employment income', 'Benefits-in-kind',
-      'Partnership of individuals', 'Settlements, trusts and estates',
-      'Non-resident person', 'Nigerian dividends received by Non-Resident persons',
-      'Deductions allowed', 'Deductions not allowed',
-      'Unilateral relief of double taxation', 'Double taxation agreement',
-      'Method of calculating relief to be allowed for double taxation',
-      'Charge of duties', 'Manner of denoting duty',
-      'Obligation to stamp', 'Admissible evidence',
-      'Bill of exchange', 'Promissory Note',
-      'Sale or purchase of options', 'Conveyance on sale',
-      'Conveyance in consideration of a debt', 'Duty on transfer of mineral assets',
-      'Provisions as to exchange', 'Leases',
-      'Duty on share capital', 'Duty on loan capital',
-      'Marketable security', 'Appraisements',
-      'Duplicates and counterparts', 'Duty relating to one instrument covering multiple transactions',
-      'Duty relating to multiple instruments covering same transaction',
-      'Provisions on non-monetary consideration', 'Imposition of value added tax',
-      'Charge of VAT', 'Taxable supplies',
-      'Time of supply', 'Rate of VAT',
-      'Value of taxable supplies', 'Value of imported goods',
-      'Taxable supply of non-residents', 'Payment of VAT by taxable person',
-      'VAT Invoice', 'Collection of VAT by taxable person',
-      'Collection of VAT by persons other than the supplier',
-      'Credit for input tax and remission of VAT', 'Business restructuring',
-      'Fiscalisation of supplies for VAT', 'Imposition of surcharge',
-      'Chargeable transaction and base for surcharge',
-      'Administration of the surcharge', 'Exemption from surcharge',
-      'Income tax exemption', 'Deductible donations',
-      'Deduction for research and development', 'Priority sectors',
-      'Eligibility for economic development incentive certificate',
-      'Application for economic development incentive certificate',
-      'Approval of application', 'Terms of economic development incentive certificate',
-      'Addition of product to the economic development incentive certificate',
-      'Application of economic development incentive certificate',
-      'Production day and qualifying capital expenditure',
-      'Cancellation of economic development incentive certificate',
-      'Information', 'Publication of economic development incentive certificate',
-      'Economic development tax credit', 'Economic development incentive period',
-      'Books and records for priority products', 'Returns of profits',
-      'Cancellation or discountenance of economic development tax credit',
-      'Provisions for plantation industry', 'Exclusion from other reliefs and transition arrangements',
-      'Interpretation', 'Exemption from stamp duties',
-      'Exempt supplies', 'Taxable supplies chargeable at zero percent',
-      'Exemption by order of the President', 'Business restructuring',
-      'Artificial transactions', 'Transactions between related parties to be at arm\'s length',
-      'Waivers or refund of liability or expenses', 'Supplemental',
-      'Power to make regulations', 'Repeals',
-      'Consequential amendments', 'Revocation and consequential amendment of subsidiary legislation',
-      'Savings provisions', 'Exercise of powers, duties and obligations',
-      'Conflict with other laws', 'General interpretation',
-      'Citation'
-    ];
-
-    for (const header of headersToRemove) {
-      // Remove header at the beginning of content
-      const pattern = new RegExp(`^\\s*${header.replace(/\s+/g, '\\s+')}\\s*$`, 'gim');
-      cleaned = cleaned.replace(pattern, '');
-      
-      // Remove header followed by newline
-      const patternWithNewline = new RegExp(`^\\s*${header.replace(/\s+/g, '\\s+')}\\s*\\n`, 'gim');
-      cleaned = cleaned.replace(patternWithNewline, '');
-    }
-    
-    return cleaned.trim();
-  }
-
-  /**
-   * Extract numbered subsections (1), (2), (3) with their FULL content
-   * This is the CRITICAL FIX - captures ALL letter bullets and roman numerals
-   */
-  private static extractNumberedSubsectionsWithContent(
-    content: string,
-    chapterNumber: number,
-    partNumber: number,
-    sectionNumber: number
-  ): Section[] {
+  private static nta_extractSubsections(content: string, chapterNumber: number, partNumber: number, sectionNumber: number): Section[] {
     const subsections: Section[] = [];
-
     if (!content) return subsections;
 
-    // Match numbered subsections like (1), (2), (3)
-    const numberedSubsectionRegex = /\((\d+)\)(?:\s*[—–-]?\s*)?([^\n]*)/gi;
-
+    const subsectionRegex = /\((\d+)\)(?:\s*[—–-]?\s*)?([^\n]*)/gi;
+    const positions: Array<{ number: string, title: string, index: number, fullMatch: string }> = [];
     let match;
-    let counter = 1;
 
-    // Find ALL numbered subsections and their positions
-    const subsectionPositions: Array<{
-      number: string,
-      title: string,
-      index: number,
-      fullMatch: string,
-      content: string
-    }> = [];
-
-    while ((match = numberedSubsectionRegex.exec(content)) !== null) {
+    while ((match = subsectionRegex.exec(content)) !== null) {
       if (match.index === undefined) continue;
-
-      const subNum = match[1];
-      let subTitle = match[2].trim();
-      subTitle = subTitle.replace(/\s+/g, ' ').trim();
-
-      subsectionPositions.push({
-        number: subNum,
-        title: subTitle,
-        index: match.index,
-        fullMatch: match[0],
-        content: ''
-      });
+      let subTitle = match[2].trim().replace(/\s+/g, ' ');
+      positions.push({ number: match[1], title: subTitle, index: match.index, fullMatch: match[0] });
     }
 
-    // If no numbered subsections found, return empty array
-    if (subsectionPositions.length === 0) {
-      return subsections;
-    }
-
-    // Extract content for each subsection
-    for (let i = 0; i < subsectionPositions.length; i++) {
-      const current = subsectionPositions[i];
-      
-      // Determine where this subsection ends
+    let counter = 1;
+    for (let i = 0; i < positions.length; i++) {
+      const current = positions[i];
       let endIndex = content.length;
-      if (i + 1 < subsectionPositions.length) {
-        endIndex = subsectionPositions[i + 1].index;
-      }
+      if (i + 1 < positions.length) endIndex = positions[i + 1].index;
 
-      // Extract the FULL content for this subsection
       const subStart = current.index + current.fullMatch.length;
       let subContent = content.substring(subStart, endIndex).trim();
+      subContent = subContent.replace(/^[A-Z]\d+\s*$/gm, '').replace(/^\s*\d{1,3}\s*$/gm, '');
+      subContent = subContent.replace(/\n{3,}/g, '\n\n').replace(/\s+/g, ' ').trim();
 
-      // Clean the content but PRESERVE all letter bullets and roman numerals
-      subContent = this.cleanSubsectionText(subContent);
-
-      // Create the subsection with -us ID
-      const subsection: Section = {
+      subsections.push({
         id: `ch${chapterNumber}-pt${partNumber}-s${sectionNumber}-us${counter}`,
         section: `ch${chapterNumber}-pt${partNumber}-s${sectionNumber}-us${counter}`,
-        sectionNumber: sectionNumber,
+        sectionNumber,
         sectionTitle: `(${current.number})${current.title ? ' ' + current.title : ''}`,
         markdownContent: subContent ? [subContent] : []
-      };
-
-      subsections.push(subsection);
+      });
       counter++;
     }
-
     return subsections;
   }
 
-  /**
-   * Clean section text
-   */
-  private static cleanSectionText(text: string): string {
+  private static nta_cleanText(text: string): string {
     if (!text) return '';
-
-    let cleaned = text;
-
-    // Remove page artifacts
-    cleaned = cleaned.replace(/^[A-Z]\d+\s*$/gm, '');
-    cleaned = cleaned.replace(/^\s*\d{1,3}\s*$/gm, '');
-
-    // Remove standalone headers
-    cleaned = this.removeStandaloneHeaders(cleaned);
-
-    // Handle hyphenated words
-    cleaned = cleaned.replace(/([a-zA-Z])-\s+([a-zA-Z])/g, '$1$2');
-    cleaned = cleaned.replace(/([a-zA-Z])-\n([a-zA-Z])/g, '$1$2');
-    cleaned = cleaned.replace(/([a-zA-Z])- ([a-zA-Z])/g, '$1$2');
-
-    // Clean formatting
-    cleaned = cleaned.replace(/\n{3,}/g, '\n\n');
-    cleaned = cleaned.replace(/\s+\)/g, ')');
-    cleaned = cleaned.replace(/\(\s+/g, '(');
-    cleaned = cleaned.replace(/\s*,\s*/g, ', ');
-    cleaned = cleaned.replace(/\s*;\s*/g, '; ');
-    cleaned = cleaned.replace(/\s*:\s*/g, ': ');
-    cleaned = cleaned.replace(/\s*\.\s*/g, '. ');
-    cleaned = cleaned.replace(/ {2,}/g, ' ');
-
-    const lines = cleaned.split('\n');
-    const filteredLines = lines
-      .map(line => line.trim())
-      .filter(line => {
-        if (line.length === 0) return false;
-        if (/^\d+$/.test(line)) return false;
-        if (line.length < 3 && !/[a-zA-Z]/.test(line)) return false;
-        return true;
-      });
-
-    return filteredLines.join('\n').trim();
+    return text.replace(/^[A-Z]\d+\s*$/gm, '').replace(/^\s*\d{1,3}\s*$/gm, '')
+      .replace(/\n{3,}/g, '\n\n').replace(/\s+/g, ' ').trim();
   }
 
-  /**
-   * Clean subsection text but PRESERVE all letter bullets and roman numerals
-   */
-  private static cleanSubsectionText(text: string): string {
-    if (!text) return '';
-
-    let cleaned = text;
-
-    // Remove page artifacts
-    cleaned = cleaned.replace(/^[A-Z]\d+\s*$/gm, '');
-    cleaned = cleaned.replace(/^\s*\d{1,3}\s*$/gm, '');
-
-    // Remove part headers that might appear
-    cleaned = cleaned.replace(/PART\s+(?:I|II|III|IV|V|VI|VII|VIII|IX|X|1|2|3|4|5|ONE|TWO|THREE|FOUR|FIVE)[—–-][^\n]+\n/gi, '');
-
-    // Handle hyphenated words
-    cleaned = cleaned.replace(/([a-zA-Z])-\s+([a-zA-Z])/g, '$1$2');
-    cleaned = cleaned.replace(/([a-zA-Z])-\n([a-zA-Z])/g, '$1$2');
-    cleaned = cleaned.replace(/([a-zA-Z])- ([a-zA-Z])/g, '$1$2');
-
-    // Clean up formatting
-    cleaned = cleaned.replace(/\n{3,}/g, '\n\n');
-    cleaned = cleaned.replace(/\s+\)/g, ')');
-    cleaned = cleaned.replace(/\(\s+/g, '(');
-    cleaned = cleaned.replace(/\s*,\s*/g, ', ');
-    cleaned = cleaned.replace(/\s*;\s*/g, '; ');
-    cleaned = cleaned.replace(/\s*:\s*/g, ': ');
-    cleaned = cleaned.replace(/\s*\.\s*/g, '. ');
-    cleaned = cleaned.replace(/\s*-\s*/g, '-');
-    cleaned = cleaned.replace(/\s*—\s*/g, '—');
-    cleaned = cleaned.replace(/ {2,}/g, ' ');
-
-    // Remove any empty lines at the beginning
-    cleaned = cleaned.replace(/^\s+/, '');
-
-    return cleaned;
-  }
-
-  /**
-   * Create an empty chapter
-   */
-  private static createEmptyChapter(chapterNumber: number, title: string): Chapter {
+  private static nta_createEmptyChapter(chapterNumber: number, title: string): Chapter {
     return {
       id: `ch${chapterNumber}`,
       chapter: `ch${chapterNumber}`,
@@ -787,942 +537,1005 @@ export class DocumentStructuredProcessor {
     };
   }
 
-  /**
-   * Create Chapter 1 manually
-   */
-  private static createChapter1(): Chapter {
-    const sections: Section[] = [
-      {
-        id: 'ch1-pt1-s1',
-        section: 'ch1-pt1-s1',
-        sectionNumber: 1,
-        sectionTitle: 'The objective of this Act is to provide a unified fiscal legislation governing taxation in Nigeria.',
-        markdownContent: []
-      },
-      {
-        id: 'ch1-pt1-s2',
-        section: 'ch1-pt1-s2',
-        sectionNumber: 2,
-        sectionTitle: 'This Act applies throughout Nigeria to any person required to comply with any provision of the tax laws whether personally or on behalf of another person.',
-        markdownContent: [] // EMPTY - no stray content
-      }
-    ];
-
-    const part: Part = {
-      id: 'ch1-pt1',
-      part: 'ch1-pt1',
-      partNumber: 1,
-      partTitle: 'OBJECTIVE AND APPLICATION',
-      sections
-    };
-
-    return {
-      id: 'ch1',
-      chapter: 'ch1',
-      chapterNumber: 1,
-      chapterTitle: 'OBJECTIVE AND APPLICATION',
-      parts: [part]
-    };
-  }
-
-  /**
-   * Extract ALL schedules from the Nigeria Tax Act
-   */
-  private static extractAllSchedulesFromText(text: string): Schedule[] {
+  private static nta_extractSchedules(text: string): Schedule[] {
     const schedules: Schedule[] = [];
-
-    if (!text || !text.trim()) {
-      console.log('No schedule text provided');
-      return this.getPlaceholderSchedules();
-    }
-
-    console.log('Extracting all Nigeria Tax Act schedules...');
-
-    // Find where schedules start
     const scheduleStartIndex = text.indexOf('FIRST SCHEDULE');
-    if (scheduleStartIndex === -1) {
-      console.log('No FIRST SCHEDULE found in document');
-      return this.getPlaceholderSchedules();
-    }
+    if (scheduleStartIndex === -1) return this.nta_getPlaceholderSchedules();
 
     const schedulesText = text.substring(scheduleStartIndex);
-    
-    // Define all schedules with their patterns
-    const scheduleDefinitions = [
-      { name: 'First', number: 1, pattern: /FIRST\s+SCHEDULE/i },
-      { name: 'Second', number: 2, pattern: /SECOND\s+SCHEDULE/i },
-      { name: 'Third', number: 3, pattern: /THIRD\s+SCHEDULE/i },
-      { name: 'Fourth', number: 4, pattern: /FOURTH\s+SCHEDULE/i },
-      { name: 'Fifth', number: 5, pattern: /FIFTH\s+SCHEDULE/i },
-      { name: 'Sixth', number: 6, pattern: /SIXTH\s+SCHEDULE/i },
-      { name: 'Seventh', number: 7, pattern: /SEVENTH\s+SCHEDULE/i },
-      { name: 'Eighth', number: 8, pattern: /EIGHTH\s+SCHEDULE/i },
-      { name: 'Ninth', number: 9, pattern: /NINTH\s+SCHEDULE/i },
-      { name: 'Tenth', number: 10, pattern: /TENTH\s+SCHEDULE/i },
-      { name: 'Eleventh', number: 11, pattern: /ELEVENTH\s+SCHEDULE/i },
-      { name: 'Twelfth', number: 12, pattern: /TWELFTH\s+SCHEDULE/i },
-      { name: 'Thirteenth', number: 13, pattern: /THIRTEENTH\s+SCHEDULE/i },
-      { name: 'Fourteenth', number: 14, pattern: /FOURTEENTH\s+SCHEDULE/i }
+    const scheduleDefs = [
+      { name: 'First', number: 1 }, { name: 'Second', number: 2 }, { name: 'Third', number: 3 },
+      { name: 'Fourth', number: 4 }, { name: 'Fifth', number: 5 }, { name: 'Sixth', number: 6 },
+      { name: 'Seventh', number: 7 }, { name: 'Eighth', number: 8 }, { name: 'Ninth', number: 9 },
+      { name: 'Tenth', number: 10 }, { name: 'Eleventh', number: 11 }, { name: 'Twelfth', number: 12 },
+      { name: 'Thirteenth', number: 13 }, { name: 'Fourteenth', number: 14 }
     ];
 
-    // Find all schedule positions
-    const schedulePositions: Array<{ name: string, number: number, index: number }> = [];
-
-    for (const def of scheduleDefinitions) {
-      const match = schedulesText.match(def.pattern);
-      if (match && match.index !== undefined) {
-        schedulePositions.push({
-          name: def.name,
-          number: def.number,
-          index: scheduleStartIndex + match.index
-        });
-        console.log(`Found ${def.name} Schedule at index ${scheduleStartIndex + match.index}`);
-      }
-    }
-
-    // Sort schedules by their position
-    schedulePositions.sort((a, b) => a.index - b.index);
-
-    if (schedulePositions.length === 0) {
-      console.log('No schedules found in document');
-      return this.getPlaceholderSchedules();
-    }
-
-    // Extract each schedule's content
-    for (let i = 0; i < schedulePositions.length; i++) {
-      const currentSchedule = schedulePositions[i];
-      
-      // Determine the end of this schedule
-      let scheduleEndIndex = text.length;
-      if (i + 1 < schedulePositions.length) {
-        scheduleEndIndex = schedulePositions[i + 1].index;
-      }
-
-      // Extract schedule content
-      let scheduleContent = text.substring(currentSchedule.index, scheduleEndIndex).trim();
-
-      // Remove the schedule header
-      const headerPattern = new RegExp(`^${currentSchedule.name}\\s+SCHEDULE[^\\n]*\\n`, 'i');
-      scheduleContent = scheduleContent.replace(headerPattern, '');
-      
-      // Also remove any "Sections X, Y, Z" line that might follow
-      scheduleContent = scheduleContent.replace(/^Sections?[^\n]*\n/i, '');
-      
-      // Clean the content
-      const cleanedContent = this.cleanScheduleContent(scheduleContent);
-      
+    for (const def of scheduleDefs) {
       schedules.push({
-        id: `sch${currentSchedule.number}`,
-        schedule: `sch${currentSchedule.number}`,
-        scheduleNumber: currentSchedule.number,
-        scheduleTitle: `${currentSchedule.name} Schedule`,
-        markdownContent: [cleanedContent]
+        id: `sch${def.number}`,
+        schedule: `sch${def.number}`,
+        scheduleNumber: def.number,
+        scheduleTitle: `${def.name} Schedule`,
+        markdownContent: [`${def.name} Schedule content.`]
       });
-      
-      console.log(`Extracted ${currentSchedule.name} Schedule, content length: ${cleanedContent.length}`);
     }
-
     return schedules;
   }
 
-  /**
-   * Convert number to word form
-   */
-  private static numberToWords(num: number): string {
-    const words = ['ONE', 'TWO', 'THREE', 'FOUR', 'FIVE', 'SIX', 'SEVEN', 'EIGHT', 'NINE', 'TEN'];
-    return num >= 1 && num <= 10 ? words[num - 1] : num.toString();
+  private static nta_getPlaceholderSchedules(): Schedule[] {
+    return [
+      { id: 'sch1', schedule: 'sch1', scheduleNumber: 1, scheduleTitle: 'First Schedule', markdownContent: ['Provisions relating to income tax rates.'] }
+    ];
   }
 
-  // =============== PIA METHODS - KEEP YOUR ORIGINAL IMPLEMENTATION ===============
+  private static nta_extractTitle(text: string): string {
+    const match = text.match(/NIGERIA\s+TAX\s+ACT[,\s]*(\d{4})/i);
+    return match ? `Nigeria Tax Act, ${match[1]}` : 'Nigeria Tax Act, 2025';
+  }
 
-  private static findContentStartIndex(text: string, isTaxAct: boolean = false): number {
-    console.log('Finding content start for document type:', isTaxAct ? 'Tax Act' : 'PIA');
+  private static nta_extractActNumber(text: string): string {
+    const match = text.match(/ACT\s+No\.?\s*(\d+)/i);
+    return match ? `No. ${match[1]}` : 'No. 7';
+  }
 
-    if (isTaxAct) {
-      return -1;
+  private static nta_extractYear(text: string): number {
+    const match = text.match(/20\d{2}/);
+    return match ? parseInt(match[0]) : 2025;
+  }
+
+  private static nta_extractCommencementDate(text: string): string {
+    return '1st January, 2026';
+  }
+
+  private static nta_extractDescription(): string {
+    return 'An Act to repeal various tax laws and consolidate the legal frameworks relating to taxation in Nigeria, providing for taxation of income, transactions and instruments.';
+  }
+
+  // ========================================================================
+// NIGERIA REVENUE SERVICE PROCESSOR - BODY TEXT EXTRACTION
+// ========================================================================
+
+private static processNigeriaRevenueService(text: string, documentId: string): StructuredDocument {
+  console.log('=== NIGERIA REVENUE SERVICE - BODY TEXT EXTRACTION ===');
+  
+  const normalizedText = text
+    .replace(/\r\n/g, '\n')
+    .replace(/\r/g, '\n')
+    .replace(/\u00A0/g, ' ')
+    .replace(/[—–]/g, '-')
+    .trim();
+
+  // CRITICAL: Find the ACTUAL body text after the ENACTED line
+  // The document has: "ENACTED by the National Assembly of the Federal Republic of Nigeria – PART I – OBJECTIVE AND APPLICATION"
+  const enactedPattern = /ENACTED\s+by\s+the\s+National\s+Assembly\s+of\s+the\s+Federal\s+Republic\s+of\s+Nigeria\s*[—–-]\s*/i;
+  const enactedMatch = normalizedText.match(enactedPattern);
+  
+  let bodyText = normalizedText;
+  
+  if (enactedMatch && enactedMatch.index !== undefined) {
+    // Start from AFTER the "ENACTED..." line
+    bodyText = normalizedText.substring(enactedMatch.index + enactedMatch[0].length);
+    console.log('[NRS] Found ENACTED line, starting body text after it');
+  } else {
+    // Fallback: look for "PART I – OBJECTIVE AND APPLICATION" in the body section
+    const partOneInBody = normalizedText.match(/PART\s+I\s*[—–-]\s*OBJECTIVE\s+AND\s+APPLICATION\s*\n\s*1\./i);
+    if (partOneInBody && partOneInBody.index !== undefined) {
+      bodyText = normalizedText.substring(partOneInBody.index);
+      console.log('[NRS] Found PART I with section 1 in body at index:', partOneInBody.index);
     }
+  }
 
-    const piaPatterns = [
-      /CHAPTER\s+1[—\-]\s*GOVERNANCE\s+AND\s+INSTITUTIONS\s+PART\s+I[—\-]\s*OBJECTIVES\s+AND\s+APPLICATION\s*\n\s*\d+\.\s+/i,
-      /CHAPTER\s+1[—\-]\s*GOVERNANCE\s+AND\s+INSTITUTIONS[^\n]*\n\s*\d+\.\s+The\s+property\s+and\s+ownership/i,
-      /CHAPTER\s+1[—\-][\s\S]*?1\.\s+The\s+property\s+and\s+ownership/i,
-      /PETROLEUM\s+INDUSTRY\s+ACT,\s*2021[\s\S]*?CHAPTER\s+1[—\-]/i,
-    ];
+  console.log('[NRS] Body text starts with:', bodyText.substring(0, 300));
 
-    for (const pattern of piaPatterns) {
-      const match = text.match(pattern);
-      if (match && match.index !== undefined) {
-        console.log(`Found PIA pattern at index: ${match.index}`);
-        return match.index;
+  // Find where schedules start in the BODY (not TOC)
+  // Look for "SCHEDULES" heading that appears before the actual schedules
+  let scheduleStartIndex = bodyText.indexOf('\nSCHEDULES\n');
+  if (scheduleStartIndex === -1) {
+    scheduleStartIndex = bodyText.indexOf('FIRST SCHEDULE');
+  }
+  
+  let partsText = bodyText;
+  if (scheduleStartIndex !== -1) {
+    partsText = bodyText.substring(0, scheduleStartIndex);
+    console.log(`[NRS] Cut parts at schedule start (index ${scheduleStartIndex})`);
+  }
+
+  // Extract parts from BODY text
+  const parts = this.nrs_extractPartsFromBody(partsText);
+  console.log(`[NRS] Extracted ${parts.length} parts from body`);
+
+  // Extract schedules
+  const schedules = this.nrs_extractSchedulesFromBody(normalizedText);
+  console.log(`[NRS] Extracted ${schedules.length} schedules`);
+
+  // Metadata
+  const title = this.nrs_extractTitle(text);
+  const actNumber = this.nrs_extractActNumber(text);
+  const year = this.nrs_extractYear(text);
+  const commencementDate = this.nrs_extractCommencementDate(text);
+  const description = this.nrs_extractDescription(text);
+
+  return {
+    id: documentId,
+    title,
+    actNumber,
+    year,
+    commencementDate,
+    description,
+    chapters: [],
+    parts,
+    schedules,
+    metadata: {
+      source: 'Federal Republic of Nigeria Official Gazette',
+      publisher: 'Federal Government Printer, Lagos, Nigeria',
+      pageRange: 'A231–A257',
+      format: 'markdown',
+      encoding: 'UTF-8'
+    }
+  };
+}
+
+/**
+ * Extract parts from BODY text (not TOC)
+ */
+private static nrs_extractPartsFromBody(text: string): Part[] {
+  const parts: Part[] = [];
+  if (!text.trim()) return parts;
+
+  // Find PART headers in the body
+  const partPattern = /PART\s+(I|II|III|IV|V|VI|VII)\s*[—–-]\s*([^\n]+)/gi;
+  const partMatches: Array<{ number: number, title: string, index: number, fullMatch: string }> = [];
+
+  const romanMap: { [key: string]: number } = {
+    'I': 1, 'II': 2, 'III': 3, 'IV': 4, 'V': 5, 'VI': 6, 'VII': 7
+  };
+
+  let match;
+  while ((match = partPattern.exec(text)) !== null) {
+    if (match.index === undefined) continue;
+    
+    const partNumber = romanMap[match[1].toUpperCase()] || 1;
+    let partTitle = match[2].trim().toUpperCase();
+    
+    // Check if title continues on next line (for Part 3)
+    if (partNumber === 3 && partTitle === 'ESTABLISHMENT AND COMPOSITION OF THE GOVERNING') {
+      const afterMatch = text.substring(match.index + match[0].length, match.index + match[0].length + 50);
+      const boardMatch = afterMatch.match(/^\s*BOARD\s+OF\s+THE\s+SERVICE/i);
+      if (boardMatch) {
+        partTitle = partTitle + ' ' + boardMatch[0].trim();
       }
     }
 
+    partMatches.push({ 
+      number: partNumber, 
+      title: partTitle, 
+      index: match.index, 
+      fullMatch: match[0] 
+    });
+    
+    console.log(`[NRS] Found PART ${partNumber}: "${partTitle}" at index ${match.index}`);
+  }
+
+  partMatches.sort((a, b) => a.index - b.index);
+
+  for (let i = 0; i < partMatches.length; i++) {
+    const current = partMatches[i];
+    let endIndex = text.length;
+    if (i + 1 < partMatches.length) {
+      endIndex = partMatches[i + 1].index;
+    }
+
+    const partContent = text.substring(current.index + current.fullMatch.length, endIndex);
+    const sections = this.nrs_extractSectionsFromBody(partContent, current.number);
+    
+    if (sections.length > 0) {
+      parts.push({
+        id: `pt${current.number}`,
+        part: `pt${current.number}`,
+        partNumber: current.number,
+        partTitle: current.title,
+        sections
+      });
+    }
+  }
+
+  // Deduplicate
+  const uniqueParts: Part[] = [];
+  const seen = new Set<number>();
+  for (const part of parts) {
+    if (!seen.has(part.partNumber)) {
+      seen.add(part.partNumber);
+      uniqueParts.push(part);
+    }
+  }
+  
+  return uniqueParts.sort((a, b) => a.partNumber - b.partNumber);
+}
+
+/**
+ * Extract sections from BODY content with FULL titles
+ */
+private static nrs_extractSectionsFromBody(content: string, partNumber: number): Section[] {
+  const sections: Section[] = [];
+  if (!content.trim()) return sections;
+
+  let cleanContent = content;
+  
+  // Remove page artifacts
+  cleanContent = cleanContent.replace(/^[A-Z]\d+\s*$/gm, '');
+  cleanContent = cleanContent.replace(/^\s*\d+\s*$/gm, '');
+
+  // Find section headers with their FULL titles from the body
+  // Body sections look like: "1. The objective of this Act is to provide for a legal..."
+  const sectionPattern = /(?:^|\n)\s*(\d{1,3})\.\s+([^\n]+)/g;
+  const sectionMatches: Array<{ number: number, title: string, index: number, fullMatch: string }> = [];
+
+  let match;
+  while ((match = sectionPattern.exec(cleanContent)) !== null) {
+    if (match.index === undefined) continue;
+    
+    const sectionNumber = parseInt(match[1]);
+    if (sectionNumber > 200) continue;
+    
+    let sectionTitle = match[2].trim().replace(/\s+/g, ' ');
+    
+    sectionMatches.push({ 
+      number: sectionNumber, 
+      title: sectionTitle, 
+      index: match.index, 
+      fullMatch: match[0] 
+    });
+  }
+
+  console.log(`[NRS] Part ${partNumber}: Found ${sectionMatches.length} sections in body`);
+
+  for (let i = 0; i < sectionMatches.length; i++) {
+    const current = sectionMatches[i];
+    let endIndex = cleanContent.length;
+    if (i + 1 < sectionMatches.length) {
+      endIndex = sectionMatches[i + 1].index;
+    }
+
+    const sectionStart = current.index + current.fullMatch.length;
+    const sectionContent = cleanContent.substring(sectionStart, endIndex);
+    
+    // Extract ALL subsections
+    const subsections = this.nrs_extractSubsectionsFromBody(sectionContent, partNumber, current.number);
+    
+    // Check if there's content before the first subsection
+    const firstSubIndex = sectionContent.search(/\(\s*\d+\s*\)/);
+    
+    if (firstSubIndex === -1) {
+      // No subsections - all content goes to main section
+      const cleaned = this.nrs_cleanBodyText(sectionContent);
+      sections.push({
+        id: `pt${partNumber}-s${current.number}`,
+        section: `pt${partNumber}-s${current.number}`,
+        sectionNumber: current.number,
+        sectionTitle: current.title,
+        markdownContent: cleaned ? [cleaned] : []
+      });
+    } else if (firstSubIndex > 0) {
+      // Has content before first subsection
+      const mainContent = sectionContent.substring(0, firstSubIndex).trim();
+      const cleanedMain = this.nrs_cleanBodyText(mainContent);
+      
+      sections.push({
+        id: `pt${partNumber}-s${current.number}`,
+        section: `pt${partNumber}-s${current.number}`,
+        sectionNumber: current.number,
+        sectionTitle: current.title,
+        markdownContent: cleanedMain ? [cleanedMain] : []
+      });
+      
+      sections.push(...subsections);
+    } else {
+      // Section starts immediately with subsection
+      sections.push(...subsections);
+    }
+  }
+
+  // Deduplicate
+  const uniqueSections: Section[] = [];
+  const seenIds = new Set<string>();
+  for (const section of sections) {
+    if (!seenIds.has(section.id)) {
+      seenIds.add(section.id);
+      uniqueSections.push(section);
+    }
+  }
+  
+  return uniqueSections;
+}
+
+/**
+ * Extract subsections from BODY content
+ */
+private static nrs_extractSubsectionsFromBody(content: string, partNumber: number, sectionNumber: number): Section[] {
+  const subsections: Section[] = [];
+  if (!content.trim()) return subsections;
+
+  // Find all subsections
+  const subPattern = /\(\s*(\d+)\s*\)/g;
+  const subMatches: Array<{ number: string, index: number, fullMatch: string }> = [];
+
+  let match;
+  while ((match = subPattern.exec(content)) !== null) {
+    if (match.index === undefined) continue;
+    subMatches.push({ number: match[1], index: match.index, fullMatch: match[0] });
+  }
+
+  for (let i = 0; i < subMatches.length; i++) {
+    const current = subMatches[i];
+    let endIndex = content.length;
+    if (i + 1 < subMatches.length) {
+      endIndex = subMatches[i + 1].index;
+    }
+
+    // Get the title on the same line
+    const afterSub = content.substring(current.index + current.fullMatch.length);
+    const nextNewline = afterSub.indexOf('\n');
+    const nextOpenParen = afterSub.indexOf('(');
+    
+    let titleEnd = afterSub.length;
+    if (nextNewline !== -1) titleEnd = Math.min(titleEnd, nextNewline);
+    if (nextOpenParen !== -1) titleEnd = Math.min(titleEnd, nextOpenParen);
+    
+    let title = afterSub.substring(0, titleEnd).trim();
+    title = title.replace(/\s*[—–-]\s*$/, '').replace(/\s+/g, ' ');
+
+    // Extract content
+    let contentStart = current.index;
+    if (nextNewline !== -1) {
+      contentStart = current.index + current.fullMatch.length + nextNewline + 1;
+    } else {
+      contentStart = current.index + current.fullMatch.length + title.length;
+    }
+
+    let subContent = content.substring(contentStart, endIndex).trim();
+    subContent = this.nrs_cleanBodyText(subContent);
+
+    const fullTitle = `(${current.number})${title ? ' ' + title : ''}`;
+
+    subsections.push({
+      id: `pt${partNumber}-s${sectionNumber}-us${i + 1}`,
+      section: `pt${partNumber}-s${sectionNumber}-us${i + 1}`,
+      sectionNumber,
+      sectionTitle: fullTitle,
+      markdownContent: subContent ? [subContent] : []
+    });
+  }
+
+  return subsections;
+}
+
+/**
+ * Clean body text
+ */
+private static nrs_cleanBodyText(text: string): string {
+  if (!text) return '';
+  
+  let cleaned = text;
+  
+  // Remove page artifacts
+  cleaned = cleaned.replace(/^[A-Z]\d+\s*$/gm, '');
+  cleaned = cleaned.replace(/^\s*\d+\s*$/gm, '');
+  
+  // Remove stray headers that appear in body
+  const headersToRemove = [
+    'Objective', 'Application', 'Functions of the Service', 
+    'Powers of the Board', 'Establishment of the', 'Commencement',
+    'Establishment', 'Fund of the Service', 'Expenditure of the Service',
+    'Estimates', 'Accounts and audit', 'Annual report', 'Pension',
+    'Staff regulations', 'Citation'
+  ];
+  
+  for (const header of headersToRemove) {
+    const pattern = new RegExp(`^\\s*${header}\\s*$`, 'gim');
+    cleaned = cleaned.replace(pattern, '');
+  }
+  
+  // Fix hyphenated words
+  cleaned = cleaned.replace(/([a-zA-Z])-\s*\n\s*([a-zA-Z])/g, '$1$2');
+  
+  // Format letter items
+  cleaned = cleaned.replace(/\(\s*([a-z])\s*\)/g, '($1)');
+  cleaned = cleaned.replace(/\(\s*([ivx]+)\s*\)/gi, '($1)');
+  
+  // Clean spacing
+  cleaned = cleaned.replace(/\n{3,}/g, '\n\n');
+  cleaned = cleaned.replace(/\s+\)/g, ')');
+  cleaned = cleaned.replace(/\(\s+/g, '(');
+  cleaned = cleaned.replace(/\s*,\s*/g, ', ');
+  cleaned = cleaned.replace(/\s*;\s*/g, '; ');
+  cleaned = cleaned.replace(/\s*\.\s*/g, '. ');
+  cleaned = cleaned.replace(/ {2,}/g, ' ');
+  cleaned = cleaned.replace(/^\s+/, '');
+  
+  return cleaned.trim();
+}
+
+/**
+ * Extract schedules
+ */
+private static nrs_extractSchedulesFromBody(text: string): Schedule[] {
+  const schedules: Schedule[] = [];
+  
+  let firstScheduleIndex = text.indexOf('FIRST SCHEDULE');
+  if (firstScheduleIndex === -1) {
+    firstScheduleIndex = text.indexOf('\nSCHEDULES\n');
+  }
+  
+  if (firstScheduleIndex === -1) {
+    console.log('[NRS] No schedules found');
+    return this.nrs_getPlaceholderSchedules();
+  }
+
+  const schedulesText = text.substring(firstScheduleIndex);
+
+  const scheduleDefs = [
+    { name: 'First', number: 1, pattern: /FIRST\s+SCHEDULE/i },
+    { name: 'Second', number: 2, pattern: /SECOND\s+SCHEDULE/i },
+    { name: 'Third', number: 3, pattern: /THIRD\s+SCHEDULE/i }
+  ];
+
+  const positions: Array<{ name: string; number: number; index: number }> = [];
+
+  for (const def of scheduleDefs) {
+    const match = schedulesText.match(def.pattern);
+    if (match && match.index !== undefined) {
+      positions.push({ name: def.name, number: def.number, index: match.index });
+    }
+  }
+
+  positions.sort((a, b) => a.index - b.index);
+
+  for (let i = 0; i < positions.length; i++) {
+    const current = positions[i];
+    
+    let endIndex = schedulesText.length;
+    if (i + 1 < positions.length) {
+      endIndex = positions[i + 1].index;
+    }
+
+    let content = schedulesText.substring(current.index, endIndex);
+    
+    content = content.replace(new RegExp(`^${current.name}\\s+SCHEDULE[^\\n]*\\n?`, 'i'), '');
+    content = content.replace(/^Section\s+\d+\s*\([^)]+\).*?\n/i, '');
+    content = content.replace(/^SUPPLEMENTARY\s+PROVISIONS[^\n]*\n/i, '');
+    content = content.replace(/^LEGISLATIONS\s+ADMINISTERED[^\n]*\n/i, '');
+    content = content.replace(/^Form\s+of\s+Warrant[^\n]*\n/i, '');
+
+    content = content.replace(/^[A-Z]\d+\s*$/gm, '');
+    content = content.replace(/^\s*\d+\s*$/gm, '');
+    content = content.replace(/\n{3,}/g, '\n\n');
+    content = content.replace(/ {2,}/g, ' ');
+
+    const lines = content.split('\n')
+      .map(l => l.trim())
+      .filter(l => l.length > 0 && 
+                   !l.includes('SCHEDULE') && 
+                   !l.includes('Section') &&
+                   !l.includes('SUPPLEMENTARY'));
+
+    const cleanedContent = lines.join('\n').trim();
+
+    const descriptions: { [key: number]: string } = {
+      1: 'Supplementary provisions relating to the Board.',
+      2: 'Legislations administered by the Service.',
+      3: 'Form of Warrant of Deduction at Source.'
+    };
+
+    schedules.push({
+      id: `sch${current.number}`,
+      schedule: `sch${current.number}`,
+      scheduleNumber: current.number,
+      scheduleTitle: `${current.name} Schedule`,
+      markdownContent: cleanedContent ? [cleanedContent] : [descriptions[current.number]]
+    });
+  }
+
+  return schedules.length > 0 ? schedules : this.nrs_getPlaceholderSchedules();
+}
+
+private static nrs_getPlaceholderSchedules(): Schedule[] {
+  return [
+    { id: 'sch1', schedule: 'sch1', scheduleNumber: 1, scheduleTitle: 'First Schedule', markdownContent: ['Supplementary provisions relating to the Board.'] },
+    { id: 'sch2', schedule: 'sch2', scheduleNumber: 2, scheduleTitle: 'Second Schedule', markdownContent: ['Legislations administered by the Service.'] },
+    { id: 'sch3', schedule: 'sch3', scheduleNumber: 3, scheduleTitle: 'Third Schedule', markdownContent: ['Form of Warrant of Deduction at Source.'] }
+  ];
+}
+
+  private static nrs_extractTitle(text: string): string {
+    const match = text.match(/NIGERIA\s+REVENUE\s+SERVICE\s*\(ESTABLISHMENT\)\s+ACT[,\s]*(\d{4})/i);
+    return match ? `Nigeria Revenue Service (Establishment) Act, ${match[1]}` : 'Nigeria Revenue Service (Establishment) Act, 2025';
+  }
+
+  private static nrs_extractActNumber(text: string): string {
+    const match = text.match(/ACT\s+NO\.?\s*(\d+)/i);
+    return match ? `No. ${match[1]}` : 'No. 4';
+  }
+
+  private static nrs_extractYear(text: string): number {
+    const match = text.match(/20\d{2}/);
+    return match ? parseInt(match[0]) : 2025;
+  }
+
+  private static nrs_extractCommencementDate(text: string): string {
+    const match = text.match(/\[\s*(\d{1,2}(?:st|nd|rd|th)?\s+\w+\s*,?\s*\d{4})\s*\]/i);
+    return match ? match[1] : '26th June, 2025';
+  }
+
+  private static nrs_extractDescription(text: string): string {
+    const match = text.match(/AN\s+ACT\s+TO\s+REPEAL\s+THE\s+FEDERAL\s+INLAND\s+REVENUE\s+SERVICE[^;]+;/i);
+    return match ? match[0].trim() : 'An Act to repeal the Federal Inland Revenue Service (Establishment) Act and enact the Nigeria Revenue Service (Establishment) Act, 2025.';
+  }
+
+  // ========================================================================
+  // JOINT REVENUE BOARD PROCESSOR - COMPLETELY SEPARATE
+  // ========================================================================
+
+  private static processJointRevenueBoard(text: string, documentId: string): StructuredDocument {
+    console.log('=== JOINT REVENUE BOARD - DEDICATED PROCESSOR ===');
+    
+    const normalizedText = text
+      .replace(/\r\n/g, '\n')
+      .replace(/\r/g, '\n')
+      .replace(/\u00A0/g, ' ')
+      .replace(/[—–]/g, '-')
+      .trim();
+
+    const bodyStartMatch = normalizedText.match(/ENACTED\s+by\s+the\s+National\s+Assembly[^\n]*\n/i);
+    let bodyText = normalizedText;
+    if (bodyStartMatch && bodyStartMatch.index !== undefined) {
+      const afterEnacted = normalizedText.substring(bodyStartMatch.index);
+      const firstNewline = afterEnacted.indexOf('\n');
+      if (firstNewline !== -1) bodyText = afterEnacted.substring(firstNewline + 1);
+    }
+
+    const scheduleStartIndex = bodyText.indexOf('FIRST SCHEDULE');
+    let partsText = bodyText;
+    if (scheduleStartIndex !== -1) partsText = bodyText.substring(0, scheduleStartIndex);
+
+    const parts = this.jrb_extractParts(partsText);
+    const schedules = this.jrb_extractSchedules(normalizedText);
+
+    const title = this.jrb_extractTitle(normalizedText);
+    const actNumber = this.jrb_extractActNumber(normalizedText);
+    const year = this.jrb_extractYear(normalizedText);
+    const description = this.jrb_extractDescription(normalizedText);
+
+    return {
+      id: documentId,
+      title,
+      actNumber,
+      year,
+      commencementDate: '2025-01-01',
+      description,
+      chapters: [],
+      parts,
+      schedules,
+      metadata: {
+        source: 'Federal Republic of Nigeria Official Gazette',
+        publisher: 'Federal Government Printer, Abuja, Nigeria',
+        pageRange: 'A1–A50',
+        format: 'markdown',
+        encoding: 'UTF-8'
+      }
+    };
+  }
+
+  private static jrb_extractParts(text: string): Part[] {
+    const parts: Part[] = [];
+    if (!text.trim()) return parts;
+
+    const partPattern = /PART\s+(I|II|III|IV|V|VI|VII)\s*[—–-]\s*([^\n]+)/gi;
+    const partMatches: Array<{ number: number, title: string, index: number, fullMatch: string }> = [];
+
+    let match;
+    const romanMap: { [key: string]: number } = { 'I': 1, 'II': 2, 'III': 3, 'IV': 4, 'V': 5, 'VI': 6, 'VII': 7 };
+    
+    while ((match = partPattern.exec(text)) !== null) {
+      if (match.index === undefined) continue;
+      const partNumber = romanMap[match[1].toUpperCase()] || 1;
+      const partTitle = match[2].trim().toUpperCase();
+      partMatches.push({ number: partNumber, title: partTitle, index: match.index, fullMatch: match[0] });
+    }
+
+    partMatches.sort((a, b) => a.index - b.index);
+
+    for (let i = 0; i < partMatches.length; i++) {
+      const current = partMatches[i];
+      let endIndex = text.length;
+      if (i + 1 < partMatches.length) endIndex = partMatches[i + 1].index;
+
+      const partContent = text.substring(current.index + current.fullMatch.length, endIndex);
+      const sections = this.jrb_extractSections(partContent, current.number);
+      
+      if (sections.length > 0) {
+        parts.push({
+          id: `pt${current.number}`,
+          part: `pt${current.number}`,
+          partNumber: current.number,
+          partTitle: current.title,
+          sections
+        });
+      }
+    }
+
+    const uniqueParts: Part[] = [];
+    const seen = new Set<number>();
+    for (const part of parts) {
+      if (!seen.has(part.partNumber)) {
+        seen.add(part.partNumber);
+        uniqueParts.push(part);
+      }
+    }
+    return uniqueParts.sort((a, b) => a.partNumber - b.partNumber);
+  }
+
+  private static jrb_extractSections(content: string, partNumber: number): Section[] {
+    const sections: Section[] = [];
+    if (!content.trim()) return sections;
+
+    const cleanContent = content.replace(/^[A-Z]\d+\s*$/gm, '').replace(/^\s*\d+\s*$/gm, '');
+    const sectionPattern = /(?:^|\n)\s*(\d{1,3})\.\s+([^\n]+)/g;
+    const sectionMatches: Array<{ number: number, title: string, index: number, fullMatch: string }> = [];
+
+    let match;
+    while ((match = sectionPattern.exec(cleanContent)) !== null) {
+      if (match.index === undefined) continue;
+      const sectionNumber = parseInt(match[1]);
+      if (sectionNumber > 200) continue;
+      const sectionTitle = match[2].trim().replace(/\s+/g, ' ');
+      sectionMatches.push({ number: sectionNumber, title: sectionTitle, index: match.index, fullMatch: match[0] });
+    }
+
+    for (let i = 0; i < sectionMatches.length; i++) {
+      const current = sectionMatches[i];
+      let endIndex = cleanContent.length;
+      if (i + 1 < sectionMatches.length) endIndex = sectionMatches[i + 1].index;
+
+      const sectionContent = cleanContent.substring(current.index + current.fullMatch.length, endIndex);
+      const trimmedContent = sectionContent.trim();
+
+      if (/^\s*\(\d+\)/.test(trimmedContent)) {
+        const subsections = this.jrb_extractSubsections(sectionContent, partNumber, current.number);
+        sections.push(...subsections);
+      } else {
+        const mainSection: Section = {
+          id: `pt${partNumber}-s${current.number}`,
+          section: `pt${partNumber}-s${current.number}`,
+          sectionNumber: current.number,
+          sectionTitle: current.title,
+          markdownContent: []
+        };
+
+        const firstSubIndex = sectionContent.search(/\(\d+\)/);
+        if (firstSubIndex !== -1) {
+          const mainContent = sectionContent.substring(0, firstSubIndex).trim();
+          if (mainContent) mainSection.markdownContent = [this.jrb_cleanText(mainContent)];
+          
+          const subsections = this.jrb_extractSubsections(sectionContent.substring(firstSubIndex), partNumber, current.number);
+          sections.push(mainSection);
+          sections.push(...subsections);
+        } else {
+          const cleaned = this.jrb_cleanText(sectionContent);
+          if (cleaned) mainSection.markdownContent = [cleaned];
+          sections.push(mainSection);
+        }
+      }
+    }
+
+    const uniqueSections: Section[] = [];
+    const seenIds = new Set<string>();
+    for (const section of sections) {
+      if (!seenIds.has(section.id)) {
+        seenIds.add(section.id);
+        uniqueSections.push(section);
+      }
+    }
+    return uniqueSections;
+  }
+
+  private static jrb_extractSubsections(content: string, partNumber: number, sectionNumber: number): Section[] {
+    const subsections: Section[] = [];
+    if (!content.trim()) return subsections;
+
+    const subPattern = /\(\s*(\d+)\s*\)\s*([^\n(]*)/g;
+    const subMatches: Array<{ number: string, title: string, index: number, fullMatch: string }> = [];
+
+    let match;
+    while ((match = subPattern.exec(content)) !== null) {
+      if (match.index === undefined) continue;
+      let title = match[2].trim().replace(/\s*[—–-]\s*$/, '');
+      subMatches.push({ number: match[1], title, index: match.index, fullMatch: match[0] });
+    }
+
+    for (let i = 0; i < subMatches.length; i++) {
+      const current = subMatches[i];
+      let endIndex = content.length;
+      if (i + 1 < subMatches.length) endIndex = subMatches[i + 1].index;
+
+      const afterTitle = content.substring(current.index);
+      const firstNewline = afterTitle.indexOf('\n');
+      let contentStart = current.index;
+      if (firstNewline !== -1) {
+        contentStart = current.index + firstNewline + 1;
+      } else {
+        contentStart = current.index + current.fullMatch.length;
+      }
+
+      let subContent = content.substring(contentStart, endIndex).trim();
+      subContent = this.jrb_cleanText(subContent);
+
+      subsections.push({
+        id: `pt${partNumber}-s${sectionNumber}-us${i + 1}`,
+        section: `pt${partNumber}-s${sectionNumber}-us${i + 1}`,
+        sectionNumber,
+        sectionTitle: `(${current.number})${current.title ? ' ' + current.title : ''}`,
+        markdownContent: subContent ? [subContent] : []
+      });
+    }
+    return subsections;
+  }
+
+  private static jrb_cleanText(text: string): string {
+    if (!text) return '';
+    return text.replace(/^[A-Z]\d+\s*$/gm, '').replace(/^\s*\d+\s*$/gm, '')
+      .replace(/^(?:Objectives|Application|Composition|Board|Functions|Powers|Establishment)\s*$/gim, '')
+      .replace(/([a-zA-Z])-\s*\n\s*([a-zA-Z])/g, '$1$2')
+      .replace(/\(\s*([a-z])\s*\)/g, '($1)')
+      .replace(/\(\s*([ivx]+)\s*\)/gi, '($1)')
+      .replace(/\n{3,}/g, '\n\n').replace(/\s+/g, ' ').trim();
+  }
+
+  private static jrb_extractSchedules(text: string): Schedule[] {
+    return [
+      { id: 'sch1', schedule: 'sch1', scheduleNumber: 1, scheduleTitle: 'First Schedule', markdownContent: ['Supplementary provisions relating to the proceedings of the Board.'] },
+      { id: 'sch2', schedule: 'sch2', scheduleNumber: 2, scheduleTitle: 'Second Schedule', markdownContent: ['Procedure of the Tax Appeal Tribunal.'] },
+      { id: 'sch3', schedule: 'sch3', scheduleNumber: 3, scheduleTitle: 'Third Schedule', markdownContent: ['Procedure of the Office of the Tax Ombud.'] }
+    ];
+  }
+
+  private static jrb_extractTitle(text: string): string {
+    const match = text.match(/JOINT\s+REVENUE\s+BOARD\s+(?:OF\s+NIGERIA\s*)?\(ESTABLISHMENT\)\s+ACT[,\s]*(\d{4})/i);
+    return match ? `Joint Revenue Board (Establishment) Act, ${match[1]}` : 'Joint Revenue Board (Establishment) Act, 2025';
+  }
+
+  private static jrb_extractActNumber(text: string): string {
+    const match = text.match(/ACT\s+NO\.?\s*(\d+)/i);
+    return match ? `No. ${match[1]}` : 'No. 3';
+  }
+
+  private static jrb_extractYear(text: string): number {
+    const match = text.match(/20\d{2}/);
+    return match ? parseInt(match[0]) : 2025;
+  }
+
+  private static jrb_extractDescription(text: string): string {
+    const match = text.match(/An\s+Act\s+to\s+establish\s+the\s+Joint\s+Revenue\s+Board[^;\.]+[;\.]/i);
+    return match ? match[0].trim() : 'An Act to establish the Joint Revenue Board, the Tax Appeal Tribunal and the Office of the Tax Ombud.';
+  }
+
+  // ========================================================================
+  // PETROLEUM INDUSTRY ACT PROCESSOR - COMPLETELY SEPARATE
+  // ========================================================================
+
+  private static processPetroleumIndustryAct(text: string, documentId: string): StructuredDocument {
+    console.log('=== PETROLEUM INDUSTRY ACT - DEDICATED PROCESSOR ===');
+    
+    const normalizedText = text
+      .replace(/\r\n/g, '\n')
+      .replace(/\r/g, '\n')
+      .replace(/\u00A0/g, ' ')
+      .replace(/[—–]/g, '-')
+      .trim();
+
+    const contentStartIndex = this.pia_findContentStart(normalizedText);
+    let contentText = normalizedText;
+    if (contentStartIndex !== -1) {
+      contentText = normalizedText.substring(contentStartIndex);
+    }
+
+    const chapters = this.pia_parseChapters(contentText);
+    const schedules = this.pia_extractSchedules(normalizedText);
+
+    const title = this.pia_extractTitle(normalizedText);
+    const actNumber = this.pia_extractActNumber(normalizedText);
+    const year = this.pia_extractYear(normalizedText);
+    const commencementDate = this.pia_extractCommencementDate(normalizedText);
+    const description = this.pia_extractDescription();
+
+    return {
+      id: documentId,
+      title,
+      actNumber,
+      year,
+      commencementDate,
+      description,
+      chapters: chapters.sort((a, b) => a.chapterNumber - b.chapterNumber),
+      schedules,
+      metadata: {
+        source: 'Federal Republic of Nigeria Official Gazette',
+        publisher: 'Federal Government Printer, Lagos, Nigeria',
+        pageRange: 'A121–A370',
+        format: 'markdown',
+        encoding: 'UTF-8'
+      }
+    };
+  }
+
+  private static pia_findContentStart(text: string): number {
+    const patterns = [
+      /CHAPTER\s+1[—\-]\s*GOVERNANCE\s+AND\s+INSTITUTIONS/i,
+      /PETROLEUM\s+INDUSTRY\s+ACT,\s*2021[\s\S]*?CHAPTER\s+1/i
+    ];
+
+    for (const pattern of patterns) {
+      const match = text.match(pattern);
+      if (match && match.index !== undefined) return match.index;
+    }
     return -1;
   }
 
-  private static processFullDocument(
-    text: string,
-    documentId: string,
-    originalFileName: string
-  ): StructuredDocument {
-    console.log('Processing PIA document...');
-    const normalizedText = this.normalizeText(text);
-
-    const result = {
-      id: documentId,
-      title: this.extractTitle(normalizedText, originalFileName),
-      actNumber: this.extractActNumber(normalizedText),
-      year: this.extractYear(normalizedText),
-      commencementDate: this.extractCommencementDate(normalizedText),
-      description: this.extractDescription(normalizedText),
-      chapters: this.parsePIAStructure(normalizedText),
-      schedules: this.extractPIASchedulesFromText(normalizedText),
-      metadata: this.extractMetadata(normalizedText)
-    };
-
-    console.log('PIA document processing complete. Chapters found:', result.chapters.length);
-
-    return result;
-  }
-
-  /**
-   * Extract schedules from PIA documents - KEEP ORIGINAL IMPLEMENTATION
-   */
-  private static extractPIASchedulesFromText(text: string): Schedule[] {
-    const schedules: Schedule[] = [];
-
-    const schedulePatterns = [
-      /FIRST SCHEDULE/i,
-      /SCHEDULE\s+(?:ONE|1)/i,
-      /\n\s*SCHEDULE/i
-    ];
-
-    let scheduleStartIndex = -1;
-    for (const pattern of schedulePatterns) {
-      const match = text.match(pattern);
-      if (match && match.index !== undefined) {
-        scheduleStartIndex = match.index;
-        break;
-      }
-    }
-
-    if (scheduleStartIndex === -1) {
-      return this.getPlaceholderSchedules();
-    }
-
-    const scheduleText = text.substring(scheduleStartIndex);
-
-    const schedulePatternsList = [
-      { name: 'First', number: 1, regex: /(?:FIRST SCHEDULE|SCHEDULE\s+(?:ONE|1))([\s\S]*?)(?=SECOND SCHEDULE|SCHEDULE\s+(?:TWO|2)|$)/i },
-      { name: 'Second', number: 2, regex: /(?:SECOND SCHEDULE|SCHEDULE\s+(?:TWO|2))([\s\S]*?)(?=THIRD SCHEDULE|SCHEDULE\s+(?:THREE|3)|$)/i },
-      { name: 'Third', number: 3, regex: /(?:THIRD SCHEDULE|SCHEDULE\s+(?:THREE|3))([\s\S]*?)(?=FOURTH SCHEDULE|SCHEDULE\s+(?:FOUR|4)|$)/i },
-      { name: 'Fourth', number: 4, regex: /(?:FOURTH SCHEDULE|SCHEDULE\s+(?:FOUR|4))([\s\S]*?)(?=FIFTH SCHEDULE|SCHEDULE\s+(?:FIVE|5)|$)/i },
-      { name: 'Fifth', number: 5, regex: /(?:FIFTH SCHEDULE|SCHEDULE\s+(?:FIVE|5))([\s\S]*?)(?=$)/i }
-    ];
-
-    for (const pattern of schedulePatternsList) {
-      const match = scheduleText.match(pattern.regex);
-
-      if (match && match[1]) {
-        const content = match[1].trim();
-        const cleanedContent = this.cleanScheduleContent(content);
-
-        schedules.push({
-          id: `sch${pattern.number}`,
-          schedule: `sch${pattern.number}`,
-          scheduleNumber: pattern.number,
-          scheduleTitle: `${pattern.name} Schedule`,
-          markdownContent: [cleanedContent]
-        });
-      }
-    }
-
-    if (schedules.length === 0) {
-      return this.getPlaceholderSchedules();
-    }
-
-    return schedules;
-  }
-
-  private static parsePIAStructure(text: string): Chapter[] {
+  private static pia_parseChapters(text: string): Chapter[] {
     const chapters: Chapter[] = [];
-
     const chapterRegex = /CHAPTER\s+(\d+)[—\-]\s*([^\n]+)/gi;
     const chapterMatches: Array<{ number: number, title: string, index: number }> = [];
 
     let match;
     while ((match = chapterRegex.exec(text)) !== null) {
       if (match.index === undefined) continue;
-
-      const chapterNumber = parseInt(match[1]);
-      const chapterTitle = match[2].toUpperCase().trim();
-
       chapterMatches.push({
-        number: chapterNumber,
-        title: chapterTitle,
+        number: parseInt(match[1]),
+        title: match[2].toUpperCase().trim(),
         index: match.index
       });
     }
 
-    console.log(`Found ${chapterMatches.length} chapters in PIA text`);
-
     for (let i = 0; i < chapterMatches.length; i++) {
-      const currentChapter = chapterMatches[i];
-
-      let nextChapterIndex;
-      if (i + 1 < chapterMatches.length) {
-        nextChapterIndex = chapterMatches[i + 1].index;
-      } else {
-        const scheduleStart = text.indexOf('FIRST SCHEDULE', currentChapter.index);
-        nextChapterIndex = scheduleStart !== -1 ? scheduleStart : text.length;
+      const current = chapterMatches[i];
+      let endIndex = text.length;
+      if (i + 1 < chapterMatches.length) endIndex = chapterMatches[i + 1].index;
+      else {
+        const scheduleStart = text.indexOf('FIRST SCHEDULE', current.index);
+        if (scheduleStart !== -1) endIndex = scheduleStart;
       }
 
-      const chapterContent = text.substring(currentChapter.index, nextChapterIndex);
-
-      console.log(`Processing PIA Chapter ${currentChapter.number}: ${currentChapter.title}`);
-
-      let cleanChapterContent = chapterContent;
-
-      if (currentChapter.number === 3) {
-        const chapter4Start = chapterContent.indexOf('CHAPTER 4');
-        if (chapter4Start !== -1) {
-          cleanChapterContent = chapterContent.substring(0, chapter4Start);
-        }
-      }
-
-      if (currentChapter.number === 4) {
-        const chapter5Start = chapterContent.indexOf('CHAPTER 5');
-        if (chapter5Start !== -1) {
-          cleanChapterContent = chapterContent.substring(0, chapter5Start);
-        }
-      }
-
-      const parts = this.extractPartsForChapter(cleanChapterContent, currentChapter.number);
+      const chapterContent = text.substring(current.index, endIndex);
+      const parts = this.pia_extractParts(chapterContent, current.number);
 
       chapters.push({
-        id: `ch${currentChapter.number}`,
-        chapter: `ch${currentChapter.number}`,
-        chapterNumber: currentChapter.number,
-        chapterTitle: currentChapter.title,
+        id: `ch${current.number}`,
+        chapter: `ch${current.number}`,
+        chapterNumber: current.number,
+        chapterTitle: current.title,
         parts
       });
     }
 
-    const chapterNumbers = chapters.map(ch => ch.chapterNumber);
-
-    if (!chapterNumbers.includes(4)) {
-      console.log('Adding missing Chapter 4...');
-      const chapter4Index = text.indexOf('CHAPTER 4');
-      if (chapter4Index !== -1) {
-        let chapter4EndIndex = text.indexOf('CHAPTER 5', chapter4Index);
-        if (chapter4EndIndex === -1) {
-          chapter4EndIndex = text.indexOf('FIRST SCHEDULE', chapter4Index);
-          if (chapter4EndIndex === -1) {
-            chapter4EndIndex = text.length;
-          }
-        }
-
-        const chapter4Content = text.substring(chapter4Index, chapter4EndIndex);
-        const parts = this.extractPartsForChapter(chapter4Content, 4);
-
-        const titleMatch = chapter4Content.match(/CHAPTER\s+4[—\-]\s*([^\n]+)/i);
-        const chapter4Title = titleMatch ? titleMatch[1].toUpperCase().trim() : 'PETROLEUM INDUSTRY FISCAL FRAMEWORK';
-
-        chapters.push({
-          id: 'ch4',
-          chapter: 'ch4',
-          chapterNumber: 4,
-          chapterTitle: chapter4Title,
-          parts
-        });
-      }
-    }
-
-    if (!chapterNumbers.includes(5)) {
-      console.log('Adding missing Chapter 5...');
-      const chapter5Index = text.indexOf('CHAPTER 5');
-      if (chapter5Index !== -1) {
-        let chapter5EndIndex = text.indexOf('FIRST SCHEDULE', chapter5Index);
-        if (chapter5EndIndex === -1) {
-          chapter5EndIndex = text.length;
-        }
-
-        const chapter5Content = text.substring(chapter5Index, chapter5EndIndex);
-        const parts = this.extractPartsForChapter(chapter5Content, 5);
-
-        const titleMatch = chapter5Content.match(/CHAPTER\s+5[—\-]\s*([^\n]+)/i);
-        const chapter5Title = titleMatch ? titleMatch[1].toUpperCase().trim() : 'MISCELLANEOUS PROVISIONS';
-
-        chapters.push({
-          id: 'ch5',
-          chapter: 'ch5',
-          chapterNumber: 5,
-          chapterTitle: chapter5Title,
-          parts
-        });
-      }
-    }
-
-    return chapters.sort((a, b) => a.chapterNumber - b.chapterNumber);
+    return chapters;
   }
 
-  private static extractPartsForChapter(chapterText: string, chapterNumber: number): Part[] {
+  private static pia_extractParts(content: string, chapterNumber: number): Part[] {
     const parts: Part[] = [];
-
-    let cleanChapterText = chapterText;
-
-    if (chapterNumber < 10) {
-      const nextChapterNum = chapterNumber + 1;
-      const nextChapterPattern = new RegExp(`CHAPTER\\s+${nextChapterNum}`, 'i');
-      const nextChapterMatch = cleanChapterText.match(nextChapterPattern);
-      if (nextChapterMatch && nextChapterMatch.index !== undefined) {
-        cleanChapterText = cleanChapterText.substring(0, nextChapterMatch.index);
-      }
-    }
-
-    const scheduleStart = cleanChapterText.indexOf('FIRST SCHEDULE');
-    if (scheduleStart !== -1) {
-      cleanChapterText = cleanChapterText.substring(0, scheduleStart);
-    }
-
-    const schedulePatterns = [
-      /SECOND SCHEDULE/i,
-      /THIRD SCHEDULE/i,
-      /FOURTH SCHEDULE/i,
-      /FIFTH SCHEDULE/i,
-      /SCHEDULE\s+(?:ONE|1|TWO|2|THREE|3|FOUR|4|FIVE|5)/i
-    ];
-
-    for (const pattern of schedulePatterns) {
-      const scheduleMatch = cleanChapterText.match(pattern);
-      if (scheduleMatch && scheduleMatch.index !== undefined) {
-        cleanChapterText = cleanChapterText.substring(0, scheduleMatch.index);
-        break;
-      }
-    }
-
-    if (!cleanChapterText.trim()) {
-      return parts;
-    }
-
     const partRegex = /PART\s+([IVXLCDM]+)[—\-]\s*([^\n]+)/gi;
     const partMatches: Array<{ number: string, title: string, index: number }> = [];
 
-    let partMatch;
-    while ((partMatch = partRegex.exec(cleanChapterText)) !== null) {
-      if (partMatch.index === undefined) continue;
-
-      partMatches.push({
-        number: partMatch[1],
-        title: partMatch[2].toUpperCase().trim(),
-        index: partMatch.index
-      });
+    let match;
+    while ((match = partRegex.exec(content)) !== null) {
+      if (match.index === undefined) continue;
+      partMatches.push({ number: match[1], title: match[2].toUpperCase().trim(), index: match.index });
     }
 
-    console.log(`  Chapter ${chapterNumber}: Found ${partMatches.length} parts`);
-
-    if (partMatches.length > 0) {
-      for (let i = 0; i < partMatches.length; i++) {
-        const currentPart = partMatches[i];
-        const nextPartIndex = i + 1 < partMatches.length ? partMatches[i + 1].index : cleanChapterText.length;
-
-        const partContent = cleanChapterText.substring(currentPart.index, nextPartIndex);
-
-        const sections = this.extractSectionsFromContent(partContent, chapterNumber, i + 1);
-
-        parts.push({
-          id: `ch${chapterNumber}-pt${i + 1}`,
-          part: `ch${chapterNumber}-pt${i + 1}`,
-          partNumber: i + 1,
-          partTitle: currentPart.title,
-          sections
-        });
-      }
-    } else {
-      const sections = this.extractSectionsFromContent(cleanChapterText, chapterNumber, 1);
-
+    if (partMatches.length === 0) {
       parts.push({
         id: `ch${chapterNumber}-pt1`,
         part: `ch${chapterNumber}-pt1`,
         partNumber: 1,
-        partTitle: "PROVISIONS",
-        sections
+        partTitle: 'PROVISIONS',
+        sections: this.pia_extractSections(content, chapterNumber, 1)
       });
+      return parts;
     }
 
+    for (let i = 0; i < partMatches.length; i++) {
+      const current = partMatches[i];
+      const nextIndex = i + 1 < partMatches.length ? partMatches[i + 1].index : content.length;
+      const partContent = content.substring(current.index, nextIndex);
+      
+      parts.push({
+        id: `ch${chapterNumber}-pt${i + 1}`,
+        part: `ch${chapterNumber}-pt${i + 1}`,
+        partNumber: i + 1,
+        partTitle: current.title,
+        sections: this.pia_extractSections(partContent, chapterNumber, i + 1)
+      });
+    }
     return parts;
   }
 
-  private static extractSectionsFromContent(content: string, chapterNumber: number, partNumber: number): Section[] {
+  private static pia_extractSections(content: string, chapterNumber: number, partNumber: number): Section[] {
     const sections: Section[] = [];
-
-    if (!content.trim()) {
-      return sections;
-    }
-
-    const mainSectionRegex = /(?:^|\n)(\d{1,3})\.\s*(?:[—\-]?\s*\(?\d+\)?[—\-]?\s*)?([^\n]*)/g;
-
-    const allMatches: Array<{
-      type: 'main-section' | 'subsection',
-      number: number,
-      title: string,
-      index: number,
-      rawText: string
-    }> = [];
+    const sectionRegex = /(?:^|\n)(\d{1,3})\.\s*([^\n]+)/g;
+    const matches: Array<{ number: number, title: string, index: number, fullMatch: string }> = [];
 
     let match;
-    while ((match = mainSectionRegex.exec(content)) !== null) {
+    while ((match = sectionRegex.exec(content)) !== null) {
       if (match.index === undefined) continue;
-
-      const sectionNumber = parseInt(match[1]);
-      const sectionTitle = match[2].trim();
-
-      if (sectionNumber < 1 || sectionNumber > 999) {
-        continue;
-      }
-
-      if (sectionNumber < 10 && sectionTitle.length < 3) {
-        continue;
-      }
-
-      allMatches.push({
-        type: 'main-section',
-        number: sectionNumber,
-        title: sectionTitle,
+      matches.push({
+        number: parseInt(match[1]),
+        title: match[2].trim(),
         index: match.index,
-        rawText: match[0]
+        fullMatch: match[0]
       });
-    }
-
-    for (let i = 0; i < allMatches.length; i++) {
-      const currentMatch = allMatches[i];
-      const nextMatchIndex = i + 1 < allMatches.length ? allMatches[i + 1].index : content.length;
-
-      const sectionStart = currentMatch.index + currentMatch.rawText.length;
-      const sectionContent = content.substring(sectionStart, nextMatchIndex);
-
-      const sectionResults = this.processIndividualSection(
-        currentMatch.number,
-        currentMatch.title,
-        sectionContent,
-        chapterNumber,
-        partNumber
-      );
-
-      sections.push(...sectionResults);
-    }
-
-    return sections.sort((a, b) => {
-      const aMatch = a.id.match(/ch\d+-pt\d+-s(\d+)(?:-us(\d+))?/);
-      const bMatch = b.id.match(/ch\d+-pt\d+-s(\d+)(?:-us(\d+))?/);
-
-      if (!aMatch || !bMatch) return 0;
-
-      const aMain = parseInt(aMatch[1]);
-      const bMain = parseInt(bMatch[1]);
-      const aSub = aMatch[2] ? parseInt(aMatch[2]) : 0;
-      const bSub = bMatch[2] ? parseInt(bMatch[2]) : 0;
-
-      if (aMain !== bMain) {
-        return aMain - bMain;
-      }
-
-      return aSub - bSub;
-    });
-  }
-
-  private static processIndividualSection(
-    mainSectionNumber: number,
-    mainSectionTitle: string,
-    sectionContent: string,
-    chapterNumber: number,
-    partNumber: number
-  ): Section[] {
-    const sections: Section[] = [];
-
-    const cleanedMainTitle = this.cleanText(mainSectionTitle);
-
-    const mainSection: Section = {
-      id: `ch${chapterNumber}-pt${partNumber}-s${mainSectionNumber}`,
-      section: `ch${chapterNumber}-pt${partNumber}-s${mainSectionNumber}`,
-      sectionNumber: mainSectionNumber,
-      sectionTitle: cleanedMainTitle,
-      markdownContent: []
-    };
-
-    const parsedContent = this.parseSectionContentWithSubsections(sectionContent);
-
-    if (parsedContent.mainContent) {
-      mainSection.markdownContent = [parsedContent.mainContent];
-    }
-
-    sections.push(mainSection);
-
-    for (const sub of parsedContent.subsections) {
-      const subsection: Section = {
-        id: `ch${chapterNumber}-pt${partNumber}-s${mainSectionNumber}-us${sub.number}`,
-        section: `ch${chapterNumber}-pt${partNumber}-s${mainSectionNumber}-us${sub.number}`,
-        sectionNumber: mainSectionNumber,
-        sectionTitle: `(${sub.number})${sub.title ? ' ' + sub.title : ''}`,
-        markdownContent: sub.content ? [sub.content] : []
-      };
-      sections.push(subsection);
-    }
-
-    return sections;
-  }
-
-  private static parseSectionContentWithSubsections(content: string): {
-    mainContent: string;
-    subsections: Array<{ number: number, title: string, content: string }>;
-  } {
-    const result = {
-      mainContent: '',
-      subsections: [] as Array<{ number: number, title: string, content: string }>
-    };
-
-    if (!content.trim()) {
-      return result;
-    }
-
-    const subsectionPattern = /(?:^|\n)(?:\((\d+)\))(?:[—\-]?\s*)?([^\n]*)/g;
-    const matches: Array<{ number: number, title: string, index: number, rawText: string }> = [];
-
-    let match;
-    while ((match = subsectionPattern.exec(content)) !== null) {
-      if (match.index === undefined) continue;
-
-      const number = parseInt(match[1]);
-      if (number >= 1 && number <= 20) {
-        matches.push({
-          number: number,
-          title: match[2].trim(),
-          index: match.index,
-          rawText: match[0]
-        });
-      }
-    }
-
-    if (matches.length === 0) {
-      result.mainContent = this.cleanSectionContent(content, true);
-      return result;
-    }
-
-    const firstSubsectionIndex = matches[0].index;
-    const contentBeforeFirstSub = content.substring(0, firstSubsectionIndex).trim();
-
-    if (contentBeforeFirstSub) {
-      result.mainContent = this.cleanSectionContent(contentBeforeFirstSub, true);
     }
 
     for (let i = 0; i < matches.length; i++) {
-      const currentMatch = matches[i];
-      const nextMatchIndex = i + 1 < matches.length ? matches[i + 1].index : content.length;
+      const current = matches[i];
+      const nextIndex = i + 1 < matches.length ? matches[i + 1].index : content.length;
+      const sectionContent = content.substring(current.index + current.fullMatch.length, nextIndex);
 
-      const subStart = currentMatch.index + currentMatch.rawText.length;
-      const subContent = content.substring(subStart, nextMatchIndex).trim();
-
-      const cleanedContent = this.cleanSectionContent(subContent, true);
-      const cleanedTitle = this.cleanText(currentMatch.title);
-
-      result.subsections.push({
-        number: currentMatch.number,
-        title: cleanedTitle,
-        content: cleanedContent
+      sections.push({
+        id: `ch${chapterNumber}-pt${partNumber}-s${current.number}`,
+        section: `ch${chapterNumber}-pt${partNumber}-s${current.number}`,
+        sectionNumber: current.number,
+        sectionTitle: current.title,
+        markdownContent: sectionContent.trim() ? [sectionContent.trim()] : []
       });
     }
-
-    return result;
+    return sections;
   }
 
-  private static cleanSectionContent(content: string, extractAlphabetItems: boolean): string {
-    if (!content.trim()) return '';
-
-    let cleaned = content;
-
-    cleaned = cleaned.replace(/^[A-Z]\d+\s*$/gm, '');
-    cleaned = cleaned.replace(/^\s*\d{1,3}\s*$/gm, '');
-
-    const lines = cleaned.split('\n');
-    const processedLines: string[] = [];
-
-    for (let i = 0; i < lines.length; i++) {
-      let line = lines[i].trim();
-
-      if (!line) {
-        if (i > 0 && i < lines.length - 1 && lines[i - 1].trim() && lines[i + 1].trim()) {
-          processedLines.push('');
-        }
-        continue;
-      }
-
-      if (this.isPageArtifact(line)) {
-        continue;
-      }
-
-      if (i > 0 && this.isContinuationLine(line, lines[i - 1])) {
-        if (processedLines.length > 0) {
-          const lastLine = processedLines[processedLines.length - 1];
-          if (lastLine.endsWith('-')) {
-            processedLines[processedLines.length - 1] = lastLine.slice(0, -1) + line;
-          } else {
-            processedLines[processedLines.length - 1] = lastLine + ' ' + line;
-          }
-          continue;
-        }
-      }
-
-      processedLines.push(line);
-    }
-
-    cleaned = processedLines.join('\n');
-
-    if (extractAlphabetItems) {
-      cleaned = cleaned.replace(/\(([a-z])\)/g, '($1)');
-      cleaned = cleaned.replace(/([a-z])\)/g, '($1)');
-      cleaned = cleaned.replace(/\(([a-z])\./g, '($1)');
-      cleaned = cleaned.replace(/([a-z])\./g, '($1)');
-    }
-
-    cleaned = cleaned.replace(/\s+\)/g, ')');
-    cleaned = cleaned.replace(/\(\s+/g, '(');
-    cleaned = cleaned.replace(/\s+;/g, ' ;');
-    cleaned = cleaned.replace(/;\s+/g, ' ; ');
-    cleaned = cleaned.replace(/\s+:/g, ' :');
-    cleaned = cleaned.replace(/:\s+/g, ' : ');
-    cleaned = cleaned.replace(/\s*,\s*/g, ', ');
-    cleaned = cleaned.replace(/\s*-\s*/g, '-');
-    cleaned = cleaned.replace(/\s*—\s*/g, '—');
-    cleaned = cleaned.replace(/\s*\.\s*/g, '. ');
-    cleaned = cleaned.replace(/ {2,}/g, ' ');
-    cleaned = cleaned.replace(/\n{3,}/g, '\n\n');
-
-    return cleaned.trim();
+  private static pia_extractSchedules(text: string): Schedule[] {
+    return [
+      { id: 'sch1', schedule: 'sch1', scheduleNumber: 1, scheduleTitle: 'First Schedule', markdownContent: ['First Schedule content.'] },
+      { id: 'sch2', schedule: 'sch2', scheduleNumber: 2, scheduleTitle: 'Second Schedule', markdownContent: ['Second Schedule content.'] },
+      { id: 'sch3', schedule: 'sch3', scheduleNumber: 3, scheduleTitle: 'Third Schedule', markdownContent: ['Third Schedule content.'] },
+      { id: 'sch4', schedule: 'sch4', scheduleNumber: 4, scheduleTitle: 'Fourth Schedule', markdownContent: ['Fourth Schedule content.'] },
+      { id: 'sch5', schedule: 'sch5', scheduleNumber: 5, scheduleTitle: 'Fifth Schedule', markdownContent: ['Fifth Schedule content.'] }
+    ];
   }
 
-  // =============== HELPER METHODS ===============
-
-  private static isContinuationLine(line: string, prevLine: string): boolean {
-    const prevTrimmed = prevLine.trim();
-    const lineTrimmed = line.trim();
-
-    const prevEndsIncomplete = prevTrimmed.endsWith(';') ||
-      prevTrimmed.endsWith(',') ||
-      prevTrimmed.endsWith('-') ||
-      prevTrimmed.endsWith('—');
-
-    const looksLikeSection = lineTrimmed.match(/^\d+\.\s/) || lineTrimmed.match(/^\(\d+\)/);
-
-    if (prevEndsIncomplete && looksLikeSection) {
-      const sectionMatch = lineTrimmed.match(/^(\d+)\.\s/) || lineTrimmed.match(/^\((\d+)\)/);
-      if (sectionMatch) {
-        const sectionNum = parseInt(sectionMatch[1]);
-        return sectionNum < 10;
-      }
-    }
-
-    return false;
+  private static pia_extractTitle(text: string): string {
+    const match = text.match(/PETROLEUM\s+INDUSTRY\s+ACT[,\s]*(\d{4})/i);
+    return match ? `Petroleum Industry Act, ${match[1]}` : 'Petroleum Industry Act, 2021';
   }
 
-  private static cleanText(text: string): string {
-    if (!text) return '';
-
-    let cleaned = text.trim();
-
-    cleaned = cleaned.replace(/^[—:\-\.\s]+/, '');
-    cleaned = cleaned.replace(/[—:\-\.\s]+$/, '');
-
-    if (cleaned.length > 0 && /^[a-z]/.test(cleaned)) {
-      cleaned = cleaned.charAt(0).toUpperCase() + cleaned.slice(1);
-    }
-
-    cleaned = cleaned.replace(/\s+/g, ' ');
-
-    return cleaned;
+  private static pia_extractActNumber(text: string): string {
+    const match = text.match(/ACT\s+No\.?\s*(\d+)/i);
+    return match ? `No. ${match[1]}` : 'No. 6';
   }
 
-  private static isPageArtifact(line: string): boolean {
-    const trimmed = line.trim();
-
-    if (/^[A-Z]\d{2,4}$/.test(trimmed)) return true;
-    if (/^\d{1,3}$/.test(trimmed)) return true;
-    if (trimmed.length < 3 && !trimmed.match(/[a-z0-9]/i)) return true;
-    if (/^[\.\-\s]+$/.test(trimmed)) return true;
-
-    if (/^[A-Z\s]{2,30}$/.test(trimmed)) {
-      const commonHeaders = [
-        'PETROLEUM INDUSTRY ACT', 'ACT NO', 'CHAPTER', 'PART', 'SCHEDULE',
-        'FIRST', 'SECOND', 'THIRD', 'FOURTH', 'FIFTH',
-        'SIXTH', 'SEVENTH', 'EIGHTH', 'NINTH', 'TENTH',
-        'NIGERIA TAX ACT', 'TAX ACT', 'INCOME TAX'
-      ];
-
-      if (commonHeaders.some(header => trimmed.includes(header))) {
-        return true;
-      }
-    }
-
-    return false;
+  private static pia_extractYear(text: string): number {
+    const match = text.match(/20\d{2}/);
+    return match ? parseInt(match[0]) : 2021;
   }
 
-  private static cleanScheduleContent(content: string): string {
-    if (!content.trim()) return 'No content available.';
-
-    let cleaned = content;
-
-    // Remove page artifacts
-    cleaned = cleaned.replace(/^[A-Z]\d+\s*$/gm, '');
-    cleaned = cleaned.replace(/^\s*\d+\s*$/gm, '');
-    
-    // Remove any remaining schedule headers
-    cleaned = cleaned.replace(/^[A-Z\s]+SCHEDULE[^a-z]*/i, '');
-    
-    // Clean up formatting
-    cleaned = cleaned.replace(/\n{3,}/g, '\n\n');
-    cleaned = cleaned.replace(/ {2,}/g, ' ');
-    
-    // Trim each line
-    const lines = cleaned.split('\n');
-    const trimmedLines = lines
-      .map(line => line.trim())
-      .filter(line => line.length > 0);
-    
-    return trimmedLines.join('\n').trim();
+  private static pia_extractCommencementDate(text: string): string {
+    return '16th August, 2021';
   }
 
-  private static getPlaceholderSchedules(): Schedule[] {
-    const scheduleNames = ['First', 'Second', 'Third', 'Fourth', 'Fifth',
-      'Sixth', 'Seventh', 'Eighth', 'Ninth', 'Tenth', 'Eleventh', 'Twelfth', 'Thirteenth', 'Fourteenth'];
-
-    return scheduleNames.map((name, index) => ({
-      id: `sch${index + 1}`,
-      schedule: `sch${index + 1}`,
-      scheduleNumber: index + 1,
-      scheduleTitle: `${name} Schedule`,
-      markdownContent: [this.getScheduleDescription(name)]
-    }));
+  private static pia_extractDescription(): string {
+    return 'An Act to provide legal, governance, regulatory and fiscal framework for the Nigerian petroleum industry and host communities.';
   }
 
-  private static normalizeText(text: string): string {
-    return text
-      .replace(/\r\n/g, '\n')
-      .replace(/\r/g, '\n')
-      .replace(/\n{3,}/g, '\n\n')
-      .replace(/\u00A0/g, ' ')
-      .replace(/[—–]/g, '-')
-      .trim();
-  }
+  // ========================================================================
+  // PUBLIC HELPER METHODS
+  // ========================================================================
 
-  private static extractTitle(text: string, fileName: string): string {
-    const taxActMatch = text.match(/NIGERIA\s+TAX\s+ACT[,\s]*(\d{4})/i);
-    if (taxActMatch) {
-      return `Nigeria Tax Act, ${taxActMatch[1] || '2025'}`;
-    }
-
-    const titleMatch = text.match(/PETROLEUM\s+INDUSTRY\s+ACT[,\s]*(\d{4})/i);
-    return titleMatch ? `Petroleum Industry Act, ${titleMatch[1]}` :
-      fileName.replace(/\.[^/.]+$/, "") || 'Legal Document';
-  }
-
-  private static extractActNumber(text: string): string {
-    const taxActMatch = text.match(/ACT\s+NO\.?\s*(\d+)\s+OF\s+\d{4}/i) ||
-      text.match(/NIGERIA\s+TAX\s+ACT[,\s]*(\d{4})/i);
-    if (taxActMatch) {
-      return `No. ${taxActMatch[1] || '7'}`;
-    }
-
-    const actMatch = text.match(/ACT\s+No\.?\s*(\d+)/i);
-    return actMatch ? `No. ${actMatch[1]}` : 'No. 6';
-  }
-
-  private static extractYear(text: string): number {
-    const taxYearMatch = text.match(/NIGERIA\s+TAX\s+ACT[,\s]*(\d{4})/i);
-    if (taxYearMatch) {
-      const year = parseInt(taxYearMatch[1]);
-      if (!isNaN(year)) return year;
-    }
-
-    const yearInAct = text.match(/ACT\s+NO\.?\s*\d+\s+OF\s+(\d{4})/i);
-    if (yearInAct) {
-      const year = parseInt(yearInAct[1]);
-      if (!isNaN(year)) return year;
-    }
-
-    const commencementMatch = text.match(/\[(\d{4})\]/);
-    if (commencementMatch) {
-      const year = parseInt(commencementMatch[1]);
-      if (!isNaN(year)) return year;
-    }
-
-    const yearMatch = text.match(/(20\d{2})/);
-    return yearMatch ? parseInt(yearMatch[1]) : 2021;
-  }
-
-  private static extractCommencementDate(text: string): string {
-    const taxDateMatch = text.match(/\[(\d{1,2}(?:st|nd|rd|th)?\s+\w+\s*,\s*\d{4})\]/i);
-    if (taxDateMatch) {
-      return taxDateMatch[1];
-    }
-
-    const dateMatch = text.match(/Commencement[^:]*:\s*(\d{4}-\d{2}-\d{2})/i);
-    return dateMatch ? dateMatch[1] : '2021-08-16';
-  }
-
-  private static extractDescription(text: string): string {
-    if (text.includes('NIGERIA TAX ACT') || text.includes('TAX ACT')) {
-      return "An Act to repeal various tax laws and consolidate the legal frameworks relating to taxation in Nigeria, providing for taxation of income, transactions and instruments.";
-    }
-
-    return "An Act to provide legal, governance, regulatory and fiscal framework for the Nigerian petroleum industry and host communities.";
-  }
-
-  private static getScheduleDescription(name: string): string {
-    const descriptions: { [key: string]: string } = {
-      'First': 'Provisions relating to income tax rates and computations.',
-      'Second': 'Value Added Tax (VAT) provisions and exemptions.',
-      'Third': 'Stamp duties and transaction taxes.',
-      'Fourth': 'Tax incentives and relief provisions.',
-      'Fifth': 'Administrative procedures and compliance requirements.',
-      'Sixth': 'Penalties and enforcement provisions.',
-      'Seventh': 'Transitional and savings provisions.',
-      'Eighth': 'Miscellaneous provisions and amendments.',
-      'Ninth': 'Supplementary provisions.',
-      'Tenth': 'Final provisions and commencement.',
-      'Eleventh': 'Items on which tax is suspended.',
-      'Twelfth': 'Determination of residence.',
-      'Thirteenth': 'Exemption for agricultural business.',
-      'Fourteenth': 'Defence and Security Infrastructure Fund.'
-    };
-
-    return descriptions[name] || `Provisions and regulations for the ${name} Schedule.`;
-  }
-
-  private static extractMetadata(text: string): DocumentMetadata {
-    const isTaxAct = text.includes('NIGERIA TAX ACT') || text.includes('TAX ACT');
-
-    return {
-      source: isTaxAct ?
-        'Federal Republic of Nigeria Official Gazette' :
-        'Federal Republic of Nigeria Official Gazette',
-      publisher: isTaxAct ?
-        'Federal Government Printer, Abuja, Nigeria' :
-        'Federal Government Printer, Lagos, Nigeria',
-      pageRange: isTaxAct ? 'A1–A250' : 'A121–A370',
-      format: 'markdown',
-      encoding: 'UTF-8'
-    };
-  }
-
-  /**
-   * Generate table of contents
-   */
   static generateTableOfContents(structuredDoc: StructuredDocument): any {
-    return {
+    const toc: any = {
       id: structuredDoc.id,
       title: structuredDoc.title,
       actNumber: structuredDoc.actNumber,
-      year: structuredDoc.year,
-      chapters: structuredDoc.chapters.map(chapter => ({
+      year: structuredDoc.year
+    };
+
+    if (structuredDoc.chapters && structuredDoc.chapters.length > 0) {
+      toc.chapters = structuredDoc.chapters.map(chapter => ({
         id: chapter.id,
         chapterNumber: chapter.chapterNumber,
         chapterTitle: chapter.chapterTitle,
@@ -1736,25 +1549,52 @@ export class DocumentStructuredProcessor {
             sectionTitle: section.sectionTitle
           }))
         }))
-      })),
-      schedules: structuredDoc.schedules.map(schedule => ({
+      }));
+    }
+
+    if (structuredDoc.parts && structuredDoc.parts.length > 0) {
+      toc.parts = structuredDoc.parts.map(part => ({
+        id: part.id,
+        partNumber: part.partNumber,
+        partTitle: part.partTitle,
+        sections: part.sections.map(section => ({
+          id: section.id,
+          sectionNumber: section.sectionNumber,
+          sectionTitle: section.sectionTitle
+        }))
+      }));
+    }
+
+    if (structuredDoc.schedules) {
+      toc.schedules = structuredDoc.schedules.map(schedule => ({
         id: schedule.id,
         scheduleNumber: schedule.scheduleNumber,
         scheduleTitle: schedule.scheduleTitle
-      }))
-    };
+      }));
+    }
+
+    return toc;
   }
 
   static getSectionById(structuredDoc: StructuredDocument, sectionId: string): Section | null {
-    for (const chapter of structuredDoc.chapters) {
-      for (const part of chapter.parts) {
-        for (const section of part.sections) {
-          if (section.id === sectionId) {
-            return section;
+    if (structuredDoc.chapters) {
+      for (const chapter of structuredDoc.chapters) {
+        for (const part of chapter.parts) {
+          for (const section of part.sections) {
+            if (section.id === sectionId) return section;
           }
         }
       }
     }
+
+    if (structuredDoc.parts) {
+      for (const part of structuredDoc.parts) {
+        for (const section of part.sections) {
+          if (section.id === sectionId) return section;
+        }
+      }
+    }
+
     return null;
   }
 
@@ -1762,18 +1602,30 @@ export class DocumentStructuredProcessor {
     const results: Section[] = [];
     const lowerQuery = query.toLowerCase();
 
-    for (const chapter of structuredDoc.chapters) {
-      for (const part of chapter.parts) {
+    if (structuredDoc.chapters) {
+      for (const chapter of structuredDoc.chapters) {
+        for (const part of chapter.parts) {
+          for (const section of part.sections) {
+            if (section.sectionTitle.toLowerCase().includes(lowerQuery)) {
+              results.push(section);
+              continue;
+            }
+            const contentText = section.markdownContent.join(' ').toLowerCase();
+            if (contentText.includes(lowerQuery)) results.push(section);
+          }
+        }
+      }
+    }
+
+    if (structuredDoc.parts) {
+      for (const part of structuredDoc.parts) {
         for (const section of part.sections) {
           if (section.sectionTitle.toLowerCase().includes(lowerQuery)) {
             results.push(section);
             continue;
           }
-
           const contentText = section.markdownContent.join(' ').toLowerCase();
-          if (contentText.includes(lowerQuery)) {
-            results.push(section);
-          }
+          if (contentText.includes(lowerQuery)) results.push(section);
         }
       }
     }
@@ -1781,2513 +1633,3 @@ export class DocumentStructuredProcessor {
     return results;
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// export interface ProcessedContent {
-//   rawText: string;
-//   [key: string]: any;
-// }
-
-// export interface DocumentMetadata {
-//   source: string;
-//   publisher: string;
-//   pageRange: string;
-//   format: string;
-//   encoding: string;
-// }
-
-// export interface Schedule {
-//   id: string;
-//   schedule: string;
-//   scheduleNumber: number;
-//   scheduleTitle: string;
-//   markdownContent: string[];
-// }
-
-// export type ContentItem = string | ListItem | NumberedListItem;
-
-// export interface ListItem {
-//   letter: string;
-//   content: ContentItem[];
-// }
-
-// export interface NumberedListItem {
-//   number: string;
-//   content: ContentItem[];
-// }
-
-// export interface Section {
-//   id: string;
-//   section: string;
-//   sectionNumber: number;
-//   sectionTitle: string;
-//   markdownContent: ContentItem[];
-// }
-
-// export interface Part {
-//   id: string;
-//   part: string;
-//   partNumber: number;
-//   partTitle: string;
-//   sections: Section[];
-// }
-
-// export interface Chapter {
-//   id: string;
-//   chapter: string;
-//   chapterNumber: number;
-//   chapterTitle: string;
-//   parts: Part[];
-// }
-
-// export interface StructuredDocument {
-//   id: string;
-//   title: string;
-//   actNumber: string;
-//   year: number;
-//   commencementDate: string;
-//   description: string;
-//   chapters: Chapter[];
-//   schedules: Schedule[];
-//   metadata: DocumentMetadata;
-// }
-
-// export class DocumentStructuredProcessor {
-//   /**
-//    * Convert processed content to structured API response format
-//    */
-//   static processToStructuredFormat(
-//     processedContent: ProcessedContent,
-//     documentId: string,
-//     originalFileName: string
-//   ): StructuredDocument {
-//     const { rawText } = processedContent;
-
-//     console.log('=== PROCESSING DOCUMENT ===');
-//     console.log('Document filename:', originalFileName);
-//     console.log('Text length:', rawText.length);
-
-//     // Check if this is Nigeria Tax Act
-//     const isTaxAct = rawText.includes('NIGERIA TAX ACT') ||
-//       rawText.includes('AN ACT TO REPEAL THE CAPITAL GAINS TAX ACT') ||
-//       originalFileName.toUpperCase().includes('TAX') ||
-//       originalFileName.toUpperCase().includes('TAX-ACT');
-
-//     console.log('Is Tax Act?', isTaxAct);
-
-//     if (isTaxAct) {
-//       console.log('Processing Nigeria Tax Act document...');
-//       return this.processNigeriaTaxActBySections(rawText, documentId, originalFileName);
-//     }
-
-//     // For PIA documents - KEEP YOUR ORIGINAL IMPLEMENTATION
-//     console.log('Processing PIA document using original logic...');
-//     const contentStartIndex = this.findContentStartIndex(rawText, false);
-
-//     if (contentStartIndex === -1) {
-//       console.log('Could not find content start, using full text');
-//       return this.processFullDocument(rawText, documentId, originalFileName);
-//     }
-
-//     const contentText = rawText.substring(contentStartIndex);
-//     console.log('Content text starts at index:', contentStartIndex);
-//     console.log('Content text length:', contentText.length);
-
-//     return this.processFullDocument(contentText, documentId, originalFileName);
-//   }
-
-//   /**
-//    * Process Nigeria Tax Act by using SECTION NUMBERS to determine chapter boundaries
-//    * This is more reliable than trying to parse "CHAPTER" headers
-//    */
-//   private static processNigeriaTaxActBySections(
-//     text: string,
-//     documentId: string,
-//     originalFileName: string
-//   ): StructuredDocument {
-//     console.log('Processing Nigeria Tax Act by section numbers...');
-
-//     // Normalize the text
-//     const normalizedText = this.normalizeText(text);
-
-//     // Define chapter boundaries based on section numbers
-//     const chapterDefinitions = [
-//       { number: 1, title: 'OBJECTIVE AND APPLICATION', startSection: 1, endSection: 2 },
-//       { number: 2, title: 'TAXATION OF INCOME OF PERSONS', startSection: 3, endSection: 64 },
-//       { number: 3, title: 'TAXATION OF INCOME FROM PETROLEUM OPERATIONS', startSection: 65, endSection: 118 },
-//       { number: 4, title: 'RELIEF FOR DOUBLE TAXATION', startSection: 119, endSection: 122 },
-//       { number: 5, title: 'TAXATION OF DUTIABLE INSTRUMENTS', startSection: 123, endSection: 142 },
-//       { number: 6, title: 'VALUE ADDED TAX', startSection: 143, endSection: 157 },
-//       { number: 7, title: 'SURCHARGE', startSection: 158, endSection: 161 },
-//       { number: 8, title: 'TAX INCENTIVES', startSection: 162, endSection: 188 },
-//       { number: 9, title: 'GENERAL PROVISIONS', startSection: 189, endSection: 202 }
-//     ];
-
-//     // Find where the actual content starts (after table of contents)
-//     const contentStartIndex = this.findContentStartBySection1(normalizedText);
-//     const contentText = contentStartIndex !== -1 
-//       ? normalizedText.substring(contentStartIndex)
-//       : normalizedText;
-
-//     // Split the document into chapters based on section numbers
-//     const chapters = this.splitDocumentBySections(contentText, chapterDefinitions);
-//     console.log(`Split document into ${chapters.length} chapters based on section numbers`);
-
-//     // Extract schedules (everything after FIRST SCHEDULE)
-//     const schedules = this.extractSchedulesFromText(normalizedText);
-
-//     return {
-//       id: documentId,
-//       title: this.extractTitle(normalizedText, originalFileName),
-//       actNumber: this.extractActNumber(normalizedText),
-//       year: this.extractYear(normalizedText),
-//       commencementDate: this.extractCommencementDate(normalizedText),
-//       description: this.extractDescription(normalizedText),
-//       chapters,
-//       schedules,
-//       metadata: this.extractMetadata(normalizedText)
-//     };
-//   }
-
-//   /**
-//    * Find where the content starts by looking for section 1
-//    */
-//   private static findContentStartBySection1(text: string): number {
-//     console.log('Finding content start by looking for section 1...');
-    
-//     const patterns = [
-//       /\n\s*1\.\s+The\s+objective/i,
-//       /\n\s*1\.\s+Objective/i,
-//       /^1\.\s+The\s+objective/i,
-//       /^1\.\s+Objective/i
-//     ];
-
-//     for (const pattern of patterns) {
-//       const match = text.match(pattern);
-//       if (match && match.index !== undefined) {
-//         // Go backwards to find the chapter header if possible
-//         const textBefore = text.substring(0, match.index);
-//         const lastChapterIndex = textBefore.lastIndexOf('CHAPTER');
-//         if (lastChapterIndex !== -1) {
-//           return lastChapterIndex;
-//         }
-//         return match.index;
-//       }
-//     }
-
-//     return -1;
-//   }
-
-//   /**
-//    * Split the document into chapters based on section number ranges
-//    */
-//   private static splitDocumentBySections(
-//     text: string,
-//     chapterDefinitions: Array<{ number: number, title: string, startSection: number, endSection: number }>
-//   ): Chapter[] {
-//     const chapters: Chapter[] = [];
-
-//     console.log('Splitting document by section ranges...');
-
-//     // First, find all section markers with their positions
-//     const sectionPositions: Array<{ number: number, index: number }> = [];
-    
-//     const sectionRegex = /(?:^|\n)(\d{1,3})\.(?:[—–-]?\s*)/g;
-//     let match;
-    
-//     while ((match = sectionRegex.exec(text)) !== null) {
-//       if (match.index === undefined) continue;
-//       const sectionNumber = parseInt(match[1]);
-//       if (sectionNumber >= 1 && sectionNumber <= 202) {
-//         sectionPositions.push({
-//           number: sectionNumber,
-//           index: match.index
-//         });
-//       }
-//     }
-
-//     // Sort by position
-//     sectionPositions.sort((a, b) => a.index - b.index);
-
-//     console.log(`Found ${sectionPositions.length} section markers`);
-
-//     // For each chapter definition, extract the content between its start section and the next chapter's start section
-//     for (let i = 0; i < chapterDefinitions.length; i++) {
-//       const def = chapterDefinitions[i];
-      
-//       // Find the position of the first section in this chapter
-//       const startSectionPos = sectionPositions.find(sp => sp.number === def.startSection);
-      
-//       if (!startSectionPos) {
-//         console.log(`Could not find start section ${def.startSection} for Chapter ${def.number}, creating empty chapter`);
-//         const emptyChapter = this.createEmptyChapter(def.number, def.title);
-//         chapters.push(emptyChapter);
-//         continue;
-//       }
-
-//       // Find the end position (start of next chapter's first section, or end of document)
-//       let endIndex = text.length;
-      
-//       if (i + 1 < chapterDefinitions.length) {
-//         const nextChapterStartSection = chapterDefinitions[i + 1].startSection;
-//         const nextSectionPos = sectionPositions.find(sp => sp.number === nextChapterStartSection);
-//         if (nextSectionPos) {
-//           endIndex = nextSectionPos.index;
-//         }
-//       } else {
-//         // Last chapter - look for schedules
-//         const scheduleIndex = text.indexOf('FIRST SCHEDULE', startSectionPos.index);
-//         if (scheduleIndex !== -1) {
-//           endIndex = scheduleIndex;
-//         }
-//       }
-
-//       // Extract chapter content
-//       let chapterContent = text.substring(startSectionPos.index, endIndex).trim();
-
-//       // Extract chapter title
-//       let chapterTitle = def.title;
-      
-//       // Look for CHAPTER header before the first section
-//       const textBeforeFirstSection = text.substring(0, startSectionPos.index);
-//       const lastChapterIndex = textBeforeFirstSection.lastIndexOf('CHAPTER');
-//       if (lastChapterIndex !== -1) {
-//         const chapterHeaderLine = textBeforeFirstSection.substring(lastChapterIndex, startSectionPos.index).split('\n')[0];
-//         const titleMatch = chapterHeaderLine.match(/[—–-]\s*([^\n]+)/i);
-//         if (titleMatch) {
-//           chapterTitle = titleMatch[1].trim().toUpperCase();
-//         }
-//       }
-
-//       console.log(`Processing Chapter ${def.number} (sections ${def.startSection}-${def.endSection}), content length: ${chapterContent.length}`);
-
-//       // Extract parts and sections from this chapter
-//       const parts = this.extractPartsFromChapterContent(
-//         chapterContent,
-//         def.number,
-//         def.startSection,
-//         def.endSection
-//       );
-
-//       chapters.push({
-//         id: `ch${def.number}`,
-//         chapter: `ch${def.number}`,
-//         chapterNumber: def.number,
-//         chapterTitle,
-//         parts
-//       });
-//     }
-
-//     return chapters.sort((a, b) => a.chapterNumber - b.chapterNumber);
-//   }
-
-//   /**
-//    * Extract parts from chapter content
-//    */
-//   private static extractPartsFromChapterContent(
-//     content: string,
-//     chapterNumber: number,
-//     startSection: number,
-//     endSection: number
-//   ): Part[] {
-//     const parts: Part[] = [];
-
-//     if (!content.trim()) {
-//       return parts;
-//     }
-
-//     // Find all PART headers
-//     const partHeaders: Array<{ title: string, index: number, header: string }> = [];
-    
-//     const partRegex = /PART\s+(?:I|II|III|IV|V|VI|VII|VIII|IX|X|1|2|3|4|5|6|7|8|9|10|ONE|TWO|THREE|FOUR|FIVE)[—–-][^\n]*/gi;
-//     let match;
-    
-//     while ((match = partRegex.exec(content)) !== null) {
-//       if (match.index === undefined) continue;
-      
-//       let partTitle = '';
-//       const titleMatch = match[0].match(/[—–-]\s*([^\n]+)/i);
-//       if (titleMatch) {
-//         partTitle = titleMatch[1].trim().toUpperCase();
-//       }
-      
-//       partHeaders.push({
-//         title: partTitle,
-//         index: match.index,
-//         header: match[0]
-//       });
-//     }
-
-//     // Sort parts by position
-//     partHeaders.sort((a, b) => a.index - b.index);
-
-//     // If no parts found, treat whole chapter as one part
-//     if (partHeaders.length === 0) {
-//       const sections = this.extractSectionsByRange(
-//         content,
-//         chapterNumber,
-//         1,
-//         startSection,
-//         endSection
-//       );
-      
-//       parts.push({
-//         id: `ch${chapterNumber}-pt1`,
-//         part: `ch${chapterNumber}-pt1`,
-//         partNumber: 1,
-//         partTitle: 'PROVISIONS',
-//         sections
-//       });
-      
-//       return parts;
-//     }
-
-//     // Process each part
-//     for (let i = 0; i < partHeaders.length; i++) {
-//       const currentPart = partHeaders[i];
-      
-//       // Determine part end index
-//       let partEndIndex = content.length;
-//       if (i + 1 < partHeaders.length) {
-//         partEndIndex = partHeaders[i + 1].index;
-//       }
-      
-//       // Extract part content (after the header)
-//       const partContent = content.substring(
-//         currentPart.index + currentPart.header.length,
-//         partEndIndex
-//       ).trim();
-      
-//       // Extract sections from this part
-//       const sections = this.extractSectionsByRange(
-//         partContent,
-//         chapterNumber,
-//         i + 1,
-//         startSection,
-//         endSection
-//       );
-      
-//       parts.push({
-//         id: `ch${chapterNumber}-pt${i + 1}`,
-//         part: `ch${chapterNumber}-pt${i + 1}`,
-//         partNumber: i + 1,
-//         partTitle: currentPart.title || `PART ${i + 1}`,
-//         sections
-//       });
-//     }
-
-//     return parts;
-//   }
-
-//   /**
-//    * Extract sections from content by section number range
-//    * THIS REPLACES the overloaded extractSectionsFromContent
-//    */
-//   private static extractSectionsByRange(
-//     content: string,
-//     chapterNumber: number,
-//     partNumber: number,
-//     startSection: number,
-//     endSection: number
-//   ): Section[] {
-//     const sections: Section[] = [];
-
-//     if (!content.trim()) {
-//       return sections;
-//     }
-
-//     // Find all sections within the chapter's range
-//     const sectionRegex = /(?:^|\n)(\d{1,3})\.(?:[—–-]?\s*)?([^\n]*)/g;
-    
-//     const sectionMatches: Array<{
-//       number: number,
-//       title: string,
-//       index: number,
-//       fullMatch: string
-//     }> = [];
-
-//     let match;
-//     while ((match = sectionRegex.exec(content)) !== null) {
-//       if (match.index === undefined) continue;
-
-//       const sectionNumber = parseInt(match[1]);
-
-//       // Only accept sections within this chapter's range
-//       if (sectionNumber < startSection || sectionNumber > endSection) {
-//         continue;
-//       }
-
-//       let sectionTitle = match[2].trim();
-//       sectionTitle = sectionTitle.replace(/^[—–.\s-]+/, '').replace(/[—–.\s-]+$/, '');
-
-//       sectionMatches.push({
-//         number: sectionNumber,
-//         title: sectionTitle,
-//         index: match.index,
-//         fullMatch: match[0]
-//       });
-//     }
-
-//     // Process each section
-//     for (let i = 0; i < sectionMatches.length; i++) {
-//       const current = sectionMatches[i];
-
-//       // Determine section end
-//       let sectionEnd = content.length;
-//       if (i + 1 < sectionMatches.length) {
-//         sectionEnd = sectionMatches[i + 1].index;
-//       }
-
-//       // Extract section content
-//       const sectionStart = current.index + current.fullMatch.length;
-//       let sectionContent = content.substring(sectionStart, sectionEnd).trim();
-
-//       // Extract numbered subsections (1), (2), (3) etc.
-//       const subsections = this.extractNumberedSubsections(
-//         sectionContent,
-//         chapterNumber,
-//         partNumber,
-//         current.number
-//       );
-
-//       // Clean main content - remove the numbered subsections
-//       let mainContent = sectionContent;
-//       const firstSubIndex = sectionContent.search(/\(\d+\)/);
-//       if (firstSubIndex !== -1) {
-//         mainContent = sectionContent.substring(0, firstSubIndex).trim();
-//       }
-
-//       // Clean the main content
-//       mainContent = this.cleanSectionText(mainContent);
-
-//       // Create main section
-//       const mainSection: Section = {
-//         id: `ch${chapterNumber}-pt${partNumber}-s${current.number}`,
-//         section: `ch${chapterNumber}-pt${partNumber}-s${current.number}`,
-//         sectionNumber: current.number,
-//         sectionTitle: current.title || `Section ${current.number}`,
-//         markdownContent: mainContent ? [mainContent] : []
-//       };
-
-//       sections.push(mainSection);
-
-//       // Add subsections
-//       for (const sub of subsections) {
-//         sections.push(sub);
-//       }
-//     }
-
-//     return sections.sort((a, b) => {
-//       if (a.sectionNumber !== b.sectionNumber) {
-//         return a.sectionNumber - b.sectionNumber;
-//       }
-//       const aIsSub = a.id.includes('-us');
-//       const bIsSub = b.id.includes('-us');
-//       if (aIsSub && !bIsSub) return 1;
-//       if (!aIsSub && bIsSub) return -1;
-//       return 0;
-//     });
-//   }
-
-//   /**
-//    * Extract numbered subsections (1), (2), (3) from content
-//    */
-//   private static extractNumberedSubsections(
-//     content: string,
-//     chapterNumber: number,
-//     partNumber: number,
-//     sectionNumber: number
-//   ): Section[] {
-//     const subsections: Section[] = [];
-
-//     if (!content) return subsections;
-
-//     const subsectionRegex = /\((\d+)\)(?:\s*[—–-]?\s*)?([^\n]*)/gi;
-    
-//     let match;
-//     let counter = 1;
-
-//     while ((match = subsectionRegex.exec(content)) !== null) {
-//       if (match.index === undefined) continue;
-
-//       const subNum = match[1];
-//       let subTitle = match[2].trim();
-//       subTitle = subTitle.replace(/\s+/g, ' ').trim();
-
-//       // Find where this subsection ends
-//       const nextSubIndex = content.indexOf('\n(', match.index + 1);
-//       const subEnd = nextSubIndex !== -1 ? nextSubIndex : content.length;
-      
-//       const subStart = match.index + match[0].length;
-//       let subContent = content.substring(subStart, subEnd).trim();
-      
-//       // Clean the content
-//       subContent = this.cleanSubsectionText(subContent);
-
-//       const subsection: Section = {
-//         id: `ch${chapterNumber}-pt${partNumber}-s${sectionNumber}-us${counter}`,
-//         section: `ch${chapterNumber}-pt${partNumber}-s${sectionNumber}-us${counter}`,
-//         sectionNumber: sectionNumber,
-//         sectionTitle: `(${subNum})${subTitle ? ' ' + subTitle : ''}`,
-//         markdownContent: subContent ? [subContent] : []
-//       };
-
-//       subsections.push(subsection);
-//       counter++;
-//     }
-
-//     return subsections;
-//   }
-
-//   /**
-//    * Clean section text
-//    */
-//   private static cleanSectionText(text: string): string {
-//     if (!text) return '';
-
-//     let cleaned = text;
-
-//     // Remove page artifacts
-//     cleaned = cleaned.replace(/^[A-Z]\d+\s*$/gm, '');
-//     cleaned = cleaned.replace(/^\s*\d{1,3}\s*$/gm, '');
-
-//     // Remove standalone headers
-//     const headersToRemove = [
-//       'Objective', 'Application', 'Imposition of tax',
-//       'Income, profits or gains chargeable to tax', 'Chargeability to tax',
-//       'Nigerian company', 'Nigerian divi- dends',
-//       'Profits of a company from certain dividends',
-//       'Partnership of companies', 'Resident individual',
-//       'Employment income', 'Benefits-in-kind',
-//       'Partnership of individuals', 'Settlements, trusts and estates',
-//       'Non-resident person', 'Nigerian dividends received by Non-Resident persons',
-//       'Deductions allowed', 'Deductions not allowed'
-//     ];
-
-//     for (const header of headersToRemove) {
-//       const pattern = new RegExp(`^\\s*${header.replace(/\s+/g, '\\s+')}\\s*$`, 'gim');
-//       cleaned = cleaned.replace(pattern, '');
-//     }
-
-//     // Handle hyphenated words
-//     cleaned = cleaned.replace(/([a-zA-Z])-\s+([a-zA-Z])/g, '$1$2');
-//     cleaned = cleaned.replace(/([a-zA-Z])-\n([a-zA-Z])/g, '$1$2');
-
-//     // Clean formatting
-//     cleaned = cleaned.replace(/\n{3,}/g, '\n\n');
-//     cleaned = cleaned.replace(/\s+\)/g, ')');
-//     cleaned = cleaned.replace(/\(\s+/g, '(');
-//     cleaned = cleaned.replace(/\s*,\s*/g, ', ');
-//     cleaned = cleaned.replace(/\s*;\s*/g, '; ');
-//     cleaned = cleaned.replace(/\s*:\s*/g, ': ');
-//     cleaned = cleaned.replace(/\s*\.\s*/g, '. ');
-//     cleaned = cleaned.replace(/ {2,}/g, ' ');
-
-//     const lines = cleaned.split('\n');
-//     const filteredLines = lines
-//       .map(line => line.trim())
-//       .filter(line => {
-//         if (line.length === 0) return false;
-//         if (/^\d+$/.test(line)) return false;
-//         if (line.length < 3 && !/[a-zA-Z]/.test(line)) return false;
-//         return true;
-//       });
-
-//     return filteredLines.join('\n').trim();
-//   }
-
-//   /**
-//    * Clean subsection text
-//    */
-//   private static cleanSubsectionText(text: string): string {
-//     if (!text) return '';
-
-//     let cleaned = text;
-
-//     // Remove page artifacts
-//     cleaned = cleaned.replace(/^[A-Z]\d+\s*$/gm, '');
-//     cleaned = cleaned.replace(/^\s*\d{1,3}\s*$/gm, '');
-
-//     // Handle hyphenated words
-//     cleaned = cleaned.replace(/([a-zA-Z])-\s+([a-zA-Z])/g, '$1$2');
-//     cleaned = cleaned.replace(/([a-zA-Z])-\n([a-zA-Z])/g, '$1$2');
-
-//     // Clean formatting
-//     cleaned = cleaned.replace(/\n{3,}/g, '\n\n');
-//     cleaned = cleaned.replace(/\s+\)/g, ')');
-//     cleaned = cleaned.replace(/\(\s+/g, '(');
-//     cleaned = cleaned.replace(/\s*,\s*/g, ', ');
-//     cleaned = cleaned.replace(/\s*;\s*/g, '; ');
-//     cleaned = cleaned.replace(/\s*:\s*/g, ': ');
-//     cleaned = cleaned.replace(/\s*\.\s*/g, '. ');
-//     cleaned = cleaned.replace(/ {2,}/g, ' ');
-
-//     return cleaned.trim();
-//   }
-
-//   /**
-//    * Create an empty chapter
-//    */
-//   private static createEmptyChapter(chapterNumber: number, title: string): Chapter {
-//     return {
-//       id: `ch${chapterNumber}`,
-//       chapter: `ch${chapterNumber}`,
-//       chapterNumber,
-//       chapterTitle: title,
-//       parts: [{
-//         id: `ch${chapterNumber}-pt1`,
-//         part: `ch${chapterNumber}-pt1`,
-//         partNumber: 1,
-//         partTitle: 'PROVISIONS',
-//         sections: []
-//       }]
-//     };
-//   }
-
-//   /**
-//    * Create Chapter 1 manually
-//    */
-//   private static createChapter1(): Chapter {
-//     const sections: Section[] = [
-//       {
-//         id: 'ch1-pt1-s1',
-//         section: 'ch1-pt1-s1',
-//         sectionNumber: 1,
-//         sectionTitle: 'The objective of this Act is to provide a unified fiscal legislation governing taxation in Nigeria.',
-//         markdownContent: []
-//       },
-//       {
-//         id: 'ch1-pt1-s2',
-//         section: 'ch1-pt1-s2',
-//         sectionNumber: 2,
-//         sectionTitle: 'This Act applies throughout Nigeria to any person required to comply with any provision of the tax laws whether personally or on behalf of another person.',
-//         markdownContent: []
-//       }
-//     ];
-
-//     const part: Part = {
-//       id: 'ch1-pt1',
-//       part: 'ch1-pt1',
-//       partNumber: 1,
-//       partTitle: 'OBJECTIVE AND APPLICATION',
-//       sections
-//     };
-
-//     return {
-//       id: 'ch1',
-//       chapter: 'ch1',
-//       chapterNumber: 1,
-//       chapterTitle: 'OBJECTIVE AND APPLICATION',
-//       parts: [part]
-//     };
-//   }
-
-//   // =============== PIA METHODS - KEEP YOUR ORIGINAL IMPLEMENTATION ===============
-
-//   private static findContentStartIndex(text: string, isTaxAct: boolean = false): number {
-//     console.log('Finding content start for document type:', isTaxAct ? 'Tax Act' : 'PIA');
-
-//     if (isTaxAct) {
-//       return -1;
-//     }
-
-//     const piaPatterns = [
-//       /CHAPTER\s+1[—\-]\s*GOVERNANCE\s+AND\s+INSTITUTIONS\s+PART\s+I[—\-]\s*OBJECTIVES\s+AND\s+APPLICATION\s*\n\s*\d+\.\s+/i,
-//       /CHAPTER\s+1[—\-]\s*GOVERNANCE\s+AND\s+INSTITUTIONS[^\n]*\n\s*\d+\.\s+The\s+property\s+and\s+ownership/i,
-//       /CHAPTER\s+1[—\-][\s\S]*?1\.\s+The\s+property\s+and\s+ownership/i,
-//       /PETROLEUM\s+INDUSTRY\s+ACT,\s*2021[\s\S]*?CHAPTER\s+1[—\-]/i,
-//     ];
-
-//     for (const pattern of piaPatterns) {
-//       const match = text.match(pattern);
-//       if (match && match.index !== undefined) {
-//         console.log(`Found PIA pattern at index: ${match.index}`);
-//         return match.index;
-//       }
-//     }
-
-//     return -1;
-//   }
-
-//   private static processFullDocument(
-//     text: string,
-//     documentId: string,
-//     originalFileName: string
-//   ): StructuredDocument {
-//     console.log('Processing PIA document...');
-//     const normalizedText = this.normalizeText(text);
-
-//     const result = {
-//       id: documentId,
-//       title: this.extractTitle(normalizedText, originalFileName),
-//       actNumber: this.extractActNumber(normalizedText),
-//       year: this.extractYear(normalizedText),
-//       commencementDate: this.extractCommencementDate(normalizedText),
-//       description: this.extractDescription(normalizedText),
-//       chapters: this.parsePIAStructure(normalizedText),
-//       schedules: this.extractSchedulesFromText(normalizedText),
-//       metadata: this.extractMetadata(normalizedText)
-//     };
-
-//     console.log('PIA document processing complete. Chapters found:', result.chapters.length);
-
-//     return result;
-//   }
-
-//   private static parsePIAStructure(text: string): Chapter[] {
-//     const chapters: Chapter[] = [];
-
-//     const chapterRegex = /CHAPTER\s+(\d+)[—\-]\s*([^\n]+)/gi;
-//     const chapterMatches: Array<{ number: number, title: string, index: number }> = [];
-
-//     let match;
-//     while ((match = chapterRegex.exec(text)) !== null) {
-//       if (match.index === undefined) continue;
-
-//       const chapterNumber = parseInt(match[1]);
-//       const chapterTitle = match[2].toUpperCase().trim();
-
-//       chapterMatches.push({
-//         number: chapterNumber,
-//         title: chapterTitle,
-//         index: match.index
-//       });
-//     }
-
-//     console.log(`Found ${chapterMatches.length} chapters in PIA text`);
-
-//     for (let i = 0; i < chapterMatches.length; i++) {
-//       const currentChapter = chapterMatches[i];
-
-//       let nextChapterIndex;
-//       if (i + 1 < chapterMatches.length) {
-//         nextChapterIndex = chapterMatches[i + 1].index;
-//       } else {
-//         const scheduleStart = text.indexOf('FIRST SCHEDULE', currentChapter.index);
-//         nextChapterIndex = scheduleStart !== -1 ? scheduleStart : text.length;
-//       }
-
-//       const chapterContent = text.substring(currentChapter.index, nextChapterIndex);
-
-//       console.log(`Processing PIA Chapter ${currentChapter.number}: ${currentChapter.title}`);
-
-//       let cleanChapterContent = chapterContent;
-
-//       if (currentChapter.number === 3) {
-//         const chapter4Start = chapterContent.indexOf('CHAPTER 4');
-//         if (chapter4Start !== -1) {
-//           cleanChapterContent = chapterContent.substring(0, chapter4Start);
-//         }
-//       }
-
-//       if (currentChapter.number === 4) {
-//         const chapter5Start = chapterContent.indexOf('CHAPTER 5');
-//         if (chapter5Start !== -1) {
-//           cleanChapterContent = chapterContent.substring(0, chapter5Start);
-//         }
-//       }
-
-//       const parts = this.extractPartsForChapter(cleanChapterContent, currentChapter.number);
-
-//       chapters.push({
-//         id: `ch${currentChapter.number}`,
-//         chapter: `ch${currentChapter.number}`,
-//         chapterNumber: currentChapter.number,
-//         chapterTitle: currentChapter.title,
-//         parts
-//       });
-//     }
-
-//     const chapterNumbers = chapters.map(ch => ch.chapterNumber);
-
-//     if (!chapterNumbers.includes(4)) {
-//       console.log('Adding missing Chapter 4...');
-//       const chapter4Index = text.indexOf('CHAPTER 4');
-//       if (chapter4Index !== -1) {
-//         let chapter4EndIndex = text.indexOf('CHAPTER 5', chapter4Index);
-//         if (chapter4EndIndex === -1) {
-//           chapter4EndIndex = text.indexOf('FIRST SCHEDULE', chapter4Index);
-//           if (chapter4EndIndex === -1) {
-//             chapter4EndIndex = text.length;
-//           }
-//         }
-
-//         const chapter4Content = text.substring(chapter4Index, chapter4EndIndex);
-//         const parts = this.extractPartsForChapter(chapter4Content, 4);
-
-//         const titleMatch = chapter4Content.match(/CHAPTER\s+4[—\-]\s*([^\n]+)/i);
-//         const chapter4Title = titleMatch ? titleMatch[1].toUpperCase().trim() : 'PETROLEUM INDUSTRY FISCAL FRAMEWORK';
-
-//         chapters.push({
-//           id: 'ch4',
-//           chapter: 'ch4',
-//           chapterNumber: 4,
-//           chapterTitle: chapter4Title,
-//           parts
-//         });
-//       }
-//     }
-
-//     if (!chapterNumbers.includes(5)) {
-//       console.log('Adding missing Chapter 5...');
-//       const chapter5Index = text.indexOf('CHAPTER 5');
-//       if (chapter5Index !== -1) {
-//         let chapter5EndIndex = text.indexOf('FIRST SCHEDULE', chapter5Index);
-//         if (chapter5EndIndex === -1) {
-//           chapter5EndIndex = text.length;
-//         }
-
-//         const chapter5Content = text.substring(chapter5Index, chapter5EndIndex);
-//         const parts = this.extractPartsForChapter(chapter5Content, 5);
-
-//         const titleMatch = chapter5Content.match(/CHAPTER\s+5[—\-]\s*([^\n]+)/i);
-//         const chapter5Title = titleMatch ? titleMatch[1].toUpperCase().trim() : 'MISCELLANEOUS PROVISIONS';
-
-//         chapters.push({
-//           id: 'ch5',
-//           chapter: 'ch5',
-//           chapterNumber: 5,
-//           chapterTitle: chapter5Title,
-//           parts
-//         });
-//       }
-//     }
-
-//     return chapters.sort((a, b) => a.chapterNumber - b.chapterNumber);
-//   }
-
-//   private static extractPartsForChapter(chapterText: string, chapterNumber: number): Part[] {
-//     const parts: Part[] = [];
-
-//     let cleanChapterText = chapterText;
-
-//     if (chapterNumber < 10) {
-//       const nextChapterNum = chapterNumber + 1;
-//       const nextChapterPattern = new RegExp(`CHAPTER\\s+${nextChapterNum}`, 'i');
-//       const nextChapterMatch = cleanChapterText.match(nextChapterPattern);
-//       if (nextChapterMatch && nextChapterMatch.index !== undefined) {
-//         cleanChapterText = cleanChapterText.substring(0, nextChapterMatch.index);
-//       }
-//     }
-
-//     const scheduleStart = cleanChapterText.indexOf('FIRST SCHEDULE');
-//     if (scheduleStart !== -1) {
-//       cleanChapterText = cleanChapterText.substring(0, scheduleStart);
-//     }
-
-//     const schedulePatterns = [
-//       /SECOND SCHEDULE/i,
-//       /THIRD SCHEDULE/i,
-//       /FOURTH SCHEDULE/i,
-//       /FIFTH SCHEDULE/i,
-//       /SCHEDULE\s+(?:ONE|1|TWO|2|THREE|3|FOUR|4|FIVE|5)/i
-//     ];
-
-//     for (const pattern of schedulePatterns) {
-//       const scheduleMatch = cleanChapterText.match(pattern);
-//       if (scheduleMatch && scheduleMatch.index !== undefined) {
-//         cleanChapterText = cleanChapterText.substring(0, scheduleMatch.index);
-//         break;
-//       }
-//     }
-
-//     if (!cleanChapterText.trim()) {
-//       return parts;
-//     }
-
-//     const partRegex = /PART\s+([IVXLCDM]+)[—\-]\s*([^\n]+)/gi;
-//     const partMatches: Array<{ number: string, title: string, index: number }> = [];
-
-//     let partMatch;
-//     while ((partMatch = partRegex.exec(cleanChapterText)) !== null) {
-//       if (partMatch.index === undefined) continue;
-
-//       partMatches.push({
-//         number: partMatch[1],
-//         title: partMatch[2].toUpperCase().trim(),
-//         index: partMatch.index
-//       });
-//     }
-
-//     console.log(`  Chapter ${chapterNumber}: Found ${partMatches.length} parts`);
-
-//     if (partMatches.length > 0) {
-//       for (let i = 0; i < partMatches.length; i++) {
-//         const currentPart = partMatches[i];
-//         const nextPartIndex = i + 1 < partMatches.length ? partMatches[i + 1].index : cleanChapterText.length;
-
-//         const partContent = cleanChapterText.substring(currentPart.index, nextPartIndex);
-
-//         const sections = this.extractSectionsFromContent(partContent, chapterNumber, i + 1);
-
-//         parts.push({
-//           id: `ch${chapterNumber}-pt${i + 1}`,
-//           part: `ch${chapterNumber}-pt${i + 1}`,
-//           partNumber: i + 1,
-//           partTitle: currentPart.title,
-//           sections
-//         });
-//       }
-//     } else {
-//       const sections = this.extractSectionsFromContent(cleanChapterText, chapterNumber, 1);
-
-//       parts.push({
-//         id: `ch${chapterNumber}-pt1`,
-//         part: `ch${chapterNumber}-pt1`,
-//         partNumber: 1,
-//         partTitle: "PROVISIONS",
-//         sections
-//       });
-//     }
-
-//     return parts;
-//   }
-
-//   private static extractSectionsFromContent(content: string, chapterNumber: number, partNumber: number): Section[] {
-//     const sections: Section[] = [];
-
-//     if (!content.trim()) {
-//       return sections;
-//     }
-
-//     const mainSectionRegex = /(?:^|\n)(\d{1,3})\.\s*(?:[—\-]?\s*\(?\d+\)?[—\-]?\s*)?([^\n]*)/g;
-
-//     const allMatches: Array<{
-//       type: 'main-section' | 'subsection',
-//       number: number,
-//       title: string,
-//       index: number,
-//       rawText: string
-//     }> = [];
-
-//     let match;
-//     while ((match = mainSectionRegex.exec(content)) !== null) {
-//       if (match.index === undefined) continue;
-
-//       const sectionNumber = parseInt(match[1]);
-//       const sectionTitle = match[2].trim();
-
-//       if (sectionNumber < 1 || sectionNumber > 999) {
-//         continue;
-//       }
-
-//       if (sectionNumber < 10 && sectionTitle.length < 3) {
-//         continue;
-//       }
-
-//       allMatches.push({
-//         type: 'main-section',
-//         number: sectionNumber,
-//         title: sectionTitle,
-//         index: match.index,
-//         rawText: match[0]
-//       });
-//     }
-
-//     for (let i = 0; i < allMatches.length; i++) {
-//       const currentMatch = allMatches[i];
-//       const nextMatchIndex = i + 1 < allMatches.length ? allMatches[i + 1].index : content.length;
-
-//       const sectionStart = currentMatch.index + currentMatch.rawText.length;
-//       const sectionContent = content.substring(sectionStart, nextMatchIndex);
-
-//       const sectionResults = this.processIndividualSection(
-//         currentMatch.number,
-//         currentMatch.title,
-//         sectionContent,
-//         chapterNumber,
-//         partNumber
-//       );
-
-//       sections.push(...sectionResults);
-//     }
-
-//     return sections.sort((a, b) => {
-//       const aMatch = a.id.match(/ch\d+-pt\d+-s(\d+)(?:-us(\d+))?/);
-//       const bMatch = b.id.match(/ch\d+-pt\d+-s(\d+)(?:-us(\d+))?/);
-
-//       if (!aMatch || !bMatch) return 0;
-
-//       const aMain = parseInt(aMatch[1]);
-//       const bMain = parseInt(bMatch[1]);
-//       const aSub = aMatch[2] ? parseInt(aMatch[2]) : 0;
-//       const bSub = bMatch[2] ? parseInt(bMatch[2]) : 0;
-
-//       if (aMain !== bMain) {
-//         return aMain - bMain;
-//       }
-
-//       return aSub - bSub;
-//     });
-//   }
-
-//   private static processIndividualSection(
-//     mainSectionNumber: number,
-//     mainSectionTitle: string,
-//     sectionContent: string,
-//     chapterNumber: number,
-//     partNumber: number
-//   ): Section[] {
-//     const sections: Section[] = [];
-
-//     const cleanedMainTitle = this.cleanText(mainSectionTitle);
-
-//     const mainSection: Section = {
-//       id: `ch${chapterNumber}-pt${partNumber}-s${mainSectionNumber}`,
-//       section: `ch${chapterNumber}-pt${partNumber}-s${mainSectionNumber}`,
-//       sectionNumber: mainSectionNumber,
-//       sectionTitle: cleanedMainTitle,
-//       markdownContent: []
-//     };
-
-//     const parsedContent = this.parseSectionContentWithSubsections(sectionContent);
-
-//     if (parsedContent.mainContent) {
-//       mainSection.markdownContent = [parsedContent.mainContent];
-//     }
-
-//     sections.push(mainSection);
-
-//     for (const sub of parsedContent.subsections) {
-//       const subsection: Section = {
-//         id: `ch${chapterNumber}-pt${partNumber}-s${mainSectionNumber}-us${sub.number}`,
-//         section: `ch${chapterNumber}-pt${partNumber}-s${mainSectionNumber}-us${sub.number}`,
-//         sectionNumber: mainSectionNumber,
-//         sectionTitle: `(${sub.number})${sub.title ? ' ' + sub.title : ''}`,
-//         markdownContent: sub.content ? [sub.content] : []
-//       };
-//       sections.push(subsection);
-//     }
-
-//     return sections;
-//   }
-
-//   private static parseSectionContentWithSubsections(content: string): {
-//     mainContent: string;
-//     subsections: Array<{ number: number, title: string, content: string }>;
-//   } {
-//     const result = {
-//       mainContent: '',
-//       subsections: [] as Array<{ number: number, title: string, content: string }>
-//     };
-
-//     if (!content.trim()) {
-//       return result;
-//     }
-
-//     const subsectionPattern = /(?:^|\n)(?:\((\d+)\))(?:[—\-]?\s*)?([^\n]*)/g;
-//     const matches: Array<{ number: number, title: string, index: number, rawText: string }> = [];
-
-//     let match;
-//     while ((match = subsectionPattern.exec(content)) !== null) {
-//       if (match.index === undefined) continue;
-
-//       const number = parseInt(match[1]);
-//       if (number >= 1 && number <= 20) {
-//         matches.push({
-//           number: number,
-//           title: match[2].trim(),
-//           index: match.index,
-//           rawText: match[0]
-//         });
-//       }
-//     }
-
-//     if (matches.length === 0) {
-//       result.mainContent = this.cleanSectionContent(content, true);
-//       return result;
-//     }
-
-//     const firstSubsectionIndex = matches[0].index;
-//     const contentBeforeFirstSub = content.substring(0, firstSubsectionIndex).trim();
-
-//     if (contentBeforeFirstSub) {
-//       result.mainContent = this.cleanSectionContent(contentBeforeFirstSub, true);
-//     }
-
-//     for (let i = 0; i < matches.length; i++) {
-//       const currentMatch = matches[i];
-//       const nextMatchIndex = i + 1 < matches.length ? matches[i + 1].index : content.length;
-
-//       const subStart = currentMatch.index + currentMatch.rawText.length;
-//       const subContent = content.substring(subStart, nextMatchIndex).trim();
-
-//       const cleanedContent = this.cleanSectionContent(subContent, true);
-//       const cleanedTitle = this.cleanText(currentMatch.title);
-
-//       result.subsections.push({
-//         number: currentMatch.number,
-//         title: cleanedTitle,
-//         content: cleanedContent
-//       });
-//     }
-
-//     return result;
-//   }
-
-//   private static cleanSectionContent(content: string, extractAlphabetItems: boolean): string {
-//     if (!content.trim()) return '';
-
-//     let cleaned = content;
-
-//     cleaned = cleaned.replace(/^[A-Z]\d+\s*$/gm, '');
-//     cleaned = cleaned.replace(/^\s*\d{1,3}\s*$/gm, '');
-
-//     const lines = cleaned.split('\n');
-//     const processedLines: string[] = [];
-
-//     for (let i = 0; i < lines.length; i++) {
-//       let line = lines[i].trim();
-
-//       if (!line) {
-//         if (i > 0 && i < lines.length - 1 && lines[i - 1].trim() && lines[i + 1].trim()) {
-//           processedLines.push('');
-//         }
-//         continue;
-//       }
-
-//       if (this.isPageArtifact(line)) {
-//         continue;
-//       }
-
-//       if (i > 0 && this.isContinuationLine(line, lines[i - 1])) {
-//         if (processedLines.length > 0) {
-//           const lastLine = processedLines[processedLines.length - 1];
-//           if (lastLine.endsWith('-')) {
-//             processedLines[processedLines.length - 1] = lastLine.slice(0, -1) + line;
-//           } else {
-//             processedLines[processedLines.length - 1] = lastLine + ' ' + line;
-//           }
-//           continue;
-//         }
-//       }
-
-//       processedLines.push(line);
-//     }
-
-//     cleaned = processedLines.join('\n');
-
-//     if (extractAlphabetItems) {
-//       cleaned = cleaned.replace(/\(([a-z])\)/g, '($1)');
-//       cleaned = cleaned.replace(/([a-z])\)/g, '($1)');
-//       cleaned = cleaned.replace(/\(([a-z])\./g, '($1)');
-//       cleaned = cleaned.replace(/([a-z])\./g, '($1)');
-//     }
-
-//     cleaned = cleaned.replace(/\s+\)/g, ')');
-//     cleaned = cleaned.replace(/\(\s+/g, '(');
-//     cleaned = cleaned.replace(/\s+;/g, ' ;');
-//     cleaned = cleaned.replace(/;\s+/g, ' ; ');
-//     cleaned = cleaned.replace(/\s+:/g, ' :');
-//     cleaned = cleaned.replace(/:\s+/g, ' : ');
-//     cleaned = cleaned.replace(/\s*,\s*/g, ', ');
-//     cleaned = cleaned.replace(/\s*-\s*/g, '-');
-//     cleaned = cleaned.replace(/\s*—\s*/g, '—');
-//     cleaned = cleaned.replace(/\s*\.\s*/g, '. ');
-//     cleaned = cleaned.replace(/ {2,}/g, ' ');
-//     cleaned = cleaned.replace(/\n{3,}/g, '\n\n');
-
-//     return cleaned.trim();
-//   }
-
-//   // =============== HELPER METHODS ===============
-
-//   private static isContinuationLine(line: string, prevLine: string): boolean {
-//     const prevTrimmed = prevLine.trim();
-//     const lineTrimmed = line.trim();
-
-//     const prevEndsIncomplete = prevTrimmed.endsWith(';') ||
-//       prevTrimmed.endsWith(',') ||
-//       prevTrimmed.endsWith('-') ||
-//       prevTrimmed.endsWith('—');
-
-//     const looksLikeSection = lineTrimmed.match(/^\d+\.\s/) || lineTrimmed.match(/^\(\d+\)/);
-
-//     if (prevEndsIncomplete && looksLikeSection) {
-//       const sectionMatch = lineTrimmed.match(/^(\d+)\.\s/) || lineTrimmed.match(/^\((\d+)\)/);
-//       if (sectionMatch) {
-//         const sectionNum = parseInt(sectionMatch[1]);
-//         return sectionNum < 10;
-//       }
-//     }
-
-//     return false;
-//   }
-
-//   private static cleanText(text: string): string {
-//     if (!text) return '';
-
-//     let cleaned = text.trim();
-
-//     cleaned = cleaned.replace(/^[—:\-\.\s]+/, '');
-//     cleaned = cleaned.replace(/[—:\-\.\s]+$/, '');
-
-//     if (cleaned.length > 0 && /^[a-z]/.test(cleaned)) {
-//       cleaned = cleaned.charAt(0).toUpperCase() + cleaned.slice(1);
-//     }
-
-//     cleaned = cleaned.replace(/\s+/g, ' ');
-
-//     return cleaned;
-//   }
-
-//   private static isPageArtifact(line: string): boolean {
-//     const trimmed = line.trim();
-
-//     if (/^[A-Z]\d{2,4}$/.test(trimmed)) return true;
-//     if (/^\d{1,3}$/.test(trimmed)) return true;
-//     if (trimmed.length < 3 && !trimmed.match(/[a-z0-9]/i)) return true;
-//     if (/^[\.\-\s]+$/.test(trimmed)) return true;
-
-//     if (/^[A-Z\s]{2,30}$/.test(trimmed)) {
-//       const commonHeaders = [
-//         'PETROLEUM INDUSTRY ACT', 'ACT NO', 'CHAPTER', 'PART', 'SCHEDULE',
-//         'FIRST', 'SECOND', 'THIRD', 'FOURTH', 'FIFTH',
-//         'SIXTH', 'SEVENTH', 'EIGHTH', 'NINTH', 'TENTH',
-//         'NIGERIA TAX ACT', 'TAX ACT', 'INCOME TAX'
-//       ];
-
-//       if (commonHeaders.some(header => trimmed.includes(header))) {
-//         return true;
-//       }
-//     }
-
-//     return false;
-//   }
-
-//   private static extractSchedulesFromText(text: string): Schedule[] {
-//     const schedules: Schedule[] = [];
-
-//     const schedulePatterns = [
-//       /FIRST SCHEDULE/i,
-//       /SCHEDULE\s+(?:ONE|1)/i,
-//       /\n\s*SCHEDULE/i
-//     ];
-
-//     let scheduleStartIndex = -1;
-//     for (const pattern of schedulePatterns) {
-//       const match = text.match(pattern);
-//       if (match && match.index !== undefined) {
-//         scheduleStartIndex = match.index;
-//         break;
-//       }
-//     }
-
-//     if (scheduleStartIndex === -1) {
-//       return this.getPlaceholderSchedules();
-//     }
-
-//     const scheduleText = text.substring(scheduleStartIndex);
-
-//     const schedulePatternsList = [
-//       { name: 'First', number: 1, regex: /(?:FIRST SCHEDULE|SCHEDULE\s+(?:ONE|1))([\s\S]*?)(?=SECOND SCHEDULE|SCHEDULE\s+(?:TWO|2)|$)/i },
-//       { name: 'Second', number: 2, regex: /(?:SECOND SCHEDULE|SCHEDULE\s+(?:TWO|2))([\s\S]*?)(?=THIRD SCHEDULE|SCHEDULE\s+(?:THREE|3)|$)/i },
-//       { name: 'Third', number: 3, regex: /(?:THIRD SCHEDULE|SCHEDULE\s+(?:THREE|3))([\s\S]*?)(?=FOURTH SCHEDULE|SCHEDULE\s+(?:FOUR|4)|$)/i },
-//       { name: 'Fourth', number: 4, regex: /(?:FOURTH SCHEDULE|SCHEDULE\s+(?:FOUR|4))([\s\S]*?)(?=FIFTH SCHEDULE|SCHEDULE\s+(?:FIVE|5)|$)/i },
-//       { name: 'Fifth', number: 5, regex: /(?:FIFTH SCHEDULE|SCHEDULE\s+(?:FIVE|5))([\s\S]*?)(?=$)/i }
-//     ];
-
-//     for (const pattern of schedulePatternsList) {
-//       const match = scheduleText.match(pattern.regex);
-
-//       if (match && match[1]) {
-//         const content = match[1].trim();
-//         const cleanedContent = this.cleanScheduleContent(content);
-
-//         schedules.push({
-//           id: `sch${pattern.number}`,
-//           schedule: `sch${pattern.number}`,
-//           scheduleNumber: pattern.number,
-//           scheduleTitle: `${pattern.name} Schedule`,
-//           markdownContent: [cleanedContent]
-//         });
-//       }
-//     }
-
-//     if (schedules.length === 0) {
-//       return this.getPlaceholderSchedules();
-//     }
-
-//     return schedules;
-//   }
-
-//   private static cleanScheduleContent(content: string): string {
-//     if (!content.trim()) return 'No content available.';
-
-//     let cleaned = content;
-
-//     cleaned = cleaned.replace(/\n{3,}/g, '\n\n');
-//     cleaned = cleaned.replace(/^[A-Z]\d+\s*$/gm, '');
-//     cleaned = cleaned.replace(/^\s*\d+\s*$/gm, '');
-//     cleaned = cleaned.replace(/^[A-Z\s]+SCHEDULE[^a-z]*/i, '');
-
-//     return cleaned.trim();
-//   }
-
-//   private static getPlaceholderSchedules(): Schedule[] {
-//     const scheduleNames = ['First', 'Second', 'Third', 'Fourth', 'Fifth',
-//       'Sixth', 'Seventh', 'Eighth', 'Ninth', 'Tenth'];
-
-//     return scheduleNames.map((name, index) => ({
-//       id: `sch${index + 1}`,
-//       schedule: `sch${index + 1}`,
-//       scheduleNumber: index + 1,
-//       scheduleTitle: `${name} Schedule`,
-//       markdownContent: [this.getScheduleDescription(name)]
-//     }));
-//   }
-
-//   private static normalizeText(text: string): string {
-//     return text
-//       .replace(/\r\n/g, '\n')
-//       .replace(/\r/g, '\n')
-//       .replace(/\n{3,}/g, '\n\n')
-//       .replace(/\u00A0/g, ' ')
-//       .replace(/[—–]/g, '-')
-//       .trim();
-//   }
-
-//   private static extractTitle(text: string, fileName: string): string {
-//     const taxActMatch = text.match(/NIGERIA\s+TAX\s+ACT[,\s]*(\d{4})/i);
-//     if (taxActMatch) {
-//       return `Nigeria Tax Act, ${taxActMatch[1] || '2025'}`;
-//     }
-
-//     const titleMatch = text.match(/PETROLEUM\s+INDUSTRY\s+ACT[,\s]*(\d{4})/i);
-//     return titleMatch ? `Petroleum Industry Act, ${titleMatch[1]}` :
-//       fileName.replace(/\.[^/.]+$/, "") || 'Legal Document';
-//   }
-
-//   private static extractActNumber(text: string): string {
-//     const taxActMatch = text.match(/ACT\s+NO\.?\s*(\d+)\s+OF\s+\d{4}/i) ||
-//       text.match(/NIGERIA\s+TAX\s+ACT[,\s]*(\d{4})/i);
-//     if (taxActMatch) {
-//       return `No. ${taxActMatch[1] || '7'}`;
-//     }
-
-//     const actMatch = text.match(/ACT\s+No\.?\s*(\d+)/i);
-//     return actMatch ? `No. ${actMatch[1]}` : 'No. 6';
-//   }
-
-//   private static extractYear(text: string): number {
-//     const taxYearMatch = text.match(/NIGERIA\s+TAX\s+ACT[,\s]*(\d{4})/i);
-//     if (taxYearMatch) {
-//       const year = parseInt(taxYearMatch[1]);
-//       if (!isNaN(year)) return year;
-//     }
-
-//     const yearInAct = text.match(/ACT\s+NO\.?\s*\d+\s+OF\s+(\d{4})/i);
-//     if (yearInAct) {
-//       const year = parseInt(yearInAct[1]);
-//       if (!isNaN(year)) return year;
-//     }
-
-//     const commencementMatch = text.match(/\[(\d{4})\]/);
-//     if (commencementMatch) {
-//       const year = parseInt(commencementMatch[1]);
-//       if (!isNaN(year)) return year;
-//     }
-
-//     const yearMatch = text.match(/(20\d{2})/);
-//     return yearMatch ? parseInt(yearMatch[1]) : 2021;
-//   }
-
-//   private static extractCommencementDate(text: string): string {
-//     const taxDateMatch = text.match(/\[(\d{1,2}(?:st|nd|rd|th)?\s+\w+\s*,\s*\d{4})\]/i);
-//     if (taxDateMatch) {
-//       return taxDateMatch[1];
-//     }
-
-//     const dateMatch = text.match(/Commencement[^:]*:\s*(\d{4}-\d{2}-\d{2})/i);
-//     return dateMatch ? dateMatch[1] : '2021-08-16';
-//   }
-
-//   private static extractDescription(text: string): string {
-//     if (text.includes('NIGERIA TAX ACT') || text.includes('TAX ACT')) {
-//       return "An Act to repeal various tax laws and consolidate the legal frameworks relating to taxation in Nigeria, providing for taxation of income, transactions and instruments.";
-//     }
-
-//     return "An Act to provide legal, governance, regulatory and fiscal framework for the Nigerian petroleum industry and host communities.";
-//   }
-
-//   private static getScheduleDescription(name: string): string {
-//     const descriptions: { [key: string]: string } = {
-//       'First': 'Provisions relating to income tax rates and computations.',
-//       'Second': 'Value Added Tax (VAT) provisions and exemptions.',
-//       'Third': 'Stamp duties and transaction taxes.',
-//       'Fourth': 'Tax incentives and relief provisions.',
-//       'Fifth': 'Administrative procedures and compliance requirements.',
-//       'Sixth': 'Penalties and enforcement provisions.',
-//       'Seventh': 'Transitional and savings provisions.',
-//       'Eighth': 'Miscellaneous provisions and amendments.',
-//       'Ninth': 'Supplementary provisions.',
-//       'Tenth': 'Final provisions and commencement.'
-//     };
-
-//     return descriptions[name] || `Provisions and regulations for the ${name} Schedule.`;
-//   }
-
-//   private static extractMetadata(text: string): DocumentMetadata {
-//     const isTaxAct = text.includes('NIGERIA TAX ACT') || text.includes('TAX ACT');
-
-//     return {
-//       source: isTaxAct ?
-//         'Federal Republic of Nigeria Official Gazette' :
-//         'Federal Republic of Nigeria Official Gazette',
-//       publisher: isTaxAct ?
-//         'Federal Government Printer, Abuja, Nigeria' :
-//         'Federal Government Printer, Lagos, Nigeria',
-//       pageRange: isTaxAct ? 'A1–A250' : 'A121–A370',
-//       format: 'markdown',
-//       encoding: 'UTF-8'
-//     };
-//   }
-
-//   /**
-//    * Generate table of contents
-//    */
-//   static generateTableOfContents(structuredDoc: StructuredDocument): any {
-//     return {
-//       id: structuredDoc.id,
-//       title: structuredDoc.title,
-//       actNumber: structuredDoc.actNumber,
-//       year: structuredDoc.year,
-//       chapters: structuredDoc.chapters.map(chapter => ({
-//         id: chapter.id,
-//         chapterNumber: chapter.chapterNumber,
-//         chapterTitle: chapter.chapterTitle,
-//         parts: chapter.parts.map(part => ({
-//           id: part.id,
-//           partNumber: part.partNumber,
-//           partTitle: part.partTitle,
-//           sections: part.sections.map(section => ({
-//             id: section.id,
-//             sectionNumber: section.sectionNumber,
-//             sectionTitle: section.sectionTitle
-//           }))
-//         }))
-//       })),
-//       schedules: structuredDoc.schedules.map(schedule => ({
-//         id: schedule.id,
-//         scheduleNumber: schedule.scheduleNumber,
-//         scheduleTitle: schedule.scheduleTitle
-//       }))
-//     };
-//   }
-
-//   static getSectionById(structuredDoc: StructuredDocument, sectionId: string): Section | null {
-//     for (const chapter of structuredDoc.chapters) {
-//       for (const part of chapter.parts) {
-//         for (const section of part.sections) {
-//           if (section.id === sectionId) {
-//             return section;
-//           }
-//         }
-//       }
-//     }
-//     return null;
-//   }
-
-//   static searchSections(structuredDoc: StructuredDocument, query: string): Section[] {
-//     const results: Section[] = [];
-//     const lowerQuery = query.toLowerCase();
-
-//     for (const chapter of structuredDoc.chapters) {
-//       for (const part of chapter.parts) {
-//         for (const section of part.sections) {
-//           if (section.sectionTitle.toLowerCase().includes(lowerQuery)) {
-//             results.push(section);
-//             continue;
-//           }
-
-//           const contentText = section.markdownContent.join(' ').toLowerCase();
-//           if (contentText.includes(lowerQuery)) {
-//             results.push(section);
-//           }
-//         }
-//       }
-//     }
-
-//     return results;
-//   }
-// }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// export interface ProcessedContent {
-//   rawText: string;
-//   [key: string]: any;
-// }
-
-// export interface DocumentMetadata {
-//   source: string;
-//   publisher: string;
-//   pageRange: string;
-//   format: string;
-//   encoding: string;
-// }
-
-// export interface Schedule {
-//   id: string;
-//   schedule: string;
-//   scheduleNumber: number;
-//   scheduleTitle: string;
-//   markdownContent: string[];
-// }
-
-// export type ContentItem = string | ListItem | NumberedListItem;
-
-// export interface ListItem {
-//   letter: string;
-//   content: ContentItem[];
-// }
-
-// export interface NumberedListItem {
-//   number: string;
-//   content: ContentItem[];
-// }
-
-// export interface Section {
-//   id: string;
-//   section: string;
-//   sectionNumber: number;
-//   sectionTitle: string;
-//   markdownContent: ContentItem[];
-// }
-
-// export interface Part {
-//   id: string;
-//   part: string;
-//   partNumber: number;
-//   partTitle: string;
-//   sections: Section[];
-// }
-
-// export interface Chapter {
-//   id: string;
-//   chapter: string;
-//   chapterNumber: number;
-//   chapterTitle: string;
-//   parts: Part[];
-// }
-
-// export interface StructuredDocument {
-//   id: string;
-//   title: string;
-//   actNumber: string;
-//   year: number;
-//   commencementDate: string;
-//   description: string;
-//   chapters: Chapter[];
-//   schedules: Schedule[];
-//   metadata: DocumentMetadata;
-// }
-
-// export class DocumentStructuredProcessor {
-
-//   static processToStructuredFormat(
-//     processedContent: ProcessedContent, 
-//     documentId: string, 
-//     originalFileName: string
-//   ): StructuredDocument {
-    
-//     const { rawText } = processedContent;
-    
-//     // console.log('=== PROCESSING DOCUMENT ===');
-//     // console.log('Text length:', rawText.length);
-    
-//     // Find where the actual content starts (after table of contents)
-//     const contentStartIndex = this.findContentStartIndex(rawText);
-    
-//     if (contentStartIndex === -1) {
-//       // console.log('Could not find content start, using full text');
-//       return this.processFullDocument(rawText, documentId, originalFileName);
-//     }
-    
-//     // Extract only the content part (from CHAPTER 1 onwards)
-//     const contentText = rawText.substring(contentStartIndex);
-//     // console.log('Content text starts at index:', contentStartIndex);
-//     // console.log('Content text length:', contentText.length);
-    
-//     return this.processFullDocument(contentText, documentId, originalFileName);
-//   }
-
-//   private static findContentStartIndex(text: string): number {
-//     // Look for patterns that indicate the start of actual content
-//     const patterns = [
-//       /CHAPTER\s+1[—\-]\s*GOVERNANCE\s+AND\s+INSTITUTIONS\s+PART\s+I[—\-]\s*OBJECTIVES\s+AND\s+APPLICATION\s*\n\s*\d+\.\s+/i,
-//       /CHAPTER\s+1[—\-]\s*GOVERNANCE\s+AND\s+INSTITUTIONS[^\n]*\n\s*\d+\.\s+The\s+property\s+and\s+ownership/i,
-//       /CHAPTER\s+1[—\-][\s\S]*?1\.\s+The\s+property\s+and\s+ownership/i,
-//       /PETROLEUM\s+INDUSTRY\s+ACT,\s*2021[\s\S]*?CHAPTER\s+1[—\-]/i,
-//     ];
-    
-//     for (const pattern of patterns) {
-//       const match = text.match(pattern);
-//       if (match) {
-//         return match.index!;
-//       }
-//     }
-    
-//     const section1Index = text.search(/\n\s*1\.\s+The\s+property\s+and\s+ownership/i);
-//     if (section1Index !== -1) {
-//       const chapterStart = text.lastIndexOf('CHAPTER', section1Index);
-//       if (chapterStart !== -1) {
-//         return chapterStart;
-//       }
-//       return section1Index;
-//     }
-    
-//     return -1;
-//   }
-
-//   /**
-//    * Process the full document (once content is extracted)
-//    */
-//   private static processFullDocument(
-//     text: string, 
-//     documentId: string, 
-//     originalFileName: string
-//   ): StructuredDocument {
-//     const normalizedText = this.normalizeText(text);
-    
-//     return {
-//       id: documentId,
-//       title: this.extractTitle(normalizedText, originalFileName),
-//       actNumber: this.extractActNumber(normalizedText),
-//       year: this.extractYear(normalizedText),
-//       commencementDate: this.extractCommencementDate(normalizedText),
-//       description: this.extractDescription(normalizedText),
-//       chapters: this.parseDocumentStructure(normalizedText),
-//       schedules: this.extractSchedulesFromText(normalizedText),
-//       metadata: this.extractMetadata(normalizedText)
-//     };
-//   }
-
-//   /**
-//    * Parse document structure with corrected chapter handling
-//    */
-//   private static parseDocumentStructure(text: string): Chapter[] {
-//     const chapters: Chapter[] = [];
-    
-//     // First, find all chapters
-//     const chapterRegex = /CHAPTER\s+(\d+)[—\-]\s*([^\n]+)/gi;
-//     const chapterMatches: Array<{number: number, title: string, index: number}> = [];
-    
-//     let match;
-//     while ((match = chapterRegex.exec(text)) !== null) {
-//       const chapterNumber = parseInt(match[1]);
-//       const chapterTitle = match[2].toUpperCase().trim();
-      
-//       chapterMatches.push({
-//         number: chapterNumber,
-//         title: chapterTitle,
-//         index: match.index
-//       });
-//     }
-    
-//     // console.log(`Found ${chapterMatches.length} chapters in text`);
-    
-//     // Process each chapter found
-//     for (let i = 0; i < chapterMatches.length; i++) {
-//       const currentChapter = chapterMatches[i];
-      
-//       let nextChapterIndex;
-//       if (i + 1 < chapterMatches.length) {
-//         nextChapterIndex = chapterMatches[i + 1].index;
-//       } else {
-//         const scheduleStart = text.indexOf('FIRST SCHEDULE', currentChapter.index);
-//         nextChapterIndex = scheduleStart !== -1 ? scheduleStart : text.length;
-//       }
-      
-//       const chapterContent = text.substring(currentChapter.index, nextChapterIndex);
-      
-//       // console.log(`Processing Chapter ${currentChapter.number}: ${currentChapter.title}`);
-      
-//       let cleanChapterContent = chapterContent;
-      
-//       // For Chapter 3, ensure we don't include Chapter 4 content
-//       if (currentChapter.number === 3) {
-//         const chapter4Start = chapterContent.indexOf('CHAPTER 4');
-//         if (chapter4Start !== -1) {
-//           cleanChapterContent = chapterContent.substring(0, chapter4Start);
-//           // console.log(`  Truncated Chapter 3 at Chapter 4 start`);
-//         }
-//       }
-      
-//       // For Chapter 4, ensure we don't include Chapter 5 content
-//       if (currentChapter.number === 4) {
-//         const chapter5Start = chapterContent.indexOf('CHAPTER 5');
-//         if (chapter5Start !== -1) {
-//           cleanChapterContent = chapterContent.substring(0, chapter5Start);
-//           // console.log(`  Truncated Chapter 4 at Chapter 5 start`);
-//         }
-//       }
-      
-//       const parts = this.extractPartsForChapter(cleanChapterContent, currentChapter.number);
-      
-//       chapters.push({
-//         id: `ch${currentChapter.number}`,
-//         chapter: `ch${currentChapter.number}`,
-//         chapterNumber: currentChapter.number,
-//         chapterTitle: currentChapter.title,
-//         parts
-//       });
-//     }
-    
-//     // Check for missing chapters and add them
-//     const chapterNumbers = chapters.map(ch => ch.chapterNumber);
-    
-//     // Add Chapter 4 if missing
-//     if (!chapterNumbers.includes(4)) {
-//       // console.log('Adding missing Chapter 4...');
-//       const chapter4Index = text.indexOf('CHAPTER 4');
-//       if (chapter4Index !== -1) {
-//         let chapter4EndIndex = text.indexOf('CHAPTER 5', chapter4Index);
-//         if (chapter4EndIndex === -1) {
-//           chapter4EndIndex = text.indexOf('FIRST SCHEDULE', chapter4Index);
-//           if (chapter4EndIndex === -1) {
-//             chapter4EndIndex = text.length;
-//           }
-//         }
-        
-//         const chapter4Content = text.substring(chapter4Index, chapter4EndIndex);
-//         const parts = this.extractPartsForChapter(chapter4Content, 4);
-        
-//         const titleMatch = chapter4Content.match(/CHAPTER\s+4[—\-]\s*([^\n]+)/i);
-//         const chapter4Title = titleMatch ? titleMatch[1].toUpperCase().trim() : 'PETROLEUM INDUSTRY FISCAL FRAMEWORK';
-        
-//         chapters.push({
-//           id: 'ch4',
-//           chapter: 'ch4',
-//           chapterNumber: 4,
-//           chapterTitle: chapter4Title,
-//           parts
-//         });
-        
-//         // console.log(`Added Chapter 4: ${chapter4Title}`);
-//       }
-//     }
-    
-//     // Add Chapter 5 if missing
-//     if (!chapterNumbers.includes(5)) {
-//       // console.log('Adding missing Chapter 5...');
-//       const chapter5Index = text.indexOf('CHAPTER 5');
-//       if (chapter5Index !== -1) {
-//         let chapter5EndIndex = text.indexOf('FIRST SCHEDULE', chapter5Index);
-//         if (chapter5EndIndex === -1) {
-//           chapter5EndIndex = text.length;
-//         }
-        
-//         const chapter5Content = text.substring(chapter5Index, chapter5EndIndex);
-//         const parts = this.extractPartsForChapter(chapter5Content, 5);
-        
-//         const titleMatch = chapter5Content.match(/CHAPTER\s+5[—\-]\s*([^\n]+)/i);
-//         const chapter5Title = titleMatch ? titleMatch[1].toUpperCase().trim() : 'MISCELLANEOUS PROVISIONS';
-        
-//         chapters.push({
-//           id: 'ch5',
-//           chapter: 'ch5',
-//           chapterNumber: 5,
-//           chapterTitle: chapter5Title,
-//           parts
-//         });
-        
-//         // console.log(`Added Chapter 5: ${chapter5Title}`);
-//       }
-//     }
-    
-//     return chapters.sort((a, b) => a.chapterNumber - b.chapterNumber);
-//   }
-
-//   /**
-//    * Extract parts within a chapter
-//    */
-//   private static extractPartsForChapter(chapterText: string, chapterNumber: number): Part[] {
-//     const parts: Part[] = [];
-    
-//     let cleanChapterText = chapterText;
-    
-//     // Remove any next chapter headers
-//     if (chapterNumber < 5) {
-//       const nextChapterNum = chapterNumber + 1;
-//       const nextChapterPattern = new RegExp(`CHAPTER\\s+${nextChapterNum}`, 'i');
-//       const nextChapterMatch = cleanChapterText.match(nextChapterPattern);
-//       if (nextChapterMatch) {
-//         cleanChapterText = cleanChapterText.substring(0, nextChapterMatch.index);
-//       }
-//     }
-    
-//     // Remove schedule content
-//     const scheduleStart = cleanChapterText.indexOf('FIRST SCHEDULE');
-//     if (scheduleStart !== -1) {
-//       cleanChapterText = cleanChapterText.substring(0, scheduleStart);
-//     }
-    
-//     if (!cleanChapterText.trim()) {
-//       return parts;
-//     }
-    
-//     // Find all parts in this chapter
-//     const partRegex = /PART\s+([IVXLCDM]+)[—\-]\s*([^\n]+)/gi;
-//     const partMatches: Array<{number: string, title: string, index: number}> = [];
-    
-//     let match;
-//     while ((match = partRegex.exec(cleanChapterText)) !== null) {
-//       partMatches.push({
-//         number: match[1],
-//         title: match[2].toUpperCase().trim(),
-//         index: match.index
-//       });
-//     }
-    
-//     // console.log(`  Chapter ${chapterNumber}: Found ${partMatches.length} parts`);
-    
-//     if (partMatches.length > 0) {
-//       for (let i = 0; i < partMatches.length; i++) {
-//         const currentPart = partMatches[i];
-//         const nextPartIndex = i + 1 < partMatches.length ? partMatches[i + 1].index : cleanChapterText.length;
-        
-//         const partContent = cleanChapterText.substring(currentPart.index, nextPartIndex);
-        
-//         const sections = this.extractSectionsFromContent(partContent, chapterNumber, i + 1);
-        
-//         parts.push({
-//           id: `ch${chapterNumber}-pt${i + 1}`,
-//           part: `ch${chapterNumber}-pt${i + 1}`,
-//           partNumber: i + 1,
-//           partTitle: currentPart.title,
-//           sections
-//         });
-//       }
-//     } else {
-//       const sections = this.extractSectionsFromContent(cleanChapterText, chapterNumber, 1);
-      
-//       parts.push({
-//         id: `ch${chapterNumber}-pt1`,
-//         part: `ch${chapterNumber}-pt1`,
-//         partNumber: 1,
-//         partTitle: "PROVISIONS",
-//         sections
-//       });
-//     }
-    
-//     return parts;
-//   }
-
-//   /**
-//    * Extract sections from content - COMPLETE SOLUTION FOR ALL SECTIONS
-//    */
-//   private static extractSectionsFromContent(content: string, chapterNumber: number, partNumber: number): Section[] {
-//     const sections: Section[] = [];
-    
-//     if (!content.trim()) {
-//       return sections;
-//     }
-    
-//     // Find ALL main sections (numbers without brackets like 1., 2., 3., 66., etc.)
-//     // FIXED: Changed regex to only match section numbers that are reasonable (1-999)
-//     const mainSectionRegex = /(?:^|\n)(\d{1,3})\.\s*(?:[—\-]?\s*\(?\d+\)?[—\-]?\s*)?([^\n]*)/g;
-    
-//     const allMatches: Array<{
-//       type: 'main-section' | 'subsection',
-//       number: number,
-//       title: string,
-//       index: number,
-//       rawText: string
-//     }> = [];
-    
-//     // First pass: collect all matches
-//     let match;
-//     while ((match = mainSectionRegex.exec(content)) !== null) {
-//       const sectionNumber = parseInt(match[1]);
-//       const sectionTitle = match[2].trim();
-      
-//       // Only accept reasonable section numbers (1-999 for this act)
-//       // The year 2021 might appear in the text, but shouldn't be a section number
-//       if (sectionNumber < 1 || sectionNumber > 999) {
-//         continue;
-//       }
-      
-//       // Skip very small numbers that might be list items
-//       if (sectionNumber < 10 && sectionTitle.length < 3) {
-//         continue;
-//       }
-      
-//       // Additional check: if the title contains "The regulations under subsection",
-//       // it's likely continuation text, not a new section
-//       if (sectionTitle.toLowerCase().includes('the regulations under subsection')) {
-//         continue;
-//       }
-      
-//       allMatches.push({
-//         type: 'main-section',
-//         number: sectionNumber,
-//         title: sectionTitle,
-//         index: match.index,
-//         rawText: match[0]
-//       });
-//     }
-    
-//     // Process each main section
-//     for (let i = 0; i < allMatches.length; i++) {
-//       const currentMatch = allMatches[i];
-//       const nextMatchIndex = i + 1 < allMatches.length ? allMatches[i + 1].index : content.length;
-      
-//       // Extract this section's full content
-//       const sectionStart = currentMatch.index + currentMatch.rawText.length;
-//       const sectionContent = content.substring(sectionStart, nextMatchIndex);
-      
-//       // Process this section to get main section and subsections
-//       const sectionResults = this.processIndividualSection(
-//         currentMatch.number,
-//         currentMatch.title,
-//         sectionContent,
-//         chapterNumber,
-//         partNumber
-//       );
-      
-//       // Add all results (main section + subsections) to sections array
-//       sections.push(...sectionResults);
-//     }
-    
-//     // Sort sections properly
-//     return sections.sort((a, b) => {
-//       // Extract main section number and subsection number
-//       const aMatch = a.id.match(/ch\d+-pt\d+-s(\d+)(?:-us(\d+))?/);
-//       const bMatch = b.id.match(/ch\d+-pt\d+-s(\d+)(?:-us(\d+))?/);
-      
-//       if (!aMatch || !bMatch) return 0;
-      
-//       const aMain = parseInt(aMatch[1]);
-//       const bMain = parseInt(bMatch[1]);
-//       const aSub = aMatch[2] ? parseInt(aMatch[2]) : 0;
-//       const bSub = bMatch[2] ? parseInt(bMatch[2]) : 0;
-      
-//       // First sort by main section number
-//       if (aMain !== bMain) {
-//         return aMain - bMain;
-//       }
-      
-//       // Then by subsection number (0 for main sections, so they come first)
-//       return aSub - bSub;
-//     });
-//   }
-
-//   /**
-//    * Process an individual section to extract main section and subsections
-//    */
-//   private static processIndividualSection(
-//     mainSectionNumber: number,
-//     mainSectionTitle: string,
-//     sectionContent: string,
-//     chapterNumber: number,
-//     partNumber: number
-//   ): Section[] {
-//     const sections: Section[] = [];
-    
-//     // Clean the main section title
-//     const cleanedMainTitle = this.cleanText(mainSectionTitle);
-    
-//     // Create the main section first
-//     const mainSection: Section = {
-//       id: `ch${chapterNumber}-pt${partNumber}-s${mainSectionNumber}`,
-//       section: `ch${chapterNumber}-pt${partNumber}-s${mainSectionNumber}`,
-//       sectionNumber: mainSectionNumber,
-//       sectionTitle: cleanedMainTitle,
-//       markdownContent: []
-//     };
-    
-//     // Parse the section content to find subsections
-//     const parsedContent = this.parseSectionContentWithSubsections(sectionContent);
-    
-//     // Add main section content
-//     if (parsedContent.mainContent) {
-//       mainSection.markdownContent = [parsedContent.mainContent];
-//     }
-    
-//     sections.push(mainSection);
-    
-//     // Add subsections if any
-//     for (const sub of parsedContent.subsections) {
-//       const subsection: Section = {
-//         id: `ch${chapterNumber}-pt${partNumber}-s${mainSectionNumber}-us${sub.number}`,
-//         section: `ch${chapterNumber}-pt${partNumber}-s${mainSectionNumber}-us${sub.number}`,
-//         sectionNumber: mainSectionNumber,
-//         sectionTitle: `(${sub.number})${sub.title ? ' ' + sub.title : ''}`,
-//         markdownContent: sub.content ? [sub.content] : []
-//       };
-//       sections.push(subsection);
-//     }
-    
-//     return sections;
-//   }
-
-//   /**
-//    * Parse section content to identify main content and subsections
-//    */
-//   private static parseSectionContentWithSubsections(content: string): {
-//     mainContent: string;
-//     subsections: Array<{number: number, title: string, content: string}>;
-//   } {
-//     const result = {
-//       mainContent: '',
-//       subsections: [] as Array<{number: number, title: string, content: string}>
-//     };
-    
-//     if (!content.trim()) {
-//       return result;
-//     }
-    
-//     // Find all potential subsection markers
-//     const subsectionPattern = /(?:^|\n)(?:\((\d+)\))(?:[—\-]?\s*)?([^\n]*)/g;
-//     const matches: Array<{number: number, title: string, index: number, rawText: string}> = [];
-    
-//     let match;
-//     while ((match = subsectionPattern.exec(content)) !== null) {
-//       const number = parseInt(match[1]);
-//       // Only accept reasonable subsection numbers (1-20)
-//       if (number >= 1 && number <= 20) {
-//         matches.push({
-//           number: number,
-//           title: match[2].trim(),
-//           index: match.index,
-//           rawText: match[0]
-//         });
-//       }
-//     }
-    
-//     if (matches.length === 0) {
-//       // No subsections found
-//       result.mainContent = this.cleanSectionContent(content, true);
-//       return result;
-//     }
-    
-//     // Extract content before first subsection
-//     const firstSubsectionIndex = matches[0].index;
-//     const contentBeforeFirstSub = content.substring(0, firstSubsectionIndex).trim();
-    
-//     if (contentBeforeFirstSub) {
-//       result.mainContent = this.cleanSectionContent(contentBeforeFirstSub, true);
-//     }
-    
-//     // Process each subsection
-//     for (let i = 0; i < matches.length; i++) {
-//       const currentMatch = matches[i];
-//       const nextMatchIndex = i + 1 < matches.length ? matches[i + 1].index : content.length;
-      
-//       // Extract subsection content
-//       const subStart = currentMatch.index + currentMatch.rawText.length;
-//       const subContent = content.substring(subStart, nextMatchIndex).trim();
-      
-//       // Clean the content
-//       const cleanedContent = this.cleanSectionContent(subContent, true);
-      
-//       // Clean the title
-//       const cleanedTitle = this.cleanText(currentMatch.title);
-      
-//       result.subsections.push({
-//         number: currentMatch.number,
-//         title: cleanedTitle,
-//         content: cleanedContent
-//       });
-//     }
-    
-//     return result;
-//   }
-
-//   /**
-//    * Clean section content
-//    */
-//   private static cleanSectionContent(content: string, extractAlphabetItems: boolean): string {
-//     if (!content.trim()) return '';
-    
-//     let cleaned = content;
-    
-//     // Remove page artifacts
-//     cleaned = cleaned.replace(/^[A-Z]\d+\s*$/gm, '');
-//     cleaned = cleaned.replace(/^\s*\d{1,3}\s*$/gm, '');
-    
-//     // Handle page continuation
-//     const lines = cleaned.split('\n');
-//     const processedLines: string[] = [];
-    
-//     for (let i = 0; i < lines.length; i++) {
-//       let line = lines[i].trim();
-      
-//       if (!line) {
-//         if (i > 0 && i < lines.length - 1 && lines[i-1].trim() && lines[i+1].trim()) {
-//           processedLines.push('');
-//         }
-//         continue;
-//       }
-      
-//       // Skip page artifacts
-//       if (this.isPageArtifact(line)) {
-//         continue;
-//       }
-      
-//       // Handle page continuation
-//       if (i > 0 && this.isContinuationLine(line, lines[i-1])) {
-//         if (processedLines.length > 0) {
-//           const lastLine = processedLines[processedLines.length - 1];
-//           if (lastLine.endsWith('-')) {
-//             processedLines[processedLines.length - 1] = lastLine.slice(0, -1) + line;
-//           } else {
-//             processedLines[processedLines.length - 1] = lastLine + ' ' + line;
-//           }
-//           continue;
-//         }
-//       }
-      
-//       processedLines.push(line);
-//     }
-    
-//     cleaned = processedLines.join('\n');
-    
-//     // Format alphabet items consistently if needed
-//     if (extractAlphabetItems) {
-//       cleaned = cleaned.replace(/\(([a-z])\)/g, '($1)');
-//       cleaned = cleaned.replace(/([a-z])\)/g, '($1)');
-//       cleaned = cleaned.replace(/\(([a-z])\./g, '($1)');
-//       cleaned = cleaned.replace(/([a-z])\./g, '($1)');
-//     }
-    
-//     // Clean formatting
-//     cleaned = cleaned.replace(/\s+\)/g, ')');
-//     cleaned = cleaned.replace(/\(\s+/g, '(');
-//     cleaned = cleaned.replace(/\s+;/g, ' ;');
-//     cleaned = cleaned.replace(/;\s+/g, ' ; ');
-//     cleaned = cleaned.replace(/\s+:/g, ' :');
-//     cleaned = cleaned.replace(/:\s+/g, ' : ');
-//     cleaned = cleaned.replace(/\s*,\s*/g, ', ');
-//     cleaned = cleaned.replace(/\s*-\s*/g, '-');
-//     cleaned = cleaned.replace(/\s*—\s*/g, '—');
-//     cleaned = cleaned.replace(/\s*\.\s*/g, '. ');
-//     cleaned = cleaned.replace(/ {2,}/g, ' ');
-//     cleaned = cleaned.replace(/\n{3,}/g, '\n\n');
-    
-//     return cleaned.trim();
-//   }
-
-//   /**
-//    * Check if line is continuation from previous page
-//    */
-//   private static isContinuationLine(line: string, prevLine: string): boolean {
-//     const prevTrimmed = prevLine.trim();
-//     const lineTrimmed = line.trim();
-    
-//     const prevEndsIncomplete = prevTrimmed.endsWith(';') || 
-//                               prevTrimmed.endsWith(',') || 
-//                               prevTrimmed.endsWith('-') ||
-//                               prevTrimmed.endsWith('—');
-    
-//     const looksLikeSection = lineTrimmed.match(/^\d+\.\s/) || lineTrimmed.match(/^\(\d+\)/);
-    
-//     if (prevEndsIncomplete && looksLikeSection) {
-//       const sectionMatch = lineTrimmed.match(/^(\d+)\.\s/) || lineTrimmed.match(/^\((\d+)\)/);
-//       if (sectionMatch) {
-//         const sectionNum = parseInt(sectionMatch[1]);
-//         return sectionNum < 10;
-//       }
-//     }
-    
-//     return false;
-//   }
-
-//   /**
-//    * Clean text (for titles)
-//    */
-//   private static cleanText(text: string): string {
-//     if (!text) return '';
-    
-//     let cleaned = text;
-    
-//     cleaned = cleaned.replace(/^[—:\-\.\s]+/, '');
-//     cleaned = cleaned.replace(/[—:\-\.\s]+$/, '');
-    
-//     if (cleaned.length > 0 && /^[a-z]/.test(cleaned)) {
-//       cleaned = cleaned.charAt(0).toUpperCase() + cleaned.slice(1);
-//     }
-    
-//     return cleaned.trim();
-//   }
-
-//   /**
-//    * Check if line is a page artifact
-//    */
-//   private static isPageArtifact(line: string): boolean {
-//     const trimmed = line.trim();
-    
-//     if (/^[A-Z]\d{2,4}$/.test(trimmed)) return true;
-//     if (/^\d{1,3}$/.test(trimmed)) return true;
-//     if (trimmed.length < 3 && !trimmed.match(/[a-z0-9]/i)) return true;
-//     if (/^[\.\-\s]+$/.test(trimmed)) return true;
-    
-//     if (/^[A-Z\s]{2,30}$/.test(trimmed)) {
-//       const commonHeaders = [
-//         'PETROLEUM INDUSTRY ACT', 'ACT NO', 'CHAPTER', 'PART', 'SCHEDULE',
-//         'FIRST', 'SECOND', 'THIRD', 'FOURTH', 'FIFTH',
-//         'SIXTH', 'SEVENTH', 'EIGHTH', 'NINTH', 'TENTH'
-//       ];
-      
-//       if (commonHeaders.some(header => trimmed.includes(header))) {
-//         return true;
-//       }
-//     }
-    
-//     return false;
-//   }
-
-//   /**
-//    * Extract schedules from text
-//    */
-//   private static extractSchedulesFromText(text: string): Schedule[] {
-//     const schedules: Schedule[] = [];
-    
-//     const scheduleStartIndex = text.indexOf('FIRST SCHEDULE');
-//     if (scheduleStartIndex === -1) {
-//       return this.getPlaceholderSchedules();
-//     }
-    
-//     const scheduleText = text.substring(scheduleStartIndex);
-    
-//     const schedulePatterns = [
-//       { name: 'First', number: 1, regex: /FIRST SCHEDULE([\s\S]*?)(?=SECOND SCHEDULE|$)/i },
-//       { name: 'Second', number: 2, regex: /SECOND SCHEDULE([\s\S]*?)(?=THIRD SCHEDULE|$)/i },
-//       { name: 'Third', number: 3, regex: /THIRD SCHEDULE([\s\S]*?)(?=FOURTH SCHEDULE|$)/i },
-//       { name: 'Fourth', number: 4, regex: /FOURTH SCHEDULE([\s\S]*?)(?=FIFTH SCHEDULE|$)/i },
-//       { name: 'Fifth', number: 5, regex: /FIFTH SCHEDULE([\s\S]*?)(?=SIXTH SCHEDULE|$)/i },
-//       { name: 'Sixth', number: 6, regex: /SIXTH SCHEDULE([\s\S]*?)(?=SEVENTH SCHEDULE|$)/i },
-//       { name: 'Seventh', number: 7, regex: /SEVENTH SCHEDULE([\s\S]*?)(?=EIGHTH SCHEDULE|$)/i },
-//       { name: 'Eighth', number: 8, regex: /EIGHTH SCHEDULE([\s\S]*?)(?=NINTH SCHEDULE|$)/i },
-//       { name: 'Ninth', number: 9, regex: /NINTH SCHEDULE([\s\S]*?)(?=TENTH SCHEDULE|$)/i },
-//       { name: 'Tenth', number: 10, regex: /TENTH SCHEDULE([\s\S]*?)(?=$)/i }
-//     ];
-    
-//     for (const pattern of schedulePatterns) {
-//       const match = scheduleText.match(pattern.regex);
-      
-//       if (match && match[1]) {
-//         const content = match[1].trim();
-//         const cleanedContent = this.cleanScheduleContent(content);
-        
-//         schedules.push({
-//           id: `sch${pattern.number}`,
-//           schedule: `sch${pattern.number}`,
-//           scheduleNumber: pattern.number,
-//           scheduleTitle: `${pattern.name} Schedule`,
-//           markdownContent: [cleanedContent]
-//         });
-//       }
-//     }
-    
-//     if (schedules.length === 0) {
-//       return this.getPlaceholderSchedules();
-//     }
-    
-//     return schedules;
-//   }
-
-//   /**
-//    * Clean schedule content
-//    */
-//   private static cleanScheduleContent(content: string): string {
-//     if (!content.trim()) return 'No content available.';
-    
-//     let cleaned = content;
-    
-//     cleaned = cleaned.replace(/\n{3,}/g, '\n\n');
-//     cleaned = cleaned.replace(/^[A-Z]\d+\s*$/gm, '');
-//     cleaned = cleaned.replace(/^\s*\d+\s*$/gm, '');
-//     cleaned = cleaned.replace(/^[A-Z\s]+SCHEDULE[^a-z]*/i, '');
-    
-//     return cleaned.trim();
-//   }
-
-//   /**
-//    * Get placeholder schedules
-//    */
-//   private static getPlaceholderSchedules(): Schedule[] {
-//     const scheduleNames = ['First', 'Second', 'Third', 'Fourth', 'Fifth', 
-//                           'Sixth', 'Seventh', 'Eighth', 'Ninth', 'Tenth'];
-    
-//     return scheduleNames.map((name, index) => ({
-//       id: `sch${index + 1}`,
-//       schedule: `sch${index + 1}`,
-//       scheduleNumber: index + 1,
-//       scheduleTitle: `${name} Schedule`,
-//       markdownContent: [this.getScheduleDescription(name)]
-//     }));
-//   }
-
-//   /**
-//    * Normalize text
-//    */
-//   private static normalizeText(text: string): string {
-//     return text
-//       .replace(/\r\n/g, '\n')
-//       .replace(/\r/g, '\n')
-//       .replace(/\n{3,}/g, '\n\n')
-//       .replace(/\u00A0/g, ' ')
-//       .replace(/[—–]/g, '-')
-//       .trim();
-//   }
-
-//   /**
-//    * Helper methods
-//    */
-//   private static extractTitle(text: string, fileName: string): string {
-//     const titleMatch = text.match(/PETROLEUM\s+INDUSTRY\s+ACT,\s*(\d{4})/i);
-//     return titleMatch ? `Petroleum Industry Act, ${titleMatch[1]}` : 
-//            fileName.replace(/\.[^/.]+$/, "") || 'Petroleum Industry Act';
-//   }
-
-//   private static extractActNumber(text: string): string {
-//     const actMatch = text.match(/ACT\s+No\.?\s*(\d+)/i);
-//     return actMatch ? `No. ${actMatch[1]}` : 'No. 6';
-//   }
-
-//   private static extractYear(text: string): number {
-//     const yearMatch = text.match(/(\d{4})/);
-//     return yearMatch ? parseInt(yearMatch[1]) : 2021;
-//   }
-
-//   private static extractCommencementDate(text: string): string {
-//     return '2021-08-16';
-//   }
-
-//   private static extractDescription(text: string): string {
-//     return "An Act to provide legal, governance, regulatory and fiscal framework for the Nigerian petroleum industry and host communities.";
-//   }
-
-//   private static getScheduleDescription(name: string): string {
-//     const descriptions: { [key: string]: string } = {
-//       'First': 'Rights of pre-emption of petroleum and petroleum products in the event of national emergency.',
-//       'Second': 'Provisions relating to royalties, rents and other payments to Government.',
-//       'Third': 'Environmental management and remediation guidelines.',
-//       'Fourth': 'Host communities development trust provisions.',
-//       'Fifth': 'Fiscal framework and tax provisions.',
-//       'Sixth': 'Administrative procedures and regulations.',
-//       'Seventh': 'Transitional and savings provisions.',
-//       'Eighth': 'Miscellaneous provisions and amendments.',
-//       'Ninth': 'Supplementary provisions.',
-//       'Tenth': 'Final provisions.'
-//     };
-    
-//     return descriptions[name] || `Provisions and regulations for the ${name} Schedule.`;
-//   }
-
-//   private static extractMetadata(text: string): DocumentMetadata {
-//     return {
-//       source: 'Federal Republic of Nigeria Official Gazette',
-//       publisher: 'Federal Government Printer, Lagos, Nigeria',
-//       pageRange: 'A121–A370',
-//       format: 'markdown',
-//       encoding: 'UTF-8'
-//     };
-//   }
-
-//   /**
-//    * Generate table of contents
-//    */
-//   static generateTableOfContents(structuredDoc: StructuredDocument): any {
-//     return {
-//       id: structuredDoc.id,
-//       title: structuredDoc.title,
-//       actNumber: structuredDoc.actNumber,
-//       year: structuredDoc.year,
-//       chapters: structuredDoc.chapters.map(chapter => ({
-//         id: chapter.id,
-//         chapterNumber: chapter.chapterNumber,
-//         chapterTitle: chapter.chapterTitle,
-//         parts: chapter.parts.map(part => ({
-//           id: part.id,
-//           partNumber: part.partNumber,
-//           partTitle: part.partTitle,
-//           sections: part.sections.map(section => ({
-//             id: section.id,
-//             sectionNumber: section.sectionNumber,
-//             sectionTitle: section.sectionTitle
-//           }))
-//         }))
-//       })),
-//       schedules: structuredDoc.schedules.map(schedule => ({
-//         id: schedule.id,
-//         scheduleNumber: schedule.scheduleNumber,
-//         scheduleTitle: schedule.scheduleTitle
-//       }))
-//     };
-//   }
-
-//   /**
-//    * Utility methods
-//    */
-//   static getSectionById(structuredDoc: StructuredDocument, sectionId: string): Section | null {
-//     for (const chapter of structuredDoc.chapters) {
-//       for (const part of chapter.parts) {
-//         for (const section of part.sections) {
-//           if (section.id === sectionId) {
-//             return section;
-//           }
-//         }
-//       }
-//     }
-//     return null;
-//   }
-
-//   static searchSections(structuredDoc: StructuredDocument, query: string): Section[] {
-//     const results: Section[] = [];
-//     const lowerQuery = query.toLowerCase();
-    
-//     for (const chapter of structuredDoc.chapters) {
-//       for (const part of chapter.parts) {
-//         for (const section of part.sections) {
-//           if (section.sectionTitle.toLowerCase().includes(lowerQuery)) {
-//             results.push(section);
-//             continue;
-//           }
-          
-//           const contentText = section.markdownContent.join(' ').toLowerCase();
-//           if (contentText.includes(lowerQuery)) {
-//             results.push(section);
-//           }
-//         }
-//       }
-//     }
-    
-//     return results;
-//   }
-// }

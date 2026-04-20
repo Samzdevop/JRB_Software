@@ -6594,3 +6594,393 @@
 [32m[39m
 2026-03-12 22:06:24 [32minfo[39m [32mPOST /api/v1/users/avatar 200 337.807 ms - 49950[39m
 [32m[39m
+2026-03-12 22:14:17 [32minfo[39m [32mPOST /api/v1/users/avatar 200 371.987 ms - 388[39m
+[32m[39m
+2026-03-12 22:14:30 [32minfo[39m [32mPOST /api/v1/auth/login 200 177.309 ms - 753[39m
+[32m[39m
+2026-03-12 22:19:24 [32minfo[39m [32mGET /api/v1/users/avatar/me 200 88.777 ms - 99[39m
+[32m[39m
+2026-04-14 04:14:40 [32minfo[39m [32mPOST /api/v1/auth/admin-reg 404 3.011 ms - 126[39m
+[32m[39m
+2026-04-14 04:15:13 [32minfo[39m [32mPOST /api/v1/auth/admin-reg 404 0.803 ms - 126[39m
+[32m[39m
+2026-04-14 04:15:37 [32minfo[39m [32mPOST /api/v1/auth/admin-reg 201 237.222 ms - 74[39m
+[32m[39m
+2026-04-14 04:24:54 [32minfo[39m [32mPOST /api/v1/auth/login 200 234.355 ms - 580[39m
+[32m[39m
+2026-04-14 04:25:33 [32minfo[39m [32mPOST /api/v1/documents/upload 201 4745.095 ms - 66620[39m
+[32m[39m
+2026-04-14 04:26:50 [32minfo[39m [32mGET /api/v1/documents/cmny26udh0002t1a4ly6snrh1/content?format=structured 401 5.839 ms - 70[39m
+[32m[39m
+2026-04-14 04:27:09 [32minfo[39m [32mGET /api/v1/documents/cmny26udh0002t1a4ly6snrh1/content?format=structured 200 157.536 ms - 119220[39m
+[32m[39m
+2026-04-14 04:28:23 [32minfo[39m [32mPOST /api/v1/auth/login 200 146.781 ms - 653[39m
+[32m[39m
+2026-04-14 04:29:08 [32minfo[39m [32mGET /api/v1/documents/cmny26udh0002t1a4ly6snrh1/content?format=structured 200 38.723 ms - 119220[39m
+[32m[39m
+2026-04-14 04:33:46 [32minfo[39m [32mPOST /api/v1/documents/upload 201 24769.442 ms - 192133[39m
+[32m[39m
+2026-04-14 04:34:06 [32minfo[39m [32mGET /api/v1/documents/cmny26udh0002t1a4ly6snrh1/content?format=raw 200 34.582 ms - 65988[39m
+[32m[39m
+2026-04-14 04:34:59 [32minfo[39m [32mGET /api/v1/documents/cmny26udh0002t1a4ly6snrh1/content?format=structure 200 44.603 ms - 119220[39m
+[32m[39m
+2026-04-14 04:37:05 [32minfo[39m [32mGET /api/v1/documents/cmny2hf6k003wt1a4umiaz0m7/content?format=structure 200 324.183 ms - 232821[39m
+[32m[39m
+2026-04-14 07:43:47 [32minfo[39m [32mPOST /api/v1/auth/login 200 651.785 ms - 734[39m
+[32m[39m
+2026-04-14 07:45:50 [32minfo[39m [32mPOST /api/v1/documents/upload 201 4921.011 ms - 56492[39m
+[32m[39m
+2026-04-14 07:46:10 [32minfo[39m [32mGET /api/v1/documents/cmny9cf4h00art1a4usnzhpiw/content?format=structure 200 45.953 ms - 40672[39m
+[32m[39m
+2026-04-14 07:46:39 [32minfo[39m [32mGET /api/v1/documents/cmny9cf4h00art1a4usnzhpiw/content?format=structure 200 46.209 ms - 40672[39m
+[32m[39m
+2026-04-14 09:05:40 [32minfo[39m [32mPOST /api/v1/auth/login 200 511.673 ms - 826[39m
+[32m[39m
+2026-04-14 09:07:24 [32minfo[39m [32mPOST /api/v1/documents/upload 201 29640.135 ms - 192118[39m
+[32m[39m
+2026-04-14 09:09:11 [32minfo[39m [32mDELETE /api/v1/documents/cmnyc9btz00dot1a4y07cfejx 200 71.495 ms - 89[39m
+[32m[39m
+2026-04-14 09:10:16 [32minfo[39m [32mPOST /api/v1/documents/upload 201 12783.432 ms - 449110[39m
+[32m[39m
+2026-04-14 09:10:45 [31merror[39m [31mDocument not found Document not found[39m
+2026-04-14 09:10:45 [32minfo[39m [32mGET /api/v1/documents/cmny1u3mj0000t1a4mk5calyh/content?format=structure 404 197.529 ms - 46[39m
+[32m[39m
+2026-04-14 09:11:04 [32minfo[39m [32mGET /api/v1/documents/cmnycd0be00kjt1a4ehmdgy3s/content?format=structure 200 687.614 ms - 488860[39m
+[32m[39m
+2026-04-14 09:11:09 [32minfo[39m [32mGET /api/v1/documents/cmnycd0be00kjt1a4ehmdgy3s/content?format=structure 200 320.992 ms - 488860[39m
+[32m[39m
+2026-04-14 10:16:16 [32minfo[39m [32mPOST /api/v1/auth/login 200 283.009 ms - 892[39m
+[32m[39m
+2026-04-14 10:16:29 [32minfo[39m [32mPOST /api/v1/auth/login 200 400.832 ms - 892[39m
+[32m[39m
+2026-04-14 10:18:54 [32minfo[39m [32mGET /api/v1/documents/cmnycd0be00kjt1a4ehmdgy3s/content?format=structur 200 278.807 ms - 1092958[39m
+[32m[39m
+2026-04-14 10:19:26 [32minfo[39m [32mGET /api/v1/documents/cmny2hf6k003wt1a4umiaz0m7/content?format=structur 200 121.184 ms - 449185[39m
+[32m[39m
+2026-04-14 10:19:54 [32minfo[39m [32mGET /api/v1/documents/cmny2hf6k003wt1a4umiaz0m7/content?format=structur 200 97.921 ms - 449185[39m
+[32m[39m
+2026-04-14 10:22:59 [32minfo[39m [32mGET /api/v1/documents/cmny26udh0002t1a4ly6snrh1/content?format=structur 200 410.135 ms - 121232[39m
+[32m[39m
+2026-04-14 10:25:55 [32minfo[39m [32mPOST /api/v1/auth/login 200 325.863 ms - 892[39m
+[32m[39m
+2026-04-14 10:26:18 [32minfo[39m [32mGET /api/v1/documents/cmny26udh0002t1a4ly6snrh1/content?format=structur 200 28.379 ms - 2151[39m
+[32m[39m
+2026-04-14 10:29:24 [32minfo[39m [32mGET /api/v1/documents/cmny26udh0002t1a4ly6snrh1/content?format=structur 200 52.522 ms - 2151[39m
+[32m[39m
+2026-04-14 10:29:48 [32minfo[39m [32mGET /api/v1/documents/cmny26udh0002t1a4ly6snrh1/content?format=structure 200 159.017 ms - 119220[39m
+[32m[39m
+2026-04-14 10:30:53 [32minfo[39m [32mGET /api/v1/documents/cmnycd0be00kjt1a4ehmdgy3s/content?format=structure 200 667.399 ms - 488860[39m
+[32m[39m
+2026-04-14 10:32:01 [32minfo[39m [32mGET /api/v1/documents/cmny9cf4h00art1a4usnzhpiw/content?format=structure 200 34.330 ms - 40672[39m
+[32m[39m
+2026-04-14 10:33:24 [32minfo[39m [32mGET /api/v1/documents/cmny2hf6k003wt1a4umiaz0m7/content?format=structure 200 264.491 ms - 232821[39m
+[32m[39m
+2026-04-14 10:55:42 [32minfo[39m [32mGET /api/v1/documents/cmny2hf6k003wt1a4umiaz0m7/content?format=structure 200 472.886 ms - 231613[39m
+[32m[39m
+2026-04-14 10:55:48 [32minfo[39m [32mGET /api/v1/documents/cmny2hf6k003wt1a4umiaz0m7/content?format=structure 200 222.169 ms - 231613[39m
+[32m[39m
+2026-04-14 11:08:15 [32minfo[39m [32mGET /api/v1/documents/cmny26udh0002t1a4ly6snrh1/content?format=structure 200 280.348 ms - 74979[39m
+[32m[39m
+2026-04-14 11:11:27 [32minfo[39m [32mGET /api/v1/documents/cmny26udh0002t1a4ly6snrh1/content?format=structure 200 174.730 ms - 74979[39m
+[32m[39m
+2026-04-14 11:13:59 [32minfo[39m [32mGET /api/v1/documents/cmny9cf4h00art1a4usnzhpiw/content?format=structure 200 180.885 ms - 62532[39m
+[32m[39m
+2026-04-14 11:20:50 [32minfo[39m [32mGET /api/v1/documents/cmny9cf4h00art1a4usnzhpiw/content?format=structure 200 249.680 ms - 62532[39m
+[32m[39m
+2026-04-14 11:24:10 [32minfo[39m [32mGET /api/v1/documents/cmnycd0be00kjt1a4ehmdgy3s/content?format=structure 200 425.213 ms - 488860[39m
+[32m[39m
+2026-04-14 11:52:09 [32minfo[39m [32mGET /api/v1/documents/cmny26udh0002t1a4ly6snrh1/content?format=structure 401 18.630 ms - 64[39m
+[32m[39m
+2026-04-14 11:52:15 [32minfo[39m [32mPOST /api/v1/auth/login 200 311.846 ms - 892[39m
+[32m[39m
+2026-04-14 11:52:32 [32minfo[39m [32mGET /api/v1/documents/cmny26udh0002t1a4ly6snrh1/content?format=structure 200 78.692 ms - 80997[39m
+[32m[39m
+2026-04-14 12:50:29 [32minfo[39m [32mGET /api/v1/documents/cmny2hf6k003wt1a4umiaz0m7/content?format=structure 200 211.942 ms - 217464[39m
+[32m[39m
+2026-04-14 13:11:18 [32minfo[39m [32mPOST /api/v1/auth/login 200 219.065 ms - 892[39m
+[32m[39m
+2026-04-14 14:23:12 [32minfo[39m [32mPOST /api/v1/auth/login 200 326.314 ms - 892[39m
+[32m[39m
+2026-04-15 22:41:53 [32minfo[39m [32mPOST /api/v1/auth/login 200 312.301 ms - 892[39m
+[32m[39m
+2026-04-15 22:42:51 [32minfo[39m [32mGET /api/v1/documents/cmny26udh0002t1a4ly6snrh1/content?format=structure 200 77.134 ms - 80997[39m
+[32m[39m
+2026-04-16 01:52:18 [32minfo[39m [32mPOST /api/v1/auth/login 200 385.766 ms - 892[39m
+[32m[39m
+2026-04-16 01:52:39 [32minfo[39m [32mGET /api/v1/documents/cmny26udh0002t1a4ly6snrh1/content?format=structure 200 62.720 ms - 80997[39m
+[32m[39m
+2026-04-16 01:53:02 [32minfo[39m [32mGET /api/v1/documents/cmny26udh0002t1a4ly6snrh1/content?format=structure 200 67.270 ms - 80997[39m
+[32m[39m
+2026-04-16 01:55:23 [32minfo[39m [32mGET /api/v1/documents/cmny2hf6k003wt1a4umiaz0m7/content?format=structure 200 131.162 ms - 217464[39m
+[32m[39m
+2026-04-16 01:58:18 [32minfo[39m [32mGET /api/v1/documents/cmny9cf4h00art1a4usnzhpiw/content?format=structure 200 161.195 ms - 65155[39m
+[32m[39m
+2026-04-16 01:58:25 [32minfo[39m [32mGET /api/v1/documents/cmny9cf4h00art1a4usnzhpiw/content?format=structure 200 35.407 ms - 65155[39m
+[32m[39m
+2026-04-16 02:07:27 [32minfo[39m [32mGET /api/v1/documents/cmny2hf6k003wt1a4umiaz0m7/content?format=structure 200 230.394 ms - 217464[39m
+[32m[39m
+2026-04-16 02:07:59 [32minfo[39m [32mGET /api/v1/documents/cmny2hf6k003wt1a4umiaz0m7/content?format=structure 200 92.210 ms - 217464[39m
+[32m[39m
+2026-04-16 02:15:29 [32minfo[39m [32mGET /api/v1/documents/cmny2hf6k003wt1a4umiaz0m7/content?format=structure 200 235.609 ms - 217464[39m
+[32m[39m
+2026-04-16 02:23:12 [32minfo[39m [32mGET /api/v1/documents/cmny2hf6k003wt1a4umiaz0m7/content?format=structure 200 290.279 ms - 217464[39m
+[32m[39m
+2026-04-16 02:24:42 [32minfo[39m [32mGET /api/v1/documents/cmny26udh0002t1a4ly6snrh1/content?format=structure 200 56.465 ms - 80997[39m
+[32m[39m
+2026-04-16 02:26:26 [32minfo[39m [32mGET /api/v1/documents/cmnycd0be00kjt1a4ehmdgy3s/content?format=structure 200 229.891 ms - 507608[39m
+[32m[39m
+2026-04-16 02:32:33 [32minfo[39m [32mGET /api/v1/documents/cmny9cf4h00art1a4usnzhpiw/content?format=structure 200 125.248 ms - 40672[39m
+[32m[39m
+2026-04-16 02:32:55 [32minfo[39m [32mGET /api/v1/documents/cmnycd0be00kjt1a4ehmdgy3s/content?format=structure 200 429.328 ms - 488860[39m
+[32m[39m
+2026-04-16 02:42:06 [32minfo[39m [32mGET /api/v1/documents/cmnycd0be00kjt1a4ehmdgy3s/content?format=structure 200 811.272 ms - 488860[39m
+[32m[39m
+2026-04-16 02:42:33 [32minfo[39m [32mGET /api/v1/documents/cmny9cf4h00art1a4usnzhpiw/content?format=structure 200 24.181 ms - 40672[39m
+[32m[39m
+2026-04-16 02:48:18 [32minfo[39m [32mGET /api/v1/documents/cmnycd0be00kjt1a4ehmdgy3s/content?format=structure 200 339.119 ms - 99[39m
+[32m[39m
+2026-04-16 03:08:14 [32minfo[39m [32mGET /api/v1/documents/cmnycd0be00kjt1a4ehmdgy3s/content?format=structure 401 24.015 ms - 64[39m
+[32m[39m
+2026-04-16 03:08:22 [32minfo[39m [32mPOST /api/v1/auth/login 200 740.815 ms - 892[39m
+[32m[39m
+2026-04-16 03:10:39 [32minfo[39m [32mPOST /api/v1/auth/login 200 193.026 ms - 892[39m
+[32m[39m
+2026-04-16 03:11:05 [32minfo[39m [32mGET /api/v1/documents/cmnycd0be00kjt1a4ehmdgy3s/content?format=structure 200 159.751 ms - 11871[39m
+[32m[39m
+2026-04-16 03:11:39 [32minfo[39m [32mGET /api/v1/documents/cmnycd0be00kjt1a4ehmdgy3s/content?format=structure 200 328.343 ms - 11871[39m
+[32m[39m
+2026-04-16 03:12:07 [32minfo[39m [32mGET /api/v1/documents/cmny9cf4h00art1a4usnzhpiw/content?format=structure 200 24.951 ms - 10042[39m
+[32m[39m
+2026-04-16 03:14:05 [32minfo[39m [32mGET /api/v1/documents/cmnycd0be00kjt1a4ehmdgy3s/content?format=structure 200 212.424 ms - 11871[39m
+[32m[39m
+2026-04-16 03:14:31 [32minfo[39m [32mGET /api/v1/documents/cmny2hf6k003wt1a4umiaz0m7/content?format=structure 200 56.423 ms - 29421[39m
+[32m[39m
+2026-04-16 03:15:13 [32minfo[39m [32mGET /api/v1/documents/cmny26udh0002t1a4ly6snrh1/content?format=structure 200 28.877 ms - 13577[39m
+[32m[39m
+2026-04-16 09:51:47 [32minfo[39m [32mPOST /api/v1/auth/login 200 291.017 ms - 892[39m
+[32m[39m
+2026-04-16 09:52:21 [32minfo[39m [32mGET /api/v1/documents/cmnycd0be00kjt1a4ehmdgy3s/content?format=structure 200 186.823 ms - 123758[39m
+[32m[39m
+2026-04-16 09:56:30 [32minfo[39m [32mGET /api/v1/documents/cmny9cf4h00art1a4usnzhpiw/content?format=structure 200 37.816 ms - 44239[39m
+[32m[39m
+2026-04-16 10:14:36 [32minfo[39m [32mGET /api/v1/documents/cmny2hf6k003wt1a4umiaz0m7/content?format=structure 200 267.599 ms - 55897[39m
+[32m[39m
+2026-04-16 10:23:03 [32minfo[39m [32mGET /api/v1/documents/cmny9cf4h00art1a4usnzhpiw/content?format=structure 200 115.787 ms - 44239[39m
+[32m[39m
+2026-04-16 10:23:50 [32minfo[39m [32mGET /api/v1/documents/cmny26udh0002t1a4ly6snrh1/content?format=structure 200 68.480 ms - 61856[39m
+[32m[39m
+2026-04-16 10:41:31 [32minfo[39m [32mGET /api/v1/documents/cmny26udh0002t1a4ly6snrh1/content?format=structure 200 160.452 ms - 91978[39m
+[32m[39m
+2026-04-16 10:55:36 [32minfo[39m [32mGET /api/v1/documents/cmny2hf6k003wt1a4umiaz0m7/content?format=structure 401 3.737 ms - 64[39m
+[32m[39m
+2026-04-16 10:55:44 [32minfo[39m [32mPOST /api/v1/auth/login 200 229.361 ms - 892[39m
+[32m[39m
+2026-04-16 10:55:58 [32minfo[39m [32mGET /api/v1/documents/cmny2hf6k003wt1a4umiaz0m7/content?format=structure 401 1.623 ms - 64[39m
+[32m[39m
+2026-04-16 10:56:02 [32minfo[39m [32mGET /api/v1/documents/cmny2hf6k003wt1a4umiaz0m7/content?format=structure 401 1.749 ms - 64[39m
+[32m[39m
+2026-04-16 10:56:26 [32minfo[39m [32mGET /api/v1/documents/cmny2hf6k003wt1a4umiaz0m7/content?format=structure 200 119.009 ms - 257049[39m
+[32m[39m
+2026-04-16 12:19:21 [31merror[39m [31mUser not found User not found[39m
+2026-04-16 12:19:21 [32minfo[39m [32mPOST /api/v1/auth/login 404 795.529 ms - 42[39m
+[32m[39m
+2026-04-16 12:19:41 [32minfo[39m [32mPOST /api/v1/auth/login 200 134.241 ms - 892[39m
+[32m[39m
+2026-04-16 12:19:44 [32minfo[39m [32mPOST /api/v1/auth/login 200 324.934 ms - 892[39m
+[32m[39m
+2026-04-16 12:19:57 [32minfo[39m [32mPOST /api/v1/auth/login 200 149.047 ms - 892[39m
+[32m[39m
+2026-04-16 12:20:34 [32minfo[39m [32mGET /api/v1/documents/cmny26udh0002t1a4ly6snrh1/content?format=structured 200 39.372 ms - 18298[39m
+[32m[39m
+2026-04-16 12:57:36 [32minfo[39m [32mGET /api/v1/documents/cmny26udh0002t1a4ly6snrh1/content?format=structured 200 150.344 ms - 16319[39m
+[32m[39m
+2026-04-16 12:57:56 [32minfo[39m [32mGET /api/v1/documents/cmny26udh0002t1a4ly6snrh1/content?format=structured 200 64.221 ms - 16319[39m
+[32m[39m
+2026-04-16 12:59:10 [32minfo[39m [32mGET /api/v1/documents/cmny2hf6k003wt1a4umiaz0m7/content?format=structured 200 57.889 ms - 10125[39m
+[32m[39m
+2026-04-16 13:00:37 [32minfo[39m [32mGET /api/v1/documents/cmny9cf4h00art1a4usnzhpiw/content?format=structured 200 383.573 ms - 16243[39m
+[32m[39m
+2026-04-16 13:01:19 [32minfo[39m [32mGET /api/v1/documents/cmnycd0be00kjt1a4ehmdgy3s/content?format=structured 200 182.225 ms - 1134011[39m
+[32m[39m
+2026-04-16 13:14:08 [32minfo[39m [32mGET /api/v1/documents/cmnycd0be00kjt1a4ehmdgy3s/content?format=structured 200 362.219 ms - 72977[39m
+[32m[39m
+2026-04-16 13:27:16 [32minfo[39m [32mGET /api/v1/documents/cmny9cf4h00art1a4usnzhpiw/content?format=structured 401 6.316 ms - 64[39m
+[32m[39m
+2026-04-16 13:27:22 [32minfo[39m [32mPOST /api/v1/auth/login 200 416.164 ms - 892[39m
+[32m[39m
+2026-04-16 13:54:45 [32minfo[39m [32mGET /api/v1/documents/cmny9cf4h00art1a4usnzhpiw/content?format=structured 200 337.435 ms - 101245[39m
+[32m[39m
+2026-04-16 14:04:04 [32minfo[39m [32mGET /api/v1/documents/cmny26udh0002t1a4ly6snrh1/content?format=structured 200 396.276 ms - 126944[39m
+[32m[39m
+2026-04-16 17:05:22 [32minfo[39m [32mPOST /api/v1/auth/login 200 528.143 ms - 892[39m
+[32m[39m
+2026-04-16 17:23:35 [32minfo[39m [32mPOST /api/v1/auth/login 200 270.017 ms - 892[39m
+[32m[39m
+2026-04-16 17:23:39 [32minfo[39m [32mPOST /api/v1/auth/login 200 140.068 ms - 892[39m
+[32m[39m
+2026-04-18 23:52:54 [32minfo[39m [32mPOST /api/v1/auth/login 200 1248.427 ms - 892[39m
+[32m[39m
+2026-04-18 23:53:40 [32minfo[39m [32mGET /api/v1/documents/cmnycd0be00kjt1a4ehmdgy3s/content?format=structured 200 390.068 ms - 488860[39m
+[32m[39m
+2026-04-19 00:08:55 [32minfo[39m [32mGET /api/v1/documents/cmny9cf4h00art1a4usnzhpiw/content?format=structured 200 137.788 ms - 101245[39m
+[32m[39m
+2026-04-19 00:09:16 [32minfo[39m [32mGET /api/v1/documents/cmny9cf4h00art1a4usnzhpiw/content?format=structured 200 52.671 ms - 101245[39m
+[32m[39m
+2026-04-19 00:09:29 [32minfo[39m [32mGET /api/v1/documents/cmny9cf4h00art1a4usnzhpiw/content?format=structured 200 46.868 ms - 101245[39m
+[32m[39m
+2026-04-19 00:11:23 [32minfo[39m [32mGET /api/v1/documents/cmny2hf6k003wt1a4umiaz0m7/content?format=structured 200 120.032 ms - 480716[39m
+[32m[39m
+2026-04-19 00:50:26 [32minfo[39m [32mGET /api/v1/documents/cmnycd0be00kjt1a4ehmdgy3s/content?format=structured 200 456.890 ms - 488860[39m
+[32m[39m
+2026-04-19 00:52:56 [32minfo[39m [32mGET /api/v1/documents/cmnycd0be00kjt1a4ehmdgy3s/content?format=structured 401 9.264 ms - 64[39m
+[32m[39m
+2026-04-19 00:53:14 [32minfo[39m [32mPOST /api/v1/auth/login 200 232.072 ms - 892[39m
+[32m[39m
+2026-04-19 00:53:30 [32minfo[39m [32mGET /api/v1/documents/cmnycd0be00kjt1a4ehmdgy3s/content?format=structured 200 220.315 ms - 1092958[39m
+[32m[39m
+2026-04-19 00:55:38 [32minfo[39m [32mGET /api/v1/documents/cmnycd0be00kjt1a4ehmdgy3s/content?format=structured 200 187.947 ms - 135620[39m
+[32m[39m
+2026-04-19 00:58:28 [32minfo[39m [32mGET /api/v1/documents/cmnycd0be00kjt1a4ehmdgy3s/content?format=structured 200 531.732 ms - 488860[39m
+[32m[39m
+2026-04-19 14:43:22 [32minfo[39m [32mPOST /api/v1/auth/login 200 1165.631 ms - 892[39m
+[32m[39m
+2026-04-19 14:43:26 [32minfo[39m [32mPOST /api/v1/auth/login 200 435.300 ms - 892[39m
+[32m[39m
+2026-04-19 14:43:31 [32minfo[39m [32mPOST /api/v1/auth/login 200 184.074 ms - 892[39m
+[32m[39m
+2026-04-19 14:43:34 [32minfo[39m [32mPOST /api/v1/auth/login 200 148.292 ms - 892[39m
+[32m[39m
+2026-04-19 14:44:01 [32minfo[39m [32mGET /api/v1/documents/cmny26udh0002t1a4ly6snrh1/content?format=structured 200 57.291 ms - 119220[39m
+[32m[39m
+2026-04-19 14:44:31 [32minfo[39m [32mGET /api/v1/documents/cmnycd0be00kjt1a4ehmdgy3s/content?format=structured 200 581.467 ms - 488860[39m
+[32m[39m
+2026-04-19 15:33:36 [32minfo[39m [32mPOST /api/v1/auth/login 200 493.625 ms - 892[39m
+[32m[39m
+2026-04-19 15:33:43 [32minfo[39m [32mPOST /api/v1/auth/login 200 148.275 ms - 892[39m
+[32m[39m
+2026-04-19 15:34:07 [32minfo[39m [32mGET /api/v1/documents/cmnycd0be00kjt1a4ehmdgy3s/content?format=structured 200 163.991 ms - 364462[39m
+[32m[39m
+2026-04-19 15:34:56 [32minfo[39m [32mGET /api/v1/documents/cmny26udh0002t1a4ly6snrh1/content?format=structured 200 27.309 ms - 40843[39m
+[32m[39m
+2026-04-19 15:35:50 [32minfo[39m [32mGET /api/v1/documents/cmnycd0be00kjt1a4ehmdgy3s/content?format=structured 200 292.593 ms - 364462[39m
+[32m[39m
+2026-04-19 15:55:32 [32minfo[39m [32mPOST /api/v1/auth/login 200 245.637 ms - 892[39m
+[32m[39m
+2026-04-19 15:55:45 [32minfo[39m [32mPOST /api/v1/auth/login 200 125.834 ms - 892[39m
+[32m[39m
+2026-04-19 15:55:51 [32minfo[39m [32mPOST /api/v1/auth/login 200 427.668 ms - 892[39m
+[32m[39m
+2026-04-19 15:56:35 [32minfo[39m [32mGET /api/v1/documents/cmnycd0be00kjt1a4ehmdgy3s/content?format=structured 200 610.103 ms - 488860[39m
+[32m[39m
+2026-04-19 15:57:35 [32minfo[39m [32mGET /api/v1/documents/cmny26udh0002t1a4ly6snrh1/content?format=structured 200 97.894 ms - 84554[39m
+[32m[39m
+2026-04-19 16:31:49 [32minfo[39m [32mPOST /api/v1/auth/login 200 243.314 ms - 892[39m
+[32m[39m
+2026-04-19 16:40:28 [32minfo[39m [32mPOST /api/v1/auth/login 200 676.737 ms - 892[39m
+[32m[39m
+2026-04-19 16:45:10 [32minfo[39m [32mGET /api/v1/documents/cmnycd0be00kjt1a4ehmdgy3s/content?format=structured 200 248.465 ms - 179745[39m
+[32m[39m
+2026-04-19 16:47:10 [32minfo[39m [32mGET /api/v1/documents/cmny26udh0002t1a4ly6snrh1/content?format=structured 200 212.571 ms - 38971[39m
+[32m[39m
+2026-04-19 17:07:09 [32minfo[39m [32mPOST /api/v1/auth/login 200 344.775 ms - 892[39m
+[32m[39m
+2026-04-19 17:08:31 [32minfo[39m [32mGET /api/v1/documents/cmnycd0be00kjt1a4ehmdgy3s/content?format=structured 200 537.111 ms - 488857[39m
+[32m[39m
+2026-04-19 17:10:01 [32minfo[39m [32mGET /api/v1/documents/cmny26udh0002t1a4ly6snrh1/content?format=structured 200 94.255 ms - 9732[39m
+[32m[39m
+2026-04-19 17:37:14 [32minfo[39m [32mPOST /api/v1/auth/login 200 239.454 ms - 892[39m
+[32m[39m
+2026-04-19 17:37:41 [32minfo[39m [32mGET /api/v1/documents/cmnycd0be00kjt1a4ehmdgy3s/content?format=structured 200 524.332 ms - 488857[39m
+[32m[39m
+2026-04-19 17:40:09 [32minfo[39m [32mGET /api/v1/documents/cmny26udh0002t1a4ly6snrh1/content?format=structured 200 45.791 ms - 51630[39m
+[32m[39m
+2026-04-19 17:57:16 [32minfo[39m [32mGET /api/v1/documents/cmny9cf4h00art1a4usnzhpiw/content?format=structured 200 152.091 ms - 68155[39m
+[32m[39m
+2026-04-19 18:56:24 [32minfo[39m [32mPOST /api/v1/auth/login 200 1681.260 ms - 892[39m
+[32m[39m
+2026-04-19 18:57:11 [32minfo[39m [32mGET /api/v1/documents/cmnycd0be00kjt1a4ehmdgy3s/content?format=structured 200 774.146 ms - 139120[39m
+[32m[39m
+2026-04-19 18:58:06 [32minfo[39m [32mGET /api/v1/documents/cmny9cf4h00art1a4usnzhpiw/content?format=structured 200 38.103 ms - 34590[39m
+[32m[39m
+2026-04-19 19:00:35 [32minfo[39m [32mGET /api/v1/documents/cmny26udh0002t1a4ly6snrh1/content?format=structured 200 145.869 ms - 71347[39m
+[32m[39m
+2026-04-19 19:01:58 [32minfo[39m [32mGET /api/v1/documents/cmny9cf4h00art1a4usnzhpiw/content?format=structured 200 152.595 ms - 34590[39m
+[32m[39m
+2026-04-19 19:05:40 [32minfo[39m [32mGET /api/v1/documents/cmnycd0be00kjt1a4ehmdgy3s/content?format=structured 200 742.127 ms - 139120[39m
+[32m[39m
+2026-04-19 19:30:04 [32minfo[39m [32mGET /api/v1/documents/cmnycd0be00kjt1a4ehmdgy3s/content?format=structured 200 358.598 ms - 139120[39m
+[32m[39m
+2026-04-19 19:30:39 [32minfo[39m [32mGET /api/v1/documents/cmnycd0be00kjt1a4ehmdgy3s/content?format=structured 200 225.616 ms - 139120[39m
+[32m[39m
+2026-04-19 19:31:53 [32minfo[39m [32mGET /api/v1/documents/cmny9cf4h00art1a4usnzhpiw/content?format=structured 200 33.134 ms - 34853[39m
+[32m[39m
+2026-04-19 19:33:40 [32minfo[39m [32mGET /api/v1/documents/cmny9cf4h00art1a4usnzhpiw/content?format=structured 200 163.391 ms - 34853[39m
+[32m[39m
+2026-04-19 19:34:29 [32minfo[39m [32mGET /api/v1/documents/cmnycd0be00kjt1a4ehmdgy3s/content?format=structured 200 212.274 ms - 139120[39m
+[32m[39m
+2026-04-19 19:49:43 [32minfo[39m [32mGET /api/v1/documents/cmnycd0be00kjt1a4ehmdgy3s/content?format=structured 200 207.715 ms - 360756[39m
+[32m[39m
+2026-04-19 19:54:57 [32minfo[39m [32mGET /api/v1/documents/cmny9cf4h00art1a4usnzhpiw/content?format=structured 200 294.120 ms - 58693[39m
+[32m[39m
+2026-04-19 19:58:56 [32minfo[39m [32mGET /api/v1/documents/cmny26udh0002t1a4ly6snrh1/content?format=structured 401 2.511 ms - 64[39m
+[32m[39m
+2026-04-19 19:59:04 [32minfo[39m [32mPOST /api/v1/auth/login 200 205.037 ms - 892[39m
+[32m[39m
+2026-04-19 19:59:28 [32minfo[39m [32mGET /api/v1/documents/cmny26udh0002t1a4ly6snrh1/content?format=structured 200 88.483 ms - 72622[39m
+[32m[39m
+2026-04-19 20:06:15 [32minfo[39m [32mGET /api/v1/documents/cmny26udh0002t1a4ly6snrh1/content?format=structured 200 323.374 ms - 72622[39m
+[32m[39m
+2026-04-19 20:07:05 [32minfo[39m [32mGET /api/v1/documents/cmny9cf4h00art1a4usnzhpiw/content?format=structured 200 86.715 ms - 58726[39m
+[32m[39m
+2026-04-19 20:35:20 [32minfo[39m [32mPOST /api/v1/auth/login 200 438.055 ms - 892[39m
+[32m[39m
+2026-04-19 20:36:14 [32minfo[39m [32mGET /api/v1/documents/cmny9cf4h00art1a4usnzhpiw/content?format=structured 200 97.777 ms - 58726[39m
+[32m[39m
+2026-04-19 22:55:42 [32minfo[39m [32mPOST /api/v1/auth/login 200 1645.022 ms - 892[39m
+[32m[39m
+2026-04-19 22:56:57 [32minfo[39m [32mGET /api/v1/documents/cmny9cf4h00art1a4usnzhpiw/content?format=structured 200 213.132 ms - 58726[39m
+[32m[39m
+2026-04-19 23:01:56 [32minfo[39m [32mGET /api/v1/documents/cmny9cf4h00art1a4usnzhpiw/content?format=structured 200 243.664 ms - 16756[39m
+[32m[39m
+2026-04-19 23:07:28 [32minfo[39m [32mGET /api/v1/documents/cmny9cf4h00art1a4usnzhpiw/content?format=structured 200 580.914 ms - 63969[39m
+[32m[39m
+2026-04-20 02:46:07 [32minfo[39m [32mPOST /api/v1/auth/login 200 1434.839 ms - 892[39m
+[32m[39m
+2026-04-20 02:46:58 [32minfo[39m [32mGET /api/v1/documents/cmnycd0be00kjt1a4ehmdgy3s/content?format=structured 200 220.963 ms - 360756[39m
+[32m[39m
+2026-04-20 02:47:47 [32minfo[39m [32mGET /api/v1/documents/cmny9cf4h00art1a4usnzhpiw/content?format=structured 200 82.034 ms - 63969[39m
+[32m[39m
+2026-04-20 02:48:26 [32minfo[39m [32mGET /api/v1/documents/cmny26udh0002t1a4ly6snrh1/content?format=structured 200 35.086 ms - 72622[39m
+[32m[39m
+2026-04-20 02:48:54 [32minfo[39m [32mGET /api/v1/documents/cmny2hf6k003wt1a4umiaz0m7/content?format=structured 200 69.110 ms - 229768[39m
+[32m[39m
+2026-04-20 03:03:47 [32minfo[39m [32mGET /api/v1/documents/cmny26udh0002t1a4ly6snrh1/content?format=structured 200 105.035 ms - 72622[39m
+[32m[39m
+2026-04-20 03:54:05 [32minfo[39m [32mPOST /api/v1/auth/login 200 449.265 ms - 892[39m
+[32m[39m
+2026-04-20 03:54:16 [32minfo[39m [32mPOST /api/v1/auth/login 200 125.271 ms - 892[39m
+[32m[39m
+2026-04-20 03:54:49 [32minfo[39m [32mGET /api/v1/documents/cmny26udh0002t1a4ly6snrh1/content?format=structured 200 51.934 ms - 20660[39m
+[32m[39m
+2026-04-20 03:55:26 [32minfo[39m [32mGET /api/v1/documents/cmny26udh0002t1a4ly6snrh1/content?format=structured 200 29.165 ms - 20660[39m
+[32m[39m
+2026-04-20 03:55:29 [32minfo[39m [32mGET /api/v1/documents/cmny26udh0002t1a4ly6snrh1/content?format=structured 200 25.737 ms - 20660[39m
+[32m[39m
+2026-04-20 04:32:12 [32minfo[39m [32mGET /api/v1/documents/cmny26udh0002t1a4ly6snrh1/content?format=structured 200 302.295 ms - 20660[39m
+[32m[39m
+2026-04-20 04:32:20 [32minfo[39m [32mGET /api/v1/documents/cmny26udh0002t1a4ly6snrh1/content?format=structured 200 22.301 ms - 20660[39m
+[32m[39m
+2026-04-20 04:32:48 [32minfo[39m [32mGET /api/v1/documents/cmny2hf6k003wt1a4umiaz0m7/content?format=structured 200 101.504 ms - 116914[39m
+[32m[39m
+2026-04-20 04:33:18 [32minfo[39m [32mGET /api/v1/documents/cmnycd0be00kjt1a4ehmdgy3s/content?format=structured 200 190.057 ms - 161714[39m
+[32m[39m
+2026-04-20 04:34:36 [32minfo[39m [32mGET /api/v1/documents/cmnycd0be00kjt1a4ehmdgy3s/content?format=structured 200 534.956 ms - 360756[39m
+[32m[39m
+2026-04-20 10:23:48 [32minfo[39m [32mGET / 200 4.858 ms - 58[39m
+[32m[39m
+2026-04-20 10:31:36 [32minfo[39m [32mPOST /api/v1/auth/login 200 1050.380 ms - 892[39m
+[32m[39m
+2026-04-20 10:31:56 [32minfo[39m [32mPOST /api/v1/auth/login 200 127.389 ms - 892[39m
+[32m[39m
+2026-04-20 10:52:51 [32minfo[39m [32mPOST /api/v1/auth/login 200 447.052 ms - 892[39m
+[32m[39m
